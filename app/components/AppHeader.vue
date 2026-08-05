@@ -18,18 +18,7 @@ const isActive = (to: string) => {
   <header class="header" :class="{ 'header--open': open }">
     <div class="container-wide header__inner">
       <NuxtLink to="/" class="logo" aria-label="CX ENERTECH Home">
-        <span class="logo__mark" aria-hidden="true">
-          <svg viewBox="0 0 36 36" fill="none" width="36" height="36">
-            <rect width="36" height="36" rx="6" fill="currentColor" class="logo__bg" />
-            <path d="M18 6L21.5 15H14.5L18 6Z" fill="#F0A202" />
-            <circle cx="18" cy="22" r="7" stroke="#1AA6A0" stroke-width="2" fill="none" />
-            <path d="M18 17.5V22L21.5 24" stroke="#F5F7F4" stroke-width="1.5" stroke-linecap="round" />
-          </svg>
-        </span>
-        <span class="logo__text">
-          <span class="logo__name">CX ENERTECH</span>
-          <span class="logo__tag">Smart Energy & EV</span>
-        </span>
+        <BrandLogo variant="light" :height="36" />
       </NuxtLink>
 
       <nav class="nav" :class="{ 'nav--open': open }" aria-label="Main">
@@ -71,9 +60,9 @@ const isActive = (to: string) => {
   inset: 0 0 auto;
   z-index: 100;
   height: var(--header-h);
-  background: rgba(5, 46, 36, 0.92);
+  background: rgba(14, 26, 43, 0.94);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(245, 247, 244, 0.08);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
 }
 
 .header__inner {
@@ -87,33 +76,7 @@ const isActive = (to: string) => {
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  color: var(--color-cream);
   flex-shrink: 0;
-}
-
-.logo__bg {
-  color: var(--color-forest-mid);
-}
-
-.logo__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-}
-
-.logo__name {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
-}
-
-.logo__tag {
-  font-size: 0.65rem;
-  opacity: 0.55;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .nav {
@@ -126,8 +89,8 @@ const isActive = (to: string) => {
   font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: rgba(245, 247, 244, 0.7);
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.72);
   padding: 0.5rem 0.65rem;
   transition: color 0.25s;
   white-space: nowrap;
@@ -135,11 +98,11 @@ const isActive = (to: string) => {
 
 .nav__link:hover,
 .nav__link--active {
-  color: var(--color-cream);
+  color: var(--color-white);
 }
 
 .nav__link--active {
-  color: var(--color-solar);
+  color: var(--color-gold);
 }
 
 .nav__cta-mobile {
@@ -154,7 +117,7 @@ const isActive = (to: string) => {
 
 .header__cta {
   padding: 0.65rem 1.25rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .menu-btn {
@@ -168,7 +131,7 @@ const isActive = (to: string) => {
 .menu-btn span {
   display: block;
   height: 2px;
-  background: var(--color-cream);
+  background: var(--color-white);
   border-radius: 1px;
   transition: transform 0.3s var(--ease), opacity 0.3s;
 }
@@ -197,7 +160,7 @@ const isActive = (to: string) => {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--color-forest);
+    background: var(--color-navy);
     padding: 1.5rem;
     gap: 0.25rem;
     overflow-y: auto;
@@ -206,7 +169,7 @@ const isActive = (to: string) => {
   .nav__link {
     font-size: 1rem;
     padding: 1rem 0.5rem;
-    border-bottom: 1px solid rgba(245, 247, 244, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .nav__cta-mobile {

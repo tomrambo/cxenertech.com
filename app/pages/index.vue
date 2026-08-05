@@ -9,7 +9,9 @@
         <div class="hero__orb hero__orb--2" />
       </div>
       <div class="container-wide hero__content">
-        <p class="hero__brand animate-fade-up">CX ENERTECH</p>
+        <div class="hero__brand animate-fade-up">
+          <BrandLogo variant="light" :height="48" />
+        </div>
         <h1 class="hero__title animate-fade-up animate-delay-1">
           POWERING A<br />SUSTAINABLE FUTURE
         </h1>
@@ -224,8 +226,8 @@ useSeoMeta({
   min-height: 100dvh;
   display: flex;
   align-items: center;
-  background: var(--color-forest);
-  color: var(--color-cream);
+  background: var(--color-navy);
+  color: var(--color-white);
   overflow: hidden;
   padding: calc(var(--header-h) + 2rem) 0 4rem;
 }
@@ -240,17 +242,17 @@ useSeoMeta({
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(160deg, #031f18 0%, #052e24 40%, #0a3d38 70%, #0a2a32 100%),
-    linear-gradient(90deg, transparent 50%, rgba(26, 166, 160, 0.08) 100%);
+    linear-gradient(160deg, #070e18 0%, #0e1a2b 40%, #162338 70%, #1a2438 100%),
+    linear-gradient(90deg, transparent 50%, rgba(212, 175, 55, 0.06) 100%);
 }
 
 .hero__pattern {
   position: absolute;
   inset: 0;
-  opacity: 0.07;
+  opacity: 0.06;
   background-image:
-    linear-gradient(rgba(245, 247, 244, 0.4) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 247, 244, 0.4) 1px, transparent 1px);
+    linear-gradient(rgba(192, 192, 192, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192, 192, 192, 0.5) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, black, transparent);
 }
@@ -266,7 +268,7 @@ useSeoMeta({
   height: 50vw;
   max-width: 600px;
   max-height: 600px;
-  background: rgba(240, 162, 2, 0.18);
+  background: rgba(212, 175, 55, 0.2);
   top: -10%;
   right: -5%;
   animation: orbFloat 12s ease-in-out infinite;
@@ -277,7 +279,7 @@ useSeoMeta({
   height: 40vw;
   max-width: 480px;
   max-height: 480px;
-  background: rgba(26, 166, 160, 0.22);
+  background: rgba(192, 192, 192, 0.12);
   bottom: -15%;
   left: 10%;
   animation: orbFloat 15s ease-in-out infinite reverse;
@@ -300,12 +302,7 @@ useSeoMeta({
 }
 
 .hero__brand {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  letter-spacing: 0.18em;
-  color: var(--color-solar);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero__title {
@@ -391,7 +388,7 @@ useSeoMeta({
 
 .pillar:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(5, 46, 36, 0.1);
+  box-shadow: 0 20px 50px rgba(14, 26, 43, 0.12);
 }
 
 .pillar--solar:hover {
@@ -587,19 +584,19 @@ useSeoMeta({
 
 .project-card__visual {
   height: 160px;
-  background: linear-gradient(135deg, var(--color-forest-mid), var(--color-forest));
+  background: linear-gradient(135deg, var(--color-navy-mid), var(--color-navy));
 }
 
 .project-card__visual--solar {
-  background: linear-gradient(135deg, #0a4a3a, #1a6b4a 40%, #f0a20244);
+  background: linear-gradient(135deg, #0e1a2b, #1e2f4a 40%, rgba(212, 175, 55, 0.45));
 }
 
 .project-card__visual--ev {
-  background: linear-gradient(135deg, #0a3d48, #1aa6a0 60%, #052e24);
+  background: linear-gradient(135deg, #0e1a2b, #243552 50%, rgba(192, 192, 192, 0.35));
 }
 
 .project-card__visual--epc {
-  background: linear-gradient(135deg, #052e24, #0f5c48 50%, #1aa6a044);
+  background: linear-gradient(135deg, #0e1a2b, #162338 50%, rgba(212, 175, 55, 0.3));
 }
 
 .project-card__body {

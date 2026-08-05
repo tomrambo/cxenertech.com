@@ -6,7 +6,10 @@ import { footerNav, contactInfo } from '~/utils/nav'
   <footer class="footer">
     <div class="container-wide footer__top">
       <div class="footer__brand">
-        <NuxtLink to="/" class="footer__logo">CX ENERTECH</NuxtLink>
+        <NuxtLink to="/" class="footer__logo-link">
+          <BrandLogo variant="light" :height="42" />
+        </NuxtLink>
+        <p class="footer__legal">{{ contactInfo.legalTh }}</p>
         <p class="footer__tagline">{{ contactInfo.tagline }}</p>
         <p class="footer__desc">
           โซลูชันพลังงานสะอาดและโครงสร้างพื้นฐาน EV แบบครบวงจร
@@ -59,7 +62,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
 
     <div class="footer__bottom">
       <div class="container-wide footer__bottom-inner">
-        <p>© {{ new Date().getFullYear() }} CX ENERTECH. All rights reserved.</p>
+        <p>© {{ new Date().getFullYear() }} {{ contactInfo.legalEn }}. All rights reserved.</p>
         <div class="footer__bottom-links">
           <NuxtLink to="/contact/quotation">ขอใบเสนอราคา</NuxtLink>
           <NuxtLink to="/contact/site-survey">ขอสำรวจพื้นที่</NuxtLink>
@@ -72,8 +75,8 @@ import { footerNav, contactInfo } from '~/utils/nav'
 
 <style scoped>
 .footer {
-  background: var(--color-ink);
-  color: var(--color-cream);
+  background: var(--color-navy);
+  color: var(--color-white);
 }
 
 .footer__top {
@@ -83,19 +86,23 @@ import { footerNav, contactInfo } from '~/utils/nav'
   padding-block: 4rem 3rem;
 }
 
-.footer__logo {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.35rem;
-  letter-spacing: 0.04em;
+.footer__logo-link {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.footer__legal {
+  font-size: 0.8rem;
+  opacity: 0.55;
+  margin-bottom: 0.5rem;
 }
 
 .footer__tagline {
-  color: var(--color-teal);
+  color: var(--color-gold);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin: 0.5rem 0 1rem;
+  margin: 0.35rem 0 1rem;
   font-family: var(--font-display);
   font-weight: 600;
 }
@@ -117,7 +124,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
 }
 
 .footer__contact a:hover {
-  color: var(--color-solar);
+  color: var(--color-gold);
 }
 
 .footer__cols {
@@ -130,7 +137,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-solar);
+  color: var(--color-gold);
   margin-bottom: 1rem;
 }
 
@@ -144,11 +151,11 @@ import { footerNav, contactInfo } from '~/utils/nav'
 
 .footer__cols a:hover {
   opacity: 1;
-  color: var(--color-teal-bright);
+  color: var(--color-gold-light);
 }
 
 .footer__bottom {
-  border-top: 1px solid rgba(245, 247, 244, 0.08);
+  border-top: 1px solid rgba(192, 192, 192, 0.15);
   padding-block: 1.25rem;
 }
 
@@ -167,7 +174,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
 }
 
 .footer__bottom-links a:hover {
-  color: var(--color-solar);
+  color: var(--color-gold);
   opacity: 1;
 }
 

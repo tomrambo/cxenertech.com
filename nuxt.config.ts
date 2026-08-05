@@ -9,7 +9,8 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      { name: 'Syne', provider: 'google', weights: [500, 600, 700, 800] },
+      { name: 'Exo 2', provider: 'google', weights: [400, 500, 600, 700, 800] },
+      { name: 'Montserrat', provider: 'google', weights: [300, 400, 500, 600, 700] },
       { name: 'IBM Plex Sans Thai', provider: 'google', weights: [300, 400, 500, 600, 700] },
     ],
   },
@@ -24,9 +25,9 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'CX ENERTECH ให้บริการโซลูชันพลังงานสะอาดและโครงสร้างพื้นฐานสำหรับรถยนต์ไฟฟ้าแบบครบวงจร — Solar Energy & EV Charging',
+            'CX ENERTECH CO., LTD. — Smart Energy & EV Infrastructure โซลูชันพลังงานสะอาดและโครงสร้างพื้นฐาน EV แบบครบวงจร',
         },
-        { name: 'theme-color', content: '#052E24' },
+        { name: 'theme-color', content: '#0E1A2B' },
       ],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     },

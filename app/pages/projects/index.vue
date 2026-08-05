@@ -111,13 +111,13 @@ useSeoMeta({
 }
 
 .item__visual--solar {
-  background: linear-gradient(135deg, #0a4a3a, #f0a20255);
+  background: linear-gradient(135deg, #0e1a2b, rgba(212, 175, 55, 0.55));
 }
 .item__visual--ev {
-  background: linear-gradient(135deg, #0a3d48, #1aa6a0);
+  background: linear-gradient(135deg, #0e1a2b, #2a3a55);
 }
 .item__visual--epc {
-  background: linear-gradient(135deg, #052e24, #0f5c48);
+  background: linear-gradient(135deg, #0e1a2b, #162338);
 }
 
 .item__body {

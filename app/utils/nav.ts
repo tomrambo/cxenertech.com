@@ -37,6 +37,8 @@ export const footerNav = {
 
 export const contactInfo = {
   company: 'CX ENERTECH',
+  legalEn: 'CX ENERTECH CO., LTD.',
+  legalTh: 'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
   tagline: 'Smart Energy & EV Infrastructure',
   email: 'info@cxenertech.com',
   phone: '+66 (0) 2-XXX-XXXX',

@@ -11,6 +11,7 @@
         <div>
           <span class="section-label">Company Profile</span>
           <h2 class="section-title">SMART ENERGY &amp; EV INFRASTRUCTURE</h2>
+          <p class="legal-name">CX ENERTECH CO., LTD. · บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด</p>
           <p>
             CX ENERTECH มุ่งมั่นขับเคลื่อนอนาคตที่ยั่งยืนด้วย Smart Energy Ecosystem
             เชื่อมโยงสองเสาหลัก — Solar Energy และ EV Charging — สู่การบริหารจัดการพลังงานอย่างชาญฉลาด
@@ -85,6 +86,15 @@ useSeoMeta({
   color: var(--color-muted);
   margin-top: 1rem;
   max-width: 36rem;
+}
+
+.legal-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem !important;
+  color: var(--color-gold) !important;
+  letter-spacing: 0.02em;
+  margin-top: 0.25rem !important;
 }
 
 .about-stats {
