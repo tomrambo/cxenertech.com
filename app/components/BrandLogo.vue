@@ -13,10 +13,10 @@ withDefaults(
 
 <template>
   <span class="brand-logo" :style="{ height: `${height}px` }">
-    <!-- Dark navy header: white wordmark SVG -->
+    <!-- Dark backgrounds (header/footer): gold + white wordmark -->
     <img
       v-if="variant === 'light'"
-      src="/logo-white.svg"
+      src="/logo-on-dark.png"
       alt="CX ENERTECH"
       class="brand-logo__img"
       :style="{ height: `${height}px` }"
@@ -24,12 +24,12 @@ withDefaults(
     <!-- Mark only -->
     <img
       v-else-if="variant === 'mark'"
-      src="/logo-mark.svg"
+      src="/logo-mark.png"
       alt="CX ENERTECH"
       class="brand-logo__img brand-logo__img--mark"
       :style="{ height: `${height}px` }"
     />
-    <!-- Light backgrounds: high-fidelity PNG -->
+    <!-- Light backgrounds: official gold + navy logo -->
     <img
       v-else
       src="/logo.png"

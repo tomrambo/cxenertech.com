@@ -28,7 +28,7 @@
   --space-section: clamp(4rem, 8vw, 7rem);
   --radius: 4px;
   --radius-pill: 999px;
-  --header-h: 76px;
+  --header-h: 80px;
   --max-w: 1200px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
