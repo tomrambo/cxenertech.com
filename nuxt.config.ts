@@ -27,7 +27,7 @@ export default defineNuxtConfig({
           content:
             'CX ENERTECH CO., LTD. — Smart Energy & EV Infrastructure โซลูชันพลังงานสะอาดและโครงสร้างพื้นฐาน EV แบบครบวงจร',
         },
-        { name: 'theme-color', content: '#0E1A2B' },
+        { name: 'theme-color', content: '#0B0B0B' },
       ],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     },

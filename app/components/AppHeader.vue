@@ -31,14 +31,17 @@ const isActive = (to: string) => {
         >
           {{ item.label }}
         </NuxtLink>
-        <NuxtLink to="/contact/quotation" class="btn btn-primary nav__cta-mobile">
-          ขอใบเสนอราคา
+        <NuxtLink to="/contact" class="btn btn-primary nav__cta-mobile">
+          ติดต่อเรา
         </NuxtLink>
       </nav>
 
       <div class="header__actions">
-        <NuxtLink to="/contact/quotation" class="btn btn-primary header__cta">
-          ขอใบเสนอราคา
+        <NuxtLink to="/contact" class="btn btn-primary header__cta">
+          ติดต่อเรา
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </NuxtLink>
         <button
           class="menu-btn"
@@ -60,9 +63,9 @@ const isActive = (to: string) => {
   inset: 0 0 auto;
   z-index: 100;
   height: var(--header-h);
-  background: rgba(14, 26, 43, 0.94);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(11, 11, 11, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(212, 255, 0, 0.08);
 }
 
 .header__inner {
@@ -94,15 +97,25 @@ const isActive = (to: string) => {
   padding: 0.5rem 0.65rem;
   transition: color 0.25s;
   white-space: nowrap;
+  position: relative;
 }
 
-.nav__link:hover,
-.nav__link--active {
+.nav__link:hover {
   color: var(--color-white);
 }
 
 .nav__link--active {
-  color: var(--color-gold);
+  color: var(--color-white);
+}
+
+.nav__link--active::after {
+  content: '';
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: 0.15rem;
+  height: 2px;
+  background: var(--color-lime);
 }
 
 .nav__cta-mobile {
@@ -160,7 +173,7 @@ const isActive = (to: string) => {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--color-navy);
+    background: var(--color-black);
     padding: 1.5rem;
     gap: 0.25rem;
     overflow-y: auto;
@@ -170,6 +183,10 @@ const isActive = (to: string) => {
     font-size: 1rem;
     padding: 1rem 0.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav__link--active::after {
+    display: none;
   }
 
   .nav__cta-mobile {

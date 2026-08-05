@@ -12,13 +12,13 @@ import { footerNav, contactInfo } from '~/utils/nav'
         <p class="footer__legal">{{ contactInfo.legalTh }}</p>
         <p class="footer__tagline">{{ contactInfo.tagline }}</p>
         <p class="footer__desc">
-          โซลูชันพลังงานสะอาดและโครงสร้างพื้นฐาน EV แบบครบวงจร
-          ตั้งแต่ Solar Energy ไปจนถึง EV Charging และ Energy Management
+          Empowering a Sustainable Future with Smart Energy &amp; Technology Solutions
         </p>
         <div class="footer__contact">
           <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
           <span>{{ contactInfo.phone }}</span>
           <span>LINE: {{ contactInfo.line }}</span>
+          <a href="https://www.cxenertech.com" target="_blank" rel="noopener">www.cxenertech.com</a>
         </div>
       </div>
 
@@ -75,8 +75,9 @@ import { footerNav, contactInfo } from '~/utils/nav'
 
 <style scoped>
 .footer {
-  background: var(--color-navy);
+  background: #080808;
   color: var(--color-white);
+  border-top: 1px solid rgba(212, 255, 0, 0.1);
 }
 
 .footer__top {
@@ -98,7 +99,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
 }
 
 .footer__tagline {
-  color: var(--color-gold);
+  color: var(--color-lime);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -124,7 +125,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
 }
 
 .footer__contact a:hover {
-  color: var(--color-gold);
+  color: var(--color-lime);
 }
 
 .footer__cols {
@@ -137,7 +138,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-lime);
   margin-bottom: 1rem;
 }
 
@@ -151,11 +152,11 @@ import { footerNav, contactInfo } from '~/utils/nav'
 
 .footer__cols a:hover {
   opacity: 1;
-  color: var(--color-gold-light);
+  color: var(--color-lime-soft);
 }
 
 .footer__bottom {
-  border-top: 1px solid rgba(192, 192, 192, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-block: 1.25rem;
 }
 
@@ -174,7 +175,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
 }
 
 .footer__bottom-links a:hover {
-  color: var(--color-gold);
+  color: var(--color-lime);
   opacity: 1;
 }
 

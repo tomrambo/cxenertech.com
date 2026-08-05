@@ -46,7 +46,7 @@ useSeoMeta({
 }
 
 .download__card {
-  background: var(--color-offwhite);
+  background: var(--color-panel);
   border-top: 3px solid var(--color-gold);
   padding: 2.5rem 2rem;
   text-align: center;
@@ -54,7 +54,7 @@ useSeoMeta({
 
 .download__card h2 {
   margin: 1.25rem 0 0.5rem;
-  color: var(--color-navy);
+  color: var(--color-white);
 }
 
 .download__card p {
