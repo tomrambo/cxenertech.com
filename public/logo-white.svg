@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 110" fill="none" role="img" aria-label="CX ENERTECH">
+  <defs>
+    <linearGradient id="cxGoldW" x1="8" y1="8" x2="90" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F0D78C"/>
+      <stop offset="35%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#8B6914"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0,5) scale(0.9)">
+    <path fill="url(#cxGoldW)" fill-rule="evenodd" d="M78 22.5C54.5 14 28 28.5 22.5 54.5 16.5 83 34 109 62.5 114.5c14.5 2.8 30-1.2 41.5-12.2l-13.8-14.5c-7.2 6.5-16.8 9.2-26.2 7.4-17.8-3.4-29.5-20.5-26-38.2 3.4-17.2 19.5-28.5 37-25.5 7.2 1.2 13.5 5 18 10.8L106 28C97.5 20.2 88.2 15.8 78 22.5z"/>
+    <path fill="url(#cxGoldW)" d="M68 18L42 62h22L36 108l48-58H62L88 18z"/>
+    <path fill="#C0C0C0" d="M74 66l36 42H90L66 78z"/>
+  </g>
+  <text x="120" y="72" font-family="'Exo 2', Montserrat, Arial Black, sans-serif" font-size="40" font-weight="800" letter-spacing="3.5">
+    <tspan fill="#D4AF37">CX</tspan><tspan fill="#FFFFFF"> ENERTECH</tspan>
+  </text>
+</svg>
