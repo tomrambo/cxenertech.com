@@ -7,7 +7,7 @@ import { footerNav, contactInfo } from '~/utils/nav'
     <div class="container-wide footer__top">
       <div class="footer__brand">
         <NuxtLink to="/" class="footer__logo-link">
-          <BrandLogo variant="light" :height="42" />
+          <BrandLogo variant="light" :height="56" />
         </NuxtLink>
         <p class="footer__legal">{{ contactInfo.legalTh }}</p>
         <p class="footer__tagline">{{ contactInfo.tagline }}</p>

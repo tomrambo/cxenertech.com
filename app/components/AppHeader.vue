@@ -18,7 +18,7 @@ const isActive = (to: string) => {
   <header class="header" :class="{ 'header--open': open }">
     <div class="container-wide header__inner">
       <NuxtLink to="/" class="logo" aria-label="CX ENERTECH Home">
-        <BrandLogo variant="light" :height="36" />
+        <BrandLogo variant="light" :height="52" />
       </NuxtLink>
 
       <nav class="nav" :class="{ 'nav--open': open }" aria-label="Main">
