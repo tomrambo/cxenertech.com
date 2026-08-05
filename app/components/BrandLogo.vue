@@ -13,23 +13,26 @@ withDefaults(
 
 <template>
   <span class="brand-logo" :style="{ height: `${height}px` }">
+    <!-- Dark navy header: white wordmark SVG -->
     <img
-      v-if="variant === 'mark'"
-      src="/logo-mark.svg"
-      alt="CX ENERTECH"
-      class="brand-logo__img"
-      :style="{ height: `${height}px` }"
-    />
-    <img
-      v-else-if="variant === 'light'"
+      v-if="variant === 'light'"
       src="/logo-white.svg"
       alt="CX ENERTECH"
       class="brand-logo__img"
       :style="{ height: `${height}px` }"
     />
+    <!-- Mark only -->
+    <img
+      v-else-if="variant === 'mark'"
+      src="/logo-mark.svg"
+      alt="CX ENERTECH"
+      class="brand-logo__img brand-logo__img--mark"
+      :style="{ height: `${height}px` }"
+    />
+    <!-- Light backgrounds: high-fidelity PNG -->
     <img
       v-else
-      src="/logo.svg"
+      src="/logo.png"
       alt="CX ENERTECH"
       class="brand-logo__img"
       :style="{ height: `${height}px` }"
@@ -46,5 +49,10 @@ withDefaults(
 .brand-logo__img {
   width: auto;
   display: block;
+  object-fit: contain;
+}
+
+.brand-logo__img--mark {
+  aspect-ratio: 1;
 }
 </style>
