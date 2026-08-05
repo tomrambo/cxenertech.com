@@ -33,7 +33,7 @@
       </div>
     </section>
 
-    <section class="section" style="background: var(--color-mist)">
+    <section class="section" style="background: #101010">
       <div class="container">
         <div class="section-header centered">
           <span class="section-label">Explore</span>
@@ -104,16 +104,16 @@ useSeoMeta({
 }
 
 .stat {
-  background: var(--color-white);
+  background: var(--color-panel);
   padding: 1.5rem;
-  border-top: 3px solid var(--color-teal);
+  border-top: 3px solid var(--color-lime);
 }
 
 .stat strong {
   display: block;
   font-family: var(--font-display);
   font-size: 1.35rem;
-  color: var(--color-forest);
+  color: var(--color-white);
   margin-bottom: 0.35rem;
 }
 

@@ -1,726 +1,673 @@
 <template>
-  <div>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero__bg" aria-hidden="true">
-        <div class="hero__gradient" />
-        <div class="hero__pattern" />
-        <div class="hero__orb hero__orb--1" />
-        <div class="hero__orb hero__orb--2" />
-      </div>
-      <div class="container-wide hero__content">
-        <div class="hero__brand animate-fade-up">
-          <BrandLogo variant="light" :height="48" />
+  <div class="home">
+    <!-- Cover / Hero -->
+    <section class="cover">
+      <div class="cover__glow" aria-hidden="true" />
+      <div class="cover__particles" aria-hidden="true" />
+
+      <div class="container-wide cover__grid">
+        <div class="cover__copy">
+          <p class="cover__eyebrow animate-fade-up">CX ENERTECH CO., LTD.</p>
+          <h1 class="cover__title animate-fade-up animate-delay-1">
+            Empowering a
+            <span class="accent">Sustainable</span>
+            Future with Smart Energy &amp; Technology
+          </h1>
+          <p class="cover__desc animate-fade-up animate-delay-2">
+            ผู้นำด้านโซลูชันพลังงานสะอาด โครงสร้างพื้นฐาน EV Charging
+            และเทคโนโลยีดิจิทัลแบบครบวงจร — ตั้งแต่ Solar Energy ถึง Smart Charging
+          </p>
+          <div class="cover__cta animate-fade-up animate-delay-3">
+            <NuxtLink to="/solar" class="btn btn-primary">
+              ดูบริการของเรา
+              <span aria-hidden="true">→</span>
+            </NuxtLink>
+            <NuxtLink to="/about" class="btn btn-secondary">เกี่ยวกับเรา</NuxtLink>
+          </div>
         </div>
-        <h1 class="hero__title animate-fade-up animate-delay-1">
-          POWERING A<br />SUSTAINABLE FUTURE
-        </h1>
-        <p class="hero__subtitle animate-fade-up animate-delay-2">
-          Smart Solar &amp; EV Charging Solutions
-        </p>
-        <p class="hero__desc animate-fade-up animate-delay-3">
-          CX ENERTECH ให้บริการโซลูชันพลังงานสะอาดและโครงสร้างพื้นฐานสำหรับรถยนต์ไฟฟ้าแบบครบวงจร
-          ตั้งแต่การออกแบบ จัดหา ติดตั้ง ระบบ EPC ไปจนถึงการบริหารจัดการและบำรุงรักษา
-        </p>
-        <div class="hero__cta animate-fade-up animate-delay-4">
-          <NuxtLink to="/solar" class="btn btn-primary">ดูบริการของเรา</NuxtLink>
-          <NuxtLink to="/contact/quotation" class="btn btn-secondary">ขอใบเสนอราคา</NuxtLink>
+
+        <div class="cover__visual animate-fade-up animate-delay-2" aria-hidden="true">
+          <div
+            v-for="panel in panels"
+            :key="panel.label"
+            class="panel"
+            :class="`panel--${panel.key}`"
+          >
+            <div class="panel__media" :style="{ backgroundImage: `url(${panel.image})` }" />
+            <div class="panel__overlay" />
+            <div class="panel__badge">
+              <span class="panel__dot" />
+              {{ panel.label }}
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="hero__scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="hero__scroll-line" />
       </div>
     </section>
 
-    <!-- Two Pillars -->
+    <!-- Stats -->
+    <section class="stats">
+      <div class="container-wide stats__row">
+        <div v-for="s in stats" :key="s.label" class="stat">
+          <span class="stat__icon" aria-hidden="true">◆</span>
+          <strong>{{ s.value }}</strong>
+          <span>{{ s.label }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="section services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">What We Do</span>
+          <h2 class="section-title">บริการของเรา</h2>
+          <p class="section-lead">
+            โซลูชันครบวงจรด้านพลังงานสะอาด โครงสร้างพื้นฐาน EV และเทคโนโลยี
+          </p>
+        </div>
+        <div class="services__grid">
+          <NuxtLink
+            v-for="svc in services"
+            :key="svc.to"
+            :to="svc.to"
+            class="service-card"
+          >
+            <div class="service-card__img" :style="{ backgroundImage: `url(${svc.image})` }" />
+            <div class="service-card__body">
+              <h3>{{ svc.title }}</h3>
+              <p>{{ svc.desc }}</p>
+              <span class="service-card__link">ดูรายละเอียด →</span>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why + Mission -->
+    <section class="split">
+      <div class="split__why">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">ทำไมต้อง CX ENERTECH</h2>
+        <ul class="why-list">
+          <li v-for="item in why" :key="item.title">
+            <span class="why-list__icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>{{ item.title }}</strong>
+              <p>{{ item.desc }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="split__mission">
+        <span class="mission-label">Our Mission</span>
+        <h2>ภารกิจของเรา</h2>
+        <p>
+          Empowering a Sustainable Future with Smart Energy &amp; Technology Solutions
+          — ส่งมอบโซลูชันที่เชื่อถือได้ เพื่ออนาคตที่ยั่งยืนของธุรกิจและสังคม
+        </p>
+        <NuxtLink to="/about/vision-mission" class="btn btn-secondary mission-btn">
+          Vision &amp; Mission
+        </NuxtLink>
+      </div>
+    </section>
+
+    <!-- Pillars quick links -->
     <section class="section pillars">
       <div class="container">
         <div class="section-header centered">
-          <span class="section-label">Smart Energy &amp; EV Infrastructure</span>
-          <h2 class="section-title">สองเสาหลักของ CX ENERTECH</h2>
-          <p class="section-lead">
-            เชื่อมโยงพลังงานแสงอาทิตย์และโครงสร้างพื้นฐาน EV สู่อนาคตที่ยั่งยืน
-          </p>
+          <span class="section-label">Business Pillars</span>
+          <h2 class="section-title">สามเสาหลักธุรกิจ</h2>
         </div>
-        <div class="pillars__grid">
-          <NuxtLink to="/solar" class="pillar pillar--solar">
-            <div class="pillar__visual" aria-hidden="true">
-              <svg viewBox="0 0 120 80" fill="none">
-                <rect x="20" y="35" width="80" height="28" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
-                <path d="M30 35V28M45 35V22M60 35V25M75 35V20M90 35V28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                <circle cx="95" cy="18" r="10" stroke="#F0A202" stroke-width="2" fill="none" />
-                <path d="M95 12V18L99 20" stroke="#F0A202" stroke-width="1.5" stroke-linecap="round" />
-              </svg>
-            </div>
-            <h3>SOLAR ENERGY</h3>
-            <p class="pillar__meta">Design • EPC • Installation • O&amp;M</p>
-            <p>
-              ครอบคลุมตั้งแต่ Solar Rooftop ไปจนถึง Solar Farm และระบบ BOS
-              พร้อม Energy Monitoring
-            </p>
-            <span class="pillar__link">สำรวจบริการ Solar →</span>
+        <div class="pillars__row">
+          <NuxtLink to="/solar" class="pillar-link">
+            <strong>SOLAR ENERGY</strong>
+            <span>Clean Energy for a Better Tomorrow</span>
           </NuxtLink>
-          <NuxtLink to="/ev-charging" class="pillar pillar--ev">
-            <div class="pillar__visual" aria-hidden="true">
-              <svg viewBox="0 0 120 80" fill="none">
-                <rect x="35" y="20" width="50" height="45" rx="4" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
-                <path d="M55 32L48 44H58L52 58" stroke="#1AA6A0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                <circle cx="60" cy="68" r="3" fill="#1AA6A0" />
-              </svg>
-            </div>
-            <h3>EV CHARGING</h3>
-            <p class="pillar__meta">Charger • Station • EPC • Management</p>
-            <p>
-              ตั้งแต่ Home Charger → Commercial → DC Fast Charging → EV Station
-              พร้อมแพลตฟอร์มบริหารจัดการ
-            </p>
-            <span class="pillar__link">สำรวจบริการ EV →</span>
+          <NuxtLink to="/ev-charging" class="pillar-link">
+            <strong>EV CHARGING</strong>
+            <span>Smart Charging for Every Journey</span>
           </NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <!-- Smart Energy Ecosystem -->
-    <section class="section ecosystem">
-      <div class="container">
-        <div class="section-header centered">
-          <span class="section-label">Smart Energy Ecosystem</span>
-          <h2 class="section-title">เชื่อม Solar กับ EV สู่อนาคตที่ยั่งยืน</h2>
-        </div>
-        <div class="eco-flow">
-          <div class="eco-node eco-node--top">
-            <strong>CX ENERTECH</strong>
-            <span>SMART ENERGY ECOSYSTEM</span>
-          </div>
-          <div class="eco-branches">
-            <NuxtLink to="/solar" class="eco-branch">
-              <strong>SOLAR ENERGY</strong>
-              <ul>
-                <li>Solar Rooftop</li>
-                <li>Solar Farm</li>
-                <li>Solar EPC</li>
-                <li>O&amp;M</li>
-              </ul>
-            </NuxtLink>
-            <NuxtLink to="/ev-charging" class="eco-branch">
-              <strong>EV CHARGING</strong>
-              <ul>
-                <li>AC Charger</li>
-                <li>DC Charger</li>
-                <li>EV Station</li>
-                <li>EV EPC</li>
-              </ul>
-            </NuxtLink>
-          </div>
-          <div class="eco-node eco-node--mid">
-            <NuxtLink to="/smart-energy">ENERGY MANAGEMENT</NuxtLink>
-          </div>
-          <div class="eco-node eco-node--bot">SUSTAINABLE FUTURE</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Key Projects -->
-    <section class="section projects-teaser">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Key Projects</span>
-          <h2 class="section-title">โครงการที่ผ่านมา</h2>
-          <p class="section-lead">ผลงาน Solar และ EV Charging จากทีม CX ENERTECH</p>
-        </div>
-        <div class="project-grid">
-          <NuxtLink
-            v-for="project in projects"
-            :key="project.slug"
-            :to="`/projects/${project.slug}`"
-            class="project-card"
-          >
-            <div class="project-card__visual" :class="`project-card__visual--${project.type}`" />
-            <div class="project-card__body">
-              <span class="project-card__type">{{ project.category }}</span>
-              <h3>{{ project.title }}</h3>
-              <p>{{ project.capacity }}</p>
-            </div>
+          <NuxtLink to="/smart-energy" class="pillar-link">
+            <strong>SMART ENERGY</strong>
+            <span>Technology Solutions Driving Your Business</span>
           </NuxtLink>
-        </div>
-        <div class="projects-teaser__more">
-          <NuxtLink to="/projects" class="btn btn-outline-dark">ดูโครงการทั้งหมด</NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why CX -->
-    <section class="section why">
-      <div class="container">
-        <div class="section-header centered">
-          <span class="section-label">Why CX ENERTECH</span>
-          <h2 class="section-title">ทำไมต้องเลือกเรา</h2>
-        </div>
-        <div class="why__grid">
-          <div v-for="item in whyItems" :key="item.title" class="why__item">
-            <span class="why__num">{{ item.num }}</span>
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.desc }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Partners -->
-    <section class="section partners-strip">
-      <div class="container">
-        <div class="section-header centered">
-          <span class="section-label">Partners &amp; Certifications</span>
-          <h2 class="section-title">พันธมิตรและมาตรฐาน</h2>
-        </div>
-        <div class="partner-logos">
-          <div v-for="p in partners" :key="p" class="partner-logo">{{ p }}</div>
-        </div>
-        <div class="partners-strip__link">
-          <NuxtLink to="/partners">ดูพันธมิตรทั้งหมด →</NuxtLink>
-          <NuxtLink to="/about/certifications">ดูใบรับรอง →</NuxtLink>
         </div>
       </div>
     </section>
 
     <CtaBand
-      title="ขอใบเสนอราคาวันนี้"
-      description="ปรึกษาทีมผู้เชี่ยวชาญด้าน Solar และ EV Charging เพื่อออกแบบโซลูชันที่เหมาะสมกับคุณ"
+      title="พร้อมเริ่มต้นโครงการของคุณ?"
+      description="ปรึกษาทีม CX ENERTECH เพื่อออกแบบโซลูชัน Solar, EV Charging และ Smart Energy"
       primary-label="ขอใบเสนอราคา"
       primary-to="/contact/quotation"
-      secondary-label="ขอสำรวจพื้นที่"
-      secondary-to="/contact/site-survey"
+      secondary-label="ติดต่อเรา"
+      secondary-to="/contact"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-const projects = [
-  { slug: 'factory-rooftop-2mw', title: 'โรงงานอุตสาหกรรม Solar Rooftop', category: 'Solar', capacity: '2 MW', type: 'solar' },
-  { slug: 'commercial-dc-station', title: 'สถานีชาร์จ DC Fast Charging', category: 'EV Charging', capacity: '4 × 120 kW', type: 'ev' },
-  { slug: 'warehouse-solar-epc', title: 'คลังสินค้า Solar EPC', category: 'Solar EPC', capacity: '1.5 MW', type: 'epc' },
-  { slug: 'mall-ev-hub', title: 'EV Charging Hub ห้างสรรพสินค้า', category: 'EV Station', capacity: '12 จุดชาร์จ', type: 'ev' },
+const panels = [
+  {
+    key: 'solar',
+    label: 'SOLAR ENERGY',
+    image:
+      'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    key: 'ev',
+    label: 'EV CHARGER',
+    image:
+      'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    key: 'it',
+    label: 'IT SOLUTIONS',
+    image:
+      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80',
+  },
 ]
 
-const whyItems = [
-  { num: '01', title: 'ครบวงจร EPC', desc: 'ออกแบบ จัดหา ติดตั้ง Commissioning และ O&M ในที่เดียว' },
-  { num: '02', title: 'Solar + EV Integration', desc: 'เชื่อมระบบโซลาร์กับสถานีชาร์จ EV เพื่อใช้พลังงานอย่างมีประสิทธิภาพ' },
-  { num: '03', title: 'มาตรฐานวิศวกรรม', desc: 'ทีมวิศวกรมืออาชีพ พร้อมระบบไฟฟ้า BOS และมาตรฐานความปลอดภัย' },
-  { num: '04', title: 'แพลตฟอร์มบริหารจัดการ', desc: 'Monitoring, Payment และ Reporting สำหรับ Solar และ EV' },
+const stats = [
+  { value: '10+', label: 'Years of experience' },
+  { value: '500+', label: 'Completed projects' },
+  { value: '300+', label: 'Trusted clients' },
+  { value: '20,000+', label: 'Tons of CO₂ reduced' },
+  { value: 'ISO', label: 'International Standards' },
 ]
 
-const partners = ['Huawei', 'Sungrow', 'Jinko', 'Trina', 'ABB', 'Schneider', 'Delta', 'PEA']
+const services = [
+  {
+    to: '/solar',
+    title: 'Solar Energy Solutions',
+    desc: 'ออกแบบ ติดตั้ง และดูแลระบบโซลาร์ครบวงจร ตั้งแต่ Rooftop ถึง Solar Farm',
+    image:
+      'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    to: '/ev-charging',
+    title: 'EV Charging Solutions',
+    desc: 'Home Charger, Commercial และ EV Station พร้อมระบบบริหารจัดการ',
+    image:
+      'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    to: '/smart-energy',
+    title: 'Smart Energy & Technology',
+    desc: 'เชื่อม Solar กับ EV สู่ Energy Management และโซลูชันเทคโนโลยี',
+    image:
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+  },
+]
+
+const why = [
+  { title: 'Expert Team', desc: 'ทีมวิศวกรและผู้เชี่ยวชาญด้านพลังงานและ EV Infrastructure' },
+  { title: 'International Standards', desc: 'มาตรฐานความปลอดภัยและคุณภาพระดับสากล' },
+  { title: 'Modern Technology', desc: 'เทคโนโลยี Monitoring, Management และ Integration' },
+]
 
 useSeoMeta({
-  title: 'CX ENERTECH — Powering a Sustainable Future',
+  title: 'CX ENERTECH — Empowering a Sustainable Future',
   description:
-    'Smart Solar & EV Charging Solutions — โซลูชันพลังงานสะอาดและโครงสร้างพื้นฐาน EV แบบครบวงจร',
+    'Smart Energy & Technology Solutions — Solar Energy, EV Charging และโซลูชันเทคโนโลยีครบวงจร',
 })
 </script>
 
 <style scoped>
-.hero {
+.home {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+/* ===== COVER ===== */
+.cover {
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
+  padding: calc(var(--header-h) + 2.5rem) 0 3rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  background: var(--color-navy);
-  color: var(--color-white);
-  overflow: hidden;
-  padding: calc(var(--header-h) + 2rem) 0 4rem;
+  background:
+    radial-gradient(ellipse 50% 60% at 15% 20%, rgba(212, 255, 0, 0.06), transparent 60%),
+    radial-gradient(ellipse 40% 50% at 90% 80%, rgba(212, 175, 55, 0.08), transparent 55%),
+    linear-gradient(160deg, #0b0b0b 0%, #10141c 45%, #0b0b0b 100%);
 }
 
-.hero__bg {
+.cover__glow {
   position: absolute;
   inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(212, 255, 0, 0.03) 100%);
   pointer-events: none;
 }
 
-.hero__gradient {
+.cover__particles {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(160deg, #070e18 0%, #0e1a2b 40%, #162338 70%, #1a2438 100%),
-    linear-gradient(90deg, transparent 50%, rgba(212, 175, 55, 0.06) 100%);
-}
-
-.hero__pattern {
-  position: absolute;
-  inset: 0;
-  opacity: 0.06;
+  pointer-events: none;
   background-image:
-    linear-gradient(rgba(192, 192, 192, 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(192, 192, 192, 0.5) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, black, transparent);
+    radial-gradient(1.5px 1.5px at 10% 20%, rgba(212, 175, 55, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 30% 70%, rgba(212, 255, 0, 0.45), transparent),
+    radial-gradient(1px 1px at 70% 30%, rgba(212, 175, 55, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 85% 60%, rgba(212, 255, 0, 0.4), transparent),
+    radial-gradient(1px 1px at 50% 85%, rgba(212, 175, 55, 0.5), transparent);
+  opacity: 0.7;
+  animation: particleDrift 18s linear infinite;
 }
 
-.hero__orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-}
-
-.hero__orb--1 {
-  width: 50vw;
-  height: 50vw;
-  max-width: 600px;
-  max-height: 600px;
-  background: rgba(212, 175, 55, 0.2);
-  top: -10%;
-  right: -5%;
-  animation: orbFloat 12s ease-in-out infinite;
-}
-
-.hero__orb--2 {
-  width: 40vw;
-  height: 40vw;
-  max-width: 480px;
-  max-height: 480px;
-  background: rgba(192, 192, 192, 0.12);
-  bottom: -15%;
-  left: 10%;
-  animation: orbFloat 15s ease-in-out infinite reverse;
-}
-
-@keyframes orbFloat {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
+@keyframes particleDrift {
+  0% {
+    transform: translateY(0);
   }
   50% {
-    transform: translate(-20px, 30px) scale(1.08);
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
-.hero__content {
+.cover__grid {
   position: relative;
   z-index: 1;
-  max-width: 820px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  width: 100%;
 }
 
-.hero__brand {
-  margin-bottom: 1.5rem;
-}
-
-.hero__title {
-  font-size: clamp(2.4rem, 7vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+.cover__eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-gold);
   margin-bottom: 1.25rem;
 }
 
-.hero__subtitle {
-  font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-  font-weight: 600;
-  color: var(--color-teal-bright);
-  letter-spacing: 0.02em;
-  margin-bottom: 1.5rem;
+.cover__title {
+  font-size: clamp(2.1rem, 5.2vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.12;
+  margin-bottom: 1.25rem;
+  max-width: 16ch;
 }
 
-.hero__desc {
+.cover__title .accent {
+  color: var(--color-lime);
+}
+
+.cover__desc {
+  color: rgba(255, 255, 255, 0.72);
   font-size: 1.05rem;
-  opacity: 0.8;
   max-width: 34rem;
+  margin-bottom: 2rem;
   line-height: 1.75;
-  margin-bottom: 2.25rem;
 }
 
-.hero__cta {
+.cover__cta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
 }
 
-.hero__scroll {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  opacity: 0.45;
-  z-index: 1;
-}
-
-.hero__scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--color-cream), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-
-@keyframes scrollPulse {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scaleY(0.7);
-  }
-  50% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-}
-
-/* Pillars */
-.pillars__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.pillar {
-  display: block;
-  padding: 2.5rem 2rem;
-  background: var(--color-white);
-  border-top: 3px solid transparent;
-  transition: transform 0.4s var(--ease), box-shadow 0.4s, border-color 0.3s;
-}
-
-.pillar:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(14, 26, 43, 0.12);
-}
-
-.pillar--solar:hover {
-  border-top-color: var(--color-solar);
-}
-
-.pillar--ev:hover {
-  border-top-color: var(--color-teal);
-}
-
-.pillar__visual {
-  color: var(--color-forest);
-  margin-bottom: 1.25rem;
-  width: 120px;
-}
-
-.pillar h3 {
-  font-size: 1.5rem;
-  color: var(--color-forest);
-  margin-bottom: 0.4rem;
-}
-
-.pillar__meta {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--color-teal);
-  margin-bottom: 1rem;
-}
-
-.pillar p {
-  color: var(--color-muted);
-  font-size: 0.95rem;
-  margin-bottom: 1.25rem;
-}
-
-.pillar__link {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--color-forest);
-}
-
-/* Ecosystem */
-.ecosystem {
-  background: var(--color-forest);
-  color: var(--color-cream);
-}
-
-.ecosystem .section-label {
-  color: var(--color-solar);
-}
-
-.ecosystem .section-title {
-  color: var(--color-cream);
-}
-
-.eco-flow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  max-width: 700px;
-  margin-inline: auto;
-}
-
-.eco-node {
-  text-align: center;
-  padding: 1.25rem 2rem;
+/* Diagonal panels */
+.cover__visual {
   position: relative;
-}
-
-.eco-node--top strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 0.08em;
-}
-
-.eco-node--top span {
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  color: var(--color-teal-bright);
-  margin-top: 0.35rem;
-  font-family: var(--font-display);
-  font-weight: 600;
-}
-
-.eco-node--top::after,
-.eco-node--mid::before,
-.eco-node--mid::after,
-.eco-branches::before,
-.eco-branches::after {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 28px;
-  background: rgba(245, 247, 244, 0.3);
-  margin: 0.5rem auto;
-}
-
-.eco-branches {
+  height: min(68vh, 560px);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.65rem;
+  padding: 0.5rem 0;
+}
+
+.panel {
   position: relative;
-}
-
-.eco-branches::before {
-  position: absolute;
-  top: -28px;
-  left: 50%;
-  height: 28px;
-  margin: 0;
-}
-
-.eco-branch {
-  background: rgba(245, 247, 244, 0.05);
-  border: 1px solid rgba(245, 247, 244, 0.12);
-  padding: 1.5rem;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.eco-branch:hover {
-  background: rgba(245, 247, 244, 0.1);
-  border-color: var(--color-teal);
-}
-
-.eco-branch strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.85rem;
-  color: var(--color-solar);
-}
-
-.eco-branch ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.eco-branch li {
-  font-size: 0.9rem;
-  opacity: 0.75;
-}
-
-.eco-node--mid a {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  font-size: 0.95rem;
-  color: var(--color-teal-bright);
-  border-bottom: 1px solid rgba(26, 166, 160, 0.4);
-  padding-bottom: 0.2rem;
-  transition: color 0.25s;
-}
-
-.eco-node--mid a:hover {
-  color: var(--color-solar);
-}
-
-.eco-node--bot {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
-  color: var(--color-solar);
-}
-
-/* Projects */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
-
-.project-card {
-  display: block;
-  background: var(--color-white);
   overflow: hidden;
-  transition: transform 0.4s var(--ease), box-shadow 0.4s;
+  clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
+  min-height: 100%;
+  transition: transform 0.45s var(--ease), filter 0.45s;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(5, 46, 36, 0.1);
+.panel:nth-child(1) {
+  transform: translateY(12px);
+}
+.panel:nth-child(2) {
+  transform: translateY(-8px);
+}
+.panel:nth-child(3) {
+  transform: translateY(18px);
 }
 
-.project-card__visual {
-  height: 160px;
-  background: linear-gradient(135deg, var(--color-navy-mid), var(--color-navy));
+.panel:hover {
+  filter: brightness(1.12);
+  z-index: 2;
 }
 
-.project-card__visual--solar {
-  background: linear-gradient(135deg, #0e1a2b, #1e2f4a 40%, rgba(212, 175, 55, 0.45));
+.panel__media {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.08);
+  transition: transform 0.7s var(--ease);
 }
 
-.project-card__visual--ev {
-  background: linear-gradient(135deg, #0e1a2b, #243552 50%, rgba(192, 192, 192, 0.35));
+.panel:hover .panel__media {
+  transform: scale(1.14);
 }
 
-.project-card__visual--epc {
-  background: linear-gradient(135deg, #0e1a2b, #162338 50%, rgba(212, 175, 55, 0.3));
+.panel__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.55));
 }
 
-.project-card__body {
-  padding: 1.5rem;
-}
-
-.project-card__type {
-  font-size: 0.7rem;
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-teal);
-}
-
-.project-card__body h3 {
-  font-size: 1.15rem;
-  color: var(--color-forest);
-  margin: 0.4rem 0 0.35rem;
-}
-
-.project-card__body p {
-  font-size: 0.9rem;
-  color: var(--color-muted);
-}
-
-.projects-teaser__more {
-  margin-top: 2.5rem;
-  text-align: center;
-}
-
-/* Why */
-.why {
-  background: var(--color-mist);
-}
-
-.why__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-}
-
-.why__num {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 2rem;
-  color: var(--color-teal);
-  opacity: 0.5;
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.why__item h3 {
-  font-size: 1.1rem;
-  color: var(--color-forest);
-  margin-bottom: 0.5rem;
-}
-
-.why__item p {
-  font-size: 0.9rem;
-  color: var(--color-muted);
-}
-
-/* Partners */
-.partner-logos {
+.panel__badge {
+  position: absolute;
+  left: 22%;
+  right: 12%;
+  bottom: 1.25rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-white);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.panel__dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-lime);
+  box-shadow: 0 0 16px rgba(212, 255, 0, 0.55);
+  flex-shrink: 0;
+}
+
+.panel--solar .panel__dot {
+  background: var(--color-lime);
+}
+.panel--ev .panel__dot {
+  background: #7dff4d;
+}
+.panel--it .panel__dot {
+  background: #4db8ff;
+}
+
+/* ===== STATS ===== */
+.stats {
+  background: #101010;
+  border-block: 1px solid rgba(212, 255, 0, 0.12);
+  padding: 1.75rem 0;
+}
+
+.stats__row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
 }
 
-.partner-logo {
-  padding: 1rem 1.75rem;
-  background: var(--color-white);
+.stat {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.stat__icon {
+  display: block;
+  color: var(--color-lime);
+  font-size: 0.65rem;
+  margin-bottom: 0.35rem;
+  opacity: 0.8;
+}
+
+.stat strong {
+  display: block;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--color-forest-mid);
-  letter-spacing: 0.04em;
-  opacity: 0.7;
-  transition: opacity 0.3s;
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: 0.2rem;
 }
 
-.partner-logo:hover {
-  opacity: 1;
+.stat span {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
 }
 
-.partners-strip__link {
+/* ===== SERVICES ===== */
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.service-card {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
+  flex-direction: column;
+  background: var(--color-panel);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition: border-color 0.35s, transform 0.35s var(--ease), box-shadow 0.35s;
+}
+
+.service-card:hover {
+  border-color: rgba(212, 255, 0, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.service-card__img {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+.service-card__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.service-card__body h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card__body p {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+
+.service-card__link {
   font-family: var(--font-display);
   font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-lime);
+}
+
+/* ===== SPLIT ===== */
+.split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  min-height: 420px;
+}
+
+.split__why {
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+  background: #101010;
+}
+
+.why-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  margin-top: 2rem;
+  max-width: 420px;
+}
+
+.why-list li {
+  display: flex;
+  gap: 0.85rem;
+}
+
+.why-list__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(212, 255, 0, 0.15);
+  color: var(--color-lime);
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.why-list strong {
+  display: block;
+  font-family: var(--font-display);
+  margin-bottom: 0.2rem;
+}
+
+.why-list p {
+  color: var(--color-muted);
   font-size: 0.9rem;
-  color: var(--color-forest);
 }
 
-.partners-strip__link a:hover {
-  color: var(--color-teal);
+.split__mission {
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  background:
+    linear-gradient(135deg, rgba(212, 255, 0, 0.92), rgba(184, 219, 0, 0.95)),
+    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=70')
+      center / cover;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-@media (max-width: 900px) {
-  .pillars__grid,
-  .project-grid {
+.mission-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  opacity: 0.75;
+}
+
+.split__mission h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+.split__mission p {
+  max-width: 28rem;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+  font-weight: 500;
+}
+
+.mission-btn {
+  align-self: flex-start;
+  border-color: rgba(0, 0, 0, 0.35);
+  color: #111;
+}
+
+.mission-btn:hover {
+  background: #111;
+  color: var(--color-lime);
+  border-color: #111;
+}
+
+/* ===== PILLARS ===== */
+.pillars__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.pillar-link {
+  padding: 1.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(160deg, #151515, #101010);
+  transition: border-color 0.3s, transform 0.35s var(--ease);
+}
+
+.pillar-link:hover {
+  border-color: var(--color-lime);
+  transform: translateY(-3px);
+}
+
+.pillar-link strong {
+  display: block;
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  color: var(--color-lime);
+  margin-bottom: 0.45rem;
+}
+
+.pillar-link span {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+  .cover__grid {
     grid-template-columns: 1fr;
   }
 
-  .why__grid {
+  .cover__visual {
+    height: 280px;
+    order: -1;
+  }
+
+  .cover__title {
+    max-width: none;
+  }
+
+  .stats__row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .services__grid,
+  .pillars__row {
+    grid-template-columns: 1fr;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats__row {
     grid-template-columns: 1fr 1fr;
   }
-}
 
-@media (max-width: 560px) {
-  .why__grid {
-    grid-template-columns: 1fr;
+  .panel {
+    clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
   }
 
-  .eco-branches {
-    grid-template-columns: 1fr;
+  .panel__badge {
+    font-size: 0.55rem;
+    left: 16%;
   }
 
-  .hero__scroll {
-    display: none;
+  .panel__dot {
+    width: 14px;
+    height: 14px;
   }
 }
 </style>

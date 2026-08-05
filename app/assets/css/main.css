@@ -1,36 +1,43 @@
-/* CX ENERTECH Design System — Official CI
-   Gold #D4AF37 · Navy #0E1A2B · Silver #C0C0C0
+/* CX ENERTECH Design System — Dark CI
+   Accent Lime #D4FF00 · Gold #D4AF37 · Navy/Black base
    Typography: Exo 2 · Montserrat (+ Thai fallback)
 */
 :root {
+  --color-lime: #d4ff00;
+  --color-lime-soft: #e8ff66;
+  --color-lime-deep: #b8db00;
   --color-gold: #d4af37;
   --color-gold-light: #e5c76b;
   --color-gold-deep: #a67c00;
+  --color-black: #0b0b0b;
   --color-navy: #0e1a2b;
-  --color-navy-mid: #162338;
-  --color-navy-light: #1e2f4a;
+  --color-navy-mid: #141c28;
+  --color-navy-light: #1c2636;
+  --color-panel: #151515;
+  --color-panel-2: #1a1a1a;
   --color-silver: #c0c0c0;
-  --color-silver-soft: #e8e8e8;
+  --color-silver-soft: #2a2a2a;
   --color-white: #ffffff;
-  --color-offwhite: #f7f8fa;
-  --color-ink: #0e1a2b;
-  --color-muted: #5c6570;
+  --color-offwhite: #f2f2f2;
+  --color-ink: #f5f5f5;
+  --color-muted: #9aa0a6;
 
   --font-display: 'Exo 2', 'IBM Plex Sans Thai', sans-serif;
   --font-body: 'Montserrat', 'IBM Plex Sans Thai', sans-serif;
 
   --space-section: clamp(4rem, 8vw, 7rem);
   --radius: 4px;
+  --radius-pill: 999px;
   --header-h: 76px;
   --max-w: 1200px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* legacy aliases used across pages */
+  /* legacy aliases */
   --color-forest: var(--color-navy);
   --color-forest-mid: var(--color-navy-mid);
   --color-forest-light: var(--color-navy-light);
-  --color-teal: var(--color-gold);
-  --color-teal-bright: var(--color-gold-light);
+  --color-teal: var(--color-lime);
+  --color-teal-bright: var(--color-lime-soft);
   --color-solar: var(--color-gold);
   --color-solar-soft: var(--color-gold-light);
   --color-cream: var(--color-offwhite);
@@ -53,7 +60,7 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   color: var(--color-ink);
-  background: var(--color-white);
+  background: var(--color-black);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
@@ -113,8 +120,7 @@ button {
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
   transition: transform 0.35s var(--ease), background 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
@@ -123,12 +129,14 @@ button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold) 45%, var(--color-gold-deep));
-  color: var(--color-navy);
+  background: var(--color-lime);
+  color: #111;
+  box-shadow: 0 0 0 rgba(212, 255, 0, 0);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+  background: var(--color-lime-soft);
+  box-shadow: 0 0 28px rgba(212, 255, 0, 0.35);
 }
 
 .btn-secondary {
@@ -138,34 +146,35 @@ button {
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-gold);
-  color: var(--color-gold);
-  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--color-lime);
+  color: var(--color-lime);
+  background: rgba(212, 255, 0, 0.06);
 }
 
 .btn-outline-dark {
   background: transparent;
-  color: var(--color-navy);
-  border: 1.5px solid var(--color-navy);
+  color: var(--color-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
 }
 
 .btn-outline-dark:hover {
-  background: var(--color-navy);
-  color: var(--color-white);
+  border-color: var(--color-lime);
+  color: var(--color-lime);
 }
 
 .btn-teal {
-  background: var(--color-gold);
-  color: var(--color-navy);
+  background: var(--color-lime);
+  color: #111;
 }
 
 .btn-teal:hover {
-  background: var(--color-gold-light);
+  background: var(--color-lime-soft);
 }
 
 /* Section helpers */
 .section {
   padding-block: var(--space-section);
+  background: var(--color-black);
 }
 
 .section-label {
@@ -175,13 +184,13 @@ button {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-lime);
   margin-bottom: 0.85rem;
 }
 
 .section-title {
   font-size: clamp(1.85rem, 4vw, 2.75rem);
-  color: var(--color-navy);
+  color: var(--color-white);
   margin-bottom: 1rem;
 }
 
@@ -208,7 +217,7 @@ button {
 .page-hero {
   position: relative;
   padding: calc(var(--header-h) + 4rem) 0 4rem;
-  background: var(--color-navy);
+  background: linear-gradient(145deg, #0b0b0b 0%, #121820 55%, #0e1a2b 100%);
   color: var(--color-white);
   overflow: hidden;
 }
@@ -218,8 +227,8 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 80% at 85% 20%, rgba(212, 175, 55, 0.18), transparent),
-    radial-gradient(ellipse 50% 60% at 10% 90%, rgba(192, 192, 192, 0.08), transparent);
+    radial-gradient(ellipse 60% 80% at 85% 20%, rgba(212, 255, 0, 0.08), transparent),
+    radial-gradient(ellipse 50% 60% at 10% 90%, rgba(212, 175, 55, 0.1), transparent);
   pointer-events: none;
 }
 
@@ -251,7 +260,7 @@ button {
 
 .breadcrumb a:hover {
   opacity: 1;
-  color: var(--color-gold);
+  color: var(--color-lime);
 }
 
 /* Feature grid */
@@ -263,30 +272,23 @@ button {
 
 .feature-item {
   padding: 1.75rem 0;
-  border-top: 1px solid var(--color-silver-soft);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   transition: border-color 0.3s;
 }
 
 .feature-item:hover {
-  border-top-color: var(--color-gold);
+  border-top-color: var(--color-lime);
 }
 
 .feature-item h3 {
   font-size: 1.15rem;
-  color: var(--color-navy);
+  color: var(--color-white);
   margin-bottom: 0.5rem;
 }
 
 .feature-item p {
   font-size: 0.95rem;
   color: var(--color-muted);
-}
-
-.feature-item .icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 1rem;
-  color: var(--color-gold);
 }
 
 /* Link list / subnav */
@@ -301,31 +303,32 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.25rem;
-  background: var(--color-offwhite);
-  border-left: 3px solid var(--color-gold);
+  background: var(--color-panel);
+  border-left: 3px solid var(--color-lime);
   font-weight: 500;
-  color: var(--color-navy);
+  color: var(--color-white);
   transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease);
 }
 
 .sub-link:hover {
-  background: var(--color-silver-soft);
-  border-left-color: var(--color-navy);
+  background: var(--color-panel-2);
+  border-left-color: var(--color-gold);
   transform: translateX(4px);
 }
 
 .sub-link span {
   font-size: 1.1rem;
-  color: var(--color-gold);
+  color: var(--color-lime);
 }
 
 /* CTA band */
 .cta-band {
-  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-mid) 55%, #1a2740 100%);
+  background: linear-gradient(135deg, #0e1a2b 0%, #121212 55%, #1a1a1a 100%);
   color: var(--color-white);
   padding-block: 4.5rem;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(212, 255, 0, 0.15);
 }
 
 .cta-band::after {
@@ -334,7 +337,7 @@ button {
   width: 400px;
   height: 400px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.22), transparent 70%);
+  background: radial-gradient(circle, rgba(212, 255, 0, 0.12), transparent 70%);
   right: -80px;
   top: -100px;
   pointer-events: none;
@@ -371,20 +374,28 @@ button {
   max-width: 720px;
 }
 
+.content-block p {
+  color: var(--color-muted);
+}
+
 .content-block p + p {
   margin-top: 1rem;
 }
 
 .content-block h2 {
   font-size: 1.6rem;
-  color: var(--color-navy);
+  color: var(--color-white);
   margin: 2.5rem 0 1rem;
 }
 
 .content-block h3 {
   font-size: 1.2rem;
-  color: var(--color-navy-mid);
+  color: var(--color-lime-soft);
   margin: 2rem 0 0.75rem;
+}
+
+.content-block strong {
+  color: var(--color-white);
 }
 
 /* Form */
@@ -407,7 +418,7 @@ button {
   display: block;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--color-navy);
+  color: var(--color-white);
   margin-bottom: 0.4rem;
 }
 
@@ -416,12 +427,12 @@ button {
 .form-field textarea {
   width: 100%;
   padding: 0.85rem 1rem;
-  border: 1.5px solid var(--color-silver-soft);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius);
-  background: var(--color-white);
+  background: var(--color-panel);
   font-family: inherit;
   font-size: 1rem;
-  color: var(--color-ink);
+  color: var(--color-white);
   transition: border-color 0.25s;
 }
 
@@ -429,7 +440,7 @@ button {
 .form-field select:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: var(--color-gold);
+  border-color: var(--color-lime);
 }
 
 .form-field textarea {
@@ -446,15 +457,6 @@ button {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 

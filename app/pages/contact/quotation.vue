@@ -99,19 +99,19 @@ useSeoMeta({
 }
 
 .quote__form {
-  background: var(--color-white);
+  background: var(--color-panel);
   padding: 2rem;
-  border-top: 3px solid var(--color-solar);
+  border-top: 3px solid var(--color-lime);
 }
 
 .success {
   text-align: center;
   padding: 3rem 1.5rem;
-  background: var(--color-white);
+  background: var(--color-panel);
 }
 
 .success h2 {
-  color: var(--color-forest);
+  color: var(--color-white);
   margin-bottom: 0.75rem;
 }
 

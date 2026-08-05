@@ -25,7 +25,7 @@
       </div>
     </section>
 
-    <section class="section" style="background: var(--color-mist)">
+    <section class="section" style="background: #101010">
       <div class="container">
         <div class="section-header">
           <span class="section-label">Services</span>

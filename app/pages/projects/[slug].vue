@@ -84,7 +84,7 @@ useSeoMeta({
 
 .detail__main h3 {
   font-size: 1.25rem;
-  color: var(--color-forest);
+  color: var(--color-white);
   margin: 2.25rem 0 0.85rem;
 }
 

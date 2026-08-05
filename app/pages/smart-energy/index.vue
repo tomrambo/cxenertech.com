@@ -40,7 +40,7 @@
       </div>
     </section>
 
-    <section class="section" style="background: var(--color-mist)">
+    <section class="section" style="background: #101010">
       <div class="container">
         <div class="section-header">
           <span class="section-label">Capabilities</span>
@@ -107,13 +107,13 @@ useSeoMeta({
 
 .flow__node--solar {
   background: var(--color-solar);
-  color: var(--color-forest);
+  color: var(--color-white);
 }
 
 .flow__line {
   width: 1px;
   height: 24px;
-  background: var(--color-mist);
+  background: #101010;
 }
 
 .flow__split {
@@ -128,7 +128,7 @@ useSeoMeta({
   flex-direction: column;
   gap: 0.35rem;
   padding: 1.25rem;
-  background: var(--color-white);
+  background: var(--color-panel);
   border-top: 3px solid var(--color-teal);
   text-align: center;
   transition: transform 0.3s var(--ease);
@@ -140,7 +140,7 @@ useSeoMeta({
 
 .flow__box strong {
   font-family: var(--font-display);
-  color: var(--color-forest);
+  color: var(--color-white);
   font-size: 0.9rem;
   letter-spacing: 0.06em;
 }
