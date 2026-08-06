@@ -3,14 +3,29 @@ import { mainNav } from '~/utils/nav'
 
 const route = useRoute()
 const open = ref(false)
+const openGroup = ref<string | null>(null)
 
 watch(() => route.path, () => {
   open.value = false
+  openGroup.value = null
 })
 
 const isActive = (to: string) => {
   if (to === '/') return route.path === '/'
   return route.path === to || route.path.startsWith(`${to}/`)
+}
+
+const isChildActive = (childTo: string, parentTo: string) => {
+  if (childTo === parentTo) return route.path === childTo
+  return route.path === childTo || route.path.startsWith(`${childTo}/`)
+}
+
+const onGroupClick = (event: MouseEvent, label: string) => {
+  // Mobile menu: first tap expands submenu instead of navigating away
+  if (open.value) {
+    event.preventDefault()
+    openGroup.value = openGroup.value === label ? null : label
+  }
 }
 </script>
 
@@ -22,15 +37,45 @@ const isActive = (to: string) => {
       </NuxtLink>
 
       <nav class="nav" :class="{ 'nav--open': open }" aria-label="Main">
-        <NuxtLink
-          v-for="item in mainNav"
-          :key="item.to"
-          :to="item.to"
-          class="nav__link"
-          :class="{ 'nav__link--active': isActive(item.to) }"
-        >
-          {{ item.label }}
-        </NuxtLink>
+        <template v-for="item in mainNav" :key="item.to">
+          <div
+            v-if="item.children?.length"
+            class="nav__group"
+            :class="{ 'nav__group--open': openGroup === item.label }"
+            @mouseenter="openGroup = item.label"
+            @mouseleave="openGroup = null"
+          >
+            <NuxtLink
+              :to="item.to"
+              class="nav__link"
+              :class="{ 'nav__link--active': isActive(item.to) }"
+              @click="onGroupClick($event, item.label)"
+            >
+              {{ item.label }}
+              <span class="nav__chev" aria-hidden="true" />
+            </NuxtLink>
+            <div class="nav__dropdown" role="menu">
+              <NuxtLink
+                v-for="child in item.children"
+                :key="child.to"
+                :to="child.to"
+                class="nav__dropdown-link"
+                :class="{ 'nav__dropdown-link--active': isChildActive(child.to, item.to) }"
+                role="menuitem"
+              >
+                {{ child.label }}
+              </NuxtLink>
+            </div>
+          </div>
+          <NuxtLink
+            v-else
+            :to="item.to"
+            class="nav__link"
+            :class="{ 'nav__link--active': isActive(item.to) }"
+          >
+            {{ item.label }}
+          </NuxtLink>
+        </template>
         <NuxtLink to="/contact" class="btn btn-primary nav__cta-mobile">
           ติดต่อเรา
         </NuxtLink>
@@ -88,6 +133,10 @@ const isActive = (to: string) => {
   gap: 0.15rem;
 }
 
+.nav__group {
+  position: relative;
+}
+
 .nav__link {
   font-family: var(--font-display);
   font-size: 0.72rem;
@@ -98,6 +147,9 @@ const isActive = (to: string) => {
   transition: color 0.25s;
   white-space: nowrap;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .nav__link:hover {
@@ -116,6 +168,55 @@ const isActive = (to: string) => {
   bottom: 0.15rem;
   height: 2px;
   background: var(--color-lime);
+}
+
+.nav__chev {
+  width: 0;
+  height: 0;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 4px solid currentColor;
+  opacity: 0.7;
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  padding: 0.5rem 0;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 2px solid var(--color-lime);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 120;
+}
+
+.nav__group:hover .nav__dropdown,
+.nav__group--open .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav__dropdown-link {
+  display: block;
+  padding: 0.7rem 1rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav__dropdown-link:hover,
+.nav__dropdown-link--active {
+  color: var(--color-lime);
+  background: rgba(212, 255, 0, 0.06);
 }
 
 .nav__cta-mobile {
@@ -179,14 +280,46 @@ const isActive = (to: string) => {
     overflow-y: auto;
   }
 
+  .nav__group {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
   .nav__link {
     font-size: 1rem;
     padding: 1rem 0.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+  }
+
+  .nav__group .nav__link {
+    border-bottom: none;
   }
 
   .nav__link--active::after {
     display: none;
+  }
+
+  .nav__dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    border: none;
+    border-top: none;
+    background: transparent;
+    padding: 0 0 0.75rem 0.75rem;
+    display: none;
+    min-width: 0;
+  }
+
+  .nav__group--open .nav__dropdown {
+    display: block;
+  }
+
+  .nav__dropdown-link {
+    padding: 0.65rem 0.5rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .nav__cta-mobile {

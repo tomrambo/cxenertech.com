@@ -1,12 +1,32 @@
-export const mainNav = [
+export type NavChild = { label: string; to: string }
+
+export type NavItem = {
+  label: string
+  to: string
+  children?: NavChild[]
+}
+
+export const mainNav: NavItem[] = [
   { label: 'HOME', to: '/' },
   { label: 'ABOUT', to: '/about' },
   { label: 'SOLAR', to: '/solar' },
-  { label: 'EV CHARGING', to: '/ev-charging' },
+  {
+    label: 'EV CHARGING',
+    to: '/ev-charging',
+    children: [
+      { label: 'Overview', to: '/ev-charging' },
+      { label: 'Station Packages', to: '/ev-charging/packages' },
+      { label: 'Investment', to: '/ev-charging/investment' },
+      { label: 'Home Charger', to: '/ev-charging/home-charger' },
+      { label: 'Commercial Charger', to: '/ev-charging/commercial' },
+      { label: 'EV Station', to: '/ev-charging/station' },
+      { label: 'Management', to: '/ev-charging/management' },
+    ],
+  },
   { label: 'PROJECTS', to: '/projects' },
   { label: 'KNOWLEDGE', to: '/knowledge' },
   { label: 'CONTACT', to: '/contact' },
-] as const
+]
 
 export const footerNav = {
   company: [
@@ -25,6 +45,8 @@ export const footerNav = {
     { label: 'Home Charger', to: '/ev-charging/home-charger' },
     { label: 'Commercial Charger', to: '/ev-charging/commercial' },
     { label: 'EV Charging Station', to: '/ev-charging/station' },
+    { label: 'Station Packages', to: '/ev-charging/packages' },
+    { label: 'Investment', to: '/ev-charging/investment' },
     { label: 'Management Platform', to: '/ev-charging/management' },
   ],
   resources: [
@@ -41,7 +63,7 @@ export const contactInfo = {
   legalTh: 'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
   tagline: 'Smart Energy & Technology Solutions',
   email: 'info@cxenertech.com',
-  phone: '+66 (0) 2-XXX-XXXX',
+  phone: '+6699-624-6444',
   line: '@cxenertech',
-  address: 'กรุงเทพมหานคร ประเทศไทย',
+  address: 'เลขที่ 429/20 หมู่บ้านพรีเมี่ยมเพลส 9 ถนนสุคนธสวัสดิ์ แขวงลาดพร้าว เขตลาดพร้าว กรุงเทพมหานคร 10230',
 }

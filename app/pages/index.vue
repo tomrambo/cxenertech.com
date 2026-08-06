@@ -92,6 +92,30 @@
       </div>
     </section>
 
+    <!-- EV Station Packages banner -->
+    <section class="pkg-banner">
+      <div
+        class="pkg-banner__media"
+        style="background-image: url('/images/projects/project-dc-station.jpg')"
+        aria-hidden="true"
+      />
+      <div class="pkg-banner__shade" aria-hidden="true" />
+      <div class="container-wide pkg-banner__inner">
+        <div class="pkg-banner__copy">
+          <span class="pkg-banner__label">EV Charging</span>
+          <h2>EV Station Packages</h2>
+          <p>
+            เลือกแพ็กเกจสถานีชาร์จสำเร็จรูป ดูสเปก จุดชาร์จ และ CAPEX อ้างอิง
+            ก่อนขอใบเสนอราคาตามไซต์จริง
+          </p>
+          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">
+            ดูแพ็กเกจสถานี
+            <span aria-hidden="true">→</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- Why + Mission -->
     <section class="belief">
       <div class="belief__why">
@@ -137,7 +161,9 @@
             :to="p.to"
             class="project"
           >
-            <div class="project__visual" :class="`project__visual--${p.tone}`" />
+            <div class="project__visual">
+              <img :src="p.image" :alt="p.title" loading="lazy" width="640" height="360" />
+            </div>
             <div class="project__meta">
               <span>{{ p.category }}</span>
               <h3>{{ p.title }}</h3>
@@ -224,21 +250,21 @@ const projectTeasers = [
     title: 'โรงงานอุตสาหกรรม Solar Rooftop',
     category: 'Solar',
     detail: '2 MW',
-    tone: 'solar',
+    image: '/images/projects/project-factory-rooftop.jpg',
   },
   {
     to: '/projects/commercial-dc-station',
     title: 'สถานีชาร์จ DC Fast Charging',
     category: 'EV',
     detail: '4 × 120 kW',
-    tone: 'ev',
+    image: '/images/projects/project-dc-station.jpg',
   },
   {
     to: '/projects/warehouse-solar-epc',
     title: 'คลังสินค้า Solar EPC',
     category: 'EPC',
     detail: '1.5 MW',
-    tone: 'epc',
+    image: '/images/projects/project-warehouse-epc.jpg',
   },
 ]
 
@@ -351,6 +377,8 @@ useSeoMeta({
   align-items: center;
   width: 100%;
   padding-bottom: 2rem;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .hero__brand {
@@ -613,6 +641,74 @@ useSeoMeta({
   color: var(--color-lime);
 }
 
+/* ========== EV PACKAGES BANNER ========== */
+.pkg-banner {
+  position: relative;
+  min-height: clamp(320px, 42vw, 460px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pkg-banner__media,
+.pkg-banner__shade {
+  position: absolute;
+  inset: 0;
+}
+
+.pkg-banner__media {
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+  transition: transform 8s var(--ease);
+}
+
+.pkg-banner:hover .pkg-banner__media {
+  transform: scale(1.06);
+}
+
+.pkg-banner__shade {
+  background:
+    linear-gradient(105deg, rgba(8, 8, 8, 0.92) 0%, rgba(8, 8, 8, 0.72) 42%, rgba(8, 8, 8, 0.35) 100%),
+    linear-gradient(0deg, rgba(11, 11, 11, 0.45), transparent 55%);
+}
+
+.pkg-banner__inner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.pkg-banner__copy {
+  max-width: 34rem;
+}
+
+.pkg-banner__label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+  margin-bottom: 0.85rem;
+}
+
+.pkg-banner__copy h2 {
+  font-size: clamp(2rem, 4.5vw, 3.1rem);
+  color: var(--color-white);
+  margin-bottom: 0.85rem;
+  line-height: 1.1;
+}
+
+.pkg-banner__copy p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+}
+
 /* ========== BELIEF ========== */
 .belief {
   display: grid;
@@ -760,17 +856,21 @@ useSeoMeta({
 }
 
 .project__visual {
-  height: 150px;
+  height: 160px;
+  overflow: hidden;
+  background: #0e1a2b;
 }
 
-.project__visual--solar {
-  background: linear-gradient(135deg, #171f2d, rgba(212, 175, 55, 0.55));
+.project__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease);
 }
-.project__visual--ev {
-  background: linear-gradient(135deg, #0e1a2b, rgba(212, 255, 0, 0.28));
-}
-.project__visual--epc {
-  background: linear-gradient(135deg, #111820, #2a3548);
+
+.project:hover .project__visual img {
+  transform: scale(1.04);
 }
 
 .project__meta {
@@ -801,6 +901,8 @@ useSeoMeta({
   .hero__inner {
     grid-template-columns: 1fr;
     padding-bottom: 1.5rem;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .hero__title {

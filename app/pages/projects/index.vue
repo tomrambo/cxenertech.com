@@ -47,7 +47,9 @@ useSeoMeta({
             :to="`/projects/${p.slug}`"
             class="item"
           >
-            <div class="item__visual" :class="`item__visual--${p.category}`" />
+            <div class="item__visual">
+              <img :src="p.image" :alt="p.title" loading="lazy" width="640" height="360" />
+            </div>
             <div class="item__body">
               <span class="item__cat">{{ p.categoryLabel }}</span>
               <h3>{{ p.title }}</h3>
@@ -107,17 +109,21 @@ useSeoMeta({
 }
 
 .item__visual {
-  height: 140px;
+  height: 160px;
+  overflow: hidden;
+  background: #0e1a2b;
 }
 
-.item__visual--solar {
-  background: linear-gradient(135deg, #0e1a2b, rgba(212, 175, 55, 0.55));
+.item__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease);
 }
-.item__visual--ev {
-  background: linear-gradient(135deg, #0e1a2b, #2a3a55);
-}
-.item__visual--epc {
-  background: linear-gradient(135deg, #0e1a2b, #162338);
+
+.item:hover .item__visual img {
+  transform: scale(1.04);
 }
 
 .item__body {
