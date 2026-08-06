@@ -41,7 +41,7 @@ export const contactInfo = {
   legalTh: 'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
   tagline: 'Smart Energy & Technology Solutions',
   email: 'info@cxenertech.com',
-  phone: '+66 (0) 2-XXX-XXXX',
+  phone: '+6699-624-6444',
   line: '@cxenertech',
-  address: 'กรุงเทพมหานคร ประเทศไทย',
+  address: 'เลขที่ 429/20 หมู่บ้านพรีเมี่ยมเพลส 9 ถนนสุคนธสวัสดิ์ แขวงลาดพร้าว เขตลาดพร้าว กรุงเทพมหานคร 10230',
 }

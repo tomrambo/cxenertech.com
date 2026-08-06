@@ -137,7 +137,9 @@
             :to="p.to"
             class="project"
           >
-            <div class="project__visual" :class="`project__visual--${p.tone}`" />
+            <div class="project__visual">
+              <img :src="p.image" :alt="p.title" loading="lazy" width="640" height="360" />
+            </div>
             <div class="project__meta">
               <span>{{ p.category }}</span>
               <h3>{{ p.title }}</h3>
@@ -224,21 +226,21 @@ const projectTeasers = [
     title: 'โรงงานอุตสาหกรรม Solar Rooftop',
     category: 'Solar',
     detail: '2 MW',
-    tone: 'solar',
+    image: '/images/projects/project-factory-rooftop.jpg',
   },
   {
     to: '/projects/commercial-dc-station',
     title: 'สถานีชาร์จ DC Fast Charging',
     category: 'EV',
     detail: '4 × 120 kW',
-    tone: 'ev',
+    image: '/images/projects/project-dc-station.jpg',
   },
   {
     to: '/projects/warehouse-solar-epc',
     title: 'คลังสินค้า Solar EPC',
     category: 'EPC',
     detail: '1.5 MW',
-    tone: 'epc',
+    image: '/images/projects/project-warehouse-epc.jpg',
   },
 ]
 
@@ -351,6 +353,8 @@ useSeoMeta({
   align-items: center;
   width: 100%;
   padding-bottom: 2rem;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .hero__brand {
@@ -760,17 +764,21 @@ useSeoMeta({
 }
 
 .project__visual {
-  height: 150px;
+  height: 160px;
+  overflow: hidden;
+  background: #0e1a2b;
 }
 
-.project__visual--solar {
-  background: linear-gradient(135deg, #171f2d, rgba(212, 175, 55, 0.55));
+.project__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease);
 }
-.project__visual--ev {
-  background: linear-gradient(135deg, #0e1a2b, rgba(212, 255, 0, 0.28));
-}
-.project__visual--epc {
-  background: linear-gradient(135deg, #111820, #2a3548);
+
+.project:hover .project__visual img {
+  transform: scale(1.04);
 }
 
 .project__meta {
@@ -801,6 +809,8 @@ useSeoMeta({
   .hero__inner {
     grid-template-columns: 1fr;
     padding-bottom: 1.5rem;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .hero__title {

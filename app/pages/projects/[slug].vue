@@ -48,9 +48,14 @@ useSeoMeta({
 
           <h3>Gallery</h3>
           <div class="gallery">
-            <div class="gallery__item" :class="`gallery__item--${project.category}`" />
-            <div class="gallery__item gallery__item--alt" />
-            <div class="gallery__item" :class="`gallery__item--${project.category}`" />
+            <img
+              class="gallery__featured"
+              :src="project.image"
+              :alt="project.title"
+              loading="lazy"
+              width="1200"
+              height="675"
+            />
           </div>
 
           <h3>Results</h3>
@@ -124,29 +129,16 @@ useSeoMeta({
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
   margin-top: 0.5rem;
+  overflow: hidden;
+  background: #0e1a2b;
 }
 
-.gallery__item {
-  aspect-ratio: 4/3;
-  background: linear-gradient(135deg, var(--color-forest-mid), var(--color-teal));
-}
-
-.gallery__item--solar {
-  background: linear-gradient(135deg, #0a4a3a, #f0a20266);
-}
-.gallery__item--ev {
-  background: linear-gradient(135deg, #0a3d48, #1aa6a0);
-}
-.gallery__item--epc {
-  background: linear-gradient(135deg, #052e24, #0f5c48);
-}
-.gallery__item--alt {
-  background: linear-gradient(135deg, var(--color-mist), var(--color-forest-light));
-  opacity: 0.7;
+.gallery__featured {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .aside-box {
@@ -189,8 +181,5 @@ useSeoMeta({
     position: static;
   }
 
-  .gallery {
-    grid-template-columns: 1fr;
-  }
 }
 </style>
