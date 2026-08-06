@@ -92,6 +92,30 @@
       </div>
     </section>
 
+    <!-- EV Station Packages banner -->
+    <section class="pkg-banner">
+      <div
+        class="pkg-banner__media"
+        style="background-image: url('/images/projects/project-dc-station.jpg')"
+        aria-hidden="true"
+      />
+      <div class="pkg-banner__shade" aria-hidden="true" />
+      <div class="container-wide pkg-banner__inner">
+        <div class="pkg-banner__copy">
+          <span class="pkg-banner__label">EV Charging</span>
+          <h2>EV Station Packages</h2>
+          <p>
+            เลือกแพ็กเกจสถานีชาร์จสำเร็จรูป ดูสเปก จุดชาร์จ และ CAPEX อ้างอิง
+            ก่อนขอใบเสนอราคาตามไซต์จริง
+          </p>
+          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">
+            ดูแพ็กเกจสถานี
+            <span aria-hidden="true">→</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- Why + Mission -->
     <section class="belief">
       <div class="belief__why">
@@ -615,6 +639,74 @@ useSeoMeta({
   font-weight: 600;
   font-size: 0.88rem;
   color: var(--color-lime);
+}
+
+/* ========== EV PACKAGES BANNER ========== */
+.pkg-banner {
+  position: relative;
+  min-height: clamp(320px, 42vw, 460px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pkg-banner__media,
+.pkg-banner__shade {
+  position: absolute;
+  inset: 0;
+}
+
+.pkg-banner__media {
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+  transition: transform 8s var(--ease);
+}
+
+.pkg-banner:hover .pkg-banner__media {
+  transform: scale(1.06);
+}
+
+.pkg-banner__shade {
+  background:
+    linear-gradient(105deg, rgba(8, 8, 8, 0.92) 0%, rgba(8, 8, 8, 0.72) 42%, rgba(8, 8, 8, 0.35) 100%),
+    linear-gradient(0deg, rgba(11, 11, 11, 0.45), transparent 55%);
+}
+
+.pkg-banner__inner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.pkg-banner__copy {
+  max-width: 34rem;
+}
+
+.pkg-banner__label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+  margin-bottom: 0.85rem;
+}
+
+.pkg-banner__copy h2 {
+  font-size: clamp(2rem, 4.5vw, 3.1rem);
+  color: var(--color-white);
+  margin-bottom: 0.85rem;
+  line-height: 1.1;
+}
+
+.pkg-banner__copy p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
 }
 
 /* ========== BELIEF ========== */

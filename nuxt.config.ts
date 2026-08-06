@@ -35,4 +35,8 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  nitro: {
+    moduleSideEffects: ['better-sqlite3'],
+  },
 })
