@@ -8,7 +8,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:seed": "node --import jiti/register ./scripts/seed-ev-packages.ts"
+    "db:seed": "node --import jiti/register ./scripts/seed-ev-packages.ts",
+    "db:seed:solar": "node --import jiti/register ./scripts/seed-solar-packages.ts",
+    "db:seed:all": "npm run db:seed && npm run db:seed:solar"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.14.0",

@@ -9,7 +9,12 @@ export type NavItem = {
 export const mainNav: NavItem[] = [
   { label: 'HOME', to: '/' },
   { label: 'ABOUT', to: '/about' },
-  { label: 'SOLAR', to: '/solar' },
+  { label: 'SOLAR', to: '/solar', children: [
+    { label: 'Overview', to: '/solar' },
+    { label: 'Solar Packages', to: '/solar/rooftop/packages' },
+    { label: 'Solar Farm', to: '/solar/farm' },
+    { label: 'Solar EPC', to: '/solar/epc' },
+  ] },
   {
     label: 'EV CHARGING',
     to: '/ev-charging',
@@ -38,6 +43,7 @@ export const footerNav = {
   ],
   solar: [
     { label: 'Solar Rooftop', to: '/solar/rooftop' },
+    { label: 'PEA Solar Packages', to: '/solar/rooftop/packages' },
     { label: 'Solar Farm', to: '/solar/farm' },
     { label: 'Solar EPC', to: '/solar/epc' },
     { label: 'BOS / Electrical', to: '/solar/bos' },
