@@ -52,13 +52,14 @@
 
 <script setup lang="ts">
 const features = [
+  { title: 'Solar Packages', desc: 'PEA Solar 3–20 kW ตามตารางราคา กฟภ. พร้อม String / Micro' },
   { title: 'Solar Rooftop', desc: 'บ้าน อาคารพาณิชย์ โรงงาน และคลังสินค้า' },
   { title: 'Solar Farm', desc: 'Ground Mount, Utility Scale และ Floating Solar' },
   { title: 'Solar EPC', desc: 'Engineering, Procurement, Construction, Commissioning, O&M' },
-  { title: 'BOS & Monitoring', desc: 'ระบบไฟฟ้า Balance of System และติดตามผลผลิต' },
 ]
 
 const links = [
+  { label: 'Solar Packages', to: '/solar/rooftop/packages' },
   { label: 'Solar Rooftop', to: '/solar/rooftop' },
   { label: 'Solar Farm', to: '/solar/farm' },
   { label: 'Solar EPC', to: '/solar/epc' },
