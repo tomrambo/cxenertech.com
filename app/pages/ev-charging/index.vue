@@ -142,13 +142,13 @@
     <section class="section offer">
       <div class="container offer__grid">
         <div class="offer__block">
-          <span class="section-label">Packages</span>
-          <h2>EV Station Packages</h2>
+          <span class="section-label">CX Charge Packages</span>
+          <h2>CX Station &amp; CX DC</h2>
           <p>
-            แพ็กเกจสถานีและเครื่อง DC สำเร็จรูป เปรียบเทียบกำลัง จุดชาร์จ และ CAPEX อ้างอิง
-            ก่อนขอใบเสนอราคาตามไซต์จริง
+            แพ็กเกจทางการ CX Station S4 / S10 / Hub และเครื่องชาร์จ CX DC
+            เปรียบเทียบกำลัง จุดชาร์จ และ CAPEX อ้างอิงก่อนขอใบเสนอราคา
           </p>
-          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">ดูแพ็กเกจสถานี</NuxtLink>
+          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">ดูแพ็กเกจ CX</NuxtLink>
         </div>
         <div class="offer__block offer__block--alt">
           <span class="section-label">Investment</span>
@@ -217,8 +217,8 @@ const ecosystem = [
     to: '/ev-charging/management',
   },
   {
-    title: 'Packages',
-    desc: 'เลือกแพ็กเกจสถานีสำเร็จรูป แล้วปรับตามพื้นที่จริง',
+    title: 'CX Packages',
+    desc: 'เลือก CX Station / CX DC แล้วปรับตามพื้นที่จริง',
     to: '/ev-charging/packages',
   },
   {
@@ -331,7 +331,7 @@ const links = [
   { label: 'EV Charging Station', to: '/ev-charging/station' },
   { label: 'Management Platform', to: '/ev-charging/management' },
   { label: 'EV Charger Products', to: '/ev-charging/products' },
-  { label: 'EV Station Packages', to: '/ev-charging/packages' },
+  { label: 'CX Charge Packages', to: '/ev-charging/packages' },
   { label: 'EV Station Investment', to: '/ev-charging/investment' },
   { label: 'ขอใบเสนอราคา EV', to: '/ev-charging/quotation' },
 ]

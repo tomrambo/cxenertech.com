@@ -30,3 +30,7 @@ data/*.sqlite-*
 # Keep seeded JSON catalog in git; ignore local overrides if needed
 # data/ev-packages.json is committed as the package catalog
 
+# Local PDF extraction venv
+.venv-pdf/
+tmp/
+

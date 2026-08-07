@@ -40,6 +40,9 @@ export type EvPackage = {
   financials: Record<string, string | number> | null
   targetSites: string[]
   sort_order: number
+  image: string | null
+  price_rate_id: string | null
+  spec_id: string | null
   active: boolean
   created_at: string
   updated_at: string
@@ -83,6 +86,9 @@ function mapSeed(p: SeedPackage, now = new Date().toISOString()): EvPackage {
     financials: p.financials,
     targetSites: p.targetSites,
     sort_order: p.sortOrder,
+    image: p.image ?? null,
+    price_rate_id: p.priceRateId ?? null,
+    spec_id: p.specId ?? null,
     active: true,
     created_at: now,
     updated_at: now,
@@ -134,8 +140,22 @@ export function listEvPackages(filters?: { type?: string }) {
   return packages.sort((a, b) => a.sort_order - b.sort_order || a.name.localeCompare(b.name))
 }
 
+/** Legacy slugs redirected to official CX package names */
+const SLUG_ALIASES: Record<string, string> = {
+  'hub-s-starter-station': 'cx-station-s4',
+  'hub-m-growth-station': 'cx-station-s10',
+  'hub-l-custom-hub': 'cx-station-hub',
+  'dc-charger-30kw': 'cx-dc-30',
+  'dc-charger-40kw': 'cx-dc-40',
+  'dc-charger-60kw': 'cx-dc-60',
+  'dc-unicharger-30kw': 'cx-dc-30-pay',
+  'cx-dc-60-zec': 'cx-dc-60',
+  'cx-dc-120-zec': 'cx-dc-120',
+}
+
 export function getEvPackageBySlug(slug: string) {
-  return readStore().find((p) => p.slug === slug && p.active) ?? null
+  const resolved = SLUG_ALIASES[slug] ?? slug
+  return readStore().find((p) => p.slug === resolved && p.active) ?? null
 }
 
 export function getEvDbPath() {
