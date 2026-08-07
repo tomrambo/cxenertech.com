@@ -2,7 +2,7 @@
   <div>
     <PageHero
       title="CX Charge Packages"
-      description="CX Station · CX DC S/J · CX AC — specs & sell prices from rate sheets / สถานี เครื่องชาร์จ DC/AC และราคาแนะนำขาย"
+      description="CX Station · CX DC S/J · CX AC"
       :crumbs="[
         { label: 'Home', to: '/' },
         { label: 'EV Charging', to: '/ev-charging' },
@@ -26,14 +26,24 @@
           <NuxtLink
             v-for="f in filters"
             :key="f.value"
-            :to="f.value === 'all' ? '/ev-charging/packages' : `/ev-charging/packages?type=${f.value}`"
+            :to="typeLink(f.value)"
             class="filter"
             :class="{ 'filter--active': type === f.value }"
           >
             {{ f.label }}
           </NuxtLink>
-          <NuxtLink to="/ev-charging/packages/price-rates" class="filter filter--link">
-            Price rates / ตารางราคา
+        </div>
+
+        <div v-if="type === 'investment'" class="filters filters--sub">
+          <span class="filters__label">Current / ชนิดไฟ</span>
+          <NuxtLink
+            v-for="f in chargeFilters"
+            :key="f.value"
+            :to="chargeLink(f.value)"
+            class="filter filter--sub"
+            :class="{ 'filter--active': charge === f.value }"
+          >
+            {{ f.label }}
           </NuxtLink>
         </div>
 
@@ -45,6 +55,7 @@
             <div class="card__body">
             <div class="card__top">
               <span class="card__type">{{ typeLabel(pkg.product_type) }}</span>
+              <span v-if="pkg.charge_type" class="card__charge">{{ pkg.charge_type }}</span>
               <span class="card__code">{{ pkg.code }}</span>
             </div>
             <h3 class="card__title">{{ pkg.name_th }}</h3>
@@ -131,6 +142,7 @@ type ApiPackage = {
   name: string
   name_th: string
   product_type: string
+  charge_type?: 'AC' | 'DC' | null
   tagline: string
   image: string | null
   power_kw_min: number
@@ -146,6 +158,10 @@ type ApiPackage = {
 
 const route = useRoute()
 const type = computed(() => (route.query.type as string) || 'all')
+const charge = computed(() => {
+  const c = route.query.charge as string
+  return c === 'AC' || c === 'DC' ? c : 'all'
+})
 
 const filters = [
   { label: 'ทั้งหมด / All', value: 'all' },
@@ -154,11 +170,35 @@ const filters = [
   { label: 'เครื่องชาร์จ / Equipment', value: 'equipment' },
 ]
 
+const chargeFilters = [
+  { label: 'ทั้งหมด / All', value: 'all' },
+  { label: 'AC', value: 'AC' },
+  { label: 'DC', value: 'DC' },
+]
+
+function typeLink(value: string) {
+  if (value === 'all') return '/ev-charging/packages'
+  if (value === 'investment' && charge.value !== 'all') {
+    return `/ev-charging/packages?type=investment&charge=${charge.value}`
+  }
+  return `/ev-charging/packages?type=${value}`
+}
+
+function chargeLink(value: string) {
+  if (value === 'all') return '/ev-charging/packages?type=investment'
+  return `/ev-charging/packages?type=investment&charge=${value}`
+}
+
 const { data, pending, error } = await useFetch<{ packages: ApiPackage[] }>(
   '/api/ev/packages',
   {
-    query: computed(() => (type.value === 'all' ? {} : { type: type.value })),
-    watch: [type],
+    query: computed(() => {
+      const q: Record<string, string> = {}
+      if (type.value !== 'all') q.type = type.value
+      if (type.value === 'investment' && charge.value !== 'all') q.charge = charge.value
+      return q
+    }),
+    watch: [type, charge],
   },
 )
 
@@ -206,6 +246,21 @@ useSeoMeta({
   margin-bottom: 2.25rem;
 }
 
+.filters--sub {
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.filters__label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-right: 0.35rem;
+}
+
 .filter {
   padding: 0.55rem 1.15rem;
   font-family: var(--font-display);
@@ -216,6 +271,11 @@ useSeoMeta({
   border: 1.5px solid var(--color-mist);
   background: var(--color-panel);
   transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.filter--sub {
+  padding: 0.4rem 0.95rem;
+  font-size: 0.75rem;
 }
 
 .filter--active,
@@ -294,11 +354,22 @@ useSeoMeta({
   color: var(--color-lime);
 }
 
+.card__charge {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid rgba(212, 255, 0, 0.35);
+  color: var(--color-gold);
+}
+
 .card__code {
   font-family: var(--font-display);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-gold);
+  margin-left: auto;
 }
 
 .card__title {

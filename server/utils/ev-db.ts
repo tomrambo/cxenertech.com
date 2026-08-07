@@ -43,6 +43,7 @@ export type EvPackage = {
   image: string | null
   price_rate_id: string | null
   spec_id: string | null
+  charge_type: 'AC' | 'DC' | null
   active: boolean
   created_at: string
   updated_at: string
@@ -51,6 +52,16 @@ export type EvPackage = {
 const DB_PATH = join(process.cwd(), 'data', 'ev-packages.json')
 
 let memoryCache: EvPackage[] | null = null
+
+function inferChargeType(p: SeedPackage): 'AC' | 'DC' {
+  if (p.chargeType === 'AC' || p.chargeType === 'DC') return p.chargeType
+  const key = `${p.code} ${p.name} ${p.slug} ${p.tagline}`.toUpperCase()
+  if (/\bCX-AC|\bSME-AC|AC\d|[-_/ ]AC\b/.test(key) && !/\bSME-DC|\bCX-DC|\bDC\d/.test(key)) {
+    return 'AC'
+  }
+  if (/\bAC\b/.test(key) && !/\bDC\b/.test(key)) return 'AC'
+  return 'DC'
+}
 
 function mapSeed(p: SeedPackage, now = new Date().toISOString()): EvPackage {
   return {
@@ -89,6 +100,7 @@ function mapSeed(p: SeedPackage, now = new Date().toISOString()): EvPackage {
     image: p.image ?? null,
     price_rate_id: p.priceRateId ?? null,
     spec_id: p.specId ?? null,
+    charge_type: inferChargeType(p),
     active: true,
     created_at: now,
     updated_at: now,
@@ -132,10 +144,13 @@ export function seedPackages(_db?: unknown, { force = false } = {}) {
   return packages.length
 }
 
-export function listEvPackages(filters?: { type?: string }) {
+export function listEvPackages(filters?: { type?: string; charge?: string }) {
   let packages = readStore().filter((p) => p.active)
   if (filters?.type && filters.type !== 'all') {
     packages = packages.filter((p) => p.product_type === filters.type)
+  }
+  if (filters?.charge === 'AC' || filters?.charge === 'DC') {
+    packages = packages.filter((p) => p.charge_type === filters.charge)
   }
   return packages.sort((a, b) => a.sort_order - b.sort_order || a.name.localeCompare(b.name))
 }
