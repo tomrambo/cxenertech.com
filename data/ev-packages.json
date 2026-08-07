@@ -76,8 +76,8 @@
     "spec_id": null,
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-sme-ac4",
@@ -156,8 +156,8 @@
     "spec_id": null,
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-sme-dc1",
@@ -236,8 +236,8 @@
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-sme-dc2",
@@ -260,12 +260,12 @@
     "footprint_d_m": 6.5,
     "price_list": null,
     "price_promo": null,
-    "price_capex": 1350000,
+    "price_capex": 1550000,
     "currency": "THB",
-    "price_note": "CAPEX อ้างอิงรวมเครื่อง DC 120 kW (J-Series) ไฟฟ้า/หม้อแปลงขนาดเล็ก งานจุดจอด และ commissioning",
-    "roi_annual_pct": 54.2,
-    "payback_months": 22.1,
-    "net_profit_monthly": 60950,
+    "price_note": "CAPEX อ้างอิงรวมเครื่อง DC 120 kW (J-Series) ราคาต่อหน่วย 1,550,000 บาท ไฟฟ้า/หม้อแปลงขนาดเล็ก งานจุดจอด และ commissioning",
+    "roi_annual_pct": 52,
+    "payback_months": 23.1,
+    "net_profit_monthly": 67162,
     "specs": {
       "chargers": "1 × DC J-Series 120 kW (dual gun)",
       "nozzles": "2",
@@ -299,10 +299,10 @@
       "energyCostMonthly": 44352,
       "platformFeePct": 12,
       "investorPct": 100,
-      "investorNetMonthly": 60950,
-      "annualNet": 731400,
-      "roiAnnualPct": 54.2,
-      "paybackMonths": 22.1
+      "investorNetMonthly": 67162,
+      "annualNet": 805944,
+      "roiAnnualPct": 52,
+      "paybackMonths": 23.1
     },
     "targetSites": [
       "sme",
@@ -317,8 +317,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-sme-dc180",
@@ -399,8 +399,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-sme-dc240",
@@ -481,8 +481,8 @@
     "spec_id": "spec-zd-j4",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-s4",
@@ -505,11 +505,11 @@
     "footprint_d_m": 6.5,
     "price_list": null,
     "price_promo": null,
-    "price_capex": 3270000,
+    "price_capex": 3670000,
     "currency": "THB",
-    "price_note": "CAPEX อ้างอิงรวมอุปกรณ์ ติดตั้ง และ commissioning",
-    "roi_annual_pct": 84,
-    "payback_months": 14.3,
+    "price_note": "CAPEX อ้างอิงรวมอุปกรณ์ ติดตั้ง และ commissioning (เครื่อง DC 120 kW ×2 ราคาต่อหน่วย 1,550,000 บาท)",
+    "roi_annual_pct": 74.9,
+    "payback_months": 16,
     "net_profit_monthly": 228960,
     "specs": {
       "chargers": "2 × DC Fast Charger 120 kW",
@@ -547,8 +547,8 @@
       "investorPct": 90,
       "investorNetMonthly": 228960,
       "annualNet": 2747520,
-      "roiAnnualPct": 84,
-      "paybackMonths": 14.3
+      "roiAnnualPct": 74.9,
+      "paybackMonths": 16
     },
     "targetSites": [
       "commercial",
@@ -562,121 +562,39 @@
     "spec_id": null,
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
-    "id": "pkg-cx-s10",
-    "slug": "cx-station-s10",
-    "code": "CX-S10",
-    "name": "CX Station S10",
-    "name_th": "สถานีชาร์จ CX Station S10",
-    "product_type": "turnkey",
-    "source_label": "CX ENERTECH · Station Investment Series",
-    "tagline": "10 หัวจ่าย · 5× DC 120 kW · 10 bays · 600 kW total / สถานีทราฟฟิกสูง",
-    "description": "Mid-to-large station for high-traffic sites with full structure, electrical works, and landowner revenue share — สถานีขนาดกลาง-ใหญ่ ครบโครงสร้าง ไฟฟ้า และโมเดลแบ่งรายได้กับเจ้าของที่ดิน",
-    "power_kw_min": 600,
-    "power_kw_max": 600,
-    "charger_count": 5,
-    "nozzle_count_min": 10,
-    "nozzle_count_max": 10,
-    "parking_bays": 10,
-    "transformer_kva": 1000,
-    "footprint_w_m": 30,
-    "footprint_d_m": 7.5,
-    "price_list": null,
-    "price_promo": null,
-    "price_capex": 9000000,
-    "currency": "THB",
-    "price_note": "CAPEX อ้างอิงรวมอุปกรณ์ ติดตั้ง และ commissioning",
-    "roi_annual_pct": 67.2,
-    "payback_months": 17.9,
-    "net_profit_monthly": 453600,
-    "specs": {
-      "chargers": "5 × DC Fast Charger 120 kW",
-      "nozzles": "10 (2 ต่อเครื่อง)",
-      "totalPowerKw": 600,
-      "electrical": "Transformer 1,000 kVA + MDB",
-      "footprint": "30.0 × 7.5 m",
-      "cctv": "4 กล้อง + NVR"
-    },
-    "includes": [
-      "เครื่องชาร์จ DC 120 kW จำนวน 5 ตู้",
-      "ระบบไฟฟ้าแรงสูง · Transformer 1,000 kVA · MDB",
-      "โครงสร้างหลังคา / canopy",
-      "งานจุดจอด EV 10 ช่อง · landscaping",
-      "ป้ายสถานี CX ENERTECH",
-      "ระบบสื่อสาร / Internet",
-      "CCTV 4 กล้อง + NVR",
-      "ทดสอบและ commissioning"
-    ],
-    "features": [
-      "รองรับทราฟฟิกสูง",
-      "Layout สถานีมาตรฐาน",
-      "โมเดลแบ่งรายได้เจ้าของที่ดิน",
-      "เหมาะกับห้าง ปั๊ม และแหล่งท่องเที่ยว"
-    ],
-    "financials": {
-      "operatingHoursPerDay": 10,
-      "kwhPerDay": 6000,
-      "kwhPerMonth": 180000,
-      "sellPricePerKwh": 8,
-      "energyCostPerKwh": 2.8,
-      "revenueMonthly": 1440000,
-      "landOwnerPctOfRevenue": 15,
-      "platformFeePct": 15,
-      "coordinatorPct": 10,
-      "investorPct": 90,
-      "investorNetMonthly": 453600,
-      "annualNet": 6048000,
-      "roiAnnualPct": 67.2,
-      "paybackMonths": 17.9
-    },
-    "targetSites": [
-      "tourism",
-      "mall",
-      "gas",
-      "public"
-    ],
-    "sort_order": 20,
-    "image": "/images/packages/cx-station-s10.jpg",
-    "price_rate_id": null,
-    "spec_id": null,
-    "charge_type": "DC",
-    "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
-  },
-  {
-    "id": "pkg-cx-hub-5-120",
-    "slug": "cx-hub-5-120",
-    "code": "CX-HUB-5-120",
-    "name": "CX Hub 5 · 120 kW",
-    "name_th": "สถานีสำเร็จรูป CX Hub 5 หัว · 120 kW",
+    "id": "pkg-cx-hub-6-120",
+    "slug": "cx-hub-6-120",
+    "code": "CX-HUB-6-120",
+    "name": "CX Hub 6 · 120 kW",
+    "name_th": "สถานีสำเร็จรูป CX Hub 6 หัว · 120 kW",
     "product_type": "turnkey",
     "source_label": "CX ENERTECH · EV Hub Turnkey Series",
-    "tagline": "5 หัวจ่าย · 3× DC 120 kW · กำลังรวม 360 kW / Ready-to-run hub",
-    "description": "Turnkey EV hub with 5 charging nozzles on 120 kW cabinets — สถานีสำเร็จรูป 5 หัวจ่าย ใช้เครื่อง DC 120 kW เหมาะกับปั๊ม ห้าง และที่จอดสาธารณะขนาดกลาง",
+    "tagline": "6 หัวจ่าย · 3× DC 120 kW · กำลังรวม 360 kW / Ready-to-run hub",
+    "description": "Turnkey EV hub with 6 charging nozzles on 120 kW dual-gun cabinets — สถานีสำเร็จรูป 6 หัวจ่าย ใช้เครื่อง DC 120 kW ×3 เหมาะกับปั๊ม ห้าง และที่จอดสาธารณะขนาดกลาง",
     "power_kw_min": 360,
     "power_kw_max": 360,
     "charger_count": 3,
-    "nozzle_count_min": 5,
-    "nozzle_count_max": 5,
-    "parking_bays": 5,
+    "nozzle_count_min": 6,
+    "nozzle_count_max": 6,
+    "parking_bays": 6,
     "transformer_kva": 500,
     "footprint_w_m": 16,
     "footprint_d_m": 7,
     "price_list": null,
-    "price_promo": 4280000,
-    "price_capex": 4280000,
+    "price_promo": 4880000,
+    "price_capex": 4880000,
     "currency": "THB",
-    "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×3 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (อ้างอิงอุปกรณ์ J-Series 120 kW)",
-    "roi_annual_pct": null,
-    "payback_months": null,
-    "net_profit_monthly": null,
+    "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×3 (ราคาต่อหน่วย 1,550,000 บาท) ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (อ้างอิงอุปกรณ์ J-Series 120 kW)",
+    "roi_annual_pct": 84.5,
+    "payback_months": 14.2,
+    "net_profit_monthly": 343440,
     "specs": {
-      "chargers": "3 × DC 120 kW (dual / single mix → 5 nozzles)",
-      "nozzles": "5",
+      "chargers": "3 × DC 120 kW dual gun",
+      "nozzles": "6 (2 ต่อตู้)",
       "totalPowerKw": 360,
       "architecture": "Integrated DC cabinets + canopy",
       "electrical": "Transformer 500 kVA + MDB",
@@ -684,20 +602,35 @@
       "warrantyYears": 2
     },
     "includes": [
-      "เครื่องชาร์จ DC 120 kW จำนวน 3 ตู้ (จัดหัวจ่ายรวม 5 หัว)",
+      "เครื่องชาร์จ DC 120 kW จำนวน 3 ตู้ (6 หัว)",
       "Transformer ~500 kVA · MDB · งานไฟฟ้า",
       "โครงสร้างหลังคา / canopy",
-      "งานจุดจอด EV 5 ช่อง · ป้ายสถานี",
+      "งานจุดจอด EV 6 ช่อง · ป้ายสถานี",
       "Internet / OCPP · CCTV พื้นฐาน",
       "ติดตั้ง ทดสอบ และรับประกัน 2 ปี"
     ],
     "features": [
-      "จำนวนหัวจ่ายคงที่ 5 หัว พร้อมส่งมอบ",
+      "จำนวนหัวจ่ายคงที่ 6 หัว พร้อมส่งมอบ",
       "ใช้เครื่อง 120 kW มาตรฐานสถานี",
       "เหมาะกับปั๊ม / ห้างขนาดกลาง",
       "ขยายไป Hub 8/10 ได้"
     ],
-    "financials": null,
+    "financials": {
+      "operatingHoursPerDay": 10,
+      "kwhPerDay": 3600,
+      "kwhPerMonth": 108000,
+      "sellPricePerKwh": 8,
+      "energyCostPerKwh": 2.8,
+      "revenueMonthly": 864000,
+      "platformFeePct": 12,
+      "gpSharePct": 25,
+      "coordinatorPct": 10,
+      "investorPct": 90,
+      "investorNetMonthly": 343440,
+      "annualNet": 4121280,
+      "roiAnnualPct": 84.5,
+      "paybackMonths": 14.2
+    },
     "targetSites": [
       "gas",
       "mall",
@@ -706,30 +639,30 @@
       "public"
     ],
     "sort_order": 31,
-    "image": "/images/packages/cx-hub-5-120.jpg",
+    "image": "/images/packages/cx-hub-6-120.jpg",
     "price_rate_id": "rate-dc-j-120",
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
-    "id": "pkg-cx-hub-5-180",
-    "slug": "cx-hub-5-180",
-    "code": "CX-HUB-5-180",
-    "name": "CX Hub 5 · 180 kW",
-    "name_th": "สถานีสำเร็จรูป CX Hub 5 หัว · 180 kW",
+    "id": "pkg-cx-hub-6-180",
+    "slug": "cx-hub-6-180",
+    "code": "CX-HUB-6-180",
+    "name": "CX Hub 6 · 180 kW",
+    "name_th": "สถานีสำเร็จรูป CX Hub 6 หัว · 180 kW",
     "product_type": "turnkey",
     "source_label": "CX ENERTECH · EV Hub Turnkey Series",
-    "tagline": "5 หัวจ่าย · 3× DC 180 kW · กำลังรวม 540 kW / Fast hub",
-    "description": "Turnkey EV hub with 5 nozzles on 180 kW cabinets — สถานีสำเร็จรูป 5 หัว ใช้เครื่อง DC 180 kW ชาร์จเร็วขึ้นในพื้นที่เท่ากัน",
+    "tagline": "6 หัวจ่าย · 3× DC 180 kW · กำลังรวม 540 kW / Fast hub",
+    "description": "Turnkey EV hub with 6 nozzles on 180 kW dual-gun cabinets — สถานีสำเร็จรูป 6 หัว ใช้เครื่อง DC 180 kW ×3 ชาร์จเร็วขึ้นในพื้นที่เท่ากัน",
     "power_kw_min": 540,
     "power_kw_max": 540,
     "charger_count": 3,
-    "nozzle_count_min": 5,
-    "nozzle_count_max": 5,
-    "parking_bays": 5,
+    "nozzle_count_min": 6,
+    "nozzle_count_max": 6,
+    "parking_bays": 6,
     "transformer_kva": 800,
     "footprint_w_m": 16,
     "footprint_d_m": 7,
@@ -738,12 +671,12 @@
     "price_capex": 5040000,
     "currency": "THB",
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×3 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
-    "roi_annual_pct": null,
-    "payback_months": null,
-    "net_profit_monthly": null,
+    "roi_annual_pct": 122.7,
+    "payback_months": 9.8,
+    "net_profit_monthly": 515160,
     "specs": {
-      "chargers": "3 × DC 180 kW (dual / single mix → 5 nozzles)",
-      "nozzles": "5",
+      "chargers": "3 × DC 180 kW dual gun",
+      "nozzles": "6 (2 ต่อตู้)",
       "totalPowerKw": 540,
       "architecture": "Integrated DC cabinets + canopy (J3 platform)",
       "electrical": "Transformer 800 kVA + MDB",
@@ -751,20 +684,35 @@
       "warrantyYears": 2
     },
     "includes": [
-      "เครื่องชาร์จ DC 180 kW จำนวน 3 ตู้ (จัดหัวจ่ายรวม 5 หัว)",
+      "เครื่องชาร์จ DC 180 kW จำนวน 3 ตู้ (6 หัว)",
       "Transformer ~800 kVA · MDB · งานไฟฟ้า",
       "โครงสร้างหลังคา / canopy",
-      "งานจุดจอด EV 5 ช่อง · ป้ายสถานี",
+      "งานจุดจอด EV 6 ช่อง · ป้ายสถานี",
       "Internet / OCPP · CCTV พื้นฐาน",
       "ติดตั้ง ทดสอบ และรับประกัน 2 ปี"
     ],
     "features": [
-      "กำลังรวมสูงกว่า Hub 5×120 ประมาณ 50%",
+      "กำลังรวมสูงกว่า Hub 6×120 ประมาณ 50%",
       "แพลตฟอร์ม J3 180 kW",
       "เหมาะกับทราฟฟิกสูงในพื้นที่จำกัด",
       "รองรับรถ 800V"
     ],
-    "financials": null,
+    "financials": {
+      "operatingHoursPerDay": 10,
+      "kwhPerDay": 5400,
+      "kwhPerMonth": 162000,
+      "sellPricePerKwh": 8,
+      "energyCostPerKwh": 2.8,
+      "revenueMonthly": 1296000,
+      "platformFeePct": 12,
+      "gpSharePct": 25,
+      "coordinatorPct": 10,
+      "investorPct": 90,
+      "investorNetMonthly": 515160,
+      "annualNet": 6181920,
+      "roiAnnualPct": 122.7,
+      "paybackMonths": 9.8
+    },
     "targetSites": [
       "gas",
       "mall",
@@ -773,13 +721,13 @@
       "public"
     ],
     "sort_order": 32,
-    "image": "/images/packages/cx-hub-5-180.jpg",
+    "image": "/images/packages/cx-hub-6-180.jpg",
     "price_rate_id": "rate-dc-j-180",
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-hub-8-120",
@@ -801,13 +749,13 @@
     "footprint_w_m": 24,
     "footprint_d_m": 7.5,
     "price_list": null,
-    "price_promo": 5590000,
-    "price_capex": 5590000,
+    "price_promo": 6390000,
+    "price_capex": 6390000,
     "currency": "THB",
-    "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×4 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning",
-    "roi_annual_pct": null,
-    "payback_months": null,
-    "net_profit_monthly": null,
+    "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×4 (ราคาต่อหน่วย 1,550,000 บาท) ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning",
+    "roi_annual_pct": 86,
+    "payback_months": 14,
+    "net_profit_monthly": 457920,
     "specs": {
       "chargers": "4 × DC 120 kW dual gun",
       "nozzles": "8 (2 ต่อตู้)",
@@ -831,7 +779,22 @@
       "สมดุลต้นทุนและทราฟฟิก",
       "ขยายไป Hub 10 ได้"
     ],
-    "financials": null,
+    "financials": {
+      "operatingHoursPerDay": 10,
+      "kwhPerDay": 4800,
+      "kwhPerMonth": 144000,
+      "sellPricePerKwh": 8,
+      "energyCostPerKwh": 2.8,
+      "revenueMonthly": 1152000,
+      "platformFeePct": 12,
+      "gpSharePct": 25,
+      "coordinatorPct": 10,
+      "investorPct": 90,
+      "investorNetMonthly": 457920,
+      "annualNet": 5495040,
+      "roiAnnualPct": 86,
+      "paybackMonths": 14
+    },
     "targetSites": [
       "gas",
       "mall",
@@ -845,8 +808,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-hub-8-180",
@@ -872,9 +835,9 @@
     "price_capex": 6620000,
     "currency": "THB",
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×4 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
-    "roi_annual_pct": null,
-    "payback_months": null,
-    "net_profit_monthly": null,
+    "roi_annual_pct": 124.5,
+    "payback_months": 9.6,
+    "net_profit_monthly": 686880,
     "specs": {
       "chargers": "4 × DC 180 kW dual gun",
       "nozzles": "8 (2 ต่อตู้)",
@@ -898,7 +861,22 @@
       "ชาร์จหลายคันเร็วพร้อมกัน",
       "เหมาะกับห้างใหญ่ / ปั๊มหลัก"
     ],
-    "financials": null,
+    "financials": {
+      "operatingHoursPerDay": 10,
+      "kwhPerDay": 7200,
+      "kwhPerMonth": 216000,
+      "sellPricePerKwh": 8,
+      "energyCostPerKwh": 2.8,
+      "revenueMonthly": 1728000,
+      "platformFeePct": 12,
+      "gpSharePct": 25,
+      "coordinatorPct": 10,
+      "investorPct": 90,
+      "investorNetMonthly": 686880,
+      "annualNet": 8242560,
+      "roiAnnualPct": 124.5,
+      "paybackMonths": 9.6
+    },
     "targetSites": [
       "gas",
       "mall",
@@ -912,8 +890,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-hub-10-120",
@@ -935,13 +913,13 @@
     "footprint_w_m": 30,
     "footprint_d_m": 7.5,
     "price_list": null,
-    "price_promo": 6990000,
-    "price_capex": 6990000,
+    "price_promo": 7990000,
+    "price_capex": 7990000,
     "currency": "THB",
-    "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×5 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning",
-    "roi_annual_pct": null,
-    "payback_months": null,
-    "net_profit_monthly": null,
+    "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×5 (ราคาต่อหน่วย 1,550,000 บาท) ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning",
+    "roi_annual_pct": 86,
+    "payback_months": 14,
+    "net_profit_monthly": 572400,
     "specs": {
       "chargers": "5 × DC 120 kW dual gun",
       "nozzles": "10 (2 ต่อตู้)",
@@ -965,7 +943,22 @@
       "Layout มาตรฐาน CX ENERTECH",
       "ทางเลือก turnkey ของไลน์ 10 จุด"
     ],
-    "financials": null,
+    "financials": {
+      "operatingHoursPerDay": 10,
+      "kwhPerDay": 6000,
+      "kwhPerMonth": 180000,
+      "sellPricePerKwh": 8,
+      "energyCostPerKwh": 2.8,
+      "revenueMonthly": 1440000,
+      "platformFeePct": 12,
+      "gpSharePct": 25,
+      "coordinatorPct": 10,
+      "investorPct": 90,
+      "investorNetMonthly": 572400,
+      "annualNet": 6868800,
+      "roiAnnualPct": 86,
+      "paybackMonths": 14
+    },
     "targetSites": [
       "mall",
       "gas",
@@ -979,8 +972,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-hub-10-180",
@@ -1006,9 +999,9 @@
     "price_capex": 8300000,
     "currency": "THB",
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×5 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
-    "roi_annual_pct": null,
-    "payback_months": null,
-    "net_profit_monthly": null,
+    "roi_annual_pct": 124.1,
+    "payback_months": 9.7,
+    "net_profit_monthly": 858600,
     "specs": {
       "chargers": "5 × DC 180 kW dual gun",
       "nozzles": "10 (2 ต่อตู้)",
@@ -1032,7 +1025,22 @@
       "แพลตฟอร์ม J3 180 kW",
       "เหมาะกับฮับหลัก / ทางหลวง / ห้างใหญ่"
     ],
-    "financials": null,
+    "financials": {
+      "operatingHoursPerDay": 10,
+      "kwhPerDay": 9000,
+      "kwhPerMonth": 270000,
+      "sellPricePerKwh": 8,
+      "energyCostPerKwh": 2.8,
+      "revenueMonthly": 2160000,
+      "platformFeePct": 12,
+      "gpSharePct": 25,
+      "coordinatorPct": 10,
+      "investorPct": 90,
+      "investorNetMonthly": 858600,
+      "annualNet": 10303200,
+      "roiAnnualPct": 124.1,
+      "paybackMonths": 9.7
+    },
     "targetSites": [
       "highway",
       "mall",
@@ -1046,8 +1054,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc30",
@@ -1112,8 +1120,8 @@
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc40",
@@ -1177,8 +1185,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc60",
@@ -1242,8 +1250,8 @@
     "spec_id": "spec-zec-60",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc60-j",
@@ -1309,8 +1317,8 @@
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc120",
@@ -1374,8 +1382,8 @@
     "spec_id": "spec-zec-120",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc120-j",
@@ -1441,8 +1449,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc180",
@@ -1508,8 +1516,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc240-j",
@@ -1573,8 +1581,8 @@
     "spec_id": "spec-zd-j4",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-dc30p",
@@ -1635,8 +1643,8 @@
     "spec_id": null,
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-ac7-g",
@@ -1701,8 +1709,8 @@
     "spec_id": "spec-ac-g-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-ac7-k",
@@ -1767,8 +1775,8 @@
     "spec_id": "spec-ac-k-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-ac7-miniz",
@@ -1825,8 +1833,8 @@
     "spec_id": "spec-ac-miniz-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-ac11-e",
@@ -1891,8 +1899,8 @@
     "spec_id": "spec-ac-e",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   },
   {
     "id": "pkg-cx-ac22-e",
@@ -1958,7 +1966,7 @@
     "spec_id": "spec-ac-e",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T08:54:53.881Z",
-    "updated_at": "2026-08-07T08:54:53.881Z"
+    "created_at": "2026-08-07T14:32:30.530Z",
+    "updated_at": "2026-08-07T14:32:30.530Z"
   }
 ]
