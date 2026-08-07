@@ -88,15 +88,15 @@ export const DEFAULT_ASSUMPTIONS: FinancialAssumptions = {
   capexBasis: 'beforeVat',
 }
 
-/** Preset assumptions aligned with researched HUB-S / HUB-M examples */
+/** Preset assumptions aligned with CX Station S4 / S10 examples */
 export const ASSUMPTION_PRESETS = {
-  'HUB-S': {
+  'CX-S4': {
     ...DEFAULT_ASSUMPTIONS,
     kwhPerDay: 2400,
     fixedOpexMonthly: 28000, // maintenance 20k + insurance 5k + internet 3k
     feeRules: DEFAULT_FEE_RULES_STARTER,
   } satisfies FinancialAssumptions,
-  'HUB-M': {
+  'CX-S10': {
     ...DEFAULT_ASSUMPTIONS,
     kwhPerDay: 6000,
     fixedOpexMonthly: 28000, // maintenance 20k + internet 5k + utilities 3k

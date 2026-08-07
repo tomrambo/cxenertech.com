@@ -300,21 +300,21 @@ function baseEpcLines(scale: 'S' | 'M' | 'L'): BoqTemplateLine[] {
 
 export const boqTemplates: BoqTemplate[] = [
   {
-    id: 'boq-hub-s',
-    name: 'BOQ Starter Station (HUB-S)',
-    presetCode: 'HUB-S',
+    id: 'boq-cx-s4',
+    name: 'BOQ CX Station S4',
+    presetCode: 'CX-S4',
     lines: baseEpcLines('S'),
   },
   {
-    id: 'boq-hub-m',
-    name: 'BOQ Growth Station (HUB-M)',
-    presetCode: 'HUB-M',
+    id: 'boq-cx-s10',
+    name: 'BOQ CX Station S10',
+    presetCode: 'CX-S10',
     lines: baseEpcLines('M'),
   },
   {
-    id: 'boq-hub-l',
-    name: 'BOQ Hub Custom (HUB-L)',
-    presetCode: 'HUB-L',
+    id: 'boq-cx-hub',
+    name: 'BOQ CX Station Hub',
+    presetCode: 'CX-HUB',
     lines: baseEpcLines('L'),
   },
 ]

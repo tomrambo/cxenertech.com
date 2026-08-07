@@ -13,14 +13,24 @@ export function formatPowerRange(min: number, max: number) {
 }
 
 export function formatNozzles(min: number, max: number) {
-  if (min === max) return `${min} จุด`
-  return `${min}–${max} จุด`
+  if (min === max) return `${min} จุด / ${min} bay${min > 1 ? 's' : ''}`
+  return `${min}–${max} จุด / bays`
 }
 
-export const PACKAGE_TYPE_LABELS: Record<string, string> = {
-  equipment: 'Equipment',
-  turnkey: 'Turnkey Station',
-  investment: 'Investment',
+export type LocaleLabel = { th: string; en: string }
+
+export const PACKAGE_TYPE_LABELS: Record<string, LocaleLabel> = {
+  equipment: { th: 'เครื่องชาร์จ', en: 'Equipment' },
+  turnkey: { th: 'สถานีสำเร็จรูป', en: 'Turnkey Station' },
+  investment: { th: 'แพ็กเกจลงทุน', en: 'Investment' },
+}
+
+export function typeLabel(type: string, locale: 'th' | 'en' | 'both' = 'both') {
+  const label = PACKAGE_TYPE_LABELS[type]
+  if (!label) return type
+  if (locale === 'th') return label.th
+  if (locale === 'en') return label.en
+  return `${label.th} / ${label.en}`
 }
 
 export function displayPrice(pkg: {
@@ -31,16 +41,23 @@ export function displayPrice(pkg: {
 }) {
   if (pkg.product_type === 'equipment') {
     return {
-      label: 'ราคาเริ่มต้น',
-      value: pkg.price_promo ?? pkg.price_list,
-      compareAt: pkg.price_list && pkg.price_promo && pkg.price_list !== pkg.price_promo
-        ? pkg.price_list
-        : null,
+      labelTh: 'ราคาแนะนำขาย',
+      labelEn: 'Recommended sell',
+      label: 'ราคาแนะนำขาย / Sell',
+      value: pkg.price_list ?? pkg.price_promo,
+      compareAt:
+        pkg.price_list && pkg.price_promo && pkg.price_list !== pkg.price_promo
+          ? pkg.price_promo
+          : null,
+      compareLabel: 'ต้นทุนเริ่มต้น / Cost from',
     }
   }
   return {
-    label: 'CAPEX อ้างอิง',
+    labelTh: 'CAPEX อ้างอิง',
+    labelEn: 'Reference CAPEX',
+    label: 'CAPEX อ้างอิง / CAPEX',
     value: pkg.price_capex ?? pkg.price_promo ?? pkg.price_list,
     compareAt: null as number | null,
+    compareLabel: '',
   }
 }

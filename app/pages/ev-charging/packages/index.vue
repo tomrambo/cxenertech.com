@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHero
-      title="EV Station Packages"
-      description="แพ็กเกจสถานีชาร์จและเครื่อง DC จากข้อมูลตลาด — เลือกดูสเปก ราคาอ้างอิง และโมเดลลงทุน"
+      title="CX Charge Packages"
+      description="CX Station · CX DC S/J · CX AC — specs & sell prices from rate sheets / สถานี เครื่องชาร์จ DC/AC และราคาแนะนำขาย"
       :crumbs="[
         { label: 'Home', to: '/' },
         { label: 'EV Charging', to: '/ev-charging' },
@@ -14,16 +14,12 @@
       <div class="container">
         <div class="intro">
           <div>
-            <span class="section-label">Catalog</span>
-            <h2 class="section-title">เลือกแพ็กเกจที่เหมาะกับไซต์ของคุณ</h2>
-            <p class="section-lead">
-              ข้อมูลนำเข้าจาก infographic ตลาด (สถานีลงทุน · Hub turnkey · เครื่อง DC)
-              ใช้เป็นจุดเริ่มต้นขอใบเสนอราคาจาก CX ENERTECH
-            </p>
+            <span class="section-label">Catalog / แคตตาล็อก</span>
+            <h2 class="section-title">CX package for your site / แพ็กเกจ CX ที่เหมาะกับไซต์ของคุณ</h2>
           </div>
-          <p v-if="pending" class="status">กำลังโหลดแพ็กเกจ…</p>
-          <p v-else-if="error" class="status status--error">โหลดข้อมูลไม่สำเร็จ กรุณาลองใหม่</p>
-          <p v-else class="status">{{ packages.length }} แพ็กเกจ</p>
+          <p v-if="pending" class="status">Loading… / กำลังโหลด…</p>
+          <p v-else-if="error" class="status status--error">Failed to load / โหลดไม่สำเร็จ</p>
+          <p v-else class="status">{{ packages.length }} packages / แพ็กเกจ</p>
         </div>
 
         <div class="filters">
@@ -36,10 +32,17 @@
           >
             {{ f.label }}
           </NuxtLink>
+          <NuxtLink to="/ev-charging/packages/price-rates" class="filter filter--link">
+            Price rates / ตารางราคา
+          </NuxtLink>
         </div>
 
         <div v-if="packages.length" class="grid">
           <article v-for="pkg in packages" :key="pkg.id" class="card">
+            <div v-if="pkg.image" class="card__visual">
+              <img :src="pkg.image" :alt="pkg.name_th" loading="lazy" width="640" height="360" />
+            </div>
+            <div class="card__body">
             <div class="card__top">
               <span class="card__type">{{ typeLabel(pkg.product_type) }}</span>
               <span class="card__code">{{ pkg.code }}</span>
@@ -50,11 +53,11 @@
 
             <dl class="meta">
               <div>
-                <dt>กำลัง</dt>
+                <dt>Power / กำลัง</dt>
                 <dd>{{ formatPowerRange(pkg.power_kw_min, pkg.power_kw_max) }}</dd>
               </div>
               <div>
-                <dt>จุดชาร์จ</dt>
+                <dt>Bays / จุดชาร์จ</dt>
                 <dd>{{ formatNozzles(pkg.nozzle_count_min, pkg.nozzle_count_max) }}</dd>
               </div>
               <div v-if="pkg.transformer_kva">
@@ -62,8 +65,8 @@
                 <dd>{{ pkg.transformer_kva.toLocaleString() }} kVA</dd>
               </div>
               <div v-if="pkg.roi_annual_pct">
-                <dt>ROI อ้างอิง</dt>
-                <dd>{{ pkg.roi_annual_pct }}%/ปี</dd>
+                <dt>ROI</dt>
+                <dd>{{ pkg.roi_annual_pct }}%/yr</dd>
               </div>
             </dl>
 
@@ -79,23 +82,24 @@
 
             <div class="card__actions">
               <NuxtLink :to="`/ev-charging/packages/${pkg.slug}`" class="btn btn-primary">
-                ดูรายละเอียด
+                Details / รายละเอียด
               </NuxtLink>
               <NuxtLink
                 class="btn btn-secondary"
                 :to="`/contact/quotation?type=ev&package=${pkg.code}`"
               >
-                ขอใบเสนอราคา
+                Quote / ขอใบเสนอราคา
               </NuxtLink>
+            </div>
             </div>
           </article>
         </div>
 
-        <p v-else-if="!pending && !error" class="empty">ยังไม่มีแพ็กเกจในหมวดนี้</p>
+        <p v-else-if="!pending && !error" class="empty">No packages in this category / ยังไม่มีแพ็กเกจในหมวดนี้</p>
 
         <p class="disclaimer">
-          ราคา / ROI / จุดคุ้มทุนเป็นตัวเลขอ้างอิงจากข้อมูลตลาดใน infographic
-          ไม่ใช่ใบเสนอราคาจริงของ CX ENERTECH และไม่รับประกันผลตอบแทน
+          Prices / ROI / payback are reference figures only — not a formal CX ENERTECH quotation and not a return guarantee.
+          ราคา / ROI / จุดคุ้มทุนเป็นตัวเลขอ้างอิง ไม่ใช่ใบเสนอราคาจริง และไม่รับประกันผลตอบแทน
         </p>
       </div>
     </section>
@@ -113,11 +117,11 @@
 
 <script setup lang="ts">
 import {
-  PACKAGE_TYPE_LABELS,
   displayPrice,
   formatNozzles,
   formatPowerRange,
   formatThb,
+  typeLabel,
 } from '~/utils/ev-format'
 
 type ApiPackage = {
@@ -128,6 +132,7 @@ type ApiPackage = {
   name_th: string
   product_type: string
   tagline: string
+  image: string | null
   power_kw_min: number
   power_kw_max: number
   nozzle_count_min: number
@@ -143,10 +148,10 @@ const route = useRoute()
 const type = computed(() => (route.query.type as string) || 'all')
 
 const filters = [
-  { label: 'ทั้งหมด', value: 'all' },
-  { label: 'Investment', value: 'investment' },
-  { label: 'Turnkey', value: 'turnkey' },
-  { label: 'Equipment', value: 'equipment' },
+  { label: 'ทั้งหมด / All', value: 'all' },
+  { label: 'ลงทุน / Investment', value: 'investment' },
+  { label: 'สถานีสำเร็จรูป / Turnkey', value: 'turnkey' },
+  { label: 'เครื่องชาร์จ / Equipment', value: 'equipment' },
 ]
 
 const { data, pending, error } = await useFetch<{ packages: ApiPackage[] }>(
@@ -159,17 +164,13 @@ const { data, pending, error } = await useFetch<{ packages: ApiPackage[] }>(
 
 const packages = computed(() => data.value?.packages ?? [])
 
-function typeLabel(t: string) {
-  return PACKAGE_TYPE_LABELS[t] ?? t
-}
-
 function priceInfo(pkg: ApiPackage) {
   return displayPrice(pkg)
 }
 
 useSeoMeta({
-  title: 'EV Station Packages | CX ENERTECH',
-  description: 'แพ็กเกจสถานีชาร์จ EV และเครื่อง DC — สเปก ราคาอ้างอิง และโมเดลลงทุน',
+  title: 'CX Charge Packages | CX ENERTECH',
+  description: 'แพ็กเกจ CX Station, CX DC S/J และ CX AC — สเปกและราคาแนะนำขาย',
 })
 </script>
 
@@ -224,6 +225,12 @@ useSeoMeta({
   border-color: var(--color-lime);
 }
 
+.filter--link {
+  margin-left: auto;
+  border-color: rgba(212, 255, 0, 0.35);
+  color: var(--color-lime);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -233,16 +240,42 @@ useSeoMeta({
 .card {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  padding: 1.5rem;
+  gap: 0;
+  padding: 0;
   background: var(--color-panel);
   border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
   transition: border-color 0.3s, transform 0.35s var(--ease);
 }
 
 .card:hover {
   border-color: rgba(212, 255, 0, 0.35);
   transform: translateY(-3px);
+}
+
+.card__visual {
+  height: 168px;
+  overflow: hidden;
+  background: #0e1a2b;
+}
+
+.card__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease);
+}
+
+.card:hover .card__visual img {
+  transform: scale(1.04);
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.35rem 1.5rem 1.5rem;
 }
 
 .card__top {

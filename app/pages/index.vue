@@ -102,14 +102,14 @@
       <div class="pkg-banner__shade" aria-hidden="true" />
       <div class="container-wide pkg-banner__inner">
         <div class="pkg-banner__copy">
-          <span class="pkg-banner__label">EV Charging</span>
-          <h2>EV Station Packages</h2>
+          <span class="pkg-banner__label">CX Charge Packages</span>
+          <h2>CX Station &amp; CX DC</h2>
           <p>
-            เลือกแพ็กเกจสถานีชาร์จสำเร็จรูป ดูสเปก จุดชาร์จ และ CAPEX อ้างอิง
-            ก่อนขอใบเสนอราคาตามไซต์จริง
+            เลือกแพ็กเกจทางการ CX Station S4 / S10 / Hub และเครื่องชาร์จ CX DC
+            ดูสเปก จุดชาร์จ และ CAPEX อ้างอิงก่อนขอใบเสนอราคา
           </p>
           <NuxtLink to="/ev-charging/packages" class="btn btn-primary">
-            ดูแพ็กเกจสถานี
+            ดูแพ็กเกจ CX
             <span aria-hidden="true">→</span>
           </NuxtLink>
         </div>
