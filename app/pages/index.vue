@@ -92,6 +92,39 @@
       </div>
     </section>
 
+    <!-- Solar Packages entry -->
+    <section class="solar-pkg">
+      <div class="container-wide solar-pkg__inner">
+        <div class="solar-pkg__copy">
+          <span class="section-label">Solar Packages</span>
+          <h2 class="section-title">แพ็กเกจโซลาร์รูฟท็อป</h2>
+          <p class="section-lead">
+            PEA Solar Packages ตามตารางราคา กฟภ. — 3 / 5 / 10 / 15 / 20 kW
+            เลือก String หรือ Micro Inverter ได้ตามขนาดระบบ
+          </p>
+          <div class="solar-pkg__actions">
+            <NuxtLink to="/solar/rooftop/packages" class="btn btn-primary">
+              ดู Solar Packages
+              <span aria-hidden="true">→</span>
+            </NuxtLink>
+            <NuxtLink to="/solar/quotation" class="btn btn-secondary">ขอใบเสนอราคา Solar</NuxtLink>
+          </div>
+        </div>
+
+        <div class="solar-pkg__sizes" aria-label="ขนาดแพ็กเกจโซลาร์">
+          <NuxtLink
+            v-for="size in solarSizes"
+            :key="size.kw"
+            :to="`/solar/rooftop/packages?power=${size.kw}`"
+            class="solar-size"
+          >
+            <strong>{{ size.kw }} <span>kW</span></strong>
+            <em>{{ size.label }}</em>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- EV Station Packages banner -->
     <section class="pkg-banner">
       <div
@@ -236,6 +269,14 @@ const services = [
     image:
       'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1100&q=80',
   },
+]
+
+const solarSizes = [
+  { kw: 3, label: 'บ้านเริ่มต้น' },
+  { kw: 5, label: 'บ้าน / อาคารเล็ก' },
+  { kw: 10, label: 'บ้านใหญ่' },
+  { kw: 15, label: 'SME' },
+  { kw: 20, label: 'อาคารพาณิชย์' },
 ]
 
 const why = [
@@ -641,6 +682,78 @@ useSeoMeta({
   color: var(--color-lime);
 }
 
+/* ========== SOLAR PACKAGES ========== */
+.solar-pkg {
+  position: relative;
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+  background:
+    radial-gradient(ellipse 50% 80% at 90% 20%, rgba(212, 175, 55, 0.12), transparent 55%),
+    linear-gradient(160deg, #10141c 0%, #0b0b0b 55%, #0e1218 100%);
+  border-block: 1px solid rgba(212, 175, 55, 0.14);
+}
+
+.solar-pkg__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.solar-pkg__copy .section-lead {
+  margin-top: 0.35rem;
+  margin-bottom: 1.75rem;
+}
+
+.solar-pkg__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.solar-pkg__sizes {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.solar-size {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 108px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s, transform 0.35s var(--ease), background 0.3s;
+}
+
+.solar-size:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  background: rgba(212, 175, 55, 0.08);
+  transform: translateY(-3px);
+}
+
+.solar-size strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-weight: 800;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.solar-size strong span {
+  font-size: 0.7em;
+  letter-spacing: 0.04em;
+}
+
+.solar-size em {
+  font-style: normal;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.58);
+}
+
 /* ========== EV PACKAGES BANNER ========== */
 .pkg-banner {
   position: relative;
@@ -924,8 +1037,13 @@ useSeoMeta({
 
 @media (max-width: 900px) {
   .belief,
-  .projects__grid {
+  .projects__grid,
+  .solar-pkg__inner {
     grid-template-columns: 1fr;
+  }
+
+  .solar-pkg__sizes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .service {
@@ -974,6 +1092,10 @@ useSeoMeta({
   .projects__head {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .solar-pkg__sizes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 </style>
