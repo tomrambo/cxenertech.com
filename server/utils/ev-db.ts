@@ -166,6 +166,8 @@ const SLUG_ALIASES: Record<string, string> = {
   'dc-unicharger-30kw': 'cx-dc-30-pay',
   'cx-dc-60-zec': 'cx-dc-60',
   'cx-dc-120-zec': 'cx-dc-120',
+  'cx-hub-5-120': 'cx-hub-6-120',
+  'cx-hub-5-180': 'cx-hub-6-180',
 }
 
 export function getEvPackageBySlug(slug: string) {
