@@ -112,8 +112,8 @@
             <h2 class="block-title">Financial model / โมเดลการเงินอ้างอิง</h2>
             <ul class="kv">
               <li v-for="(val, key) in pkg.financials" :key="key">
-                <span>{{ key }}</span>
-                <strong>{{ formatFinanceValue(key, val) }}</strong>
+                <span>{{ financeLabel(String(key)) }}</span>
+                <strong>{{ formatFinanceValue(String(key), val) }}</strong>
               </li>
             </ul>
           </template>
@@ -122,8 +122,9 @@
         <aside class="detail__aside">
           <div class="aside-box">
             <h4>{{ price.label }}</h4>
-            <p class="aside-price">{{ formatThb(price.value) }}</p>
-            <p v-if="price.compareAt" class="aside-compare">
+            <p v-if="!price.pending" class="aside-price">{{ formatThb(price.value) }}</p>
+            <p v-else class="aside-price aside-price--pending">ขอใบเสนอราคา / Request quote</p>
+            <p v-if="price.compareAt" class="aside-cost">
               {{ price.compareLabel }} {{ formatThb(price.compareAt) }}
             </p>
             <p class="aside-note">{{ pkg.price_note }}</p>
@@ -133,9 +134,13 @@
                 <dt>ROI / ปี</dt>
                 <dd>{{ pkg.roi_annual_pct }}%</dd>
               </div>
-              <div v-if="pkg.payback_months">
-                <dt>Payback</dt>
+              <div v-if="pkg.payback_months != null">
+                <dt>จุดคืนทุน (เดือน)</dt>
                 <dd>{{ pkg.payback_months }} เดือน</dd>
+              </div>
+              <div v-if="pkg.payback_months != null || pkg.payback_years != null">
+                <dt>จุดคืนทุน (ปี)</dt>
+                <dd>{{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }} ปี</dd>
               </div>
               <div v-if="pkg.net_profit_monthly">
                 <dt>Net profit ref.</dt>
@@ -165,10 +170,9 @@ import {
   formatNozzles,
   formatPowerRange,
   formatThb,
+  resolvePaybackYears,
   typeLabel,
 } from '~/utils/ev-format'
-
-type QtyTier = '<3' | '3-10' | '10-30' | '>30'
 
 type ApiPackage = {
   id: string
@@ -196,6 +200,7 @@ type ApiPackage = {
   price_note: string
   roi_annual_pct: number | null
   payback_months: number | null
+  payback_years?: number | null
   net_profit_monthly: number | null
   specs: Record<string, string | number>
   includes: string[]
@@ -203,16 +208,6 @@ type ApiPackage = {
   financials: Record<string, string | number> | null
   price_rate_id: string | null
   spec_id: string | null
-}
-
-type PriceRate = {
-  id: string
-  series: string
-  nameTh: string
-  nameEn: string
-  costByQty: Record<QtyTier, number | null>
-  sellPrice: number | null
-  notes?: string
 }
 
 type ChargerSpec = {
@@ -232,7 +227,6 @@ const slug = computed(() => route.params.slug as string)
 
 const { data, error } = await useFetch<{
   package: ApiPackage
-  priceRate: PriceRate | null
   chargerSpec: ChargerSpec | null
 }>(() => `/api/ev/packages/${slug.value}`)
 
@@ -241,14 +235,38 @@ if (error.value || !data.value?.package) {
 }
 
 const pkg = computed(() => data.value!.package)
-const priceRate = computed(() => data.value?.priceRate ?? null)
 const chargerSpec = computed(() => data.value?.chargerSpec ?? null)
 const typeLabelText = computed(() => typeLabel(pkg.value.product_type))
 const price = computed(() => displayPrice(pkg.value))
 
+function financeLabel(key: string) {
+  const labels: Record<string, string> = {
+    paybackMonths: 'จุดคืนทุน (เดือน)',
+    paybackYears: 'จุดคืนทุน (ปี)',
+    roiAnnualPct: 'ROI / ปี',
+    investorNetMonthly: 'กำไรสุทธินักลงทุน / เดือน',
+    annualNet: 'กำไรสุทธิ / ปี',
+    revenueMonthly: 'รายได้ / เดือน',
+    energyCostMonthly: 'ต้นทุนพลังงาน / เดือน',
+    operatingHoursPerDay: 'ชั่วโมงเปิด / วัน',
+    utilizationPct: 'Utilization %',
+    kwhPerDay: 'kWh / วัน',
+    kwhPerMonth: 'kWh / เดือน',
+    sellPricePerKwh: 'ราคาขาย / kWh',
+    energyCostPerKwh: 'ต้นทุนไฟ / kWh',
+    platformFeePct: 'Platform fee %',
+    investorPct: 'ส่วนแบ่งนักลงทุน %',
+    landOwnerPctOfRevenue: 'ส่วนแบ่งเจ้าของที่ %',
+    coordinatorPct: 'Coordinator %',
+  }
+  return labels[key] ?? key
+}
+
 function formatFinanceValue(key: string, val: string | number) {
   if (typeof val !== 'number') return val
   if (/pct|Pct|percent/i.test(key)) return `${val}%`
+  if (/paybackYears/i.test(key)) return `${val} ปี`
+  if (/paybackMonths/i.test(key)) return `${val} เดือน`
   if (/month|Month|revenue|Revenue|cost|Cost|net|Net|annual|Annual|profit|Profit|price|Price|kwh|Kwh/i.test(key) && val >= 100) {
     return formatThb(val)
   }
@@ -349,20 +367,6 @@ useSeoMeta({
   font-size: 0.92rem;
 }
 
-.block-note {
-  margin-top: 0.65rem;
-  font-size: 0.85rem;
-  color: var(--color-muted);
-}
-
-.inline-link {
-  display: inline-block;
-  margin-top: 0.85rem;
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  color: var(--color-lime);
-}
-
 .spec-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -427,40 +431,6 @@ useSeoMeta({
   background: var(--color-lime);
 }
 
-.rate-table-wrap {
-  overflow-x: auto;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.rate-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 520px;
-}
-
-.rate-table th,
-.rate-table td {
-  padding: 0.65rem 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.85rem;
-}
-
-.rate-table th {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.rate-table .sell {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--color-lime);
-}
-
 .aside-box {
   background: var(--color-panel);
   border-top: 3px solid var(--color-lime);
@@ -483,6 +453,17 @@ useSeoMeta({
   font-weight: 700;
   color: var(--color-lime);
   margin-bottom: 0.35rem;
+}
+
+.aside-price--pending {
+  font-size: 1.15rem;
+  color: var(--color-gold);
+}
+
+.aside-cost {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 0.25rem;
 }
 
 .aside-compare {

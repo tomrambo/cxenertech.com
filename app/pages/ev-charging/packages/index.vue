@@ -47,6 +47,44 @@
           </NuxtLink>
         </div>
 
+        <div v-if="paybackPackages.length" class="payback-table-section">
+          <div class="payback-table-head">
+            <span class="section-label">Payback / จุดคืนทุน</span>
+            <h3>Payback — ลงทุน & สถานีสำเร็จรูป (เดือน · ปี)</h3>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>แพ็กเกจ</th>
+                  <th>ประเภท</th>
+                  <th>CAPEX</th>
+                  <th>ROI / ปี</th>
+                  <th>Payback (เดือน)</th>
+                  <th>Payback (ปี)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="pkg in paybackPackages" :key="`pb-${pkg.id}`">
+                  <td>
+                    <NuxtLink :to="`/ev-charging/packages/${pkg.slug}`" class="table-link">
+                      {{ pkg.name_th }}
+                    </NuxtLink>
+                    <span class="table-code">{{ pkg.code }}</span>
+                  </td>
+                  <td>{{ typeLabel(pkg.product_type) }}</td>
+                  <td>{{ formatThb(pkg.price_capex) }}</td>
+                  <td>{{ pkg.roi_annual_pct != null ? `${pkg.roi_annual_pct}%` : '—' }}</td>
+                  <td class="payback-cell">{{ pkg.payback_months }} เดือน</td>
+                  <td class="payback-cell">
+                    {{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }} ปี
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div v-if="packages.length" class="grid">
           <article v-for="pkg in packages" :key="pkg.id" class="card">
             <div v-if="pkg.image" class="card__visual">
@@ -79,21 +117,27 @@
                 <dt>ROI</dt>
                 <dd>{{ pkg.roi_annual_pct }}%/yr</dd>
               </div>
-              <dl v-if="pkg.roi_annual_pct || pkg.payback_months" class="aside-stats">
-              <div v-if="pkg.payback_months">
+              <div
+                v-if="
+                  (pkg.product_type === 'investment' || pkg.product_type === 'turnkey') &&
+                  pkg.payback_months != null
+                "
+              >
                 <dt>Payback</dt>
-                <dd>{{ pkg.payback_months }} เดือน</dd>
+                <dd>
+                  {{ pkg.payback_months }} เดือน ·
+                  {{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }} ปี
+                </dd>
               </div>
-              
-            </dl>
             </dl>
 
             <div class="card__price">
               <span class="card__price-label">{{ priceInfo(pkg).label }}</span>
               <div class="card__price-row">
-                <strong>{{ formatThb(priceInfo(pkg).value) }}</strong>
-                <span v-if="priceInfo(pkg).compareAt" class="card__compare">
-                  {{ formatThb(priceInfo(pkg).compareAt) }}
+                <strong v-if="!priceInfo(pkg).pending">{{ formatThb(priceInfo(pkg).value) }}</strong>
+                <strong v-else class="card__price-pending">ขอใบเสนอราคา / Request quote</strong>
+                <span v-if="priceInfo(pkg).compareAt" class="card__cost">
+                  {{ priceInfo(pkg).compareLabel }} {{ formatThb(priceInfo(pkg).compareAt) }}
                 </span>
               </div>
             </div>
@@ -113,7 +157,7 @@
           </article>
         </div>
 
-        <p v-else-if="!pending && !error" class="empty">No packages in this category / ยังไม่มีแพ็กเกจในหมวดนี้</p>
+        <p v-if="!pending && !error && !packages.length" class="empty">No packages in this category / ยังไม่มีแพ็กเกจในหมวดนี้</p>
 
         <p class="disclaimer">
           Prices / ROI / payback are reference figures only — not a formal CX ENERTECH quotation and not a return guarantee.
@@ -139,6 +183,7 @@ import {
   formatNozzles,
   formatPowerRange,
   formatThb,
+  resolvePaybackYears,
   typeLabel,
 } from '~/utils/ev-format'
 
@@ -162,7 +207,7 @@ type ApiPackage = {
   price_capex: number | null
   roi_annual_pct: number | null
   payback_months: number | null
-
+  payback_years?: number | null
 }
 
 const route = useRoute()
@@ -212,6 +257,14 @@ const { data, pending, error } = await useFetch<{ packages: ApiPackage[] }>(
 )
 
 const packages = computed(() => data.value?.packages ?? [])
+
+const paybackPackages = computed(() =>
+  packages.value.filter(
+    (p) =>
+      (p.product_type === 'investment' || p.product_type === 'turnkey') &&
+      p.payback_months != null,
+  ),
+)
 
 function priceInfo(pkg: ApiPackage) {
   return displayPrice(pkg)
@@ -423,6 +476,44 @@ useSeoMeta({
   color: var(--color-white);
 }
 
+.card__payback {
+  margin: 0.15rem 0 0.35rem;
+  padding: 0.85rem 1rem;
+  background: rgba(212, 255, 0, 0.06);
+  border: 1px solid rgba(212, 255, 0, 0.22);
+}
+
+.card__payback-label {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+  margin-bottom: 0.55rem;
+}
+
+.card__payback-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.card__payback-unit {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  margin-bottom: 0.15rem;
+}
+
+.card__payback-row strong {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
 .card__price-label {
   display: block;
   font-size: 0.7rem;
@@ -434,14 +525,25 @@ useSeoMeta({
 
 .card__price-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.65rem;
+  gap: 0.35rem 0.65rem;
 }
 
 .card__price-row strong {
   font-family: var(--font-display);
   font-size: 1.25rem;
   color: var(--color-lime);
+}
+
+.card__price-pending {
+  font-size: 1rem !important;
+  color: var(--color-gold) !important;
+}
+
+.card__cost {
+  font-size: 0.78rem;
+  color: var(--color-muted);
 }
 
 .card__compare {
@@ -474,5 +576,76 @@ useSeoMeta({
   color: var(--color-muted);
   max-width: 46rem;
   line-height: 1.6;
+}
+
+.payback-table-section {
+  margin: 0 0 2.5rem;
+}
+
+.payback-table-head {
+  margin-bottom: 1rem;
+}
+
+.payback-table-head h3 {
+  font-size: 1.25rem;
+  color: var(--color-white);
+  margin-top: 0.35rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-panel);
+}
+
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.table-wrap th,
+.table-wrap td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: top;
+}
+
+.table-wrap th {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background: rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.table-link {
+  display: block;
+  color: var(--color-white);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.table-link:hover {
+  color: var(--color-lime);
+}
+
+.table-code {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  color: var(--color-gold);
+}
+
+.payback-cell {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-lime);
+  white-space: nowrap;
 }
 </style>
