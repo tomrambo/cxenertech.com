@@ -5,6 +5,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
+import { costForQty, getChargerPriceRate } from '../database/charger-price-rates'
 import { EV_PACKAGE_SEED, type SeedPackage } from '../database/ev-package-seed'
 
 export type EvPackage = {
@@ -63,8 +64,29 @@ function inferChargeType(p: SeedPackage): 'AC' | 'DC' {
   return 'DC'
 }
 
-function mapSeed(p: SeedPackage, now = new Date().toISOString()): EvPackage {
+/**
+ * Fill equipment sell/cost from the official rate sheet when package fields are empty.
+ * price_list = recommended sell · price_promo = cost tier &lt;3 (reference)
+ */
+function hydrateEquipmentPrices<T extends Pick<EvPackage, 'product_type' | 'price_list' | 'price_promo' | 'price_rate_id'>>(
+  pkg: T,
+): T {
+  if (pkg.product_type !== 'equipment' || !pkg.price_rate_id) return pkg
+  if (pkg.price_list != null && pkg.price_promo != null) return pkg
+
+  const rate = getChargerPriceRate(pkg.price_rate_id)
+  if (!rate) return pkg
+
+  const cost = costForQty(rate, 1)
   return {
+    ...pkg,
+    price_list: pkg.price_list ?? rate.sellPrice,
+    price_promo: pkg.price_promo ?? cost,
+  }
+}
+
+function mapSeed(p: SeedPackage, now = new Date().toISOString()): EvPackage {
+  return hydrateEquipmentPrices({
     id: p.id,
     slug: p.slug,
     code: p.code,
@@ -104,7 +126,7 @@ function mapSeed(p: SeedPackage, now = new Date().toISOString()): EvPackage {
     active: true,
     created_at: now,
     updated_at: now,
-  }
+  })
 }
 
 function readStore(): EvPackage[] {
@@ -114,7 +136,7 @@ function readStore(): EvPackage[] {
     try {
       const parsed = JSON.parse(readFileSync(DB_PATH, 'utf8')) as EvPackage[]
       if (Array.isArray(parsed) && parsed.length > 0) {
-        memoryCache = parsed
+        memoryCache = parsed.map((p) => hydrateEquipmentPrices(p))
         return memoryCache
       }
     } catch {

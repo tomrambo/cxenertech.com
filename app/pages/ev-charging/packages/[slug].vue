@@ -158,8 +158,9 @@
         <aside class="detail__aside">
           <div class="aside-box">
             <h4>{{ price.label }}</h4>
-            <p class="aside-price">{{ formatThb(price.value) }}</p>
-            <p v-if="price.compareAt" class="aside-compare">
+            <p v-if="!price.pending" class="aside-price">{{ formatThb(price.value) }}</p>
+            <p v-else class="aside-price aside-price--pending">ขอใบเสนอราคา / Request quote</p>
+            <p v-if="price.compareAt" class="aside-cost">
               {{ price.compareLabel }} {{ formatThb(price.compareAt) }}
             </p>
             <p class="aside-note">{{ pkg.price_note }}</p>
@@ -519,6 +520,17 @@ useSeoMeta({
   font-weight: 700;
   color: var(--color-lime);
   margin-bottom: 0.35rem;
+}
+
+.aside-price--pending {
+  font-size: 1.15rem;
+  color: var(--color-gold);
+}
+
+.aside-cost {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 0.25rem;
 }
 
 .aside-compare {

@@ -76,8 +76,8 @@
     "spec_id": null,
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-sme-ac4",
@@ -156,8 +156,8 @@
     "spec_id": null,
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-sme-dc1",
@@ -236,8 +236,8 @@
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-sme-dc2",
@@ -317,8 +317,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-sme-dc180",
@@ -399,8 +399,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-sme-dc240",
@@ -481,8 +481,8 @@
     "spec_id": "spec-zd-j4",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-s4",
@@ -562,8 +562,8 @@
     "spec_id": null,
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-hub-6-120",
@@ -644,8 +644,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-hub-6-180",
@@ -671,8 +671,8 @@
     "price_capex": 5850000,
     "currency": "THB",
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×3 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
-    "roi_annual_pct": 122.7,
-    "payback_months": 9.8,
+    "roi_annual_pct": 105.7,
+    "payback_months": 11.4,
     "net_profit_monthly": 515160,
     "specs": {
       "chargers": "3 × DC 180 kW dual gun",
@@ -710,8 +710,8 @@
       "investorPct": 90,
       "investorNetMonthly": 515160,
       "annualNet": 6181920,
-      "roiAnnualPct": 122.7,
-      "paybackMonths": 9.8
+      "roiAnnualPct": 105.7,
+      "paybackMonths": 11.4
     },
     "targetSites": [
       "gas",
@@ -726,8 +726,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-hub-8-120",
@@ -808,8 +808,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-hub-8-180",
@@ -835,8 +835,8 @@
     "price_capex": 7800000,
     "currency": "THB",
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×4 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
-    "roi_annual_pct": 124.5,
-    "payback_months": 9.6,
+    "roi_annual_pct": 105.7,
+    "payback_months": 11.4,
     "net_profit_monthly": 686880,
     "specs": {
       "chargers": "4 × DC 180 kW dual gun",
@@ -874,8 +874,8 @@
       "investorPct": 90,
       "investorNetMonthly": 686880,
       "annualNet": 8242560,
-      "roiAnnualPct": 124.5,
-      "paybackMonths": 9.6
+      "roiAnnualPct": 105.7,
+      "paybackMonths": 11.4
     },
     "targetSites": [
       "gas",
@@ -890,8 +890,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-hub-10-120",
@@ -972,8 +972,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-hub-10-180",
@@ -999,8 +999,8 @@
     "price_capex": 9750000,
     "currency": "THB",
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×5 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
-    "roi_annual_pct": 124.1,
-    "payback_months": 9.7,
+    "roi_annual_pct": 105.7,
+    "payback_months": 11.4,
     "net_profit_monthly": 858600,
     "specs": {
       "chargers": "5 × DC 180 kW dual gun",
@@ -1038,8 +1038,8 @@
       "investorPct": 90,
       "investorNetMonthly": 858600,
       "annualNet": 10303200,
-      "roiAnnualPct": 124.1,
-      "paybackMonths": 9.7
+      "roiAnnualPct": 105.7,
+      "paybackMonths": 11.4
     },
     "targetSites": [
       "highway",
@@ -1054,8 +1054,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc30",
@@ -1065,7 +1065,7 @@
     "name_th": "เครื่องชาร์จ CX DC 30 (J1)",
     "product_type": "equipment",
     "source_label": "ZeedaDirect ZD-DC-J1 · 30-60 kW.pdf",
-    "tagline": "30 kW · CCS2 · ZD-DC-J1 / ธุรกิจขนาดเล็ก-กลาง",
+    "tagline": "30 kW · CCS2 · ZD-DC-J1 · Sell 179,000 / ราคาแนะนำขาย",
     "description": "30 kW single-gun DC charger on ZeedaDirect J1 platform — เครื่องชาร์จ DC 30 kW หัวเดียว แพลตฟอร์ม J1 สำหรับโรงแรม ร้านอาหาร และ SME",
     "power_kw_min": 30,
     "power_kw_max": 30,
@@ -1076,11 +1076,11 @@
     "transformer_kva": null,
     "footprint_w_m": null,
     "footprint_d_m": null,
-    "price_list": null,
-    "price_promo": null,
+    "price_list": 179000,
+    "price_promo": 140000,
     "price_capex": null,
     "currency": "THB",
-    "price_note": "ยังไม่อยู่ในตารางราคาขาย — ขอใบเสนอราคา / Not on sell-price sheet — request quote",
+    "price_note": "ราคาแนะนำขายอ้างอิงจากเรทเครื่อง CX DC 30 / Recommended sell from CX DC 30 rate",
     "roi_annual_pct": null,
     "payback_months": null,
     "net_profit_monthly": null,
@@ -1120,8 +1120,8 @@
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc40",
@@ -1142,11 +1142,11 @@
     "transformer_kva": null,
     "footprint_w_m": null,
     "footprint_d_m": null,
-    "price_list": null,
-    "price_promo": null,
+    "price_list": 350100,
+    "price_promo": 280000,
     "price_capex": null,
     "currency": "THB",
-    "price_note": "ยังไม่อยู่ในตารางราคาขาย — ขอใบเสนอราคา / Not on sell-price sheet — request quote",
+    "price_note": "ราคาแนะนำขายอ้างอิงจากเรทเครื่อง CX DC 40 / Recommended sell from CX DC 40 rate",
     "roi_annual_pct": null,
     "payback_months": null,
     "net_profit_monthly": null,
@@ -1185,8 +1185,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc60",
@@ -1250,8 +1250,8 @@
     "spec_id": "spec-zec-60",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc60-j",
@@ -1317,8 +1317,8 @@
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc120",
@@ -1382,8 +1382,8 @@
     "spec_id": "spec-zec-120",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc120-j",
@@ -1449,8 +1449,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc180",
@@ -1516,8 +1516,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc240-j",
@@ -1581,8 +1581,8 @@
     "spec_id": "spec-zd-j4",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-dc30p",
@@ -1643,8 +1643,8 @@
     "spec_id": null,
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-ac7-g",
@@ -1709,8 +1709,8 @@
     "spec_id": "spec-ac-g-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-ac7-k",
@@ -1775,8 +1775,8 @@
     "spec_id": "spec-ac-k-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-ac7-miniz",
@@ -1833,8 +1833,8 @@
     "spec_id": "spec-ac-miniz-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-ac11-e",
@@ -1899,8 +1899,8 @@
     "spec_id": "spec-ac-e",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   },
   {
     "id": "pkg-cx-ac22-e",
@@ -1966,7 +1966,7 @@
     "spec_id": "spec-ac-e",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-07T14:32:30.530Z",
-    "updated_at": "2026-08-07T14:32:30.530Z"
+    "created_at": "2026-08-11T13:33:03.458Z",
+    "updated_at": "2026-08-11T13:33:03.458Z"
   }
 ]

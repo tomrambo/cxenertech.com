@@ -84,9 +84,10 @@
             <div class="card__price">
               <span class="card__price-label">{{ priceInfo(pkg).label }}</span>
               <div class="card__price-row">
-                <strong>{{ formatThb(priceInfo(pkg).value) }}</strong>
-                <span v-if="priceInfo(pkg).compareAt" class="card__compare">
-                  {{ formatThb(priceInfo(pkg).compareAt) }}
+                <strong v-if="!priceInfo(pkg).pending">{{ formatThb(priceInfo(pkg).value) }}</strong>
+                <strong v-else class="card__price-pending">ขอใบเสนอราคา / Request quote</strong>
+                <span v-if="priceInfo(pkg).compareAt" class="card__cost">
+                  {{ priceInfo(pkg).compareLabel }} {{ formatThb(priceInfo(pkg).compareAt) }}
                 </span>
               </div>
             </div>
@@ -425,14 +426,25 @@ useSeoMeta({
 
 .card__price-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.65rem;
+  gap: 0.35rem 0.65rem;
 }
 
 .card__price-row strong {
   font-family: var(--font-display);
   font-size: 1.25rem;
   color: var(--color-lime);
+}
+
+.card__price-pending {
+  font-size: 1rem !important;
+  color: var(--color-gold) !important;
+}
+
+.card__cost {
+  font-size: 0.78rem;
+  color: var(--color-muted);
 }
 
 .card__compare {

@@ -40,24 +40,28 @@ export function displayPrice(pkg: {
   price_capex: number | null
 }) {
   if (pkg.product_type === 'equipment') {
+    const sell = pkg.price_list
+    const cost = pkg.price_promo
+    const value = sell ?? cost ?? null
     return {
-      labelTh: 'ราคาแนะนำขาย',
-      labelEn: 'Recommended sell',
-      label: 'ราคาแนะนำขาย / Sell',
-      value: pkg.price_list ?? pkg.price_promo,
-      compareAt:
-        pkg.price_list && pkg.price_promo && pkg.price_list !== pkg.price_promo
-          ? pkg.price_promo
-          : null,
+      labelTh: sell != null ? 'ราคาแนะนำขาย' : 'ราคา',
+      labelEn: sell != null ? 'Recommended sell' : 'Price',
+      label: sell != null ? 'ราคาแนะนำขาย / Sell' : 'ราคา / Price',
+      value,
+      /** Cost reference — shown as secondary text, not a crossed-out promo */
+      compareAt: sell != null && cost != null && sell !== cost ? cost : null,
       compareLabel: 'ต้นทุนเริ่มต้น / Cost from',
+      pending: value == null,
     }
   }
+  const value = pkg.price_capex ?? pkg.price_promo ?? pkg.price_list
   return {
     labelTh: 'CAPEX อ้างอิง',
     labelEn: 'Reference CAPEX',
     label: 'CAPEX อ้างอิง / CAPEX',
-    value: pkg.price_capex ?? pkg.price_promo ?? pkg.price_list,
+    value,
     compareAt: null as number | null,
     compareLabel: '',
+    pending: value == null,
   }
 }
