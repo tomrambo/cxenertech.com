@@ -79,6 +79,13 @@
                 <dt>ROI</dt>
                 <dd>{{ pkg.roi_annual_pct }}%/yr</dd>
               </div>
+              <dl v-if="pkg.roi_annual_pct || pkg.payback_months" class="aside-stats">
+              <div v-if="pkg.payback_months">
+                <dt>Payback</dt>
+                <dd>{{ pkg.payback_months }} เดือน</dd>
+              </div>
+              
+            </dl>
             </dl>
 
             <div class="card__price">
@@ -154,6 +161,8 @@ type ApiPackage = {
   price_promo: number | null
   price_capex: number | null
   roi_annual_pct: number | null
+  payback_months: number | null
+
 }
 
 const route = useRoute()
