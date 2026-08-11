@@ -165,7 +165,7 @@
           </div>
         </div>
 
-        <p v-else-if="!pending && !error && !packages.length" class="empty">No packages in this category / ยังไม่มีแพ็กเกจในหมวดนี้</p>
+        <p v-if="!pending && !error && !packages.length" class="empty">No packages in this category / ยังไม่มีแพ็กเกจในหมวดนี้</p>
 
         <p class="disclaimer">
           Prices / ROI / payback are reference figures only — not a formal CX ENERTECH quotation and not a return guarantee.
