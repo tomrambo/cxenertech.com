@@ -43,13 +43,13 @@ export function displayPrice(pkg: {
     return {
       labelTh: 'ราคาแนะนำขาย',
       labelEn: 'Recommended sell',
-      label: 'ราคาแนะนำขาย / Sell',
+      label: 'ราคาขาย / Sell',
       value: pkg.price_list ?? pkg.price_promo,
-      compareAt:
-        pkg.price_list && pkg.price_promo && pkg.price_list !== pkg.price_promo
-          ? pkg.price_promo
-          : null,
-      compareLabel: 'ต้นทุนเริ่มต้น / Cost from',
+      // compareAt:
+      //   pkg.price_list && pkg.price_promo && pkg.price_list !== pkg.price_promo
+      //     ? pkg.price_promo
+      //     : null,
+      // compareLabel: 'ต้นทุนเริ่มต้น / Cost from',
     }
   }
   return {

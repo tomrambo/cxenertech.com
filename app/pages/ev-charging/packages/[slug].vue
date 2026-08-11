@@ -73,42 +73,6 @@
             <li v-for="item in pkg.features" :key="item">{{ item }}</li>
           </ul>
 
-          <template v-if="priceRate">
-            <h2 class="block-title">Sell &amp; cost rates / ตารางราคาขาย-ต้นทุน</h2>
-            <p class="block-lead">
-              {{ priceRate.nameTh }} · {{ priceRate.nameEn }}
-              <span v-if="priceRate.series"> ({{ priceRate.series }})</span>
-            </p>
-            <div class="rate-table-wrap">
-              <table class="rate-table">
-                <thead>
-                  <tr>
-                    <th>Qty / จำนวน</th>
-                    <th>&lt;3</th>
-                    <th>3–10</th>
-                    <th>10–30</th>
-                    <th>&gt;30</th>
-                    <th>Sell / ขาย</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Cost / ต้นทุน</td>
-                    <td>{{ formatThb(priceRate.costByQty['<3']) }}</td>
-                    <td>{{ formatThb(priceRate.costByQty['3-10']) }}</td>
-                    <td>{{ formatThb(priceRate.costByQty['10-30']) }}</td>
-                    <td>{{ formatThb(priceRate.costByQty['>30']) }}</td>
-                    <td class="sell">{{ formatThb(priceRate.sellPrice) }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p v-if="priceRate.notes" class="block-note">{{ priceRate.notes }}</p>
-            <NuxtLink to="/ev-charging/packages/price-rates" class="inline-link">
-              View full rate sheet / ดูตารางราคาทั้งหมด →
-            </NuxtLink>
-          </template>
-
           <template v-if="chargerSpec">
             <h2 class="block-title">Technical specs / สเปกเทคนิค ({{ chargerSpec.model }})</h2>
             <p class="block-lead">{{ chargerSpec.nameEn }} · {{ chargerSpec.nameTh }}</p>
