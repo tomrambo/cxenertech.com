@@ -336,20 +336,6 @@ useSeoMeta({
   font-size: 0.92rem;
 }
 
-.block-note {
-  margin-top: 0.65rem;
-  font-size: 0.85rem;
-  color: var(--color-muted);
-}
-
-.inline-link {
-  display: inline-block;
-  margin-top: 0.85rem;
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  color: var(--color-lime);
-}
-
 .spec-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -412,40 +398,6 @@ useSeoMeta({
   width: 8px;
   height: 8px;
   background: var(--color-lime);
-}
-
-.rate-table-wrap {
-  overflow-x: auto;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.rate-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 520px;
-}
-
-.rate-table th,
-.rate-table td {
-  padding: 0.65rem 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.85rem;
-}
-
-.rate-table th {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.rate-table .sell {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--color-lime);
 }
 
 .aside-box {
