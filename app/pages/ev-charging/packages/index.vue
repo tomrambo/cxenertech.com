@@ -79,6 +79,15 @@
                 <dt>ROI</dt>
                 <dd>{{ pkg.roi_annual_pct }}%/yr</dd>
               </div>
+              <div
+                v-if="
+                  (pkg.product_type === 'investment' || pkg.product_type === 'turnkey') &&
+                  formatPayback(pkg.payback_months, pkg.payback_years)
+                "
+              >
+                <dt>Payback / คืนทุน</dt>
+                <dd>{{ formatPayback(pkg.payback_months, pkg.payback_years) }}</dd>
+              </div>
             </dl>
 
             <div class="card__price">
@@ -131,6 +140,7 @@
 import {
   displayPrice,
   formatNozzles,
+  formatPayback,
   formatPowerRange,
   formatThb,
   typeLabel,
@@ -155,6 +165,8 @@ type ApiPackage = {
   price_promo: number | null
   price_capex: number | null
   roi_annual_pct: number | null
+  payback_months: number | null
+  payback_years?: number | null
 }
 
 const route = useRoute()

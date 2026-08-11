@@ -134,9 +134,9 @@
                 <dt>ROI / ปี</dt>
                 <dd>{{ pkg.roi_annual_pct }}%</dd>
               </div>
-              <div v-if="pkg.payback_months">
-                <dt>Payback</dt>
-                <dd>{{ pkg.payback_months }} เดือน</dd>
+              <div v-if="formatPayback(pkg.payback_months, pkg.payback_years)">
+                <dt>Payback / คืนทุน</dt>
+                <dd>{{ formatPayback(pkg.payback_months, pkg.payback_years) }}</dd>
               </div>
               <div v-if="pkg.net_profit_monthly">
                 <dt>Net profit ref.</dt>
@@ -164,6 +164,7 @@
 import {
   displayPrice,
   formatNozzles,
+  formatPayback,
   formatPowerRange,
   formatThb,
   typeLabel,
@@ -195,6 +196,7 @@ type ApiPackage = {
   price_note: string
   roi_annual_pct: number | null
   payback_months: number | null
+  payback_years?: number | null
   net_profit_monthly: number | null
   specs: Record<string, string | number>
   includes: string[]
@@ -236,6 +238,8 @@ const price = computed(() => displayPrice(pkg.value))
 function formatFinanceValue(key: string, val: string | number) {
   if (typeof val !== 'number') return val
   if (/pct|Pct|percent/i.test(key)) return `${val}%`
+  if (/paybackYears/i.test(key)) return `${val} ปี`
+  if (/paybackMonths/i.test(key)) return `${val} เดือน`
   if (/month|Month|revenue|Revenue|cost|Cost|net|Net|annual|Annual|profit|Profit|price|Price|kwh|Kwh/i.test(key) && val >= 100) {
     return formatThb(val)
   }

@@ -17,6 +17,22 @@ export function formatNozzles(min: number, max: number) {
   return `${min}–${max} จุด / bays`
 }
 
+/** Payback display: months + years (e.g. "31 เดือน · 2.6 ปี") */
+export function formatPayback(
+  months: number | null | undefined,
+  years?: number | null | undefined,
+) {
+  if (months == null && years == null) return null
+  const y =
+    years ??
+    (months != null ? Math.round((months / 12) * 10) / 10 : null)
+  if (months != null && y != null) {
+    return `${months} เดือน · ${y} ปี`
+  }
+  if (months != null) return `${months} เดือน`
+  return `${y} ปี`
+}
+
 export type LocaleLabel = { th: string; en: string }
 
 export const PACKAGE_TYPE_LABELS: Record<string, LocaleLabel> = {

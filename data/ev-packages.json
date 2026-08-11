@@ -25,6 +25,7 @@
     "price_note": "CAPEX อ้างอิงรวมเครื่อง AC 22 kW ×2 ติดตั้ง เสา/ผนัง ป้าย และ commissioning (ยังไม่รวมค่าไฟเข้าใหม่หากจำเป็น)",
     "roi_annual_pct": 68.4,
     "payback_months": 17.5,
+    "payback_years": 1.5,
     "net_profit_monthly": 18250,
     "specs": {
       "chargers": "2 × AC E-Series 22 kW (3P)",
@@ -61,7 +62,8 @@
       "investorNetMonthly": 18250,
       "annualNet": 219000,
       "roiAnnualPct": 68.4,
-      "paybackMonths": 17.5
+      "paybackMonths": 17.5,
+      "paybackYears": 1.5
     },
     "targetSites": [
       "sme",
@@ -76,8 +78,8 @@
     "spec_id": null,
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-sme-ac4",
@@ -105,6 +107,7 @@
     "price_note": "CAPEX อ้างอิงรวมเครื่อง AC 22 kW ×4 ติดตั้ง งานจุดจอด ป้าย และ commissioning",
     "roi_annual_pct": 84.2,
     "payback_months": 14.2,
+    "payback_years": 1.2,
     "net_profit_monthly": 36500,
     "specs": {
       "chargers": "4 × AC E-Series 22 kW (3P)",
@@ -141,7 +144,8 @@
       "investorNetMonthly": 36500,
       "annualNet": 438000,
       "roiAnnualPct": 84.2,
-      "paybackMonths": 14.2
+      "paybackMonths": 14.2,
+      "paybackYears": 1.2
     },
     "targetSites": [
       "sme",
@@ -156,8 +160,172 @@
     "spec_id": null,
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
+  },
+  {
+    "id": "pkg-cx-sme-dc30",
+    "slug": "cx-station-sme-dc30",
+    "code": "CX-SME-DC30",
+    "name": "CX Station SME DC30",
+    "name_th": "สถานีลงทุน SME DC30",
+    "product_type": "investment",
+    "source_label": "CX ENERTECH · SME Investment Series (DC)",
+    "tagline": "1× DC 30 kW · 1 หัวชาร์จ · ลงทุนเริ่มต้น DC สำหรับ SME",
+    "description": "Entry DC fast-charge package for cafés, clinics, and small retail — สถานี DC 30 kW 1 ตู้ เหมาะกับธุรกิจ SME ที่อยากเริ่มชาร์จเร็วด้วยงบจำกัด",
+    "power_kw_min": 30,
+    "power_kw_max": 30,
+    "charger_count": 1,
+    "nozzle_count_min": 1,
+    "nozzle_count_max": 1,
+    "parking_bays": 1,
+    "transformer_kva": null,
+    "footprint_w_m": 6,
+    "footprint_d_m": 5,
+    "price_list": null,
+    "price_promo": null,
+    "price_capex": 520000,
+    "currency": "THB",
+    "price_note": "CAPEX อ้างอิงรวมเครื่อง DC 30 kW (J1) ติดตั้งไฟฟ้า งานจุดจอด ป้าย และ commissioning",
+    "roi_annual_pct": 38.7,
+    "payback_months": 31,
+    "payback_years": 2.6,
+    "net_profit_monthly": 16790,
+    "specs": {
+      "chargers": "1 × DC J1 30 kW (single gun)",
+      "nozzles": "1",
+      "totalPowerKw": 30,
+      "electrical": "MDB 3P · ใช้ไฟฟ้าอาคาร / ประเมินหม้อแปลงก่อนติดตั้ง",
+      "footprint": "≈ 6.0 × 5.0 m (1 ช่องจอด)",
+      "auth": "RFID / App / OCPP 1.6J"
+    },
+    "includes": [
+      "เครื่องชาร์จ DC 30 kW 1 ตู้",
+      "งานไฟฟ้า · breaker · ติดตั้งและ grounding",
+      "งานจุดจอด EV 1 ช่อง · ป้ายสถานี",
+      "Internet / OCPP backend",
+      "ทดสอบและ commissioning"
+    ],
+    "features": [
+      "งบเริ่มต้นต่ำสุดในไลน์ DC SME",
+      "เหมาะกับคาเฟ่ / คลินิก / ร้านค้า",
+      "ขยายไป DC40 / DC60 ได้",
+      "โมเดลลงทุนพร้อมประมาณการรายได้"
+    ],
+    "financials": {
+      "operatingHoursPerDay": 8,
+      "utilizationPct": 55,
+      "kwhPerDay": 132,
+      "kwhPerMonth": 3960,
+      "sellPricePerKwh": 8,
+      "energyCostPerKwh": 2.8,
+      "revenueMonthly": 31680,
+      "energyCostMonthly": 11088,
+      "platformFeePct": 12,
+      "investorPct": 100,
+      "investorNetMonthly": 16790,
+      "annualNet": 201480,
+      "roiAnnualPct": 38.7,
+      "paybackMonths": 31,
+      "paybackYears": 2.6
+    },
+    "targetSites": [
+      "sme",
+      "cafe",
+      "clinic",
+      "retail",
+      "hotel"
+    ],
+    "sort_order": 3,
+    "image": "/images/packages/cx-sme-dc30.jpg",
+    "price_rate_id": null,
+    "spec_id": "spec-zd-j1",
+    "charge_type": "DC",
+    "active": true,
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
+  },
+  {
+    "id": "pkg-cx-sme-dc40",
+    "slug": "cx-station-sme-dc40",
+    "code": "CX-SME-DC40",
+    "name": "CX Station SME DC40",
+    "name_th": "สถานีลงทุน SME DC40",
+    "product_type": "investment",
+    "source_label": "CX ENERTECH · SME Investment Series (DC)",
+    "tagline": "1× DC 40 kW · 2 หัวชาร์จ · จุดแวะชาร์จเร็วขนาดเล็ก",
+    "description": "Compact dual-gun DC station on J2 40 kW — สถานี DC 40 kW 1 ตู้ 2 หัว สำหรับร้านอาหาร เวิร์กช็อป และที่จอดลูกค้า SME",
+    "power_kw_min": 40,
+    "power_kw_max": 40,
+    "charger_count": 1,
+    "nozzle_count_min": 2,
+    "nozzle_count_max": 2,
+    "parking_bays": 2,
+    "transformer_kva": null,
+    "footprint_w_m": 7,
+    "footprint_d_m": 5.5,
+    "price_list": null,
+    "price_promo": null,
+    "price_capex": 680000,
+    "currency": "THB",
+    "price_note": "CAPEX อ้างอิงรวมเครื่อง DC 40 kW (J2) ติดตั้งไฟฟ้า งานจุดจอด ป้าย และ commissioning",
+    "roi_annual_pct": 41.8,
+    "payback_months": 28.7,
+    "payback_years": 2.4,
+    "net_profit_monthly": 23659,
+    "specs": {
+      "chargers": "1 × DC J2 40 kW (dual gun)",
+      "nozzles": "2",
+      "totalPowerKw": 40,
+      "electrical": "MDB 3P · ประเมินหม้อแปลงอาคารก่อนติดตั้ง",
+      "footprint": "≈ 7.0 × 5.5 m (2 ช่องจอด)",
+      "auth": "RFID / App / OCPP 1.6J"
+    },
+    "includes": [
+      "เครื่องชาร์จ DC 40 kW 1 ตู้ (dual connector)",
+      "งานไฟฟ้า · breaker · ติดตั้งและ grounding",
+      "งานจุดจอด EV 2 ช่อง · ป้ายสถานี",
+      "Internet / OCPP backend",
+      "ทดสอบและ commissioning"
+    ],
+    "features": [
+      "2 หัวชาร์จในตู้เดียว",
+      "ก้าวกลางระหว่าง DC30 และ DC60",
+      "เหมาะกับหน้าร้าน / ปั๊มเล็ก",
+      "แพลตฟอร์ม J2 ขยายกำลังได้"
+    ],
+    "financials": {
+      "operatingHoursPerDay": 8,
+      "utilizationPct": 58,
+      "kwhPerDay": 186,
+      "kwhPerMonth": 5580,
+      "sellPricePerKwh": 8,
+      "energyCostPerKwh": 2.8,
+      "revenueMonthly": 44640,
+      "energyCostMonthly": 15624,
+      "platformFeePct": 12,
+      "investorPct": 100,
+      "investorNetMonthly": 23659,
+      "annualNet": 283908,
+      "roiAnnualPct": 41.8,
+      "paybackMonths": 28.7,
+      "paybackYears": 2.4
+    },
+    "targetSites": [
+      "sme",
+      "restaurant",
+      "workshop",
+      "retail",
+      "gas"
+    ],
+    "sort_order": 4,
+    "image": "/images/packages/cx-sme-dc40.jpg",
+    "price_rate_id": null,
+    "spec_id": "spec-zd-j2",
+    "charge_type": "DC",
+    "active": true,
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-sme-dc1",
@@ -185,6 +353,7 @@
     "price_note": "CAPEX อ้างอิงรวมเครื่อง DC 60 kW (J-Series) ติดตั้งไฟฟ้า งานจุดจอด ป้าย และ commissioning",
     "roi_annual_pct": 49.4,
     "payback_months": 24.3,
+    "payback_years": 2,
     "net_profit_monthly": 36630,
     "specs": {
       "chargers": "1 × DC J-Series 60 kW (dual gun)",
@@ -221,7 +390,8 @@
       "investorNetMonthly": 36630,
       "annualNet": 439560,
       "roiAnnualPct": 49.4,
-      "paybackMonths": 24.3
+      "paybackMonths": 24.3,
+      "paybackYears": 2
     },
     "targetSites": [
       "sme",
@@ -230,14 +400,14 @@
       "retail",
       "gas"
     ],
-    "sort_order": 3,
+    "sort_order": 5,
     "image": "/images/packages/cx-sme-dc1.jpg",
     "price_rate_id": "rate-dc-j-60",
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-sme-dc2",
@@ -265,6 +435,7 @@
     "price_note": "CAPEX อ้างอิงรวมเครื่อง DC 120 kW (J-Series) ราคาต่อหน่วย 1,550,000 บาท ไฟฟ้า/หม้อแปลงขนาดเล็ก งานจุดจอด และ commissioning",
     "roi_annual_pct": 52,
     "payback_months": 23.1,
+    "payback_years": 1.9,
     "net_profit_monthly": 67162,
     "specs": {
       "chargers": "1 × DC J-Series 120 kW (dual gun)",
@@ -302,7 +473,8 @@
       "investorNetMonthly": 67162,
       "annualNet": 805944,
       "roiAnnualPct": 52,
-      "paybackMonths": 23.1
+      "paybackMonths": 23.1,
+      "paybackYears": 1.9
     },
     "targetSites": [
       "sme",
@@ -311,14 +483,14 @@
       "gas",
       "workshop"
     ],
-    "sort_order": 4,
+    "sort_order": 6,
     "image": "/images/packages/cx-sme-dc2.jpg",
     "price_rate_id": "rate-dc-j-120",
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-sme-dc180",
@@ -346,6 +518,7 @@
     "price_note": "CAPEX อ้างอิงรวมเครื่อง DC 180 kW (J3) ไฟฟ้า/หม้อแปลง งานจุดจอด และ commissioning · รออัปเดตราคาเครื่องในตาราง J-Series",
     "roi_annual_pct": 54.1,
     "payback_months": 22.2,
+    "payback_years": 1.8,
     "net_profit_monthly": 87920,
     "specs": {
       "chargers": "1 × DC J-Series / ZD-DC-J3 180 kW (dual gun)",
@@ -384,7 +557,8 @@
       "investorNetMonthly": 87920,
       "annualNet": 1055040,
       "roiAnnualPct": 54.1,
-      "paybackMonths": 22.2
+      "paybackMonths": 22.2,
+      "paybackYears": 1.8
     },
     "targetSites": [
       "sme",
@@ -393,14 +567,14 @@
       "highway",
       "retail"
     ],
-    "sort_order": 5,
+    "sort_order": 7,
     "image": "/images/packages/cx-sme-dc180.jpg",
     "price_rate_id": "rate-dc-j-180",
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-sme-dc240",
@@ -428,6 +602,7 @@
     "price_note": "CAPEX อ้างอิงรวมเครื่อง DC 240 kW (J3/J4) ไฟฟ้า/หม้อแปลง งานจุดจอด และ commissioning · รออัปเดตราคาเครื่องในตาราง J-Series",
     "roi_annual_pct": 59.9,
     "payback_months": 20,
+    "payback_years": 1.7,
     "net_profit_monthly": 117230,
     "specs": {
       "chargers": "1 × DC J-Series / ZD-DC-J3·J4 240 kW (dual gun)",
@@ -466,7 +641,8 @@
       "investorNetMonthly": 117230,
       "annualNet": 1406760,
       "roiAnnualPct": 59.9,
-      "paybackMonths": 20
+      "paybackMonths": 20,
+      "paybackYears": 1.7
     },
     "targetSites": [
       "sme",
@@ -475,14 +651,14 @@
       "highway",
       "hub"
     ],
-    "sort_order": 6,
+    "sort_order": 8,
     "image": "/images/packages/cx-sme-dc240.jpg",
     "price_rate_id": "rate-dc-j-240",
     "spec_id": "spec-zd-j4",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-s4",
@@ -510,6 +686,7 @@
     "price_note": "CAPEX อ้างอิงรวมอุปกรณ์ ติดตั้ง และ commissioning (เครื่อง DC 120 kW ×2 ราคาต่อหน่วย 1,550,000 บาท)",
     "roi_annual_pct": 74.9,
     "payback_months": 16,
+    "payback_years": 1.3,
     "net_profit_monthly": 228960,
     "specs": {
       "chargers": "2 × DC Fast Charger 120 kW",
@@ -548,7 +725,8 @@
       "investorNetMonthly": 228960,
       "annualNet": 2747520,
       "roiAnnualPct": 74.9,
-      "paybackMonths": 16
+      "paybackMonths": 16,
+      "paybackYears": 1.3
     },
     "targetSites": [
       "commercial",
@@ -562,8 +740,8 @@
     "spec_id": null,
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-hub-6-120",
@@ -591,6 +769,7 @@
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×3 (ราคาต่อหน่วย 1,550,000 บาท) ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (อ้างอิงอุปกรณ์ J-Series 120 kW)",
     "roi_annual_pct": 84.5,
     "payback_months": 14.2,
+    "payback_years": 1.2,
     "net_profit_monthly": 343440,
     "specs": {
       "chargers": "3 × DC 120 kW dual gun",
@@ -629,7 +808,8 @@
       "investorNetMonthly": 343440,
       "annualNet": 4121280,
       "roiAnnualPct": 84.5,
-      "paybackMonths": 14.2
+      "paybackMonths": 14.2,
+      "paybackYears": 1.2
     },
     "targetSites": [
       "gas",
@@ -644,8 +824,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-hub-6-180",
@@ -673,6 +853,7 @@
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×3 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
     "roi_annual_pct": 105.7,
     "payback_months": 11.4,
+    "payback_years": 1,
     "net_profit_monthly": 515160,
     "specs": {
       "chargers": "3 × DC 180 kW dual gun",
@@ -711,7 +892,8 @@
       "investorNetMonthly": 515160,
       "annualNet": 6181920,
       "roiAnnualPct": 105.7,
-      "paybackMonths": 11.4
+      "paybackMonths": 11.4,
+      "paybackYears": 1
     },
     "targetSites": [
       "gas",
@@ -726,8 +908,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-hub-8-120",
@@ -755,6 +937,7 @@
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×4 (ราคาต่อหน่วย 1,550,000 บาท) ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning",
     "roi_annual_pct": 86,
     "payback_months": 14,
+    "payback_years": 1.2,
     "net_profit_monthly": 457920,
     "specs": {
       "chargers": "4 × DC 120 kW dual gun",
@@ -793,7 +976,8 @@
       "investorNetMonthly": 457920,
       "annualNet": 5495040,
       "roiAnnualPct": 86,
-      "paybackMonths": 14
+      "paybackMonths": 14,
+      "paybackYears": 1.2
     },
     "targetSites": [
       "gas",
@@ -808,8 +992,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-hub-8-180",
@@ -837,6 +1021,7 @@
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×4 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
     "roi_annual_pct": 105.7,
     "payback_months": 11.4,
+    "payback_years": 1,
     "net_profit_monthly": 686880,
     "specs": {
       "chargers": "4 × DC 180 kW dual gun",
@@ -875,7 +1060,8 @@
       "investorNetMonthly": 686880,
       "annualNet": 8242560,
       "roiAnnualPct": 105.7,
-      "paybackMonths": 11.4
+      "paybackMonths": 11.4,
+      "paybackYears": 1
     },
     "targetSites": [
       "gas",
@@ -890,8 +1076,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-hub-10-120",
@@ -919,6 +1105,7 @@
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 120 kW ×5 (ราคาต่อหน่วย 1,550,000 บาท) ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning",
     "roi_annual_pct": 86,
     "payback_months": 14,
+    "payback_years": 1.2,
     "net_profit_monthly": 572400,
     "specs": {
       "chargers": "5 × DC 120 kW dual gun",
@@ -957,7 +1144,8 @@
       "investorNetMonthly": 572400,
       "annualNet": 6868800,
       "roiAnnualPct": 86,
-      "paybackMonths": 14
+      "paybackMonths": 14,
+      "paybackYears": 1.2
     },
     "targetSites": [
       "mall",
@@ -972,8 +1160,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-hub-10-180",
@@ -1001,6 +1189,7 @@
     "price_note": "ราคาสำเร็จรูปรวมเครื่อง DC 180 kW ×5 ไฟฟ้า/หม้อแปลง canopy จุดจอด และ commissioning (ราคาเครื่อง 180 kW อ้างอิงประมาณการ)",
     "roi_annual_pct": 105.7,
     "payback_months": 11.4,
+    "payback_years": 1,
     "net_profit_monthly": 858600,
     "specs": {
       "chargers": "5 × DC 180 kW dual gun",
@@ -1039,7 +1228,8 @@
       "investorNetMonthly": 858600,
       "annualNet": 10303200,
       "roiAnnualPct": 105.7,
-      "paybackMonths": 11.4
+      "paybackMonths": 11.4,
+      "paybackYears": 1
     },
     "targetSites": [
       "highway",
@@ -1054,8 +1244,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc30",
@@ -1083,6 +1273,7 @@
     "price_note": "ราคาแนะนำขายอ้างอิงจากเรทเครื่อง CX DC 30 / Recommended sell from CX DC 30 rate",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-DC-J1",
@@ -1120,8 +1311,8 @@
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc40",
@@ -1131,7 +1322,7 @@
     "name_th": "เครื่องชาร์จ CX DC 40 (J2)",
     "product_type": "equipment",
     "source_label": "ZeedaDirect ZD-DC-J2 · 40-160 kW.pdf",
-    "tagline": "40 kW · CCS2 200A · ZD-DC-J2 / เชิงพาณิชย์ความเร็วกลาง",
+    "tagline": "40 kW · CCS2 200A · ZD-DC-J2 · Sell 350,100 / ราคาแนะนำขาย",
     "description": "40 kW DC charger on ZeedaDirect J2 platform (40–160 kW family) — เครื่องชาร์จ DC 40 kW แพลตฟอร์ม J2",
     "power_kw_min": 40,
     "power_kw_max": 40,
@@ -1149,6 +1340,7 @@
     "price_note": "ราคาแนะนำขายอ้างอิงจากเรทเครื่อง CX DC 40 / Recommended sell from CX DC 40 rate",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-DC-J2",
@@ -1185,8 +1377,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc60",
@@ -1214,6 +1406,7 @@
     "price_note": "ราคาแนะนำขาย 468,000 · ต้นทุนเริ่ม 360,000 (<3, S-Series) / Sell 468k · Cost from 360k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZEC-60",
@@ -1250,8 +1443,8 @@
     "spec_id": "spec-zec-60",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc60-j",
@@ -1279,6 +1472,7 @@
     "price_note": "ราคาแนะนำขาย 364,000 · ต้นทุนเริ่ม 280,000 (<3, J-Series) / Sell 364k · Cost from 280k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-DC-J1",
@@ -1317,8 +1511,8 @@
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc120",
@@ -1346,6 +1540,7 @@
     "price_note": "ราคาแนะนำขาย 676,000 · ต้นทุนเริ่ม 520,000 (<3, S-Series) / Sell 676k · Cost from 520k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZEC-120",
@@ -1382,8 +1577,8 @@
     "spec_id": "spec-zec-120",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc120-j",
@@ -1411,6 +1606,7 @@
     "price_note": "ราคาแนะนำขาย 494,000 · ต้นทุนเริ่ม 380,000 (<3, J-Series) / Sell 494k · Cost from 380k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-DC-J2",
@@ -1449,8 +1645,8 @@
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc180",
@@ -1478,6 +1674,7 @@
     "price_note": "รออัปเดตราคา J-Series 180 kW / Price pending on J-Series sheet",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-DC-J3",
@@ -1516,8 +1713,8 @@
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc240-j",
@@ -1545,6 +1742,7 @@
     "price_note": "รออัปเดตราคา J-Series 240 kW / Price pending on J-Series sheet",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-DC-J3 / J4",
@@ -1581,8 +1779,8 @@
     "spec_id": "spec-zd-j4",
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-dc30p",
@@ -1610,6 +1808,7 @@
     "price_note": "ราคาเครื่องอ้างอิงรวมระบบชำระเงิน / Includes payment system",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "CX DC 30 Pay",
@@ -1643,8 +1842,8 @@
     "spec_id": null,
     "charge_type": "DC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-ac7-g",
@@ -1672,6 +1871,7 @@
     "price_note": "ราคาแนะนำขาย 13,500 · ต้นทุนเริ่ม 7,500 (<3) / Sell 13.5k · Cost from 7.5k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-AC-G",
@@ -1709,8 +1909,8 @@
     "spec_id": "spec-ac-g-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-ac7-k",
@@ -1738,6 +1938,7 @@
     "price_note": "ราคาแนะนำขาย 15,300 · ต้นทุนเริ่ม 8,500 (<3) / Sell 15.3k · Cost from 8.5k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-AC-K",
@@ -1775,8 +1976,8 @@
     "spec_id": "spec-ac-k-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-ac7-miniz",
@@ -1804,6 +2005,7 @@
     "price_note": "ราคาแนะนำขาย 9,900 · ต้นทุนเริ่ม 5,500 (<3) / Sell 9.9k · Cost from 5.5k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-AC-MINIZ",
@@ -1833,8 +2035,8 @@
     "spec_id": "spec-ac-miniz-7",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-ac11-e",
@@ -1862,6 +2064,7 @@
     "price_note": "ราคาแนะนำขาย 23,400 · ต้นทุนเริ่ม 13,000 (<3) / Sell 23.4k · Cost from 13k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-AC-E",
@@ -1899,8 +2102,8 @@
     "spec_id": "spec-ac-e",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   },
   {
     "id": "pkg-cx-ac22-e",
@@ -1928,6 +2131,7 @@
     "price_note": "ราคาแนะนำขาย 27,000 · ต้นทุนเริ่ม 15,000 (<3) / Sell 27k · Cost from 15k",
     "roi_annual_pct": null,
     "payback_months": null,
+    "payback_years": null,
     "net_profit_monthly": null,
     "specs": {
       "model": "ZD-AC-E",
@@ -1966,7 +2170,7 @@
     "spec_id": "spec-ac-e",
     "charge_type": "AC",
     "active": true,
-    "created_at": "2026-08-11T13:33:03.458Z",
-    "updated_at": "2026-08-11T13:33:03.458Z"
+    "created_at": "2026-08-11T13:56:12.330Z",
+    "updated_at": "2026-08-11T13:56:12.330Z"
   }
 ]
