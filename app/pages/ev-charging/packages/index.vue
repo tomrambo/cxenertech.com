@@ -47,6 +47,44 @@
           </NuxtLink>
         </div>
 
+        <div v-if="paybackPackages.length" class="payback-table-section">
+          <div class="payback-table-head">
+            <span class="section-label">Payback / จุดคืนทุน</span>
+            <h3>Payback — ลงทุน & สถานีสำเร็จรูป (เดือน · ปี)</h3>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>แพ็กเกจ</th>
+                  <th>ประเภท</th>
+                  <th>CAPEX</th>
+                  <th>ROI / ปี</th>
+                  <th>Payback (เดือน)</th>
+                  <th>Payback (ปี)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="pkg in paybackPackages" :key="`pb-${pkg.id}`">
+                  <td>
+                    <NuxtLink :to="`/ev-charging/packages/${pkg.slug}`" class="table-link">
+                      {{ pkg.name_th }}
+                    </NuxtLink>
+                    <span class="table-code">{{ pkg.code }}</span>
+                  </td>
+                  <td>{{ typeLabel(pkg.product_type) }}</td>
+                  <td>{{ formatThb(pkg.price_capex) }}</td>
+                  <td>{{ pkg.roi_annual_pct != null ? `${pkg.roi_annual_pct}%` : '—' }}</td>
+                  <td class="payback-cell">{{ pkg.payback_months }} เดือน</td>
+                  <td class="payback-cell">
+                    {{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }} ปี
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div v-if="packages.length" class="grid">
           <article v-for="pkg in packages" :key="pkg.id" class="card">
             <div v-if="pkg.image" class="card__visual">
@@ -79,27 +117,19 @@
                 <dt>ROI</dt>
                 <dd>{{ pkg.roi_annual_pct }}%/yr</dd>
               </div>
-            </dl>
-
-            <div
-              v-if="
-                (pkg.product_type === 'investment' || pkg.product_type === 'turnkey') &&
-                pkg.payback_months != null
-              "
-              class="card__payback"
-            >
-              <p class="card__payback-label">จุดคืนทุน / Payback</p>
-              <div class="card__payback-row">
-                <div>
-                  <span class="card__payback-unit">เดือน</span>
-                  <strong>{{ pkg.payback_months }}</strong>
-                </div>
-                <div>
-                  <span class="card__payback-unit">ปี</span>
-                  <strong>{{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }}</strong>
-                </div>
+              <div
+                v-if="
+                  (pkg.product_type === 'investment' || pkg.product_type === 'turnkey') &&
+                  pkg.payback_months != null
+                "
+              >
+                <dt>Payback</dt>
+                <dd>
+                  {{ pkg.payback_months }} เดือน ·
+                  {{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }} ปี
+                </dd>
               </div>
-            </div>
+            </dl>
 
             <div class="card__price">
               <span class="card__price-label">{{ priceInfo(pkg).label }}</span>
@@ -125,44 +155,6 @@
             </div>
             </div>
           </article>
-        </div>
-
-        <div v-if="paybackPackages.length" class="payback-table-section">
-          <div class="payback-table-head">
-            <span class="section-label">จุดคืนทุน / Payback</span>
-            <h3>สรุประยะคืนทุน — ลงทุน & สถานีสำเร็จรูป</h3>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>แพ็กเกจ</th>
-                  <th>ประเภท</th>
-                  <th>CAPEX</th>
-                  <th>ROI / ปี</th>
-                  <th>จุดคืนทุน (เดือน)</th>
-                  <th>จุดคืนทุน (ปี)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="pkg in paybackPackages" :key="`pb-${pkg.id}`">
-                  <td>
-                    <NuxtLink :to="`/ev-charging/packages/${pkg.slug}`" class="table-link">
-                      {{ pkg.name_th }}
-                    </NuxtLink>
-                    <span class="table-code">{{ pkg.code }}</span>
-                  </td>
-                  <td>{{ typeLabel(pkg.product_type) }}</td>
-                  <td>{{ formatThb(pkg.price_capex) }}</td>
-                  <td>{{ pkg.roi_annual_pct != null ? `${pkg.roi_annual_pct}%` : '—' }}</td>
-                  <td class="payback-cell">{{ pkg.payback_months }} เดือน</td>
-                  <td class="payback-cell">
-                    {{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }} ปี
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
 
         <p v-if="!pending && !error && !packages.length" class="empty">No packages in this category / ยังไม่มีแพ็กเกจในหมวดนี้</p>
@@ -587,7 +579,7 @@ useSeoMeta({
 }
 
 .payback-table-section {
-  margin-top: 3rem;
+  margin: 0 0 2.5rem;
 }
 
 .payback-table-head {
