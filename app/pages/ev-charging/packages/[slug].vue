@@ -112,8 +112,8 @@
             <h2 class="block-title">Financial model / โมเดลการเงินอ้างอิง</h2>
             <ul class="kv">
               <li v-for="(val, key) in pkg.financials" :key="key">
-                <span>{{ key }}</span>
-                <strong>{{ formatFinanceValue(key, val) }}</strong>
+                <span>{{ financeLabel(String(key)) }}</span>
+                <strong>{{ formatFinanceValue(String(key), val) }}</strong>
               </li>
             </ul>
           </template>
@@ -134,9 +134,13 @@
                 <dt>ROI / ปี</dt>
                 <dd>{{ pkg.roi_annual_pct }}%</dd>
               </div>
-              <div v-if="formatPayback(pkg.payback_months, pkg.payback_years)">
-                <dt>Payback / คืนทุน</dt>
-                <dd>{{ formatPayback(pkg.payback_months, pkg.payback_years) }}</dd>
+              <div v-if="pkg.payback_months != null">
+                <dt>จุดคืนทุน (เดือน)</dt>
+                <dd>{{ pkg.payback_months }} เดือน</dd>
+              </div>
+              <div v-if="pkg.payback_months != null || pkg.payback_years != null">
+                <dt>จุดคืนทุน (ปี)</dt>
+                <dd>{{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }} ปี</dd>
               </div>
               <div v-if="pkg.net_profit_monthly">
                 <dt>Net profit ref.</dt>
@@ -164,9 +168,9 @@
 import {
   displayPrice,
   formatNozzles,
-  formatPayback,
   formatPowerRange,
   formatThb,
+  resolvePaybackYears,
   typeLabel,
 } from '~/utils/ev-format'
 
@@ -234,6 +238,29 @@ const pkg = computed(() => data.value!.package)
 const chargerSpec = computed(() => data.value?.chargerSpec ?? null)
 const typeLabelText = computed(() => typeLabel(pkg.value.product_type))
 const price = computed(() => displayPrice(pkg.value))
+
+function financeLabel(key: string) {
+  const labels: Record<string, string> = {
+    paybackMonths: 'จุดคืนทุน (เดือน)',
+    paybackYears: 'จุดคืนทุน (ปี)',
+    roiAnnualPct: 'ROI / ปี',
+    investorNetMonthly: 'กำไรสุทธินักลงทุน / เดือน',
+    annualNet: 'กำไรสุทธิ / ปี',
+    revenueMonthly: 'รายได้ / เดือน',
+    energyCostMonthly: 'ต้นทุนพลังงาน / เดือน',
+    operatingHoursPerDay: 'ชั่วโมงเปิด / วัน',
+    utilizationPct: 'Utilization %',
+    kwhPerDay: 'kWh / วัน',
+    kwhPerMonth: 'kWh / เดือน',
+    sellPricePerKwh: 'ราคาขาย / kWh',
+    energyCostPerKwh: 'ต้นทุนไฟ / kWh',
+    platformFeePct: 'Platform fee %',
+    investorPct: 'ส่วนแบ่งนักลงทุน %',
+    landOwnerPctOfRevenue: 'ส่วนแบ่งเจ้าของที่ %',
+    coordinatorPct: 'Coordinator %',
+  }
+  return labels[key] ?? key
+}
 
 function formatFinanceValue(key: string, val: string | number) {
   if (typeof val !== 'number') return val

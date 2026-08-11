@@ -23,14 +23,22 @@ export function formatPayback(
   years?: number | null | undefined,
 ) {
   if (months == null && years == null) return null
-  const y =
-    years ??
-    (months != null ? Math.round((months / 12) * 10) / 10 : null)
+  const y = resolvePaybackYears(months, years)
   if (months != null && y != null) {
     return `${months} เดือน · ${y} ปี`
   }
   if (months != null) return `${months} เดือน`
   return `${y} ปี`
+}
+
+/** Derive years from months when missing (1 decimal) */
+export function resolvePaybackYears(
+  months: number | null | undefined,
+  years?: number | null | undefined,
+) {
+  if (years != null) return years
+  if (months == null) return null
+  return Math.round((months / 12) * 10) / 10
 }
 
 export type LocaleLabel = { th: string; en: string }

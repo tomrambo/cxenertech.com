@@ -79,15 +79,21 @@
                 <dt>ROI</dt>
                 <dd>{{ pkg.roi_annual_pct }}%/yr</dd>
               </div>
-              <div
+              <template
                 v-if="
                   (pkg.product_type === 'investment' || pkg.product_type === 'turnkey') &&
-                  formatPayback(pkg.payback_months, pkg.payback_years)
+                  pkg.payback_months != null
                 "
               >
-                <dt>Payback / คืนทุน</dt>
-                <dd>{{ formatPayback(pkg.payback_months, pkg.payback_years) }}</dd>
-              </div>
+                <div>
+                  <dt>จุดคืนทุน (เดือน)</dt>
+                  <dd>{{ pkg.payback_months }} เดือน</dd>
+                </div>
+                <div>
+                  <dt>จุดคืนทุน (ปี)</dt>
+                  <dd>{{ resolvePaybackYears(pkg.payback_months, pkg.payback_years) }} ปี</dd>
+                </div>
+              </template>
             </dl>
 
             <div class="card__price">
@@ -140,9 +146,9 @@
 import {
   displayPrice,
   formatNozzles,
-  formatPayback,
   formatPowerRange,
   formatThb,
+  resolvePaybackYears,
   typeLabel,
 } from '~/utils/ev-format'
 
