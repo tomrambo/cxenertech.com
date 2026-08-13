@@ -21,6 +21,7 @@ export const mainNav: NavItem[] = [
     children: [
       { label: 'Overview', to: '/ev-charging' },
       { label: 'CX Charge Packages', to: '/ev-charging/packages' },
+      { label: 'Payback / จุดคืนทุน', to: '/ev-charging/packages/payback' },
       // { label: 'Price Rates', to: '/ev-charging/packages/price-rates' },
       // { label: 'Investment', to: '/ev-charging/investment' },
       // { label: 'Home Charger', to: '/ev-charging/home-charger' },
@@ -53,8 +54,8 @@ export const footerNav = {
     { label: 'Commercial Charger', to: '/ev-charging/commercial' },
     { label: 'EV Charging Station', to: '/ev-charging/station' },
     { label: 'CX Charge Packages', to: '/ev-charging/packages' },
+    { label: 'Payback / จุดคืนทุน', to: '/ev-charging/packages/payback' },
     { label: 'Price Rates', to: '/ev-charging/packages/price-rates' },
-    { label: 'Investment', to: '/ev-charging/investment' },
     { label: 'Management Platform', to: '/ev-charging/management' },
   ],
   resources: [

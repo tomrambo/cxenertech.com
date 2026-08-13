@@ -156,7 +156,7 @@
           <p>
             ปรึกษาโมเดลรายได้ จุดคุ้มทุน และการแบ่งผลตอบแทน สำหรับนักลงทุนและเจ้าของพื้นที่
           </p>
-          <NuxtLink to="/ev-charging/investment" class="btn btn-secondary">ดูโมเดลลงทุน</NuxtLink>
+          <NuxtLink to="/ev-charging/packages/payback" class="btn btn-secondary">ดูจุดคืนทุน</NuxtLink>
         </div>
       </div>
     </section>
@@ -222,9 +222,9 @@ const ecosystem = [
     to: '/ev-charging/packages',
   },
   {
-    title: 'Investment',
-    desc: 'วางแผนลงทุนสถานีชาร์จ พร้อมสมมติฐานรายได้และ payback',
-    to: '/ev-charging/investment',
+    title: 'Payback / จุดคืนทุน',
+    desc: 'ดูระยะคืนทุนอ้างอิงของแพ็กเกจลงทุนและสถานีสำเร็จรูป',
+    to: '/ev-charging/packages/payback',
   },
 ]
 
@@ -332,7 +332,7 @@ const links = [
   { label: 'Management Platform', to: '/ev-charging/management' },
   { label: 'EV Charger Products', to: '/ev-charging/products' },
   { label: 'CX Charge Packages', to: '/ev-charging/packages' },
-  { label: 'EV Station Investment', to: '/ev-charging/investment' },
+  { label: 'Payback / จุดคืนทุน', to: '/ev-charging/packages/payback' },
   { label: 'ขอใบเสนอราคา EV', to: '/ev-charging/quotation' },
 ]
 
