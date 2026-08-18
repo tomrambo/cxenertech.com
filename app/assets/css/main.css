@@ -139,6 +139,14 @@ button {
   box-shadow: 0 0 28px rgba(212, 255, 0, 0.35);
 }
 
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.55;
+  transform: none;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .btn-secondary {
   background: transparent;
   color: var(--color-white);
@@ -422,7 +430,7 @@ button {
   margin-bottom: 0.4rem;
 }
 
-.form-field input,
+.form-field input:not([type='checkbox']):not([type='radio']):not([type='file']),
 .form-field select,
 .form-field textarea {
   width: 100%;
@@ -436,7 +444,7 @@ button {
   transition: border-color 0.25s;
 }
 
-.form-field input:focus,
+.form-field input:not([type='checkbox']):not([type='radio']):not([type='file']):focus,
 .form-field select:focus,
 .form-field textarea:focus {
   outline: none;

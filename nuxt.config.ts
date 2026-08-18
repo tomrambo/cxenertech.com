@@ -35,4 +35,26 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  runtimeConfig: {
+    cmmsApiBaseUrl: process.env.NUXT_CMMS_API_BASE_URL || '',
+    partnerIngestSecret: process.env.PARTNER_INGEST_SECRET || '',
+    public: {
+      /** ว่าง = ใช้ /api/partners/register (Nitro / Cloudflare Worker) */
+      partnerRegisterUrl: process.env.NUXT_PUBLIC_PARTNER_REGISTER_URL || '',
+    },
+  },
+
+  nitro: {
+    ...(process.env.NITRO_PRESET ? { preset: process.env.NITRO_PRESET } : {}),
+    routeRules: {
+      '/api/partners/**': {
+        cors: true,
+        headers: {
+          'Access-Control-Allow-Methods': 'POST,OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      },
+    },
+  },
 })

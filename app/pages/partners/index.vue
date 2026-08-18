@@ -9,7 +9,15 @@
       <div class="container">
         <div class="content-block">
           <p>พันธมิตรด้านเทคโนโลยี อุปกรณ์ และธุรกิจของ CX ENERTECH</p>
-          
+          <p>
+            เปิดรับ Sale Freelance ที่อยากขายโซลูชัน Solar และ EV Charging
+            โดยมีทีมติดตั้งและบริการหลังการขายซัพพอร์ตให้ครบวงจร
+          </p>
+          <p>
+            <NuxtLink class="btn btn-primary" to="/partners/become-a-partner">
+              สมัครเป็น Partner
+            </NuxtLink>
+          </p>
         </div>
       </div>
     </section>

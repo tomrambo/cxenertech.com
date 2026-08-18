@@ -1,0 +1,8 @@
+# Cloudflare Pages + Workers (Nitro preset: cloudflare-pages)
+name = "cxenertech-web"
+compatibility_date = "2026-08-18"
+pages_build_output_dir = ".output/public"
+
+# ตั้งค่าจริงใน Cloudflare Dashboard / `wrangler pages secret`
+# NUXT_CMMS_API_BASE_URL = "https://bo-cx-cmms.conceptx.co.th"
+# PARTNER_INGEST_SECRET  = ""

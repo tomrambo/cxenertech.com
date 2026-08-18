@@ -6,6 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "build:cf": "NITRO_PRESET=cloudflare-pages nuxt build",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "db:seed": "node --import jiti/register ./scripts/seed-ev-packages.ts",

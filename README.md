@@ -30,6 +30,22 @@ npm run dev
 | `npm run build` | Production build |
 | `npm run preview` | Preview production build |
 | `npm run generate` | Static site generation |
+| `NITRO_PRESET=cloudflare-pages npm run build` | Build สำหรับ Cloudflare Pages + Worker |
+
+## Partner registration
+
+หน้า `/partners/become-a-partner` ส่งใบสมัคร Sale Freelance ไปยัง CMMS
+
+1. เบราว์เซอร์โพสต์ไปที่ `/api/partners/register` (Nitro / Cloudflare Worker)
+2. Worker ส่งต่อไป `NUXT_CMMS_API_BASE_URL/api/public/partners/sale-freelance`
+3. หลังบ้านดูรายการได้ที่ CMMS เมนู **Sale Freelance Partner**
+
+ค่าที่ต้องตั้ง:
+
+- `NUXT_CMMS_API_BASE_URL` — origin ของ bo-ev-cx-cmms
+- `PARTNER_INGEST_SECRET` — ต้องตรงกับฝั่ง CMMS (ถ้าเปิดใช้)
+- ถ้า generate แบบ static ไม่มี Worker ให้ตั้ง `NUXT_PUBLIC_PARTNER_REGISTER_URL` ชี้ public API ของ CMMS
+
 
 ## Sitemap (routes)
 
