@@ -3,11 +3,12 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build --preset cloudflare-pages",
+    "build": "nuxt build --preset cloudflare-pages && node scripts/ensure-cf-pages-output.mjs",
     "build:node": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "deploy": "wrangler deploy",
     "postinstall": "nuxt prepare",
     "db:seed": "node --import jiti/register ./scripts/seed-ev-packages.ts",
     "db:seed:solar": "node --import jiti/register ./scripts/seed-solar-packages.ts",

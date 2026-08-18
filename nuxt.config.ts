@@ -49,6 +49,11 @@ export default defineNuxtConfig({
     preset:
       process.env.NITRO_PRESET ||
       (process.env.CF_PAGES ? 'cloudflare-pages' : undefined),
+    cloudflare: {
+      nodeCompat: true,
+      // Avoid a generated wrangler.json that binds ASSETS (reserved on Pages).
+      deployConfig: false,
+    },
     routeRules: {
       '/api/partners/**': {
         cors: true,

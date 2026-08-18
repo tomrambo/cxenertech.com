@@ -1,9 +1,13 @@
-# Cloudflare Pages — Nuxt preset must be cloudflare-pages (not cloudflare-module).
-# Dashboard: Build command `npm run build` · Output `.output/public`
-# Do not set Deploy command to `npx wrangler deploy` (that is for Workers).
-# Leave Deploy command empty, or use: npx wrangler pages deploy .output/public
+# Nuxt cloudflare-pages output: .output/public/_worker.js + static files
+# Dashboard Deploy command is `npx wrangler deploy`, which needs `main` or
+# `assets.directory`. Do not set pages_build_output_dir — wrangler then
+# treats this as a Pages config and rejects the ASSETS binding.
 
 name = "cxenertech-com"
 compatibility_date = "2026-08-18"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".output/public"
+main = ".output/public/_worker.js"
+
+[assets]
+directory = ".output/public"
+binding = "ASSETS"

@@ -36,9 +36,9 @@ Cloudflare Pages (git integration):
 
 - **Build command:** `npm run build`
 - **Build output directory:** `.output/public`
-- **Deploy command:** ว่างไว้ — อย่าใส่ `npx wrangler deploy`
+- **Deploy command:** `npx wrangler deploy` (ใช้ได้แล้ว — `wrangler.toml` ชี้ `main` + `assets.directory`)
 
-สาเหตุที่ build ล่าสุดพัง: `npm run build` ถูก infer เป็น preset `cloudflare-module` แล้ว `wrangler deploy` ชน binding ชื่อ `ASSETS` ที่ Pages จองไว้
+อย่าใส่ `pages_build_output_dir` คู่กับ `assets.binding = "ASSETS"` — wrangler จะถือว่าเป็น Pages config แล้ว reject ชื่อ ASSETS
 
 
 ## Partner registration
