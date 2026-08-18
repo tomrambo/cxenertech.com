@@ -1,4 +1,5 @@
-# Nuxt cloudflare-pages output: .output/public/_worker.js + static files
+# Nitro `cloudflare-pages` (nitropack 2.13+) writes:
+#   dist/_worker.js/index.js  + static files in dist/
 # Dashboard Deploy command is `npx wrangler deploy`, which needs `main` or
 # `assets.directory`. Do not set pages_build_output_dir — wrangler then
 # treats this as a Pages config and rejects the ASSETS binding.
@@ -6,8 +7,8 @@
 name = "cxenertech-com"
 compatibility_date = "2026-08-18"
 compatibility_flags = ["nodejs_compat"]
-main = ".output/public/_worker.js"
+main = "dist/_worker.js/index.js"
 
 [assets]
-directory = ".output/public"
+directory = "dist"
 binding = "ASSETS"
