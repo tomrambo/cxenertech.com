@@ -3,10 +3,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build --preset cloudflare-pages",
+    "build:node": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "build:cf": "NITRO_PRESET=cloudflare-pages nuxt build",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "db:seed": "node --import jiti/register ./scripts/seed-ev-packages.ts",

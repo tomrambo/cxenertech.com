@@ -1,8 +1,9 @@
-# Cloudflare Pages + Workers (Nitro preset: cloudflare-pages)
-name = "cxenertech-web"
-compatibility_date = "2026-08-18"
-pages_build_output_dir = ".output/public"
+# Cloudflare Pages — Nuxt preset must be cloudflare-pages (not cloudflare-module).
+# Dashboard: Build command `npm run build` · Output `.output/public`
+# Do not set Deploy command to `npx wrangler deploy` (that is for Workers).
+# Leave Deploy command empty, or use: npx wrangler pages deploy .output/public
 
-# ตั้งค่าจริงใน Cloudflare Dashboard / `wrangler pages secret`
-# NUXT_CMMS_API_BASE_URL = "https://bo-cx-cmms.conceptx.co.th"
-# PARTNER_INGEST_SECRET  = ""
+name = "cxenertech-com"
+compatibility_date = "2026-08-18"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".output/public"

@@ -22,7 +22,6 @@ jobs:
       - name: Build for Cloudflare Pages (static + Worker)
         run: npm run build
         env:
-          NITRO_PRESET: cloudflare-pages
           NUXT_CMMS_API_BASE_URL: ${{ secrets.NUXT_CMMS_API_BASE_URL }}
           PARTNER_INGEST_SECRET: ${{ secrets.PARTNER_INGEST_SECRET }}
       - name: Deploy
@@ -30,4 +29,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .output/public --project-name=cxenertech-web
+          command: pages deploy .output/public --project-name=cxenertech-com

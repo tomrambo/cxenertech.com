@@ -27,10 +27,19 @@ npm run dev
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Start development server |
-| `npm run build` | Production build |
+| `npm run build` | Production build สำหรับ Cloudflare Pages (`cloudflare-pages`) |
+| `npm run build:node` | Production build แบบ Node (local preview) |
 | `npm run preview` | Preview production build |
 | `npm run generate` | Static site generation |
-| `NITRO_PRESET=cloudflare-pages npm run build` | Build สำหรับ Cloudflare Pages + Worker |
+
+Cloudflare Pages (git integration):
+
+- **Build command:** `npm run build`
+- **Build output directory:** `.output/public`
+- **Deploy command:** ว่างไว้ — อย่าใส่ `npx wrangler deploy`
+
+สาเหตุที่ build ล่าสุดพัง: `npm run build` ถูก infer เป็น preset `cloudflare-module` แล้ว `wrangler deploy` ชน binding ชื่อ `ASSETS` ที่ Pages จองไว้
+
 
 ## Partner registration
 
