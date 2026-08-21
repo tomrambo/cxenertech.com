@@ -56,6 +56,17 @@ Cloudflare Pages (git integration):
 - ถ้า generate แบบ static ไม่มี Worker ให้ตั้ง `NUXT_PUBLIC_PARTNER_REGISTER_URL` ชี้ public API ของ CMMS
 
 
+## CX Charge Packages (จาก CMMS)
+
+หน้า `/ev-charging/packages` ดึงข้อมูลผ่าน Nitro API ของเว็บไซต์ แล้ว proxy ไป CMMS:
+
+1. เบราว์เซอร์เรียก `/api/ev/packages` และ `/api/ev/packages/:slug`
+2. Worker เรียก `NUXT_CMMS_API_BASE_URL/api/public/charge-packages` (+ `/:slug`)
+3. จัดการแพ็กเกจใน CMMS เมนู **แพ็กเกจสถานีชาร์จ (หน้าบ้าน)**
+
+ถ้ายังไม่ได้ตั้ง `NUXT_CMMS_API_BASE_URL` หรือ CMMS ล่ม จะ fallback ไป `data/ev-packages.json`
+
+
 ## Sitemap (routes)
 
 - `/` — Home

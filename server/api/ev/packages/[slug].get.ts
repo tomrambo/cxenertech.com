@@ -1,14 +1,14 @@
 import { getChargerPriceRate } from '../../../database/charger-price-rates'
 import { getChargerSpec } from '../../../database/charger-specs'
-import { getEvPackageBySlug } from '../../../utils/ev-db'
+import { fetchCmmsChargePackageBySlug } from '../../../utils/cmms-charge-packages'
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')
   if (!slug) {
     throw createError({ statusCode: 400, statusMessage: 'Missing package slug' })
   }
 
-  const pkg = getEvPackageBySlug(slug)
+  const { package: pkg, source } = await fetchCmmsChargePackageBySlug(event, slug)
   if (!pkg) {
     throw createError({ statusCode: 404, statusMessage: 'Package not found' })
   }
@@ -20,5 +20,6 @@ export default defineEventHandler((event) => {
     package: pkg,
     priceRate,
     chargerSpec,
+    source,
   }
 })
