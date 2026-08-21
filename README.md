@@ -64,7 +64,8 @@ Cloudflare Pages (git integration):
 2. Worker เรียก `NUXT_CMMS_API_BASE_URL/api/public/charge-packages` (+ `/:slug`)
 3. จัดการแพ็กเกจใน CMMS เมนู **แพ็กเกจสถานีชาร์จ (หน้าบ้าน)**
 
-ถ้ายังไม่ได้ตั้ง `NUXT_CMMS_API_BASE_URL` หรือ CMMS ล่ม จะ fallback ไป `data/ev-packages.json`
+ถ้ายังไม่ได้ตั้ง `NUXT_CMMS_API_BASE_URL` จะใช้ `data/ev-packages.json`  
+ถ้าตั้งแล้วแต่เรียก CMMS ไม่ได้ API จะคืน error (ไม่ fallback เงียบ) — ตรวจว่า origin มี `/api/public/charge-packages`
 
 
 ## Sitemap (routes)

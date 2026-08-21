@@ -1,6 +1,6 @@
 /**
- * Charge packages from bo-ev-cx-cmms public API.
- * Falls back to local JSON (ev-db) when CMMS is unset or unreachable.
+ * Charge packages from bo-ev-cx-cmms public API (DB).
+ * Local JSON (ev-db) is used only when NUXT_CMMS_API_BASE_URL is unset.
  */
 
 import type { H3Event } from 'h3'
@@ -29,12 +29,18 @@ function errorMessage(err: unknown) {
     const e = err as {
       statusCode?: number
       status?: number
-      data?: { message?: string }
+      data?: { message?: string; statusMessage?: string }
       message?: string
+      statusMessage?: string
     }
     return {
       statusCode: e.statusCode || e.status || 502,
-      message: e.data?.message || e.message || 'CMMS charge packages unavailable',
+      message:
+        e.data?.message ||
+        e.data?.statusMessage ||
+        e.message ||
+        e.statusMessage ||
+        'CMMS charge packages unavailable',
     }
   }
   return { statusCode: 502, message: 'CMMS charge packages unavailable' }
@@ -66,11 +72,11 @@ export async function fetchCmmsChargePackages(
     const packages = Array.isArray(res.items) ? res.items : []
     return { packages, source: 'cmms' }
   } catch (err) {
-    console.warn('[cmms-charge-packages] list fallback to local:', errorMessage(err).message)
-    return {
-      packages: listEvPackages(filters),
-      source: 'local',
-    }
+    const parsed = errorMessage(err)
+    throw createError({
+      statusCode: parsed.statusCode >= 400 ? parsed.statusCode : 502,
+      statusMessage: `CMMS charge packages: ${parsed.message}`,
+    })
   }
 }
 
@@ -99,10 +105,9 @@ export async function fetchCmmsChargePackageBySlug(
     if (parsed.statusCode === 404) {
       return { package: null, source: 'cmms' }
     }
-    console.warn('[cmms-charge-packages] get fallback to local:', parsed.message)
-    return {
-      package: getEvPackageBySlug(slug),
-      source: 'local',
-    }
+    throw createError({
+      statusCode: parsed.statusCode >= 400 ? parsed.statusCode : 502,
+      statusMessage: `CMMS charge package: ${parsed.message}`,
+    })
   }
 }
