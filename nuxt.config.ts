@@ -37,7 +37,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    cmmsApiBaseUrl: process.env.NUXT_CMMS_API_BASE_URL || '',
+    /** origin ของ bo-ev-cx-cmms — ใช้ดึง charge packages + รูปจาก DB */
+    cmmsApiBaseUrl:
+      process.env.NUXT_CMMS_API_BASE_URL || 'https://bo-cx-cmms.conceptx.co.th',
     partnerIngestSecret: process.env.PARTNER_INGEST_SECRET || '',
     public: {
       /** ว่าง = ใช้ /api/partners/register (Nitro / Cloudflare Worker) */

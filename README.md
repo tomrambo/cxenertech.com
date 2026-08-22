@@ -63,9 +63,10 @@ Cloudflare Pages (git integration):
 1. เบราว์เซอร์เรียก `/api/ev/packages` และ `/api/ev/packages/:slug`
 2. Worker เรียก `NUXT_CMMS_API_BASE_URL/api/public/charge-packages` (+ `/:slug`)
 3. จัดการแพ็กเกจใน CMMS เมนู **แพ็กเกจสถานีชาร์จ (หน้าบ้าน)**
+4. ฟิลด์ `image` ใน DB เป็น URL บน DigitalOcean Spaces — หน้าเว็บใช้ค่านี้นำเสนอรูป (ไม่พึ่งไฟล์ใน `public/images/packages` เป็นหลัก)
 
-ถ้ายังไม่ได้ตั้ง `NUXT_CMMS_API_BASE_URL` จะใช้ `data/ev-packages.json`  
-ถ้าตั้งแล้วแต่เรียก CMMS ไม่ได้ API จะคืน error (ไม่ fallback เงียบ) — ตรวจว่า origin มี `/api/public/charge-packages`
+ค่า default ของ `NUXT_CMMS_API_BASE_URL` คือ `https://bo-cx-cmms.conceptx.co.th`  
+ถ้าตั้งแล้วแต่เรียก CMMS ไม่ได้ API จะคืน error (ไม่ fallback เงียบ)
 
 
 ## Sitemap (routes)

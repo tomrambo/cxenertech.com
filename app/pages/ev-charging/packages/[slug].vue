@@ -19,8 +19,16 @@
             <span class="code">{{ pkg.code }}</span>
           </div>
 
-          <div v-if="pkg.image" class="hero-visual">
-            <img :src="pkg.image" :alt="pkg.name_th" loading="lazy" width="1200" height="675" />
+          <div v-if="heroImage" class="hero-visual">
+            <img
+              :src="heroImage"
+              :alt="pkg.name_th"
+              loading="lazy"
+              width="1200"
+              height="675"
+              decoding="async"
+              referrerpolicy="no-referrer"
+            />
           </div>
 
           <h1 class="name-en">{{ pkg.name }}</h1>
@@ -173,6 +181,7 @@ import {
   resolvePaybackYears,
   typeLabel,
 } from '~/utils/ev-format'
+import { resolvePackageImage } from '~/utils/package-image'
 
 type ApiPackage = {
   id: string
@@ -236,6 +245,7 @@ if (error.value || !data.value?.package) {
 
 const pkg = computed(() => data.value!.package)
 const chargerSpec = computed(() => data.value?.chargerSpec ?? null)
+const heroImage = computed(() => resolvePackageImage(pkg.value.image))
 const typeLabelText = computed(() => typeLabel(pkg.value.product_type))
 const price = computed(() => displayPrice(pkg.value))
 

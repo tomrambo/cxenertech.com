@@ -52,8 +52,16 @@
 
         <div v-if="packages.length" class="grid">
           <article v-for="pkg in packages" :key="pkg.id" class="card">
-            <div v-if="pkg.image" class="card__visual">
-              <img :src="pkg.image" :alt="pkg.name_th" loading="lazy" width="640" height="360" />
+            <div v-if="packageImage(pkg)" class="card__visual">
+              <img
+                :src="packageImage(pkg)!"
+                :alt="pkg.name_th"
+                loading="lazy"
+                width="640"
+                height="360"
+                decoding="async"
+                referrerpolicy="no-referrer"
+              />
             </div>
             <div class="card__body">
             <div class="card__top">
@@ -151,6 +159,7 @@ import {
   resolvePaybackYears,
   typeLabel,
 } from '~/utils/ev-format'
+import { resolvePackageImage } from '~/utils/package-image'
 
 type ApiPackage = {
   id: string
@@ -222,6 +231,10 @@ const { data, pending, error } = await useFetch<{ packages: ApiPackage[] }>(
 )
 
 const packages = computed(() => data.value?.packages ?? [])
+
+function packageImage(pkg: ApiPackage) {
+  return resolvePackageImage(pkg.image)
+}
 
 function priceInfo(pkg: ApiPackage) {
   return displayPrice(pkg)

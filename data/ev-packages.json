@@ -73,7 +73,7 @@
       "hotel"
     ],
     "sort_order": 1,
-    "image": "/images/packages/cx-sme-ac2.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-sme-ac2.webp",
     "price_rate_id": null,
     "spec_id": null,
     "charge_type": "AC",
@@ -155,7 +155,7 @@
       "hotel"
     ],
     "sort_order": 2,
-    "image": "/images/packages/cx-sme-ac4.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-sme-ac4.webp",
     "price_rate_id": null,
     "spec_id": null,
     "charge_type": "AC",
@@ -319,7 +319,7 @@
       "gas"
     ],
     "sort_order": 4,
-    "image": "/images/packages/cx-sme-dc40.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-sme-dc40.webp",
     "price_rate_id": null,
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
@@ -401,7 +401,7 @@
       "gas"
     ],
     "sort_order": 5,
-    "image": "/images/packages/cx-sme-dc1.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-sme-dc1.webp",
     "price_rate_id": "rate-dc-j-60",
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
@@ -484,7 +484,7 @@
       "workshop"
     ],
     "sort_order": 6,
-    "image": "/images/packages/cx-sme-dc2.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-sme-dc2.webp",
     "price_rate_id": "rate-dc-j-120",
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
@@ -568,7 +568,7 @@
       "retail"
     ],
     "sort_order": 7,
-    "image": "/images/packages/cx-sme-dc180.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-sme-dc180.webp",
     "price_rate_id": "rate-dc-j-180",
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
@@ -652,7 +652,7 @@
       "hub"
     ],
     "sort_order": 8,
-    "image": "/images/packages/cx-sme-dc240.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-sme-dc240.webp",
     "price_rate_id": "rate-dc-j-240",
     "spec_id": "spec-zd-j4",
     "charge_type": "DC",
@@ -735,7 +735,7 @@
       "factory"
     ],
     "sort_order": 10,
-    "image": "/images/packages/cx-station-s4.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-station-s4.webp",
     "price_rate_id": null,
     "spec_id": null,
     "charge_type": "DC",
@@ -819,7 +819,7 @@
       "public"
     ],
     "sort_order": 31,
-    "image": "/images/packages/cx-hub-6-120.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-hub-6-120.webp",
     "price_rate_id": "rate-dc-j-120",
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
@@ -902,7 +902,7 @@
       "public"
     ],
     "sort_order": 32,
-    "image": "/images/packages/cx-hub-6-180.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-hub-6-180.webp",
     "price_rate_id": "rate-dc-j-180",
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
@@ -986,7 +986,7 @@
       "public"
     ],
     "sort_order": 33,
-    "image": "/images/packages/cx-hub-8-120.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-hub-8-120.webp",
     "price_rate_id": "rate-dc-j-120",
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
@@ -1069,7 +1069,7 @@
       "public"
     ],
     "sort_order": 34,
-    "image": "/images/packages/cx-hub-8-180.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-hub-8-180.webp",
     "price_rate_id": "rate-dc-j-180",
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
@@ -1153,7 +1153,7 @@
       "highway"
     ],
     "sort_order": 35,
-    "image": "/images/packages/cx-hub-10-120.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-hub-10-120.webp",
     "price_rate_id": "rate-dc-j-120",
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
@@ -1236,7 +1236,7 @@
       "hub"
     ],
     "sort_order": 36,
-    "image": "/images/packages/cx-hub-10-180.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-hub-10-180.webp",
     "price_rate_id": "rate-dc-j-180",
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
@@ -1244,7 +1244,6 @@
     "created_at": "2026-08-11T13:56:12.330Z",
     "updated_at": "2026-08-11T13:56:12.330Z"
   },
-  
   {
     "id": "pkg-cx-dc60",
     "slug": "cx-dc-60",
@@ -1303,7 +1302,7 @@
       "station"
     ],
     "sort_order": 50,
-    "image": "/images/packages/cx-dc-60.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-dc-60.webp",
     "price_rate_id": "rate-dc-s-60",
     "spec_id": "spec-zec-60",
     "charge_type": "DC",
@@ -1371,7 +1370,7 @@
       "sme"
     ],
     "sort_order": 52,
-    "image": "/images/packages/cx-dc-j1.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-dc-j1.webp",
     "price_rate_id": "rate-dc-j-60",
     "spec_id": "spec-zd-j1",
     "charge_type": "DC",
@@ -1437,7 +1436,7 @@
       "depot"
     ],
     "sort_order": 55,
-    "image": "/images/packages/cx-dc-120.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-dc-120.webp",
     "price_rate_id": "rate-dc-s-120",
     "spec_id": "spec-zec-120",
     "charge_type": "DC",
@@ -1505,7 +1504,7 @@
       "commercial"
     ],
     "sort_order": 57,
-    "image": "/images/packages/cx-dc-j2.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-dc-j2.webp",
     "price_rate_id": "rate-dc-j-120",
     "spec_id": "spec-zd-j2",
     "charge_type": "DC",
@@ -1573,7 +1572,7 @@
       "depot"
     ],
     "sort_order": 60,
-    "image": "/images/packages/cx-dc-j3.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-dc-j3.webp",
     "price_rate_id": "rate-dc-j-180",
     "spec_id": "spec-zd-j3",
     "charge_type": "DC",
@@ -1639,7 +1638,7 @@
       "gas"
     ],
     "sort_order": 62,
-    "image": "/images/packages/cx-dc-j4.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-dc-j4.webp",
     "price_rate_id": "rate-dc-j-240",
     "spec_id": "spec-zd-j4",
     "charge_type": "DC",
@@ -1706,7 +1705,7 @@
       "office"
     ],
     "sort_order": 80,
-    "image": "/images/packages/cx-ac-g7.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-ac-g7.webp",
     "price_rate_id": "rate-ac-g-7",
     "spec_id": "spec-ac-g-7",
     "charge_type": "AC",
@@ -1773,7 +1772,7 @@
       "sme"
     ],
     "sort_order": 82,
-    "image": "/images/packages/cx-ac-k7.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-ac-k7.webp",
     "price_rate_id": "rate-ac-k-7",
     "spec_id": "spec-ac-k-7",
     "charge_type": "AC",
@@ -1832,7 +1831,7 @@
       "sme"
     ],
     "sort_order": 84,
-    "image": "/images/packages/cx-ac-miniz.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-ac-miniz.webp",
     "price_rate_id": "rate-ac-miniz-7",
     "spec_id": "spec-ac-miniz-7",
     "charge_type": "AC",
@@ -1899,7 +1898,7 @@
       "parking"
     ],
     "sort_order": 86,
-    "image": "/images/packages/cx-ac-e.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-ac-e.webp",
     "price_rate_id": "rate-ac-e-11",
     "spec_id": "spec-ac-e",
     "charge_type": "AC",
@@ -1967,7 +1966,7 @@
       "depot"
     ],
     "sort_order": 88,
-    "image": "/images/packages/cx-ac-e.jpg",
+    "image": "https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-ac-e.webp",
     "price_rate_id": "rate-ac-e-22",
     "spec_id": "spec-ac-e",
     "charge_type": "AC",

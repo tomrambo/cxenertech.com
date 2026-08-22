@@ -1,9 +1,10 @@
 /**
  * Charge packages from bo-ev-cx-cmms public API (DB).
- * Local JSON (ev-db) is used only when NUXT_CMMS_API_BASE_URL is unset.
+ * Local JSON (ev-db) is used only when CMMS base URL is empty.
  */
 
 import type { H3Event } from 'h3'
+import { resolvePackageImage } from './package-image'
 import {
   getEvPackageBySlug,
   listEvPackages,
@@ -22,6 +23,13 @@ type CmmsItemResponse = {
 function cmmsBase(event: H3Event) {
   const config = useRuntimeConfig(event)
   return String(config.cmmsApiBaseUrl || '').replace(/\/$/, '')
+}
+
+function withDbImage(pkg: EvPackage): EvPackage {
+  return {
+    ...pkg,
+    image: resolvePackageImage(pkg.image),
+  }
 }
 
 function errorMessage(err: unknown) {
@@ -53,7 +61,7 @@ export async function fetchCmmsChargePackages(
   const base = cmmsBase(event)
   if (!base) {
     return {
-      packages: listEvPackages(filters),
+      packages: listEvPackages(filters).map(withDbImage),
       source: 'local',
     }
   }
@@ -69,7 +77,7 @@ export async function fetchCmmsChargePackages(
       `${base}/api/public/charge-packages`,
       { query },
     )
-    const packages = Array.isArray(res.items) ? res.items : []
+    const packages = (Array.isArray(res.items) ? res.items : []).map(withDbImage)
     return { packages, source: 'cmms' }
   } catch (err) {
     const parsed = errorMessage(err)
@@ -86,8 +94,9 @@ export async function fetchCmmsChargePackageBySlug(
 ): Promise<{ package: EvPackage | null; source: 'cmms' | 'local' }> {
   const base = cmmsBase(event)
   if (!base) {
+    const pkg = getEvPackageBySlug(slug)
     return {
-      package: getEvPackageBySlug(slug),
+      package: pkg ? withDbImage(pkg) : null,
       source: 'local',
     }
   }
@@ -97,7 +106,7 @@ export async function fetchCmmsChargePackageBySlug(
       `${base}/api/public/charge-packages/${encodeURIComponent(slug)}`,
     )
     return {
-      package: res.item ?? null,
+      package: res.item ? withDbImage(res.item) : null,
       source: 'cmms',
     }
   } catch (err) {
