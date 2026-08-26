@@ -1,177 +1,161 @@
 <template>
   <div class="ev">
-    <PageHero
-      title="EV Charging"
-      description="จาก Home Charger ถึงสถานีชาร์จและแพลตฟอร์มบริหาร — โครงสร้างพื้นฐาน EV แบบครบวงจรโดย CX ENERTECH"
-      :crumbs="[{ label: 'Home', to: '/' }, { label: 'EV Charging' }]"
-    />
+    <!-- Full-bleed product hero -->
+    <section class="hero">
+      <div
+        class="hero__media"
+        style="background-image: url('/images/projects/project-dc-station.jpg')"
+        aria-hidden="true"
+      />
+      <div class="hero__shade" aria-hidden="true" />
+      <div class="hero__grain" aria-hidden="true" />
 
-    <!-- Intro -->
-    <section class="section">
-      <div class="container intro">
-        <div class="intro__copy">
-          <span class="section-label">Overview</span>
-          <h2 class="section-title">โซลูชันชาร์จรถไฟฟ้า ที่ออกแบบให้ใช้งานจริง</h2>
-          <p class="section-lead">
-            CX ENERTECH ให้บริการตั้งแต่เลือกเครื่องชาร์จ ออกแบบสถานี งาน EPC ไฟฟ้า
-            จนถึงระบบบริหารจัดการและการลงทุนสถานีชาร์จ
-            เพื่อให้ทุกโครงการชาร์จได้เสถียร ปลอดภัย และวัดผลได้
-          </p>
-          <ul class="intro__points">
-            <li>ออกแบบตามโหลดไฟฟ้าและพฤติกรรมการใช้งานจริง</li>
-            <li>ส่งมอบงาน EPC พร้อม commissioning ตามมาตรฐาน</li>
-            <li>เชื่อมต่อ OCPP / Payment / Monitoring ในระบบเดียว</li>
-            <li>มีแพ็กเกจสถานีและโมเดลลงทุนสำหรับธุรกิจ</li>
-          </ul>
-        </div>
-        <aside class="intro__stats" aria-label="EV service highlights">
-          <div v-for="s in stats" :key="s.label" class="stat">
-            <strong>{{ s.value }}</strong>
-            <span>{{ s.label }}</span>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- Ecosystem infographic -->
-    <section class="section eco">
-      <div class="container">
-        <div class="section-header centered">
-          <span class="section-label">Service Map</span>
-          <h2 class="section-title">แผนที่บริการ EV Charging</h2>
-          <p class="section-lead">
-            เลือกจุดเริ่มตามประเภทไซต์ แล้วขยายสู่สถานี แพลตฟอร์ม และโมเดลลงทุนได้ต่อเนื่อง
-          </p>
-        </div>
-
-        <div class="eco__map" role="list">
-          <NuxtLink
-            v-for="(node, i) in ecosystem"
-            :key="node.to"
-            :to="node.to"
-            class="eco__node"
-            :style="{ '--i': i }"
-            role="listitem"
-          >
-            <span class="eco__index">{{ String(i + 1).padStart(2, '0') }}</span>
-            <h3>{{ node.title }}</h3>
-            <p>{{ node.desc }}</p>
-            <span class="eco__cta">ดูบริการ →</span>
+      <div class="container hero__inner">
+        <p class="hero__brand animate-fade-up">CX ENERTECH · EV Charging</p>
+        <h1 class="hero__title animate-fade-up animate-delay-1">
+          DC Fast &amp; AC Charging
+          <em>ครบวงจร</em>
+        </h1>
+        <p class="hero__lead animate-fade-up animate-delay-2">
+          จากเครื่องชาร์จบ้านถึงสถานีสาธารณะ — ออกแบบ ติดตั้ง EPC
+          และแพลตฟอร์มบริหาร ในมาตรฐานเดียวของ CX ENERTECH
+        </p>
+        <div class="hero__actions animate-fade-up animate-delay-3">
+          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">
+            ดู CX Charge Packages
+            <span aria-hidden="true">→</span>
           </NuxtLink>
+          <NuxtLink to="/ev-charging/quotation" class="btn btn-secondary">ขอใบเสนอราคา</NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product series (tabs) -->
+    <section class="series">
+      <div class="container">
+        <div class="series__head">
+          <span class="section-label">Our Products</span>
+          <h2 class="section-title">เลือกซีรีส์ที่เหมาะกับไซต์ของคุณ</h2>
         </div>
 
-        <div class="eco__flow" aria-hidden="true">
-          <div class="eco__flow-track">
-            <span>สำรวจไซต์</span>
-            <span>ออกแบบระบบ</span>
-            <span>ติดตั้ง EPC</span>
-            <span>Commission</span>
-            <span>บริหาร &amp; ลงทุน</span>
+        <div class="series__tabs" role="tablist" aria-label="EV product series">
+          <button
+            v-for="s in series"
+            :key="s.id"
+            type="button"
+            role="tab"
+            class="series__tab"
+            :class="{ 'series__tab--active': activeSeries === s.id }"
+            :aria-selected="activeSeries === s.id"
+            @click="activeSeries = s.id"
+          >
+            {{ s.label }}
+          </button>
+        </div>
+
+        <div
+          v-for="s in series"
+          v-show="activeSeries === s.id"
+          :key="s.id"
+          class="series__panel"
+          role="tabpanel"
+        >
+          <div class="series__copy">
+            <p class="series__kicker">{{ s.kicker }}</p>
+            <h3>{{ s.title }}</h3>
+            <p class="series__power">{{ s.power }}</p>
+            <p class="series__desc">{{ s.desc }}</p>
+            <ul class="series__points">
+              <li v-for="point in s.points" :key="point">{{ point }}</li>
+            </ul>
+            <div class="series__actions">
+              <NuxtLink :to="s.to" class="btn btn-primary">{{ s.cta }}</NuxtLink>
+              <NuxtLink to="/ev-charging/quotation" class="btn btn-secondary">ขอใบเสนอราคา</NuxtLink>
+            </div>
+          </div>
+          <div class="series__visual">
+            <img
+              :src="s.image"
+              :alt="s.title"
+              width="900"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Service pillars with richer copy -->
-    <section class="section">
+    <!-- System modules -->
+    <section class="modules">
       <div class="container">
-        <div class="section-header">
-          <span class="section-label">Services</span>
-          <h2 class="section-title">บริการหลักที่เราดูแลให้ครบ</h2>
+        <div class="modules__head">
+          <span class="section-label">System</span>
+          <h2 class="section-title">องค์ประกอบสถานีชาร์จ CX</h2>
           <p class="section-lead">
-            แต่ละบริการออกแบบให้เชื่อมต่อกันได้ — จากเครื่องเดียวในบ้านจนถึงสถานีสาธารณะหลายหัวชาร์จ
+            ฮาร์ดแวร์ ระบบไฟฟ้า และซอฟต์แวร์ทำงานร่วมกัน — ไม่ใช่แค่ขายเครื่อง
           </p>
         </div>
 
-        <div class="pillars">
-          <article v-for="p in pillars" :key="p.title" class="pillar">
-            <div class="pillar__head">
-              <span class="pillar__tag">{{ p.tag }}</span>
-              <h3>{{ p.title }}</h3>
-            </div>
-            <p class="pillar__lead">{{ p.lead }}</p>
-            <ul class="pillar__list">
-              <li v-for="item in p.items" :key="item">{{ item }}</li>
+        <div class="modules__grid">
+          <article v-for="(m, i) in modules" :key="m.title" class="module" :style="{ '--i': i }">
+            <span class="module__index">{{ String(i + 1).padStart(2, '0') }}</span>
+            <h3>{{ m.title }}</h3>
+            <ul>
+              <li v-for="item in m.items" :key="item">{{ item }}</li>
             </ul>
-            <NuxtLink :to="p.to" class="pillar__link">{{ p.linkLabel }} →</NuxtLink>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Delivery process -->
-    <section class="section process">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Delivery</span>
-          <h2 class="section-title">ขั้นตอนส่งมอบงาน EV</h2>
-          <p class="section-lead">
-            กระบวนการมาตรฐานที่ทีมวิศวกรและทีมสถานีใช้จริง เพื่อลดความเสี่ยงด้านไฟฟ้าและความล่าช้า
-          </p>
-        </div>
-
-        <ol class="steps">
-          <li v-for="(step, i) in steps" :key="step.title" class="step">
-            <span class="step__num">{{ String(i + 1).padStart(2, '0') }}</span>
-            <div>
-              <h3>{{ step.title }}</h3>
-              <p>{{ step.desc }}</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Audiences -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Who It's For</span>
-          <h2 class="section-title">เหมาะกับใคร</h2>
-        </div>
-        <div class="audience">
-          <div v-for="a in audiences" :key="a.title" class="audience__item">
-            <h3>{{ a.title }}</h3>
-            <p>{{ a.desc }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Packages + Investment strip -->
-    <section class="section offer">
-      <div class="container offer__grid">
-        <div class="offer__block">
-          <span class="section-label">CX Charge Packages</span>
-          <h2>CX Station &amp; CX DC</h2>
+    <!-- Project reference -->
+    <section class="refs">
+      <div class="container refs__inner">
+        <div class="refs__copy">
+          <span class="section-label">Project Reference</span>
+          <h2 class="section-title">ดูแลครบตั้งแต่ติดตั้งถึงบริหารสถานี</h2>
           <p>
-            แพ็กเกจทางการ CX Station S4 / S10 / Hub และเครื่องชาร์จ CX DC
-            เปรียบเทียบกำลัง จุดชาร์จ และ CAPEX อ้างอิงก่อนขอใบเสนอราคา
+            จำหน่าย · ออกแบบ EPC · ทดสอบ · บำรุงรักษา · แพลตฟอร์มบริหาร —
+            One-stop สำหรับโครงสร้างพื้นฐาน EV ที่วัดผลได้
           </p>
-          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">ดูแพ็กเกจ CX</NuxtLink>
-        </div>
-        <div class="offer__block offer__block--alt">
-          <span class="section-label">Investment</span>
-          <h2>โอกาสลงทุนสถานีชาร์จ</h2>
-          <p>
-            ปรึกษาโมเดลรายได้ จุดคุ้มทุน และการแบ่งผลตอบแทน สำหรับนักลงทุนและเจ้าของพื้นที่
+          <p class="refs__note">
+            รองรับ OCPP และการเชื่อมต่อระบบชำระเงิน / มอนิเตอร์ทุกแพลตฟอร์มมาตรฐาน
           </p>
-          <NuxtLink to="/ev-charging/packages/payback" class="btn btn-secondary">ดูจุดคืนทุน</NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <!-- Explore links -->
-    <section class="section explore">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Explore</span>
-          <h2 class="section-title">เข้าสู่บริการย่อย</h2>
-        </div>
-        <div class="sub-links">
-          <NuxtLink v-for="l in links" :key="l.to" :to="l.to" class="sub-link">
-            {{ l.label }} <span>→</span>
+          <NuxtLink to="/projects?category=ev" class="btn btn-primary">
+            ดูโครงการ EV
+            <span aria-hidden="true">→</span>
           </NuxtLink>
+        </div>
+
+        <div class="refs__gallery" aria-label="ตัวอย่างโครงการ EV">
+          <figure
+            v-for="(g, i) in gallery"
+            :key="g.src"
+            class="refs__shot"
+            :class="`refs__shot--${i + 1}`"
+          >
+            <img :src="g.src" :alt="g.alt" loading="lazy" width="800" height="600" />
+            <figcaption>{{ g.caption }}</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages strip -->
+    <section class="offer">
+      <div class="container offer__inner">
+        <div>
+          <span class="section-label">CX Charge Packages</span>
+          <h2 class="section-title">CX Station · CX DC · CX AC</h2>
+          <p>
+            เปรียบเทียบกำลัง จุดชาร์จ และจุดคืนทุนอ้างอิงก่อนขอใบเสนอราคา
+          </p>
+        </div>
+        <div class="offer__actions">
+          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">ดูแพ็กเกจ</NuxtLink>
+          <NuxtLink to="/ev-charging/packages/payback" class="btn btn-secondary">จุดคืนทุน</NuxtLink>
         </div>
       </div>
     </section>
@@ -181,165 +165,131 @@
       description="ปรึกษาทีม CX ENERTECH เพื่อออกแบบระบบชาร์จ เลือกแพ็กเกจ หรือวางแผนลงทุนสถานี"
       primary-label="ขอใบเสนอราคา EV"
       primary-to="/ev-charging/quotation"
-      secondary-label="ดูโครงการ EV"
-      secondary-to="/projects?category=ev"
+      secondary-label="ดู Home Charger"
+      secondary-to="/ev-charging/home-charger"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-const stats = [
-  { value: 'AC / DC', label: 'รองรับทุกประเภทเครื่องชาร์จ' },
-  { value: 'EPC', label: 'ออกแบบ ติดตั้ง Commission ครบ' },
-  { value: 'OCPP', label: 'เชื่อมต่อแพลตฟอร์มมาตรฐาน' },
-  { value: 'ROI', label: 'วิเคราะห์ลงทุนและจุดคุ้มทุน' },
-]
-
-const ecosystem = [
+const series = [
   {
-    title: 'Home',
-    desc: 'ชาร์จบ้านและคอนโด ด้วย AC Charger ที่ติดตั้งปลอดภัย',
+    id: 'dc',
+    label: 'DC Fast',
+    kicker: 'CX DC Series',
+    title: 'DC Fast Charger',
+    power: '60 – 240 kW+',
+    desc: 'ชาร์จเร็วสำหรับสถานีสาธารณะ ห้าง โรงแรม และ depot — รองรับ CCS2 และการจัดสรรกำลังแบบสมาร์ท',
+    points: [
+      'ตู้ DC S / J และสถานีหลายหัวชาร์จ',
+      'ออกแบบโหลดไฟและ footprint ตามไซต์',
+      'เชื่อม OCPP / Payment / Monitoring',
+    ],
+    image: '/images/packages/cx-dc-120.jpg',
+    to: '/ev-charging/commercial/dc-fast',
+    cta: 'ดู DC Fast',
+  },
+  {
+    id: 'ac',
+    label: 'AC Charger',
+    kicker: 'CX AC Series',
+    title: 'AC EV Charger',
+    power: '7 – 22 kW',
+    desc: 'ชาร์จบ้าน ที่พักอาศัย และจุดจอดปลายทาง — ติดตั้งปลอดภัย ใช้งานง่าย พร้อมขยายในอนาคต',
+    points: [
+      'Wallbox / Pedestal ตามพื้นที่',
+      'ออกแบบวงจรและเบรกเกอร์ตามโหลดบ้าน',
+      'รองรับหลายรุ่นรถและมาตรฐาน Type 2',
+    ],
+    image: '/images/packages/cx-ac-g7.jpg',
     to: '/ev-charging/home-charger',
+    cta: 'ดู Home / AC',
   },
   {
-    title: 'Commercial',
-    desc: 'จุดชาร์จอาคาร โรงแรม ห้าง และโรงงาน ทั้ง AC และ DC Fast',
-    to: '/ev-charging/commercial',
-  },
-  {
-    title: 'Station EPC',
-    desc: 'ออกแบบสถานี ระบบไฟฟ้า Transformer RMU/MDB จนเปิดใช้งาน',
+    id: 'station',
+    label: 'Station EPC',
+    kicker: 'CX Station',
+    title: 'สถานีชาร์จครบวงจร',
+    power: 'S4 · S10 · Hub',
+    desc: 'จาก engineering ถึง commissioning — Transformer, RMU/MDB, canopy และจุดจอดในระบบเดียว',
+    points: [
+      'ออกแบบสถานีและระบบไฟฟ้าทั้งไซต์',
+      'แพ็กเกจลงทุน SME และ Turnkey Hub',
+      'ทดสอบก่อนเปิดให้บริการจริง',
+    ],
+    image: '/images/packages/cx-station-s4.jpg',
     to: '/ev-charging/station',
+    cta: 'ดู Station EPC',
   },
   {
-    title: 'Platform',
-    desc: 'บริหารเครื่องชาร์จ การชำระเงิน รายงาน และมอนิเตอร์ระยะไกล',
-    to: '/ev-charging/management',
-  },
-  {
-    title: 'CX Packages',
-    desc: 'เลือก CX Station / CX DC แล้วปรับตามพื้นที่จริง',
-    to: '/ev-charging/packages',
-  },
-  {
-    title: 'Payback / จุดคืนทุน',
-    desc: 'ดูระยะคืนทุนอ้างอิงของแพ็กเกจลงทุนและสถานีสำเร็จรูป',
-    to: '/ev-charging/packages/payback',
-  },
-]
-
-const pillars = [
-  {
-    tag: '01 · Residential',
-    title: 'Home Charger',
-    lead: 'ติดตั้งเครื่องชาร์จบ้านและที่พักอาศัยให้ใช้งานง่าย ปลอดภัย และพร้อมขยายในอนาคต',
-    items: [
-      'เลือก AC Charger ตามรุ่นรถและกำลังไฟบ้าน',
-      'ออกแบบวงจร เบรกเกอร์ และจุดติดตั้ง',
-      'ติดตั้งมาตรฐาน พร้อมทดสอบระบบ',
-      'บริการบำรุงรักษาและซัพพอร์ตหลังติดตั้ง',
-    ],
-    to: '/ev-charging/home-charger',
-    linkLabel: 'ดู Home Charger',
-  },
-  {
-    tag: '02 · Business',
-    title: 'Commercial Charger',
-    lead: 'เพิ่มจุดบริการชาร์จในอาคารธุรกิจ เพื่อรองรับลูกค้า พนักงาน และยานพาหนะองค์กร',
-    items: [
-      'AC Wallbox และ DC Fast ตามทราฟฟิก',
-      'วางผังจุดจอดและการจ่ายไฟ',
-      'รองรับหลายยี่ห้อ EV และมาตรฐาน CCS2',
-      'เชื่อมต่อระบบชำระเงินและรายงานการใช้งาน',
-    ],
-    to: '/ev-charging/commercial',
-    linkLabel: 'ดู Commercial Charger',
-  },
-  {
-    tag: '03 · Infrastructure',
-    title: 'EV Charging Station',
-    lead: 'สร้างสถานีชาร์จแบบครบวงจร ตั้งแต่ engineering ถึง commissioning',
-    items: [
-      'ออกแบบสถานีและโหลดไฟฟ้าทั้งระบบ',
-      'Transformer / RMU / MDB และงานไฟฟ้า',
-      'โครงสร้าง canopy จุดจอด ป้าย และ CCTV',
-      'ทดสอบระบบก่อนเปิดให้บริการจริง',
-    ],
-    to: '/ev-charging/station',
-    linkLabel: 'ดู Station EPC',
-  },
-  {
-    tag: '04 · Software',
-    title: 'Management Platform',
-    lead: 'ควบคุมสถานีจากศูนย์กลาง ดูสถานะเครื่องชาร์จ รายได้ และประสิทธิภาพแบบเรียลไทม์',
-    items: [
+    id: 'platform',
+    label: 'Platform',
+    kicker: 'Management',
+    title: 'EV Management Platform',
+    power: 'OCPP · Payment · Monitor',
+    desc: 'ควบคุมสถานีจากศูนย์กลาง ดูสถานะเครื่องชาร์จ รายได้ และประสิทธิภาพแบบเรียลไทม์',
+    points: [
       'Charger management ผ่าน OCPP',
-      'Payment / QR / RFID ตามโมเดลธุรกิจ',
-      'Monitoring, alerting และรายงาน',
-      'เชื่อมต่อ ERP และการบริหารหลายสาขา',
+      'QR / RFID และการรายงาน',
+      'เชื่อมต่อหลายสาขาและ ERP',
     ],
+    image: '/images/projects/project-mall-ev-hub.jpg',
     to: '/ev-charging/management',
-    linkLabel: 'ดู Management Platform',
+    cta: 'ดู Platform',
+  },
+] as const
+
+const activeSeries = ref<(typeof series)[number]['id']>('dc')
+
+const modules = [
+  {
+    title: 'Power & Charger',
+    items: [
+      'แปลงและจ่ายไฟ AC/DC ตามโปรไฟล์การชาร์จ',
+      'ควบคุมเซสชันและความปลอดภัยของหัวจ่าย',
+      'มิเตอร์และการคิดเงินตามการใช้งานจริง',
+    ],
+  },
+  {
+    title: 'Electrical EPC',
+    items: [
+      'ออกแบบโหลด Transformer / RMU / MDB',
+      'งานติดตั้งมาตรฐานและ commissioning',
+      'โครงสร้างจุดจอด canopy ป้าย และ CCTV',
+    ],
+  },
+  {
+    title: 'Digital Platform',
+    items: [
+      'มอนิเตอร์และแจ้งเตือนระยะไกล',
+      'ชำระเงินและรายงานรายได้',
+      'บริหารหลายสถานีบนแดชบอร์ดเดียว',
+    ],
   },
 ]
 
-const steps = [
+const gallery = [
   {
-    title: 'สำรวจและวิเคราะห์ไซต์',
-    desc: 'ตรวจกำลังไฟ จุดจอด พฤติกรรมการใช้งาน และข้อจำกัดของพื้นที่ เพื่อกำหนดขนาดระบบที่เหมาะสม',
+    src: '/images/projects/project-dc-station.jpg',
+    alt: 'สถานีชาร์จ DC',
+    caption: 'DC Station',
   },
   {
-    title: 'ออกแบบวิศวกรรมและ BOQ',
-    desc: 'จัดทำผังสถานี รายการอุปกรณ์ งานไฟฟ้า และประมาณการ เพื่อให้เห็นขอบเขตงานก่อนเริ่มก่อสร้าง',
+    src: '/images/projects/project-mall-ev-hub.jpg',
+    alt: 'EV Hub ในห้าง',
+    caption: 'Mall EV Hub',
   },
   {
-    title: 'จัดหา ติดตั้ง และทดสอบ',
-    desc: 'ติดตั้งเครื่องชาร์จ ระบบไฟฟ้า และงานโยธา พร้อมทดสอบความปลอดภัยและประสิทธิภาพ',
+    src: '/images/projects/project-fleet-depot.jpg',
+    alt: 'จุดชาร์จฟลีต',
+    caption: 'Fleet Depot',
   },
-  {
-    title: 'Commissioning และส่งมอบ',
-    desc: 'เปิดใช้งานจริง เชื่อมต่อแพลตฟอร์ม อบรมผู้ดูแล และส่งมอบคู่มือการใช้งาน',
-  },
-  {
-    title: 'ดูแลต่อเนื่อง / ขยายสถานี',
-    desc: 'มอนิเตอร์การใช้งาน วางแผนบำรุงรักษา และขยายหัวชาร์จหรือโมเดลลงทุนเมื่อทราฟฟิกเพิ่มขึ้น',
-  },
-]
-
-const audiences = [
-  {
-    title: 'บ้านและที่พักอาศัย',
-    desc: 'เจ้าของบ้าน คอนโด และหมู่บ้านจัดสรร ที่ต้องการชาร์จสะดวกทุกคืน',
-  },
-  {
-    title: 'อาคารและธุรกิจ',
-    desc: 'โรงแรม ห้าง สำนักงาน โรงงาน ที่อยากเพิ่มบริการและประสบการณ์ลูกค้า',
-  },
-  {
-    title: 'ผู้พัฒนาสถานีชาร์จ',
-    desc: 'เจ้าของพื้นที่และผู้ประกอบการที่ต้องการสร้างสถานีพร้อมระบบบริหาร',
-  },
-  {
-    title: 'นักลงทุน EV Infrastructure',
-    desc: 'ผู้ที่มองหาแพ็กเกจลงทุนสถานีชาร์จ พร้อมประมาณการรายได้และจุดคุ้มทุน',
-  },
-]
-
-const links = [
-  { label: 'Home Charger', to: '/ev-charging/home-charger' },
-  { label: 'Commercial EV Charger', to: '/ev-charging/commercial' },
-  { label: 'EV Charging Station', to: '/ev-charging/station' },
-  { label: 'Management Platform', to: '/ev-charging/management' },
-  { label: 'EV Charger Products', to: '/ev-charging/products' },
-  { label: 'CX Charge Packages', to: '/ev-charging/packages' },
-  { label: 'Payback / จุดคืนทุน', to: '/ev-charging/packages/payback' },
-  { label: 'ขอใบเสนอราคา EV', to: '/ev-charging/quotation' },
 ]
 
 useSeoMeta({
   title: 'EV Charging | CX ENERTECH',
   description:
-    'โซลูชัน EV Charging ครบวงจร — Home Charger, Commercial, Station EPC, Management Platform, Packages และ Investment',
+    'โซลูชัน EV Charging ครบวงจร — DC Fast, AC Charger, Station EPC, Management Platform และ CX Charge Packages',
 })
 </script>
 
@@ -349,404 +299,446 @@ useSeoMeta({
   color: var(--color-white);
 }
 
-.intro {
-  display: grid;
-  grid-template-columns: 1.4fr 0.8fr;
-  gap: 3rem;
-  align-items: start;
+/* —— Hero —— */
+.hero {
+  position: relative;
+  min-height: min(92vh, 900px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.intro__points {
-  margin-top: 1.75rem;
+.hero__media {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 40%;
+  transform: scale(1.04);
+  animation: hero-zoom 18s var(--ease) both;
+}
+
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11, 11, 11, 0.92) 0%, rgba(11, 11, 11, 0.55) 48%, rgba(11, 11, 11, 0.25) 100%),
+    linear-gradient(180deg, rgba(11, 11, 11, 0.35) 0%, rgba(11, 11, 11, 0.88) 100%);
+}
+
+.hero__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: radial-gradient(rgba(212, 255, 0, 0.12) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(5rem, 12vh, 8rem) clamp(3.5rem, 8vh, 5.5rem);
+  max-width: 42rem;
+}
+
+.hero__brand {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+  margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  margin-bottom: 1.1rem;
+  color: var(--color-white);
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--color-gold);
+}
+
+.hero__lead {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+  max-width: 34rem;
+}
+
+.hero__actions {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 0.75rem;
 }
 
-.intro__points li {
-  position: relative;
-  padding-left: 1.25rem;
-  color: var(--color-muted);
-  line-height: 1.55;
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1.04);
+  }
 }
 
-.intro__points li::before {
+/* —— Series —— */
+.series {
+  padding: var(--space-section) 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(212, 255, 0, 0.05), transparent 55%),
+    #0d0d0d;
+}
+
+.series__head {
+  margin-bottom: 1.75rem;
+}
+
+.series__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.75rem;
+}
+
+.series__tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--color-muted);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -0.75rem;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.series__tab:hover {
+  color: var(--color-white);
+}
+
+.series__tab--active {
+  color: var(--color-lime);
+  border-bottom-color: var(--color-lime);
+}
+
+.series__panel {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+  animation: panel-in 0.45s var(--ease) both;
+}
+
+.series__kicker {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.65rem;
+}
+
+.series__copy h3 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin-bottom: 0.45rem;
+}
+
+.series__power {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-lime);
+  margin-bottom: 1rem;
+}
+
+.series__desc {
+  color: var(--color-silver);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  max-width: 34rem;
+}
+
+.series__points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 1.75rem;
+}
+
+.series__points li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.series__points li::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0.55em;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background: var(--color-lime);
 }
 
-.intro__stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.stat {
-  background: #111;
-  padding: 1.35rem 1.2rem;
-  min-height: 110px;
+.series__actions {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.35rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-.stat strong {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--color-lime);
-  letter-spacing: 0.04em;
-}
-
-.stat span {
-  font-size: 0.85rem;
-  color: var(--color-muted);
-  line-height: 1.4;
-}
-
-/* Ecosystem map */
-.eco {
+.series__visual {
+  position: relative;
+  min-height: 320px;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212, 255, 0, 0.06), transparent 60%),
-    #0d0d0d;
+    linear-gradient(145deg, rgba(212, 255, 0, 0.06), transparent 40%),
+    #111;
   overflow: hidden;
 }
 
-.eco__map {
+.series__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: contain;
+  object-position: center;
+  padding: 1.5rem;
+  transition: transform 0.6s var(--ease);
+}
+
+.series__panel:hover .series__visual img {
+  transform: scale(1.03);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* —— Modules —— */
+.modules {
+  padding: var(--space-section) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.modules__head {
+  margin-bottom: 2.5rem;
+  max-width: 40rem;
+}
+
+.modules__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.eco__node {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  padding: 1.5rem 1.35rem 1.35rem;
-  background: rgba(21, 21, 21, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-top: 2px solid transparent;
-  min-height: 210px;
-  transition: border-color 0.3s, transform 0.4s var(--ease), background 0.3s;
-  animation: rise 0.7s var(--ease) both;
-  animation-delay: calc(var(--i) * 70ms);
+.module {
+  padding: 1.75rem 1.5rem 1.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  animation: panel-in 0.6s var(--ease) both;
+  animation-delay: calc(var(--i) * 80ms);
 }
 
-.eco__node:hover {
-  border-color: rgba(212, 255, 0, 0.35);
-  border-top-color: var(--color-lime);
-  transform: translateY(-4px);
-  background: #151515;
+.module:not(:last-child) {
+  padding-right: 1.75rem;
+  margin-right: 1.75rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.eco__index {
+.module__index {
+  display: block;
   font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   color: var(--color-gold);
+  margin-bottom: 0.85rem;
 }
 
-.eco__node h3 {
-  font-size: 1.25rem;
-  color: var(--color-white);
+.module h3 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
 }
 
-.eco__node p {
-  color: var(--color-muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
-  flex: 1;
-}
-
-.eco__cta {
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--color-lime);
-}
-
-.eco__flow {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.eco__flow-track {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem 0;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.eco__flow-track span {
-  position: relative;
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  padding-right: 2rem;
-}
-
-.eco__flow-track span:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: 0.5rem;
-  top: 50%;
-  width: 1.1rem;
-  height: 1px;
-  background: var(--color-lime);
-  opacity: 0.55;
-}
-
-/* Pillars */
-.pillars {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 2rem;
-}
-
-.pillar {
-  padding: 1.75rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.pillar__tag {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-lime);
-  margin-bottom: 0.65rem;
-}
-
-.pillar__head h3 {
-  font-size: 1.45rem;
-  color: var(--color-white);
-  margin-bottom: 0.75rem;
-}
-
-.pillar__lead {
-  color: var(--color-silver);
-  line-height: 1.65;
-  margin-bottom: 1.1rem;
-  max-width: 36rem;
-}
-
-.pillar__list {
+.module ul {
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  margin-bottom: 1.25rem;
 }
 
-.pillar__list li {
-  position: relative;
-  padding-left: 1.1rem;
+.module li {
   color: var(--color-muted);
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.55;
+  padding-left: 0.85rem;
+  border-left: 2px solid rgba(212, 255, 0, 0.35);
 }
 
-.pillar__list li::before {
-  content: '';
+/* —— References —— */
+.refs {
+  padding: var(--space-section) 0;
+  background: #0a0a0a;
+}
+
+.refs__inner {
+  display: grid;
+  grid-template-columns: 0.95fr 1.15fr;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.refs__copy p {
+  color: var(--color-silver);
+  line-height: 1.65;
+  margin: 1rem 0 0;
+  max-width: 34rem;
+}
+
+.refs__note {
+  color: var(--color-muted) !important;
+  margin-bottom: 1.75rem !important;
+}
+
+.refs__gallery {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.75rem;
+  min-height: 420px;
+}
+
+.refs__shot {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  background: #111;
+}
+
+.refs__shot--1 {
+  grid-row: 1 / span 2;
+}
+
+.refs__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--ease);
+}
+
+.refs__shot:hover img {
+  transform: scale(1.04);
+}
+
+.refs__shot figcaption {
   position: absolute;
   left: 0;
-  top: 0.55em;
-  width: 6px;
-  height: 6px;
-  background: var(--color-gold);
-}
-
-.pillar__link {
+  right: 0;
+  bottom: 0;
+  padding: 0.85rem 1rem;
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--color-lime);
-}
-
-.pillar__link:hover {
-  color: var(--color-lime-soft);
-}
-
-/* Process */
-.process {
-  background: #101010;
-}
-
-.steps {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  counter-reset: none;
-}
-
-.step {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr;
-  gap: 1.25rem;
-  padding: 1.5rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.step:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.step__num {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-gold);
   letter-spacing: 0.06em;
-  padding-top: 0.15rem;
-}
-
-.step h3 {
-  font-size: 1.15rem;
   color: var(--color-white);
-  margin-bottom: 0.4rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
 }
 
-.step p {
-  color: var(--color-muted);
-  max-width: 44rem;
-  line-height: 1.65;
-}
-
-/* Audience */
-.audience {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-}
-
-.audience__item {
-  padding-top: 1.25rem;
-  border-top: 2px solid var(--color-lime);
-}
-
-.audience__item h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.55rem;
-}
-
-.audience__item p {
-  color: var(--color-muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
-}
-
-/* Offer strip */
+/* —— Offer —— */
 .offer {
+  padding: 3.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(120deg, rgba(14, 26, 43, 0.9), rgba(11, 11, 11, 0.95)),
-    #0e1a2b;
+    linear-gradient(90deg, rgba(212, 175, 55, 0.08), transparent 40%),
+    var(--color-panel);
 }
 
-.offer__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+.offer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  align-items: flex-end;
 }
 
-.offer__block h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  margin: 0.35rem 0 0.85rem;
-}
-
-.offer__block p {
+.offer__inner p {
   color: var(--color-muted);
-  line-height: 1.65;
-  margin-bottom: 1.5rem;
-  max-width: 28rem;
+  margin-top: 0.65rem;
+  max-width: 36rem;
 }
 
-.offer__block--alt {
-  padding-left: 2rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.explore {
-  background: #0b0b0b;
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.offer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 @media (max-width: 960px) {
-  .intro,
-  .eco__map,
-  .pillars,
-  .audience,
-  .offer__grid {
+  .series__panel,
+  .refs__inner,
+  .modules__grid {
     grid-template-columns: 1fr;
   }
 
-  .offer__block--alt {
-    padding-left: 0;
-    border-left: none;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  .module:not(:last-child) {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
   }
 
-  .eco__map {
-    grid-template-columns: 1fr 1fr;
+  .refs__gallery {
+    min-height: 360px;
   }
 }
 
 @media (max-width: 640px) {
-  .eco__map,
-  .intro__stats {
+  .hero {
+    min-height: 78vh;
+  }
+
+  .hero__inner {
+    max-width: none;
+  }
+
+  .series__visual img {
+    min-height: 260px;
+    padding: 1rem;
+  }
+
+  .refs__gallery {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
   }
 
-  .step {
-    grid-template-columns: 3rem 1fr;
+  .refs__shot--1 {
+    grid-row: auto;
+    min-height: 220px;
   }
 
-  .eco__flow-track {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-
-  .eco__flow-track span {
-    padding-right: 0;
-  }
-
-  .eco__flow-track span:not(:last-child)::after {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .eco__node {
-    animation: none;
+  .refs__shot {
+    min-height: 180px;
   }
 }
 </style>

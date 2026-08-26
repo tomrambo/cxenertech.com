@@ -45,11 +45,23 @@ export type LocaleLabel = { th: string; en: string }
 
 export const PACKAGE_TYPE_LABELS: Record<string, LocaleLabel> = {
   equipment: { th: 'เครื่องชาร์จ', en: 'Equipment' },
-  turnkey: { th: 'สถานีสำเร็จรูป', en: 'Turnkey Station' },
+  turnkey: { th: 'สถานีสำเร็จรูป', en: 'Turnkey' },
   investment: { th: 'แพ็กเกจลงทุน', en: 'Investment' },
+  epc: { th: 'สถานี EPC', en: 'Station EPC' },
+  om: { th: 'O&M', en: 'O&M' },
+  platform: { th: 'แพลตฟอร์ม', en: 'Platform' },
+  expansion: { th: 'ขยายสถานี', en: 'Expansion' },
 }
 
-export function typeLabel(type: string, locale: 'th' | 'en' | 'both' = 'both') {
+export function typeLabel(
+  type: string,
+  locale: 'th' | 'en' | 'both' = 'both',
+  overrideName?: string | null,
+) {
+  if (overrideName?.trim()) {
+    if (locale === 'both') return overrideName.trim()
+    return overrideName.trim()
+  }
   const label = PACKAGE_TYPE_LABELS[type]
   if (!label) return type
   if (locale === 'th') return label.th
