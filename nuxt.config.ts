@@ -44,8 +44,8 @@ export default defineNuxtConfig({
     public: {
       /** ว่าง = ใช้ /api/partners/register (Nitro / Cloudflare Worker) */
       partnerRegisterUrl: process.env.NUXT_PUBLIC_PARTNER_REGISTER_URL || '',
-      /** Google Tag Manager container (เช่น GTM-XXXXXXX) — ว่าง = ไม่โหลดแท็ก */
-      gtmId: process.env.NUXT_PUBLIC_GTM_ID || '',
+      /** Google Tag Manager — Tag Assistant container */
+      gtmId: process.env.NUXT_PUBLIC_GTM_ID || 'GTM-5MKFVS3N',
     },
   },
 
