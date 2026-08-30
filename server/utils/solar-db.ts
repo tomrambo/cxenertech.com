@@ -1,6 +1,6 @@
 /**
  * Solar rooftop packages store — JSON file backed (CI-safe).
- * Source: server/database/solar-package-seed.ts (PEA SOLAR price table)
+ * Source: server/database/solar-package-seed.ts (CX ENERTECH sell-price tiers)
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -14,6 +14,7 @@ import {
 export type SolarPackage = {
   id: string
   slug: string
+  slug_aliases: string[]
   code: string
   name: string
   name_th: string
@@ -53,6 +54,7 @@ function mapSeed(p: SeedSolarPackage, now = new Date().toISOString()): SolarPack
   return {
     id: p.id,
     slug: p.slug,
+    slug_aliases: p.slugAliases ?? [],
     code: p.code,
     name: p.name,
     name_th: p.nameTh,
@@ -139,7 +141,13 @@ export function listSolarPackages(filters?: {
 }
 
 export function getSolarPackageBySlug(slug: string) {
-  return readStore().find((p) => p.slug === slug && p.active) ?? null
+  return (
+    readStore().find(
+      (p) =>
+        p.active &&
+        (p.slug === slug || (p.slug_aliases ?? []).includes(slug)),
+    ) ?? null
+  )
 }
 
 export function getSolarDbPath() {

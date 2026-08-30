@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    /** origin ของ bo-cx-cmms — ใช้ดึง charge packages, บทความ และรูปจาก DB */
+    /** origin ของ bo-cx-cmms — ใช้ดึง charge packages, solar packages, บทความ และรูปจาก DB */
     cmmsApiBaseUrl:
       process.env.NUXT_CMMS_API_BASE_URL || 'https://bo-cx-cmms.conceptx.co.th',
     partnerIngestSecret: process.env.PARTNER_INGEST_SECRET || '',

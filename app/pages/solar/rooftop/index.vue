@@ -11,8 +11,8 @@
           <p>ระบบโซลาร์รูฟท็อปสำหรับบ้าน อาคารพาณิชย์ โรงงาน และคลังสินค้า</p>
           <p>
             ดูแพ็กเกจราคา
-            <NuxtLink to="/solar/rooftop/packages">PEA Solar Packages</NuxtLink>
-            ตามตารางราคา กฟภ. (3–20 kW)
+            <NuxtLink to="/solar/rooftop/packages">CX Rooftop Packages</NuxtLink>
+            ขนาด 3–500 kW เลือก On-grid / Hybrid / Off-grid
           </p>
         </div>
       </div>

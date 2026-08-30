@@ -70,6 +70,18 @@ Cloudflare Pages (git integration):
 ถ้าตั้งแล้วแต่เรียก CMMS ไม่ได้ API จะคืน error (ไม่ fallback เงียบ)
 
 
+## Solar Packages (จาก CMMS)
+
+หน้า `/solar/rooftop/packages` ดึงข้อมูลผ่าน Nitro API ของเว็บไซต์ แล้ว proxy ไป CMMS:
+
+1. เบราว์เซอร์เรียก `/api/solar/packages` และ `/api/solar/packages/:slug`
+2. Worker เรียก `NUXT_CMMS_API_BASE_URL/api/public/solar-packages` (+ `/:slug`)
+3. จัดการแพ็กเกจใน CMMS เมนู **แพ็กเกจโซลาร์** (`solar_packages`)
+4. ถ้า public API ยังไม่มี (404) เว็บจะใช้ข้อมูล local ชั่วคราว
+
+ค่า default ของ `NUXT_CMMS_API_BASE_URL` คือ `https://bo-cx-cmms.conceptx.co.th`
+
+
 ## Sitemap (routes)
 
 - `/` — Home

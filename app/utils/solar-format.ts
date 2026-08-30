@@ -18,12 +18,16 @@ export function phaseLabel(phase: string) {
 }
 
 export function startingPrice(pkg: {
-  string_inverter: { available: boolean; priceFrom: number | null }
-  micro_inverter: { available: boolean; priceFrom: number | null }
+  price_from?: number | null
+  string_inverter?: { available: boolean; priceFrom: number | null }
+  micro_inverter?: { available: boolean; priceFrom: number | null }
 }) {
+  if (typeof pkg.price_from === 'number' && Number.isFinite(pkg.price_from)) {
+    return pkg.price_from
+  }
   const prices = [
-    pkg.string_inverter.available ? pkg.string_inverter.priceFrom : null,
-    pkg.micro_inverter.available ? pkg.micro_inverter.priceFrom : null,
+    pkg.string_inverter?.available ? pkg.string_inverter.priceFrom : null,
+    pkg.micro_inverter?.available ? pkg.micro_inverter.priceFrom : null,
   ].filter((n): n is number => typeof n === 'number')
   if (!prices.length) return null
   return Math.min(...prices)

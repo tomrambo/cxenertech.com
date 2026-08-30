@@ -1,14 +1,17 @@
 [
   {
-    "id": "pkg-pea-solar-3",
-    "slug": "pea-solar-3kw",
-    "code": "PEA-SOLAR-3",
-    "name": "PEA Solar 3 kW",
+    "id": "pkg-cx-rt-3",
+    "slug": "cx-rt-3kw",
+    "slug_aliases": [
+      "pea-solar-3kw"
+    ],
+    "code": "CX-RT-3",
+    "name": "CX Rooftop 3 kW",
     "name_th": "แพ็กเกจโซลาร์รูฟท็อป 3 kW",
     "product_type": "rooftop",
-    "source_label": "PACKAGE PEA SOLAR · ปรับราคาใหม่",
+    "source_label": "CX ENERTECH · ราคาเริ่มต้นอ้างอิง 2569",
     "tagline": "3 kW · 1 เฟส · พื้นที่ 18 ตร.ม. · เริ่มต้นสำหรับบ้าน",
-    "description": "PEA Solar rooftop package 3 kW single-phase — แพ็กเกจโซลาร์หลังคาขนาดเล็ก เหมาะกับบ้านที่ใช้ไฟไม่มาก รองรับเฉพาะ Micro Inverter / Power Optimizer",
+    "description": "แพ็กเกจโซลาร์หลังคาขนาดเล็ก เหมาะกับบ้านที่ใช้ไฟไม่มาก รองรับเฉพาะ Micro Inverter / Power Optimizer",
     "power_kw": 3,
     "phase": "1P",
     "area_m2": 18,
@@ -29,7 +32,7 @@
     },
     "micro_inverter": {
       "available": true,
-      "priceFrom": 118500,
+      "priceFrom": 110000,
       "inverterBrand": "Deye",
       "panelBrand": "JA SOLAR"
     },
@@ -37,7 +40,7 @@
       "แผงโซลาร์และอินเวอร์เตอร์ตามแพ็กเกจ",
       "โครงสร้างติดตั้งบนหลังคา",
       "งานไฟฟ้าและเชื่อมต่อระบบ",
-      "ทดสอบและส่งมอบตามเงื่อนไข กฟภ."
+      "ยื่นเอกสารและเชื่อมต่อการไฟฟ้า (PEA/MEA ตามพื้นที่)"
     ],
     "features": [
       "เหมาะกับบ้านขนาดเล็ก",
@@ -46,23 +49,26 @@
       "ลดค่าไฟเฉลี่ย ~1,500 บาท/เดือน"
     ],
     "sort_order": 10,
-    "image": "/images/solar/pea-solar-price-table.png",
-    "effective_from": "2026-03-24",
+    "image": "/images/projects/project-residential-solar.jpg",
+    "effective_from": "2026-08-01",
     "currency": "THB",
     "active": true,
-    "created_at": "2026-08-07T10:19:58.383Z",
-    "updated_at": "2026-08-07T10:19:58.383Z"
+    "created_at": "2026-08-30T06:38:48.693Z",
+    "updated_at": "2026-08-30T06:38:48.693Z"
   },
   {
-    "id": "pkg-pea-solar-5-1p",
-    "slug": "pea-solar-5kw-1p",
-    "code": "PEA-SOLAR-5-1P",
-    "name": "PEA Solar 5 kW (1-Phase)",
+    "id": "pkg-cx-rt-5-1p",
+    "slug": "cx-rt-5kw-1p",
+    "slug_aliases": [
+      "pea-solar-5kw-1p"
+    ],
+    "code": "CX-RT-5-1P",
+    "name": "CX Rooftop 5 kW (1-Phase)",
     "name_th": "แพ็กเกจโซลาร์รูฟท็อป 5 kW (1 เฟส)",
     "product_type": "rooftop",
-    "source_label": "PACKAGE PEA SOLAR · ปรับราคาใหม่",
+    "source_label": "CX ENERTECH · ราคาเริ่มต้นอ้างอิง 2569",
     "tagline": "5 kW · 1 เฟส · พื้นที่ 30 ตร.ม. · บ้านและอาคารเล็ก",
-    "description": "PEA Solar 5 kW single-phase rooftop — แพ็กเกจ 5 kW ระบบ 1 เฟส เลือกได้ทั้ง String และ Micro Inverter",
+    "description": "แพ็กเกจ 5 kW ระบบ 1 เฟส เลือกได้ทั้ง String และ Micro Inverter — ขนาดยอดนิยมสำหรับบ้าน",
     "power_kw": 5,
     "phase": "1P",
     "area_m2": 30,
@@ -76,13 +82,13 @@
     "savings_monthly_thb": 2500,
     "string_inverter": {
       "available": true,
-      "priceFrom": 139000,
+      "priceFrom": 160000,
       "inverterBrand": "Deye",
       "panelBrand": "JinkoSolar"
     },
     "micro_inverter": {
       "available": true,
-      "priceFrom": 160500,
+      "priceFrom": 184000,
       "inverterBrand": "HUAWEI",
       "panelBrand": "JinkoSolar"
     },
@@ -90,7 +96,7 @@
       "แผงโซลาร์และอินเวอร์เตอร์ตามแพ็กเกจ",
       "โครงสร้างติดตั้งบนหลังคา",
       "งานไฟฟ้าและเชื่อมต่อระบบ",
-      "ทดสอบและส่งมอบตามเงื่อนไข กฟภ."
+      "ยื่นเอกสารและเชื่อมต่อการไฟฟ้า (PEA/MEA ตามพื้นที่)"
     ],
     "features": [
       "เลือก String หรือ Micro Inverter ได้",
@@ -99,23 +105,26 @@
       "รองรับแอร์ 12,000 BTU ได้ประมาณ 2 เครื่อง"
     ],
     "sort_order": 20,
-    "image": "/images/solar/pea-solar-price-table.png",
-    "effective_from": "2026-03-24",
+    "image": "/images/projects/project-residential-solar.jpg",
+    "effective_from": "2026-08-01",
     "currency": "THB",
     "active": true,
-    "created_at": "2026-08-07T10:19:58.383Z",
-    "updated_at": "2026-08-07T10:19:58.383Z"
+    "created_at": "2026-08-30T06:38:48.693Z",
+    "updated_at": "2026-08-30T06:38:48.693Z"
   },
   {
-    "id": "pkg-pea-solar-5-3p",
-    "slug": "pea-solar-5kw-3p",
-    "code": "PEA-SOLAR-5-3P",
-    "name": "PEA Solar 5 kW (3-Phase)",
+    "id": "pkg-cx-rt-5-3p",
+    "slug": "cx-rt-5kw-3p",
+    "slug_aliases": [
+      "pea-solar-5kw-3p"
+    ],
+    "code": "CX-RT-5-3P",
+    "name": "CX Rooftop 5 kW (3-Phase)",
     "name_th": "แพ็กเกจโซลาร์รูฟท็อป 5 kW (3 เฟส)",
     "product_type": "rooftop",
-    "source_label": "PACKAGE PEA SOLAR · ปรับราคาใหม่",
+    "source_label": "CX ENERTECH · ราคาเริ่มต้นอ้างอิง 2569",
     "tagline": "5 kW · 3 เฟส · พื้นที่ 30 ตร.ม. · อาคารที่ใช้ไฟ 3 เฟส",
-    "description": "PEA Solar 5 kW three-phase rooftop — แพ็กเกจ 5 kW ระบบ 3 เฟส สำหรับอาคารที่มิเตอร์เป็นสามเฟส",
+    "description": "แพ็กเกจ 5 kW ระบบ 3 เฟส สำหรับอาคารที่มิเตอร์เป็นสามเฟส — อินเวอร์เตอร์ 3 เฟสคิดเพิ่มจากชุด 1 เฟส",
     "power_kw": 5,
     "phase": "3P",
     "area_m2": 30,
@@ -129,13 +138,13 @@
     "savings_monthly_thb": 2500,
     "string_inverter": {
       "available": true,
-      "priceFrom": 163900,
+      "priceFrom": 175000,
       "inverterBrand": "HUAWEI",
       "panelBrand": "JinkoSolar"
     },
     "micro_inverter": {
       "available": true,
-      "priceFrom": 155000,
+      "priceFrom": 199000,
       "inverterBrand": "Hoymiles",
       "panelBrand": "JinkoSolar"
     },
@@ -143,32 +152,35 @@
       "แผงโซลาร์และอินเวอร์เตอร์ตามแพ็กเกจ",
       "โครงสร้างติดตั้งบนหลังคา",
       "งานไฟฟ้าและเชื่อมต่อระบบ",
-      "ทดสอบและส่งมอบตามเงื่อนไข กฟภ."
+      "ยื่นเอกสารและเชื่อมต่อการไฟฟ้า (PEA/MEA ตามพื้นที่)"
     ],
     "features": [
       "ระบบ 3 เฟส",
-      "Micro เริ่มถูกกว่า String ในขนาดนี้",
+      "ราคาสูงกว่าชุด 1 เฟสตามต้นทุนอินเวอร์เตอร์",
       "ประมาณการผลิต ~5,840 หน่วย/ปี",
       "ลดค่าไฟเฉลี่ย ~2,500 บาท/เดือน"
     ],
     "sort_order": 30,
-    "image": "/images/solar/pea-solar-price-table.png",
-    "effective_from": "2026-03-24",
+    "image": "/images/projects/project-residential-solar.jpg",
+    "effective_from": "2026-08-01",
     "currency": "THB",
     "active": true,
-    "created_at": "2026-08-07T10:19:58.383Z",
-    "updated_at": "2026-08-07T10:19:58.383Z"
+    "created_at": "2026-08-30T06:38:48.693Z",
+    "updated_at": "2026-08-30T06:38:48.693Z"
   },
   {
-    "id": "pkg-pea-solar-10",
-    "slug": "pea-solar-10kw",
-    "code": "PEA-SOLAR-10",
-    "name": "PEA Solar 10 kW",
+    "id": "pkg-cx-rt-10",
+    "slug": "cx-rt-10kw",
+    "slug_aliases": [
+      "pea-solar-10kw"
+    ],
+    "code": "CX-RT-10",
+    "name": "CX Rooftop 10 kW",
     "name_th": "แพ็กเกจโซลาร์รูฟท็อป 10 kW",
     "product_type": "rooftop",
-    "source_label": "PACKAGE PEA SOLAR · ปรับราคาใหม่",
+    "source_label": "CX ENERTECH · ราคาเริ่มต้นอ้างอิง 2569",
     "tagline": "10 kW · 3 เฟส · พื้นที่ 60 ตร.ม. · บ้านใหญ่ / อาคารพาณิชย์เล็ก",
-    "description": "PEA Solar 10 kW three-phase rooftop — แพ็กเกจ 10 kW สำหรับบ้านขนาดใหญ่หรืออาคารพาณิชย์ขนาดเล็ก",
+    "description": "แพ็กเกจ 10 kW สำหรับบ้านขนาดใหญ่หรืออาคารพาณิชย์ขนาดเล็ก — ราคาต่อ kW ต่ำกว่าชุดบ้านเล็ก",
     "power_kw": 10,
     "phase": "3P",
     "area_m2": 60,
@@ -182,13 +194,13 @@
     "savings_monthly_thb": 5000,
     "string_inverter": {
       "available": true,
-      "priceFrom": 214400,
+      "priceFrom": 280000,
       "inverterBrand": "Deye",
       "panelBrand": "JinkoSolar"
     },
     "micro_inverter": {
       "available": true,
-      "priceFrom": 239200,
+      "priceFrom": 322000,
       "inverterBrand": "Hoymiles",
       "panelBrand": "JinkoSolar"
     },
@@ -196,7 +208,7 @@
       "แผงโซลาร์และอินเวอร์เตอร์ตามแพ็กเกจ",
       "โครงสร้างติดตั้งบนหลังคา",
       "งานไฟฟ้าและเชื่อมต่อระบบ",
-      "ทดสอบและส่งมอบตามเงื่อนไข กฟภ."
+      "ยื่นเอกสารและเชื่อมต่อการไฟฟ้า (PEA/MEA ตามพื้นที่)"
     ],
     "features": [
       "กำลังผลิตสูงขึ้นชัดเจน",
@@ -205,23 +217,26 @@
       "รองรับแอร์ได้ประมาณ 3 เครื่อง"
     ],
     "sort_order": 40,
-    "image": "/images/solar/pea-solar-price-table.png",
-    "effective_from": "2026-03-24",
+    "image": "/images/projects/project-factory-rooftop.jpg",
+    "effective_from": "2026-08-01",
     "currency": "THB",
     "active": true,
-    "created_at": "2026-08-07T10:19:58.383Z",
-    "updated_at": "2026-08-07T10:19:58.383Z"
+    "created_at": "2026-08-30T06:38:48.693Z",
+    "updated_at": "2026-08-30T06:38:48.693Z"
   },
   {
-    "id": "pkg-pea-solar-15",
-    "slug": "pea-solar-15kw",
-    "code": "PEA-SOLAR-15",
-    "name": "PEA Solar 15 kW",
+    "id": "pkg-cx-rt-15",
+    "slug": "cx-rt-15kw",
+    "slug_aliases": [
+      "pea-solar-15kw"
+    ],
+    "code": "CX-RT-15",
+    "name": "CX Rooftop 15 kW",
     "name_th": "แพ็กเกจโซลาร์รูฟท็อป 15 kW",
     "product_type": "rooftop",
-    "source_label": "PACKAGE PEA SOLAR · ปรับราคาใหม่",
+    "source_label": "CX ENERTECH · ราคาเริ่มต้นอ้างอิง 2569",
     "tagline": "15 kW · 3 เฟส · พื้นที่ 90 ตร.ม. · อาคารพาณิชย์",
-    "description": "PEA Solar 15 kW three-phase rooftop — แพ็กเกจ 15 kW สำหรับอาคารพาณิชย์และบ้านที่ใช้ไฟสูง",
+    "description": "แพ็กเกจ 15 kW สำหรับอาคารพาณิชย์และบ้านที่ใช้ไฟสูง",
     "power_kw": 15,
     "phase": "3P",
     "area_m2": 90,
@@ -235,13 +250,13 @@
     "savings_monthly_thb": 7500,
     "string_inverter": {
       "available": true,
-      "priceFrom": 316500,
+      "priceFrom": 375000,
       "inverterBrand": "HUAWEI",
       "panelBrand": "JinkoSolar"
     },
     "micro_inverter": {
       "available": true,
-      "priceFrom": 319400,
+      "priceFrom": 431000,
       "inverterBrand": "Hoymiles",
       "panelBrand": "JinkoSolar"
     },
@@ -249,32 +264,35 @@
       "แผงโซลาร์และอินเวอร์เตอร์ตามแพ็กเกจ",
       "โครงสร้างติดตั้งบนหลังคา",
       "งานไฟฟ้าและเชื่อมต่อระบบ",
-      "ทดสอบและส่งมอบตามเงื่อนไข กฟภ."
+      "ยื่นเอกสารและเชื่อมต่อการไฟฟ้า (PEA/MEA ตามพื้นที่)"
     ],
     "features": [
       "สเกลอาคารพาณิชย์",
       "ประมาณการผลิต ~17,520 หน่วย/ปี",
       "ลดค่าไฟเฉลี่ย ~7,500 บาท/เดือน",
-      "String และ Micro ราคาใกล้เคียงกัน"
+      "Micro เป็นขั้นพรีเมียมจากชุด String"
     ],
     "sort_order": 50,
-    "image": "/images/solar/pea-solar-price-table.png",
-    "effective_from": "2026-03-24",
+    "image": "/images/projects/project-factory-rooftop.jpg",
+    "effective_from": "2026-08-01",
     "currency": "THB",
     "active": true,
-    "created_at": "2026-08-07T10:19:58.383Z",
-    "updated_at": "2026-08-07T10:19:58.383Z"
+    "created_at": "2026-08-30T06:38:48.693Z",
+    "updated_at": "2026-08-30T06:38:48.693Z"
   },
   {
-    "id": "pkg-pea-solar-20",
-    "slug": "pea-solar-20kw",
-    "code": "PEA-SOLAR-20",
-    "name": "PEA Solar 20 kW",
+    "id": "pkg-cx-rt-20",
+    "slug": "cx-rt-20kw",
+    "slug_aliases": [
+      "pea-solar-20kw"
+    ],
+    "code": "CX-RT-20",
+    "name": "CX Rooftop 20 kW",
     "name_th": "แพ็กเกจโซลาร์รูฟท็อป 20 kW",
     "product_type": "rooftop",
-    "source_label": "PACKAGE PEA SOLAR · ปรับราคาใหม่",
-    "tagline": "20 kW · 3 เฟส · พื้นที่ 120 ตร.ม. · แพ็กเกจใหญ่สุดในตาราง",
-    "description": "PEA Solar 20 kW three-phase rooftop — แพ็กเกจขนาดใหญ่สุดในตาราง PEA Solar สำหรับอาคารที่ใช้ไฟสูง",
+    "source_label": "CX ENERTECH · ราคาเริ่มต้นอ้างอิง 2569",
+    "tagline": "20 kW · 3 เฟส · พื้นที่ 120 ตร.ม. · แพ็กเกจใหญ่สุดในไลน์บ้าน/SME",
+    "description": "แพ็กเกจขนาดใหญ่สุดในไลน์รูฟท็อป CX สำหรับอาคารที่ใช้ไฟสูง",
     "power_kw": 20,
     "phase": "3P",
     "area_m2": 120,
@@ -288,13 +306,13 @@
     "savings_monthly_thb": 10000,
     "string_inverter": {
       "available": true,
-      "priceFrom": 388200,
+      "priceFrom": 500000,
       "inverterBrand": "HUAWEI",
       "panelBrand": "JinkoSolar"
     },
     "micro_inverter": {
       "available": true,
-      "priceFrom": 408400,
+      "priceFrom": 575000,
       "inverterBrand": "Hoymiles",
       "panelBrand": "JinkoSolar"
     },
@@ -302,20 +320,20 @@
       "แผงโซลาร์และอินเวอร์เตอร์ตามแพ็กเกจ",
       "โครงสร้างติดตั้งบนหลังคา",
       "งานไฟฟ้าและเชื่อมต่อระบบ",
-      "ทดสอบและส่งมอบตามเงื่อนไข กฟภ."
+      "ยื่นเอกสารและเชื่อมต่อการไฟฟ้า (PEA/MEA ตามพื้นที่)"
     ],
     "features": [
-      "กำลังสูงสุดในไลน์ PEA Solar ตารางนี้",
+      "กำลังสูงสุดในไลน์ CX Rooftop",
       "ประมาณการผลิต ~23,360 หน่วย/ปี",
       "ลดค่าไฟเฉลี่ย ~10,000 บาท/เดือน",
       "รองรับแอร์ได้ประมาณ 7 เครื่อง"
     ],
     "sort_order": 60,
-    "image": "/images/solar/pea-solar-price-table.png",
-    "effective_from": "2026-03-24",
+    "image": "/images/projects/project-factory-rooftop.jpg",
+    "effective_from": "2026-08-01",
     "currency": "THB",
     "active": true,
-    "created_at": "2026-08-07T10:19:58.383Z",
-    "updated_at": "2026-08-07T10:19:58.383Z"
+    "created_at": "2026-08-30T06:38:48.693Z",
+    "updated_at": "2026-08-30T06:38:48.693Z"
   }
 ]

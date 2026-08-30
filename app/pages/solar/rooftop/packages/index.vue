@@ -2,7 +2,7 @@
   <div>
     <PageHero
       title="Solar Packages"
-      description="แพ็กเกจโซลาร์รูฟท็อปตามตารางราคา SOLAR — 3 / 5 / 10 / 15 / 20 kW · String & Micro Inverter"
+      description="แพ็กเกจโซลาร์ CX ENERTECH จากฐานข้อมูล — On-grid / Hybrid / Off-grid"
       :crumbs="[
         { label: 'Home', to: '/' },
         { label: 'Solar', to: '/solar' },
@@ -15,10 +15,10 @@
       <div class="container">
         <div class="intro">
           <div>
-            <span class="section-label">SOLAR · ปรับราคาใหม่</span>
+            <span class="section-label">CX Solar · จากฐานข้อมูล CMMS</span>
             <h2 class="section-title">เลือกขนาดระบบที่เหมาะกับหลังคาของคุณ</h2>
             <p class="section-lead">
-              มีผลตั้งแต่ 24 มี.ค. 2569 ตามเงื่อนไขที่ กฟภ. กำหนด · ราคาเป็นราคาเริ่มต้นอ้างอิง
+              ราคาเริ่มต้นอ้างอิงรวมแผง อินเวอร์เตอร์ โครงสร้าง และงานติดตั้ง · ไม่รวมงานเสริมหน้างาน
             </p>
           </div>
           <p v-if="pending" class="status">กำลังโหลด…</p>
@@ -49,13 +49,13 @@
           >
             {{ f.label }}
           </NuxtLink>
-          <span class="filters__label">Inverter</span>
+          <span class="filters__label">ระบบ</span>
           <NuxtLink
-            v-for="f in inverterFilters"
+            v-for="f in typeFilters"
             :key="f.value"
-            :to="inverterLink(f.value)"
+            :to="typeLink(f.value)"
             class="filter filter--sub"
-            :class="{ 'filter--active': inverter === f.value }"
+            :class="{ 'filter--active': systemType === f.value }"
           >
             {{ f.label }}
           </NuxtLink>
@@ -66,10 +66,10 @@
             <div class="card__body">
               <div class="card__top">
                 <span class="card__code">{{ pkg.code }}</span>
-                <span class="card__phase">{{ phaseLabel(pkg.phase) }}</span>
+                <span class="card__phase">{{ systemTypeLabel(pkg.product_type) }} · {{ phaseLabel(pkg.phase) }}</span>
               </div>
               <h3 class="card__title">{{ pkg.name_th }}</h3>
-              <p class="card__name">{{ pkg.name }}</p>
+              <p class="card__name">{{ systemTypeLabel(pkg.product_type) }} · {{ pkg.code }}</p>
               <p class="card__tagline">{{ pkg.tagline }}</p>
 
               <dl class="meta">
@@ -92,17 +92,13 @@
               </dl>
 
               <div class="price-block">
-                <div v-if="pkg.string_inverter.available" class="price-row price-row--string">
-                  <span>String Inverter</span>
-                  <strong>เริ่ม {{ formatThb(pkg.string_inverter.priceFrom) }}</strong>
+                <div class="price-row price-row--micro">
+                  <span>ราคาเริ่มต้น</span>
+                  <strong>{{ formatThb(pkg.price_from) }}</strong>
                 </div>
-                <div v-else class="price-row price-row--muted">
-                  <span>String Inverter</span>
-                  <strong>ไม่มีตัวเลือก</strong>
-                </div>
-                <div v-if="pkg.micro_inverter.available" class="price-row price-row--micro">
-                  <span>Micro / Optimizer</span>
-                  <strong>เริ่ม {{ formatThb(pkg.micro_inverter.priceFrom) }}</strong>
+                <div v-if="pkg.inverter.brand" class="price-row">
+                  <span>อินเวอร์เตอร์</span>
+                  <strong>{{ pkg.inverter.brand }}{{ pkg.inverter.model ? ` ${pkg.inverter.model}` : '' }}</strong>
                 </div>
               </div>
 
@@ -139,43 +135,19 @@
 
 <script setup lang="ts">
 import { formatThb, phaseLabel } from '~/utils/solar-format'
+import { systemTypeLabel, type SolarWebsitePackage } from '~/utils/solar-packages'
 
-type InverterOpt = {
-  available: boolean
-  priceFrom: number | null
-  inverterBrand: string | null
-  panelBrand: string | null
-}
-
-type ApiPackage = {
-  id: string
-  slug: string
-  code: string
-  name: string
-  name_th: string
-  tagline: string
-  power_kw: number
-  phase: string
-  area_m2: number
-  yield_kwh_year: number
-  savings_monthly_thb: number
-  string_inverter: InverterOpt
-  micro_inverter: InverterOpt
+type ApiResponse = {
+  packages: SolarWebsitePackage[]
+  meta?: { power_kw?: number[] }
 }
 
 const route = useRoute()
 const power = computed(() => (route.query.power as string) || 'all')
 const phase = computed(() => (route.query.phase as string) || 'all')
-const inverter = computed(() => (route.query.inverter as string) || 'all')
+const systemType = computed(() => (route.query.type as string) || 'all')
 
-const powerFilters = [
-  { label: 'ทั้งหมด', value: 'all' },
-  { label: '3 kW', value: '3' },
-  { label: '5 kW', value: '5' },
-  { label: '10 kW', value: '10' },
-  { label: '15 kW', value: '15' },
-  { label: '20 kW', value: '20' },
-]
+const fallbackPower = ['3', '5', '10', '15', '20', '30', '50', '100']
 
 const phaseFilters = [
   { label: 'ทั้งหมด', value: 'all' },
@@ -183,10 +155,11 @@ const phaseFilters = [
   { label: '3 เฟส', value: '3P' },
 ]
 
-const inverterFilters = [
+const typeFilters = [
   { label: 'ทั้งหมด', value: 'all' },
-  { label: 'String', value: 'string' },
-  { label: 'Micro', value: 'micro' },
+  { label: 'On-grid', value: 'on_grid' },
+  { label: 'Hybrid', value: 'hybrid' },
+  { label: 'Off-grid', value: 'off_grid' },
 ]
 
 function buildQuery(overrides: Record<string, string>) {
@@ -194,12 +167,12 @@ function buildQuery(overrides: Record<string, string>) {
   const next = {
     power: power.value,
     phase: phase.value,
-    inverter: inverter.value,
+    type: systemType.value,
     ...overrides,
   }
   if (next.power !== 'all') q.power = next.power
   if (next.phase !== 'all') q.phase = next.phase
-  if (next.inverter !== 'all') q.inverter = next.inverter
+  if (next.type !== 'all') q.type = next.type
   const qs = new URLSearchParams(q).toString()
   return qs ? `/solar/rooftop/packages?${qs}` : '/solar/rooftop/packages'
 }
@@ -210,29 +183,35 @@ function powerLink(value: string) {
 function phaseLink(value: string) {
   return buildQuery({ phase: value })
 }
-function inverterLink(value: string) {
-  return buildQuery({ inverter: value })
+function typeLink(value: string) {
+  return buildQuery({ type: value })
 }
 
-const { data, pending, error } = await useFetch<{ packages: ApiPackage[] }>(
+const { data, pending, error } = await useFetch<ApiResponse>(
   '/api/solar/packages',
   {
     query: computed(() => {
       const q: Record<string, string> = {}
       if (power.value !== 'all') q.power = power.value
       if (phase.value !== 'all') q.phase = phase.value
-      if (inverter.value !== 'all') q.inverter = inverter.value
+      if (systemType.value !== 'all') q.type = systemType.value
       return q
     }),
-    watch: [power, phase, inverter],
+    watch: [power, phase, systemType],
   },
 )
 
 const packages = computed(() => data.value?.packages ?? [])
 
+const powerFilters = computed(() => {
+  const sizes = (data.value?.meta?.power_kw ?? []).map(String)
+  const values = sizes.length ? sizes : fallbackPower
+  return [{ label: 'ทั้งหมด', value: 'all' }, ...values.map((v) => ({ label: `${v} kW`, value: v }))]
+})
+
 useSeoMeta({
   title: 'Solar Packages | CX ENERTECH',
-  description: 'แพ็กเกจโซลาร์รูฟท็อป SOLAR 3–20 kW ราคา String และ Micro Inverter',
+  description: 'แพ็กเกจโซลาร์ CX ENERTECH On-grid / Hybrid / Off-grid จากฐานข้อมูล',
 })
 </script>
 
@@ -393,6 +372,12 @@ useSeoMeta({
 
 .price-row span {
   color: var(--color-muted);
+}
+
+.price-row strong {
+  color: var(--color-white);
+  font-weight: 600;
+  text-align: right;
 }
 
 .price-row--string strong {

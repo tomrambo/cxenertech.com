@@ -1,23 +1,28 @@
-import { listSolarPackages } from '../../../utils/solar-db'
+import { fetchCmmsSolarPackages } from '../../../utils/cmms-solar-packages'
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const phase =
     query.phase === '1P' || query.phase === '3P' ? query.phase : undefined
-  const inverter =
-    query.inverter === 'string' || query.inverter === 'micro'
-      ? query.inverter
+  const type =
+    query.type === 'on_grid' || query.type === 'hybrid' || query.type === 'off_grid'
+      ? query.type
       : undefined
   const powerKw =
     typeof query.power === 'string' && query.power
       ? Number(query.power)
       : undefined
 
-  const packages = listSolarPackages({
+  const { packages, source, meta } = await fetchCmmsSolarPackages(event, {
     phase,
-    inverter,
+    type,
     powerKw: Number.isFinite(powerKw) ? powerKw : undefined,
   })
 
-  return { count: packages.length, packages }
+  return {
+    count: packages.length,
+    packages,
+    source,
+    meta,
+  }
 })

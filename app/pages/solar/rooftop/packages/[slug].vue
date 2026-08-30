@@ -18,7 +18,7 @@
           <div class="badge-row">
             <span class="badge">{{ pkg.power_kw }} kW</span>
             <span class="code">{{ pkg.code }}</span>
-            <span class="phase">{{ phaseLabel(pkg.phase) }}</span>
+            <span class="phase">{{ systemTypeLabel(pkg.product_type) }} · {{ phaseLabel(pkg.phase) }}</span>
           </div>
 
           <p class="lead">{{ pkg.description }}</p>
@@ -29,6 +29,10 @@
             <div>
               <dt>กำลังติดตั้ง</dt>
               <dd>{{ pkg.power_kw }} kW</dd>
+            </div>
+            <div>
+              <dt>ประเภทระบบ</dt>
+              <dd>{{ systemTypeLabel(pkg.product_type) }}</dd>
             </div>
             <div>
               <dt>ระบบไฟฟ้า</dt>
@@ -48,49 +52,21 @@
             </div>
           </dl>
 
-          <h2 class="block-title">อุปกรณ์ที่จ่ายไฟได้ (ประมาณการ)</h2>
+          <h2 class="block-title">อุปกรณ์หลัก</h2>
           <ul class="kv">
             <li>
-              <span>หลอด LED 18W</span>
-              <strong>{{ pkg.appliances.led18w }} ดวง</strong>
+              <span>แผงโซลาร์</span>
+              <strong>{{ equipmentLabel(pkg.panel) }}</strong>
             </li>
             <li>
-              <span>ทีวี LED 55 นิ้ว</span>
-              <strong>{{ pkg.appliances.tv55inch }} เครื่อง</strong>
+              <span>อินเวอร์เตอร์</span>
+              <strong>{{ equipmentLabel(pkg.inverter) }}</strong>
             </li>
             <li>
-              <span>ตู้เย็น 15 คิว</span>
-              <strong>{{ pkg.appliances.fridge15cu }} เครื่อง</strong>
-            </li>
-            <li>
-              <span>แอร์ 12,000 BTU</span>
-              <strong>{{ pkg.appliances.ac12000btu }} เครื่อง</strong>
+              <span>แบตเตอรี่</span>
+              <strong>{{ pkg.battery ? equipmentLabel(pkg.battery) : 'ไม่รวมในชุด' }}</strong>
             </li>
           </ul>
-
-          <h2 class="block-title">ตัวเลือกอินเวอร์เตอร์ / ราคาเริ่มต้น</h2>
-          <div class="options">
-            <div class="option option--string">
-              <h3>String Inverter</h3>
-              <template v-if="pkg.string_inverter.available">
-                <p class="option-price">เริ่ม {{ formatThb(pkg.string_inverter.priceFrom) }}</p>
-                <p class="option-brands">
-                  {{ pkg.string_inverter.inverterBrand }} · {{ pkg.string_inverter.panelBrand }}
-                </p>
-              </template>
-              <p v-else class="option-na">ไม่มีตัวเลือกในขนาดนี้</p>
-            </div>
-            <div class="option option--micro">
-              <h3>Micro Inverter / Power Optimizer</h3>
-              <template v-if="pkg.micro_inverter.available">
-                <p class="option-price">เริ่ม {{ formatThb(pkg.micro_inverter.priceFrom) }}</p>
-                <p class="option-brands">
-                  {{ pkg.micro_inverter.inverterBrand }} · {{ pkg.micro_inverter.panelBrand }}
-                </p>
-              </template>
-              <p v-else class="option-na">ไม่มีตัวเลือกในขนาดนี้</p>
-            </div>
-          </div>
 
           <h2 class="block-title">สิ่งที่รวมในแพ็กเกจ</h2>
           <ul class="checklist">
@@ -106,8 +82,8 @@
         <aside class="detail__aside">
           <div class="aside-box">
             <h4>ราคาเริ่มต้น</h4>
-            <p class="aside-price">{{ formatThb(startPrice) }}</p>
-            <p class="aside-note">ราคาเริ่มต้นต่ำสุดจากตัวเลือกที่มี · ไม่ใช่ใบเสนอราคาจริง</p>
+            <p class="aside-price">{{ formatThb(pkg.price_from) }}</p>
+            <p class="aside-note">ราคาเริ่มต้นอ้างอิงจากฐานข้อมูล · ไม่ใช่ใบเสนอราคาจริง</p>
             <NuxtLink
               class="btn btn-primary"
               :to="`/contact/quotation?type=solar&package=${pkg.code}`"
@@ -125,46 +101,20 @@
 </template>
 
 <script setup lang="ts">
-import { formatThb, phaseLabel, startingPrice } from '~/utils/solar-format'
+import { formatThb, phaseLabel } from '~/utils/solar-format'
+import { systemTypeLabel, type SolarWebsitePackage } from '~/utils/solar-packages'
 
-type InverterOpt = {
-  available: boolean
-  priceFrom: number | null
-  inverterBrand: string | null
-  panelBrand: string | null
-}
-
-type ApiPackage = {
-  id: string
-  slug: string
-  code: string
-  name: string
-  name_th: string
-  source_label: string
-  tagline: string
-  description: string
-  power_kw: number
-  phase: string
-  area_m2: number
-  yield_kwh_year: number
-  savings_monthly_thb: number
-  appliances: {
-    led18w: number
-    tv55inch: number
-    fridge15cu: number
-    ac12000btu: number
-  }
-  string_inverter: InverterOpt
-  micro_inverter: InverterOpt
-  includes: string[]
-  features: string[]
-  effective_from: string
+function equipmentLabel(row: { brand: string | null; model?: string | null; qty?: number | null }) {
+  const name = [row.brand, row.model].filter(Boolean).join(' ')
+  if (!name) return 'ตามแพ็กเกจ'
+  if (row.qty && row.qty > 1) return `${name} × ${row.qty}`
+  return name
 }
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
-const { data, error } = await useFetch<{ package: ApiPackage }>(
+const { data, error } = await useFetch<{ package: SolarWebsitePackage }>(
   () => `/api/solar/packages/${slug.value}`,
 )
 
@@ -173,7 +123,6 @@ if (error.value || !data.value?.package) {
 }
 
 const pkg = computed(() => data.value!.package)
-const startPrice = computed(() => startingPrice(pkg.value))
 
 useSeoMeta({
   title: () => `${pkg.value.name_th} | CX ENERTECH`,

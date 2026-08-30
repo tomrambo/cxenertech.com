@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 const features = [
-  { title: 'Solar Packages', desc: 'PEA Solar 3–20 kW ตามตารางราคา กฟภ. พร้อม String / Micro' },
+  { title: 'Solar Packages', desc: 'แพ็กเกจ On-grid / Hybrid / Off-grid จากฐานข้อมูล CMMS' },
   { title: 'Solar Rooftop', desc: 'บ้าน อาคารพาณิชย์ โรงงาน และคลังสินค้า' },
   { title: 'Solar Farm', desc: 'Ground Mount, Utility Scale และ Floating Solar' },
   { title: 'Solar EPC', desc: 'Engineering, Procurement, Construction, Commissioning, O&M' },
