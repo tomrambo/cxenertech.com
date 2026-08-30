@@ -14,6 +14,11 @@ const form = reactive({
 
 function onSubmit() {
   submitted.value = true
+  trackGtm('generate_lead', {
+    lead_type: 'quotation',
+    service_type: form.type,
+    package_code: typeof route.query.package === 'string' ? route.query.package : '',
+  })
 }
 
 useSeoMeta({

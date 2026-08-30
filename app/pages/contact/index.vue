@@ -12,6 +12,10 @@ const form = reactive({
 
 function onSubmit() {
   submitted.value = true
+  trackGtm('generate_lead', {
+    lead_type: 'contact',
+    subject: form.subject,
+  })
 }
 
 useSeoMeta({

@@ -42,7 +42,7 @@
 
         <div class="hero__stage animate-fade-up animate-delay-2" aria-hidden="true">
           <img
-            src="/images/packages/cx-dc-120.jpg"
+            src="https://sgp1.digitaloceanspaces.com/evcharger/charge-packages/website/cx-station-s4.webp"
             alt=""
             width="720"
             height="560"

@@ -24,6 +24,7 @@ jobs:
         env:
           NUXT_CMMS_API_BASE_URL: ${{ secrets.NUXT_CMMS_API_BASE_URL }}
           PARTNER_INGEST_SECRET: ${{ secrets.PARTNER_INGEST_SECRET }}
+          NUXT_PUBLIC_GTM_ID: ${{ secrets.NUXT_PUBLIC_GTM_ID }}
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:

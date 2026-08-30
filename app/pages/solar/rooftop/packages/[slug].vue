@@ -124,6 +124,16 @@ if (error.value || !data.value?.package) {
 
 const pkg = computed(() => data.value!.package)
 
+onMounted(() => {
+  trackGtm('view_item', {
+    item_id: pkg.value.code,
+    item_name: pkg.value.name_th,
+    item_category: 'solar_package',
+    price: pkg.value.price_from,
+    currency: 'THB',
+  })
+})
+
 useSeoMeta({
   title: () => `${pkg.value.name_th} | CX ENERTECH`,
   description: () => pkg.value.description,

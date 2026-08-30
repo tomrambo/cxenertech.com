@@ -249,6 +249,16 @@ const heroImage = computed(() => resolvePackageImage(pkg.value.image))
 const typeLabelText = computed(() => typeLabel(pkg.value.product_type))
 const price = computed(() => displayPrice(pkg.value))
 
+onMounted(() => {
+  trackGtm('view_item', {
+    item_id: pkg.value.code,
+    item_name: pkg.value.name_th || pkg.value.name,
+    item_category: 'ev_package',
+    price: price.value.value,
+    currency: 'THB',
+  })
+})
+
 function financeLabel(key: string) {
   const labels: Record<string, string> = {
     paybackMonths: 'จุดคืนทุน (เดือน)',

@@ -117,6 +117,10 @@ async function onSubmit() {
     })
     duplicate.value = Boolean(res.duplicate)
     submitted.value = true
+    trackGtm('generate_lead', {
+      lead_type: 'partner',
+      duplicate: Boolean(res.duplicate),
+    })
   } catch (err: unknown) {
     const e = err as { data?: { message?: string }; message?: string }
     errorMsg.value = e.data?.message || e.message || 'ส่งใบสมัครไม่สำเร็จ กรุณาลองใหม่'
