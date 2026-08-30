@@ -2,6 +2,7 @@
 import { mainNav } from '~/utils/nav'
 
 const route = useRoute()
+const { t } = useLocale()
 const open = ref(false)
 const openGroup = ref<string | null>(null)
 
@@ -12,7 +13,14 @@ watch(() => route.path, () => {
 
 const isActive = (to: string) => {
   if (to === '/') return route.path === '/'
-  return route.path === to || route.path.startsWith(`${to}/`)
+  const matches = route.path === to || route.path.startsWith(`${to}/`)
+  if (!matches) return false
+  return !mainNav.some(
+    (item) =>
+      item.to !== to &&
+      item.to.length > to.length &&
+      (route.path === item.to || route.path.startsWith(`${item.to}/`)),
+  )
 }
 
 const isChildActive = (childTo: string, parentTo: string) => {
@@ -20,11 +28,11 @@ const isChildActive = (childTo: string, parentTo: string) => {
   return route.path === childTo || route.path.startsWith(`${childTo}/`)
 }
 
-const onGroupClick = (event: MouseEvent, label: string) => {
+const onGroupClick = (event: MouseEvent, key: string) => {
   // Mobile menu: first tap expands submenu instead of navigating away
   if (open.value) {
     event.preventDefault()
-    openGroup.value = openGroup.value === label ? null : label
+    openGroup.value = openGroup.value === key ? null : key
   }
 }
 </script>
@@ -36,22 +44,22 @@ const onGroupClick = (event: MouseEvent, label: string) => {
         <BrandLogo variant="light" :height="52" />
       </NuxtLink>
 
-      <nav class="nav" :class="{ 'nav--open': open }" aria-label="Main">
+      <nav class="nav" :class="{ 'nav--open': open }" :aria-label="t('nav.main')">
         <template v-for="item in mainNav" :key="item.to">
           <div
             v-if="item.children?.length"
             class="nav__group"
-            :class="{ 'nav__group--open': openGroup === item.label }"
-            @mouseenter="openGroup = item.label"
+            :class="{ 'nav__group--open': openGroup === item.key }"
+            @mouseenter="openGroup = item.key"
             @mouseleave="openGroup = null"
           >
             <NuxtLink
               :to="item.to"
               class="nav__link"
               :class="{ 'nav__link--active': isActive(item.to) }"
-              @click="onGroupClick($event, item.label)"
+              @click="onGroupClick($event, item.key)"
             >
-              {{ item.label }}
+              {{ t(`nav.${item.key}`) }}
               <span class="nav__chev" aria-hidden="true" />
             </NuxtLink>
             <div class="nav__dropdown" role="menu">
@@ -63,7 +71,7 @@ const onGroupClick = (event: MouseEvent, label: string) => {
                 :class="{ 'nav__dropdown-link--active': isChildActive(child.to, item.to) }"
                 role="menuitem"
               >
-                {{ child.label }}
+                {{ t(`nav.${child.key}`) }}
               </NuxtLink>
             </div>
           </div>
@@ -73,17 +81,18 @@ const onGroupClick = (event: MouseEvent, label: string) => {
             class="nav__link"
             :class="{ 'nav__link--active': isActive(item.to) }"
           >
-            {{ item.label }}
+            {{ t(`nav.${item.key}`) }}
           </NuxtLink>
         </template>
         <NuxtLink to="/contact" class="btn btn-primary nav__cta-mobile">
-          ติดต่อเรา
+          {{ t('nav.contactCta') }}
         </NuxtLink>
       </nav>
 
       <div class="header__actions">
+        <LangSwitch />
         <NuxtLink to="/contact" class="btn btn-primary header__cta">
-          ติดต่อเรา
+          {{ t('nav.contactCta') }}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -92,7 +101,7 @@ const onGroupClick = (event: MouseEvent, label: string) => {
           class="menu-btn"
           type="button"
           :aria-expanded="open"
-          aria-label="Toggle menu"
+          :aria-label="t('nav.menu')"
           @click="open = !open"
         >
           <span /><span /><span />

@@ -8,6 +8,14 @@
   </div>
 </template>
 
+<script setup lang="ts">
+const { locale } = useLocale()
+
+useHead(() => ({
+  htmlAttrs: { lang: locale.value || 'th' },
+}))
+</script>
+
 <style scoped>
 .app-shell {
   min-height: 100vh;

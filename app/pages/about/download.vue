@@ -22,7 +22,7 @@
           </a>
           <p class="download__hint">
             หากไฟล์ยังไม่พร้อม ติดต่อ
-            <a href="mailto:info@cxenertech.com">info@cxenertech.com</a>
+            <a href="mailto:phachirawat.cx@gmail.com">phachirawat.cx@gmail.com</a>
             เพื่อรับ Company Profile
           </p>
         </div>

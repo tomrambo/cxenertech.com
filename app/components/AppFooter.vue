@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { footerNav, contactInfo } from '~/utils/nav'
+
+const { t, locale } = useLocale()
+const legalName = computed(() =>
+  locale.value === 'en' ? contactInfo.legalEn : contactInfo.legalTh,
+)
 </script>
 
 <template>
@@ -9,10 +14,10 @@ import { footerNav, contactInfo } from '~/utils/nav'
         <NuxtLink to="/" class="footer__logo-link">
           <BrandLogo variant="light" :height="56" />
         </NuxtLink>
-        <p class="footer__legal">{{ contactInfo.legalTh }}</p>
+        <p class="footer__legal">{{ legalName }}</p>
         <p class="footer__tagline">{{ contactInfo.tagline }}</p>
         <p class="footer__desc">
-          Empowering a Sustainable Future with Smart Energy &amp; Technology Solutions
+          {{ t('footer.desc') }}
         </p>
         <div class="footer__contact">
           <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
@@ -24,37 +29,37 @@ import { footerNav, contactInfo } from '~/utils/nav'
 
       <div class="footer__cols">
         <div>
-          <h4>บริษัท</h4>
+          <h4>{{ t('footer.company') }}</h4>
           <ul>
             <li v-for="item in footerNav.company" :key="item.to">
-              <NuxtLink :to="item.to">{{ item.label }}</NuxtLink>
+              <NuxtLink :to="item.to">{{ t(`footer.${item.key}`) }}</NuxtLink>
             </li>
           </ul>
         </div>
         <div>
-          <h4>Solar Energy</h4>
+          <h4>{{ t('footer.solar') }}</h4>
           <ul>
             <li v-for="item in footerNav.solar" :key="item.to">
-              <NuxtLink :to="item.to">{{ item.label }}</NuxtLink>
+              <NuxtLink :to="item.to">{{ t(`footer.${item.key}`) }}</NuxtLink>
             </li>
           </ul>
         </div>
         <div>
-          <h4>EV Charging</h4>
+          <h4>{{ t('footer.ev') }}</h4>
           <ul>
             <li v-for="item in footerNav.ev" :key="item.to">
-              <NuxtLink :to="item.to">{{ item.label }}</NuxtLink>
+              <NuxtLink :to="item.to">{{ t(`footer.${item.key}`) }}</NuxtLink>
             </li>
           </ul>
         </div>
         <div>
-          <h4>ทรัพยากร</h4>
+          <h4>{{ t('footer.resources') }}</h4>
           <ul>
             <li v-for="item in footerNav.resources" :key="item.to">
-              <NuxtLink :to="item.to">{{ item.label }}</NuxtLink>
+              <NuxtLink :to="item.to">{{ t(`footer.${item.key}`) }}</NuxtLink>
             </li>
-            <li><NuxtLink to="/smart-energy">Smart Energy</NuxtLink></li>
-            <li><NuxtLink to="/contact">ติดต่อเรา</NuxtLink></li>
+            <li><NuxtLink to="/smart-energy">{{ t('footer.smartEnergy') }}</NuxtLink></li>
+            <li><NuxtLink to="/contact">{{ t('footer.contact') }}</NuxtLink></li>
           </ul>
         </div>
       </div>
@@ -62,11 +67,11 @@ import { footerNav, contactInfo } from '~/utils/nav'
 
     <div class="footer__bottom">
       <div class="container-wide footer__bottom-inner">
-        <p>© {{ new Date().getFullYear() }} {{ contactInfo.legalEn }}. All rights reserved.</p>
+        <p>© {{ new Date().getFullYear() }} {{ contactInfo.legalEn }}. {{ t('footer.rights') }}.</p>
         <div class="footer__bottom-links">
-          <NuxtLink to="/contact/quotation">ขอใบเสนอราคา</NuxtLink>
-          <NuxtLink to="/contact/site-survey">ขอสำรวจพื้นที่</NuxtLink>
-          <NuxtLink to="/partners/become-a-partner">เป็นพันธมิตร</NuxtLink>
+          <NuxtLink to="/contact/quotation">{{ t('footer.quote') }}</NuxtLink>
+          <NuxtLink to="/contact/site-survey">{{ t('footer.survey') }}</NuxtLink>
+          <NuxtLink to="/partners/become-a-partner">{{ t('footer.becomePartner') }}</NuxtLink>
         </div>
       </div>
     </div>
@@ -195,3 +200,4 @@ import { footerNav, contactInfo } from '~/utils/nav'
   }
 }
 </style>
+

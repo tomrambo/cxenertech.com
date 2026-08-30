@@ -1,27 +1,26 @@
 <template>
   <div>
     <PageHero
-      title="Knowledge Center"
-      description="ข่าวสาร บทความ ความรู้ Solar/EV กรณีศึกษา FAQ และศูนย์ดาวน์โหลด"
-      :crumbs='[{"label":"Home","to":"/"},{"label":"Knowledge Center"}]'
+      :title="t('knowledge.title')"
+      :description="t('knowledge.description')"
+      :crumbs="[{ label: t('common.home'), to: '/' }, { label: t('knowledge.title') }]"
     />
     <section class="section">
       <div class="container">
         <div class="content-block">
-          <p>ข่าวสาร บทความ ความรู้ Solar/EV กรณีศึกษา FAQ และศูนย์ดาวน์โหลด</p>
-          
+          <p>{{ t('knowledge.description') }}</p>
         </div>
       </div>
     </section>
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">สำรวจเพิ่มเติม</span>
-          <h2 class="section-title">หัวข้อที่เกี่ยวข้อง</h2>
+          <span class="section-label">{{ t('knowledge.explore') }}</span>
+          <h2 class="section-title">{{ t('knowledge.related') }}</h2>
         </div>
         <div class="sub-links">
           <NuxtLink to="/knowledge/news" class="sub-link">News <span>→</span></NuxtLink>
-          <NuxtLink to="/knowledge/articles" class="sub-link">Articles <span>→</span></NuxtLink>
+          <NuxtLink to="/knowledge/articles" class="sub-link">{{ t('articles.title') }} <span>→</span></NuxtLink>
           <NuxtLink to="/knowledge/solar" class="sub-link">Solar Knowledge <span>→</span></NuxtLink>
           <NuxtLink to="/knowledge/ev" class="sub-link">EV Knowledge <span>→</span></NuxtLink>
           <NuxtLink to="/knowledge/case-studies" class="sub-link">Case Studies <span>→</span></NuxtLink>
@@ -35,8 +34,10 @@
 </template>
 
 <script setup lang="ts">
+const { t } = useLocale()
+
 useSeoMeta({
-  title: 'Knowledge Center | CX ENERTECH',
-  description: 'ข่าวสาร บทความ ความรู้ Solar/EV กรณีศึกษา FAQ และศูนย์ดาวน์โหลด',
+  title: () => `${t('knowledge.title')} | CX ENERTECH`,
+  description: () => t('knowledge.description'),
 })
 </script>
