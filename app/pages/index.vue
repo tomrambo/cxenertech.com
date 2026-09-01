@@ -94,7 +94,7 @@
           <NuxtLink
             v-for="size in solarSizes"
             :key="size.kw"
-            :to="`/solar/rooftop/packages?power=${size.kw}`"
+            :to="[5, 10, 15].includes(size.kw) ? `/solar/${size.kw}kw` : `/solar/rooftop/packages?power=${size.kw}`"
             class="solar-size"
           >
             <strong>{{ size.kw }} <span>kW</span></strong>
@@ -267,9 +267,11 @@ const projectTeasers = computed(() => [
   },
 ])
 
-useSeoMeta({
-  title: () => `CX ENERTECH — ${t('home.titleBefore')}${t('home.titleAccent')}${t('home.titleAfter')}`.trim(),
-  description: () => t('home.lead'),
+usePageSeo({
+  title: 'CX ENERTECH | รับติดตั้งโซล่าเซลล์ และ EV Charging',
+  description:
+    'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop บ้านถึงโรงงาน พร้อมแพ็กเกจราคา จุดคืนทุน PPA และ EV Charging ครบวงจร',
+  path: '/',
 })
 </script>
 

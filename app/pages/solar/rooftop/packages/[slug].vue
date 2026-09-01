@@ -4,10 +4,10 @@
       :title="pkg.name_th"
       :description="pkg.tagline"
       :crumbs="[
-        { label: 'Home', to: '/' },
-        { label: 'Solar', to: '/solar' },
-        { label: 'Rooftop', to: '/solar/rooftop' },
-        { label: 'Packages', to: '/solar/rooftop/packages' },
+        { label: 'หน้าแรก', to: '/' },
+        { label: 'โซลาร์', to: '/solar' },
+        { label: 'โซลาร์รูฟท็อป', to: '/solar/rooftop' },
+        { label: 'แพ็กเกจ', to: '/solar/rooftop/packages' },
         { label: pkg.code },
       ]"
     />
@@ -134,9 +134,42 @@ onMounted(() => {
   })
 })
 
-useSeoMeta({
-  title: () => `${pkg.value.name_th} | CX ENERTECH`,
-  description: () => pkg.value.description,
+usePageSeo({
+  title: pkg.value.name_th,
+  description:
+    pkg.value.description ||
+    `แพ็กเกจโซล่าเซลล์ ${pkg.value.power_kw} kW ราคาเริ่มต้น ${pkg.value.price_from.toLocaleString('th-TH')} บาท`,
+  path: `/solar/rooftop/packages/${pkg.value.slug}`,
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'โซลาร์', path: '/solar' },
+    { name: 'แพ็กเกจโซล่าเซลล์', path: '/solar/rooftop/packages' },
+    { name: pkg.value.code, path: `/solar/rooftop/packages/${pkg.value.slug}` },
+  ],
+})
+
+useHead({
+  script: [
+    {
+      key: 'ld-product',
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: pkg.value.name_th,
+        description: pkg.value.description || pkg.value.tagline,
+        sku: pkg.value.code,
+        brand: { '@type': 'Brand', name: 'CX ENERTECH' },
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'THB',
+          price: pkg.value.price_from,
+          url: absoluteUrl(`/solar/rooftop/packages/${pkg.value.slug}`),
+          availability: 'https://schema.org/InStock',
+        },
+      }),
+    },
+  ],
 })
 </script>
 

@@ -82,6 +82,15 @@ Cloudflare Pages (git integration):
 ค่า default ของ `NUXT_CMMS_API_BASE_URL` คือ `https://bo-cx-cmms.conceptx.co.th`
 
 
+## SEO / sitemap
+
+- `https://www.cxenertech.com/sitemap.xml` — เส้นทางหลัก + แพ็กเกจโซลาร์
+- `public/robots.txt` ชี้ sitemap ด้านบน
+- ตั้ง `NUXT_PUBLIC_SITE_URL` (ค่าเริ่มต้น `https://www.cxenertech.com`) สำหรับ canonical และ Open Graph
+
+หน้า solar ที่รองรับคำค้นหลัก: `/solar/rooftop`, `/solar/rooftop/factory`, `/solar/5kw` `/10kw` `/15kw`, `/solar/factory/100kw`–`/1mw`, `/solar/payback`, `/solar/hybrid`, `/solar/battery`, `/solar/bess`, `/solar/ppa`
+
+
 ## Sitemap (routes)
 
 - `/` — Home

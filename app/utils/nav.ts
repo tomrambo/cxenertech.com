@@ -11,8 +11,11 @@ export const mainNav: NavItem[] = [
   { key: 'about', to: '/about' },
   { key: 'solar', to: '/solar', children: [
     { key: 'solarOverview', to: '/solar' },
+    { key: 'solarRooftop', to: '/solar/rooftop' },
     { key: 'solarPackages', to: '/solar/rooftop/packages' },
-    { key: 'solarFarm', to: '/solar/farm' },
+    { key: 'solarFactory', to: '/solar/rooftop/factory' },
+    { key: 'solarPayback', to: '/solar/payback' },
+    { key: 'solarPpa', to: '/solar/ppa' },
     { key: 'solarEpc', to: '/solar/epc' },
   ] },
   {
@@ -40,9 +43,11 @@ export const footerNav = {
   solar: [
     { key: 'rooftop', to: '/solar/rooftop' },
     { key: 'peaPackages', to: '/solar/rooftop/packages' },
-    { key: 'farm', to: '/solar/farm' },
+    { key: 'factory', to: '/solar/rooftop/factory' },
+    { key: 'paybackSolar', to: '/solar/payback' },
+    { key: 'ppa', to: '/solar/ppa' },
+    { key: 'bess', to: '/solar/bess' },
     { key: 'epc', to: '/solar/epc' },
-    { key: 'bos', to: '/solar/bos' },
   ],
   ev: [
     { key: 'homeCharger', to: '/ev-charging/home-charger' },

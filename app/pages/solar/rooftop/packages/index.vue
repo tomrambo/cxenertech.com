@@ -1,13 +1,13 @@
 <template>
   <div>
     <PageHero
-      title="Solar Packages"
-      description="แพ็กเกจโซลาร์ CX ENERTECH จากฐานข้อมูล — On-grid / Hybrid / Off-grid"
+      title="แพ็กเกจโซล่าเซลล์ — ราคาติดตั้งอ้างอิง"
+      description="เลือกขนาดระบบ On-grid / Hybrid / Off-grid แล้วขอใบเสนอราคาติดตั้งโซล่าเซลล์"
       :crumbs="[
-        { label: 'Home', to: '/' },
-        { label: 'Solar', to: '/solar' },
-        { label: 'Rooftop', to: '/solar/rooftop' },
-        { label: 'Packages' },
+        { label: 'หน้าแรก', to: '/' },
+        { label: 'โซลาร์', to: '/solar' },
+        { label: 'โซลาร์รูฟท็อป', to: '/solar/rooftop' },
+        { label: 'แพ็กเกจโซล่าเซลล์' },
       ]"
     />
 
@@ -209,9 +209,17 @@ const powerFilters = computed(() => {
   return [{ label: 'ทั้งหมด', value: 'all' }, ...values.map((v) => ({ label: `${v} kW`, value: v }))]
 })
 
-useSeoMeta({
-  title: 'Solar Packages | CX ENERTECH',
-  description: 'แพ็กเกจโซลาร์ CX ENERTECH On-grid / Hybrid / Off-grid จากฐานข้อมูล',
+usePageSeo({
+  title: 'แพ็กเกจโซล่าเซลล์ ราคาติดตั้ง | Solar Packages',
+  description:
+    'ราคาติดตั้งโซล่าเซลล์ On-grid Hybrid Off-grid จากฐานข้อมูล CX ENERTECH เลือกขนาดระบบแล้วขอใบเสนอราคา',
+  path: '/solar/rooftop/packages',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'โซลาร์', path: '/solar' },
+    { name: 'โซลาร์รูฟท็อป', path: '/solar/rooftop' },
+    { name: 'แพ็กเกจโซล่าเซลล์', path: '/solar/rooftop/packages' },
+  ],
 })
 </script>
 

@@ -1,9 +1,9 @@
 <template>
   <div>
     <PageHero
-      title="Solar Energy"
-      description="Design • EPC • Installation • O&M — โซลูชันโซลาร์ครบวงจร ตั้งแต่ Rooftop ถึง Solar Farm"
-      :crumbs="[{ label: 'Home', to: '/' }, { label: 'Solar Energy' }]"
+      title="พลังงานแสงอาทิตย์ครบวงจร — รับติดตั้งโซล่าเซลล์"
+      description="ออกแบบ ติดตั้ง Solar Rooftop บ้านถึงโรงงาน พร้อม EPC PPA และระบบกักเก็บพลังงาน"
+      :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'โซลาร์' }]"
     />
 
     <section class="section">
@@ -52,25 +52,35 @@
 
 <script setup lang="ts">
 const features = [
-  { title: 'Solar Packages', desc: 'แพ็กเกจ On-grid / Hybrid / Off-grid จากฐานข้อมูล CMMS' },
-  { title: 'Solar Rooftop', desc: 'บ้าน อาคารพาณิชย์ โรงงาน และคลังสินค้า' },
-  { title: 'Solar Farm', desc: 'Ground Mount, Utility Scale และ Floating Solar' },
-  { title: 'Solar EPC', desc: 'Engineering, Procurement, Construction, Commissioning, O&M' },
+          { title: 'แพ็กเกจโซลาร์', desc: 'On-grid / Hybrid / Off-grid พร้อมราคาเริ่มต้นจากฐานข้อมูล' },
+          { title: 'Solar Rooftop', desc: 'รับติดตั้งโซล่าเซลล์บ้าน อาคาร โรงงาน และคลังสินค้า' },
+          { title: 'จุดคืนทุนและ PPA', desc: 'ดูว่าติดโซล่าเซลล์คุ้มไหม หรือเลือกโมเดลไม่ต้องลงทุนเอง' },
+          { title: 'Solar EPC', desc: 'ออกแบบ จัดซื้อ ติดตั้ง ทดสอบ และ O&M จบในที่เดียว' },
 ]
 
 const links = [
-  { label: 'Solar Packages', to: '/solar/rooftop/packages' },
-  { label: 'Solar Rooftop', to: '/solar/rooftop' },
-  { label: 'Solar Farm', to: '/solar/farm' },
+  { label: 'รับติดตั้งโซล่าเซลล์', to: '/solar/rooftop' },
+  { label: 'แพ็กเกจและราคา', to: '/solar/rooftop/packages' },
+  { label: 'โซล่าเซลล์บ้าน', to: '/solar/rooftop/residential' },
+  { label: 'โซล่าเซลล์โรงงาน', to: '/solar/rooftop/factory' },
+  { label: 'โซล่าเซลล์ 5 / 10 / 15 kW', to: '/solar/5kw' },
+  { label: 'จุดคืนทุน / คุ้มไหม', to: '/solar/payback' },
+  { label: 'Hybrid + แบตเตอรี่', to: '/solar/hybrid' },
+  { label: 'Solar BESS', to: '/solar/bess' },
+  { label: 'PPA ไม่ต้องลงทุน', to: '/solar/ppa' },
   { label: 'Solar EPC', to: '/solar/epc' },
-  { label: 'BOS / Electrical System', to: '/solar/bos' },
-  { label: 'Energy Monitoring', to: '/solar/energy-monitoring' },
-  { label: 'Solar Products', to: '/solar/products' },
-  { label: 'ขอใบเสนอราคา Solar', to: '/solar/quotation' },
+  { label: 'Solar Farm', to: '/solar/farm' },
+  { label: 'ขอใบเสนอราคาโซล่าเซลล์', to: '/solar/quotation' },
 ]
 
-useSeoMeta({
-  title: 'Solar Energy | CX ENERTECH',
-  description: 'Design • EPC • Installation • O&M — โซลูชันโซลาร์ครบวงจร',
+usePageSeo({
+  title: 'ติดตั้งโซล่าเซลล์ | Solar Energy ครบวงจร',
+  description:
+    'CX ENERTECH รับติดตั้งโซล่าเซลล์ บ้านถึงโรงงาน แพ็กเกจราคา Solar EPC PPA และระบบกักเก็บพลังงาน',
+  path: '/solar',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'โซลาร์', path: '/solar' },
+  ],
 })
 </script>

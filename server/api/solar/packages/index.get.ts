@@ -8,9 +8,10 @@ export default defineEventHandler(async (event) => {
     query.type === 'on_grid' || query.type === 'hybrid' || query.type === 'off_grid'
       ? query.type
       : undefined
+  const powerRaw = Array.isArray(query.power) ? query.power[0] : query.power
   const powerKw =
-    typeof query.power === 'string' && query.power
-      ? Number(query.power)
+    powerRaw !== undefined && powerRaw !== null && powerRaw !== '' && powerRaw !== 'all'
+      ? Number(powerRaw)
       : undefined
 
   const { packages, source, meta } = await fetchCmmsSolarPackages(event, {

@@ -46,6 +46,9 @@ export default defineNuxtConfig({
       partnerRegisterUrl: process.env.NUXT_PUBLIC_PARTNER_REGISTER_URL || '',
       /** Google Tag Manager — Tag Assistant container */
       gtmId: process.env.NUXT_PUBLIC_GTM_ID || 'GTM-5MKFVS3N',
+      /** Google Analytics 4 (gtag.js) */
+      gaId: process.env.NUXT_PUBLIC_GA_ID || 'G-F07KKEFMP8',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.cxenertech.com',
     },
   },
 
