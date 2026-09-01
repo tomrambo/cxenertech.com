@@ -42,13 +42,20 @@ const seoDescription = computed(
   () => article.value.seo?.description || article.value.excerpt || article.value.title,
 )
 
+usePageSeo({
+  title: seoTitle.value,
+  description: seoDescription.value,
+  path: `/knowledge/articles/${article.value.slug}`,
+  image: article.value.seo?.image || article.value.coverImage || undefined,
+  type: 'article',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ศูนย์ความรู้', path: '/knowledge' },
+    { name: 'บทความ', path: '/knowledge/articles' },
+    { name: article.value.title, path: `/knowledge/articles/${article.value.slug}` },
+  ],
+})
 useSeoMeta({
-  title: () => `${seoTitle.value} | CX ENERTECH`,
-  description: seoDescription,
-  ogTitle: seoTitle,
-  ogDescription: seoDescription,
-  ogImage: () => article.value.seo?.image || article.value.coverImage || undefined,
-  ogType: 'article',
   articlePublishedTime: () => articleDate(article.value) || undefined,
   articleModifiedTime: () => article.value.updatedAt || undefined,
   articleAuthor: () => article.value.authorName || 'CX ENERTECH',

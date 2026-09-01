@@ -16,18 +16,18 @@
       <div class="container hero__layout">
         <div class="hero__copy">
           <nav class="breadcrumb" aria-label="Breadcrumb">
-            <NuxtLink to="/">Home</NuxtLink>
+            <NuxtLink to="/">หน้าแรก</NuxtLink>
             <span aria-hidden="true">/</span>
             <NuxtLink to="/ev-charging">EV Charging</NuxtLink>
             <span aria-hidden="true">/</span>
-            <span>Packages</span>
+            <span>แพ็กเกจสถานีชาร์จ</span>
           </nav>
           <p class="hero__brand animate-fade-up">CX ENERTECH</p>
           <h1 class="hero__title animate-fade-up animate-delay-1">
-            Charge <em>Packages</em>
+            แพ็กเกจ <em>EV Station</em>
           </h1>
           <p class="hero__lead animate-fade-up animate-delay-2">
-            เลือกแพ็กเกจสถานีและเครื่องชาร์จที่เหมาะกับไซต์ — สเปก ราคาอ้างอิง และจุดคืนทุนในที่เดียว
+            เลือกแพ็กเกจสถานีชาร์จรถยนต์ไฟฟ้าและเครื่องชาร์จ — สเปก ราคาอ้างอิง และจุดคืนทุนในที่เดียว
           </p>
           <div class="hero__actions animate-fade-up animate-delay-3">
             <a href="#catalog" class="btn btn-primary">
@@ -512,10 +512,16 @@ function priceInfo(pkg: ApiPackage) {
   return displayPrice(pkg)
 }
 
-useSeoMeta({
-  title: 'CX Charge Packages | CX ENERTECH',
+usePageSeo({
+  title: 'แพ็กเกจ EV Station | ราคาสถานีชาร์จรถไฟฟ้า',
   description:
-    'แพ็กเกจ CX Station, CX DC และ CX AC — ประเภทจากระบบหลังบ้าน พร้อมสเปกและราคาอ้างอิง',
+    'แพ็กเกจ CX Station CX DC CX AC ราคา EV Station และเครื่องชาร์จรถไฟฟ้า พร้อมสเปกและจุดคืนทุนอ้างอิง',
+  path: '/ev-charging/packages',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'EV Charging', path: '/ev-charging' },
+    { name: 'แพ็กเกจ EV Station', path: '/ev-charging/packages' },
+  ],
 })
 </script>
 

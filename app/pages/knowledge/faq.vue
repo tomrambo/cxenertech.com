@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHero
-      title="คำถามที่พบบ่อยเรื่องโซล่าเซลล์และ EV"
-      description="ติดโซล่าเซลล์คุ้มไหม ใช้เวลากี่วัน ยื่นการไฟฟ้าอย่างไร — คำตอบจากทีม CX ENERTECH"
+      title="คำถามที่พบบ่อยเรื่องโซล่าเซลล์และ EV Station"
+      description="ติดโซล่าเซลล์คุ้มไหม สร้างสถานีชาร์จต้องขออนุญาตอะไร — คำตอบจากทีม CX ENERTECH"
       :crumbs="[
         { label: 'หน้าแรก', to: '/' },
         { label: 'ความรู้', to: '/knowledge' },
@@ -12,42 +12,27 @@
     <section class="section">
       <div class="container">
         <div class="content-block">
-          <h2>โซล่าเซลล์</h2>
-          <h3>รับติดตั้งโซล่าเซลล์ใช้เวลากี่วัน?</h3>
-          <p>บ้านพักอาศัยโดยทั่วไปติดตั้ง 1–3 วัน โรงงานขึ้นกับขนาดระบบและงานโครงสร้าง อาจใช้เวลาหลายสัปดาห์รวมออกแบบและยื่นการไฟฟ้า</p>
-          <h3>ติดโซล่าเซลล์คุ้มไหม คืนทุนกี่ปี?</h3>
           <p>
-            ขึ้นกับค่าไฟต่อหน่วยและการใช้ไฟกลางวัน ดูประมาณการจาก
-            <NuxtLink to="/solar/payback">หน้าจุดคืนทุนโซล่าเซลล์</NuxtLink>
-            แล้วให้ทีมคำนวณจากบิลจริง
+            FAQ นี้สรุปคำถามที่ลูกค้าใช้ตัดสินใจบ่อย หากต้องการรายละเอียดตามไซต์
+            ไปต่อที่ความรู้ Solar / EV หรือขอใบเสนอราคา
           </p>
-          <h3>ราคาติดตั้งโซล่าเซลล์ดูได้ที่ไหน?</h3>
-          <p>
-            ราคาเริ่มต้นอยู่ที่
-            <NuxtLink to="/solar/rooftop/packages">แพ็กเกจโซล่าเซลล์</NuxtLink>
-            ไม่รวมงานเสริมหน้างาน ใบเสนอราคาจริงขอได้ที่
-            <NuxtLink to="/solar/quotation">ขอใบเสนอราคาโซล่าเซลล์</NuxtLink>
-          </p>
-          <h3>โรงงานควรติดขนาดเท่าไร?</h3>
-          <p>
-            ดูบิล 12 เดือนและพื้นที่หลังคา ขนาดที่ค้นบ่อยคือ
-            <NuxtLink to="/solar/factory/100kw">100 kW</NuxtLink>,
-            <NuxtLink to="/solar/factory/200kw">200 kW</NuxtLink>,
-            <NuxtLink to="/solar/factory/500kw">500 kW</NuxtLink>
-            และ
-            <NuxtLink to="/solar/factory/1mw">1 MW</NuxtLink>
-          </p>
-          <h3>ติดโซล่าเซลล์ไม่ต้องลงทุนเองได้ไหม?</h3>
-          <p>
-            โมเดล
-            <NuxtLink to="/solar/ppa">PPA solar rooftop</NuxtLink>
-            เหมาะกับโรงงานและอาคารใหญ่ ผู้ให้บริการลงทุนระบบให้ คุณจ่ายตามหน่วยที่ผลิต
-          </p>
-          <h2>EV Charging</h2>
-          <h3>เครื่องชาร์จ EV ที่บ้านใช้ไฟบ้านได้หรือไม่?</h3>
-          <p>ได้ ทีมเราจะสำรวจและออกแบบระบบไฟฟ้าให้เหมาะสมกับโหลดและความปลอดภัย</p>
-          <h3>สามารถเชื่อม Solar กับ EV Charger ได้ไหม?</h3>
-          <p>ได้ — นี่คือหัวใจของ Smart Energy Ecosystem ของ CX ENERTECH</p>
+          <template v-for="group in knowledgeFaqGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <div class="seo-faq">
+              <details v-for="item in group.items" :key="item.q">
+                <summary>{{ item.q }}</summary>
+                <p>{{ item.a }}</p>
+              </details>
+            </div>
+          </template>
+          <h2>อ่านต่อ</h2>
+          <ul>
+            <li><NuxtLink to="/knowledge/solar">ความรู้โซล่าเซลล์</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/ev">ความรู้ EV Station</NuxtLink></li>
+            <li><NuxtLink to="/solar/payback">จุดคืนทุนโซล่าเซลล์</NuxtLink></li>
+            <li><NuxtLink to="/ev-charging/investment">ลงทุน EV Station</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/articles">บทความทั้งหมด</NuxtLink></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -56,11 +41,14 @@
 </template>
 
 <script setup lang="ts">
+import { knowledgeFaqGroups, knowledgeFaqs } from '~/utils/knowledge'
+
 usePageSeo({
-  title: 'FAQ โซล่าเซลล์ | ติดโซล่าเซลล์คุ้มไหม',
+  title: 'FAQ โซล่าเซลล์และ EV Station',
   description:
-    'คำถามที่พบบ่อย รับติดตั้งโซล่าเซลล์ ราคา จุดคืนทุน PPA และเชื่อม EV Charger โดย CX ENERTECH',
+    'คำถามที่พบบ่อย รับติดตั้งโซล่าเซลล์ ราคา EV Station จุดคืนทุน และขออนุญาตสถานีชาร์จ โดย CX ENERTECH',
   path: '/knowledge/faq',
+  faq: knowledgeFaqs,
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
     { name: 'ความรู้', path: '/knowledge' },
@@ -68,3 +56,19 @@ usePageSeo({
   ],
 })
 </script>
+
+<style scoped>
+.seo-faq details {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 0;
+}
+.seo-faq summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-white);
+}
+.seo-faq details p {
+  margin-top: 0.65rem;
+}
+</style>

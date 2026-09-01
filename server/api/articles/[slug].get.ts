@@ -1,4 +1,4 @@
-import { fetchCmmsArticleBySlug, fetchCmmsArticles } from '../../utils/cmms-posts'
+import { resolveWebsiteArticle, resolveWebsiteArticles } from '../../utils/website-articles'
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')
@@ -7,8 +7,8 @@ export default defineEventHandler(async (event) => {
   }
 
   const [{ article, source }, list] = await Promise.all([
-    fetchCmmsArticleBySlug(event, slug),
-    fetchCmmsArticles(event).catch(() => ({ articles: [] })),
+    resolveWebsiteArticle(event, slug),
+    resolveWebsiteArticles(event).catch(() => ({ articles: [] })),
   ])
 
   if (!article) {
@@ -17,6 +17,11 @@ export default defineEventHandler(async (event) => {
 
   const related = list.articles
     .filter((item) => item.slug !== article.slug)
+    .sort((a, b) => {
+      const aSame = a.category && a.category === article.category ? 0 : 1
+      const bSame = b.category && b.category === article.category ? 0 : 1
+      return aSame - bSame
+    })
     .slice(0, 4)
 
   return {

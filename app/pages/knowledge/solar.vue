@@ -36,11 +36,13 @@
             <li><NuxtLink to="/solar/battery">โซล่าเซลล์พร้อมแบตเตอรี่</NuxtLink></li>
             <li><NuxtLink to="/solar/bess">Solar BESS โรงงาน</NuxtLink></li>
           </ul>
-          <h2>คำถามที่พบบ่อย</h2>
-          <p>
-            รวมคำตอบสั้นเรื่องระยะเวลาติดตั้ง ราคา และ PPA ไว้ที่
-            <NuxtLink to="/knowledge/faq">FAQ โซล่าเซลล์</NuxtLink>
-          </p>
+          <h2>อ่านต่อในศูนย์ความรู้</h2>
+          <ul>
+            <li><NuxtLink to="/knowledge/articles?category=solar">บทความโซล่าเซลล์</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/news">ข่าวสาร</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/case-studies">กรณีศึกษา</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/faq">FAQ</NuxtLink></li>
+          </ul>
         </div>
       </div>
     </section>

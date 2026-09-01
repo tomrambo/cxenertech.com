@@ -1,13 +1,13 @@
 <template>
   <div>
     <PageHero
-      title="Payback / จุดคืนทุน"
-      description="จุดคืนทุนอ้างอิง — เดือนและปี ของแพ็กเกจลงทุนและสถานีสำเร็จรูป"
+      title="จุดคืนทุน EV Station — ลงทุนสถานีชาร์จคุ้มไหม"
+      description="ROI คืนทุน และกำไรอ้างอิงของแพ็กเกจลงทุนและสถานีสำเร็จรูป"
       :crumbs="[
-        { label: 'Home', to: '/' },
+        { label: 'หน้าแรก', to: '/' },
         { label: 'EV Charging', to: '/ev-charging' },
-        { label: 'Packages', to: '/ev-charging/packages' },
-        { label: 'Payback' },
+        { label: 'ลงทุน EV Station', to: '/ev-charging/investment' },
+        { label: 'จุดคืนทุน' },
       ]"
     />
 
@@ -143,10 +143,16 @@ const groups = computed(() => [
   },
 ])
 
-useSeoMeta({
-  title: 'Payback / จุดคืนทุน | CX Charge Packages | CX ENERTECH',
+usePageSeo({
+  title: 'EV Station คืนทุนกี่ปี | จุดคืนทุนแพ็กเกจ',
   description:
-    'จุดคืนทุนอ้างอิง (เดือนและปี) ของแพ็กเกจลงทุนและสถานีสำเร็จรูป CX ENERTECH',
+    'จุดคืนทุน ROI และ CAPEX อ้างอิงของแพ็กเกจลงทุนและสถานีชาร์จรถไฟฟ้า CX ENERTECH',
+  path: '/ev-charging/packages/payback',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ลงทุน EV Station', path: '/ev-charging/investment' },
+    { name: 'จุดคืนทุน', path: '/ev-charging/packages/payback' },
+  ],
 })
 </script>
 

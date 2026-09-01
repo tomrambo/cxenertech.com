@@ -13,11 +13,11 @@
       <div class="container hero__inner">
         <p class="hero__brand animate-fade-up">CX ENERTECH · EV Charging</p>
         <h1 class="hero__title animate-fade-up animate-delay-1">
-          DC Fast &amp; AC Charging
-          <em>ครบวงจร</em>
+          รับติดตั้ง EV Station
+          <em>สถานีชาร์จรถยนต์ไฟฟ้า</em>
         </h1>
         <p class="hero__lead animate-fade-up animate-delay-2">
-          จากเครื่องชาร์จบ้านถึงสถานีสาธารณะ — ออกแบบ ติดตั้ง EPC
+          บริษัทติดตั้งสถานีชาร์จรถไฟฟ้า ครบวงจร — ออกแบบ EPC ราคา DC Fast
           และแพลตฟอร์มบริหาร ในมาตรฐานเดียวของ CX ENERTECH
         </p>
         <div class="hero__actions animate-fade-up animate-delay-3">
@@ -139,6 +139,39 @@
             <img :src="g.src" :alt="g.alt" loading="lazy" width="800" height="600" />
             <figcaption>{{ g.caption }}</figcaption>
           </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer">
+      <div class="container offer__inner">
+        <div>
+          <span class="section-label">EV Station</span>
+          <h2 class="section-title">บริการสถานีชาร์จรถยนต์ไฟฟ้า</h2>
+          <p>
+            รับสร้าง รับติดตั้ง ดูราคา ลงทุน และงาน Turnkey ตามทำเลทั่วประเทศ
+          </p>
+        </div>
+        <div class="offer__actions">
+          <NuxtLink to="/ev-charging/station" class="btn btn-primary">รับติดตั้ง EV Station</NuxtLink>
+          <NuxtLink to="/ev-charging/cost" class="btn btn-secondary">ราคา / ต้นทุน</NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: #101010">
+      <div class="container">
+        <div class="sub-links">
+          <NuxtLink to="/ev-charging/station" class="sub-link">รับติดตั้ง EV Station <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/cost" class="sub-link">ราคา EV Station <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/investment" class="sub-link">ลงทุน / ROI <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/station/epc" class="sub-link">Turnkey EPC <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/commercial" class="sub-link">สำหรับธุรกิจ <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/120kw" class="sub-link">DC 120 kW <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/180kw" class="sub-link">DC 180 kW <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/240kw" class="sub-link">DC 240 kW <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/thailand" class="sub-link">ติดตั้งทั่วประเทศ <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/quotation" class="sub-link">ขอใบเสนอราคา <span>→</span></NuxtLink>
         </div>
       </div>
     </section>
@@ -286,10 +319,15 @@ const gallery = [
   },
 ]
 
-useSeoMeta({
-  title: 'EV Charging | CX ENERTECH',
+usePageSeo({
+  title: 'รับติดตั้ง EV Station | สถานีชาร์จรถยนต์ไฟฟ้า',
   description:
-    'โซลูชัน EV Charging ครบวงจร — DC Fast, AC Charger, Station EPC, Management Platform และ CX Charge Packages',
+    'CX ENERTECH รับติดตั้ง EV Station สถานีชาร์จรถไฟฟ้า DC Fast AC Charging งาน EPC ราคา และจุดคืนทุน ครบวงจร',
+  path: '/ev-charging',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'EV Charging', path: '/ev-charging' },
+  ],
 })
 </script>
 

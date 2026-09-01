@@ -1,13 +1,13 @@
 <template>
   <div>
     <PageHero
-      title="Charger Price Rates"
-      description="Sell & cost tiers by quantity — DC S/J Series and AC / ตารางราคาขายและต้นทุนตามจำนวนเครื่อง"
+      title="ราคาเครื่องชาร์จ EV — เรท DC / AC"
+      description="ราคา DC Fast Charger และเครื่องชาร์จรถไฟฟ้า ตามจำนวนเครื่อง สำหรับประกอบงบลงทุน EV Station"
       :crumbs="[
-        { label: 'Home', to: '/' },
+        { label: 'หน้าแรก', to: '/' },
         { label: 'EV Charging', to: '/ev-charging' },
-        { label: 'Packages', to: '/ev-charging/packages' },
-        { label: 'Price Rates' },
+        { label: 'ราคา EV Station', to: '/ev-charging/cost' },
+        { label: 'เรทเครื่องชาร์จ' },
       ]"
     />
 
@@ -155,9 +155,16 @@ function packageSlug(sku: string) {
   return SKU_TO_SLUG[sku] ?? null
 }
 
-useSeoMeta({
-  title: 'Charger Price Rates | CX ENERTECH',
-  description: 'ตารางราคาขายและต้นทุนเครื่องชาร์จ DC/AC ตามจำนวนเครื่อง',
+usePageSeo({
+  title: 'ราคาเครื่องชาร์จ EV | เรท DC Fast Charger',
+  description:
+    'ราคาเครื่องชาร์จรถไฟฟ้า ราคา DC Charger และ EV Charger สำหรับธุรกิจ ตามจำนวนเครื่อง โดย CX ENERTECH',
+  path: '/ev-charging/packages/price-rates',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ราคา EV Station', path: '/ev-charging/cost' },
+    { name: 'เรทเครื่องชาร์จ', path: '/ev-charging/packages/price-rates' },
+  ],
 })
 </script>
 

@@ -38,9 +38,16 @@ function categoryLink(value: string) {
 
 const { t, locale } = useLocale()
 
-useSeoMeta({
-  title: () => t('articles.seoTitle'),
-  description: () => t('articles.seoDescription'),
+usePageSeo({
+  title: 'บทความโซล่าเซลล์และ EV Station',
+  description:
+    'บทความความรู้ติดตั้งโซล่าเซลล์ EV Station จุดคืนทุน PPA และ DC Fast Charger โดย CX ENERTECH',
+  path: '/knowledge/articles',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ศูนย์ความรู้', path: '/knowledge' },
+    { name: 'บทความ', path: '/knowledge/articles' },
+  ],
 })
 </script>
 
@@ -58,6 +65,12 @@ useSeoMeta({
 
     <section class="section">
       <div class="container">
+        <div class="content-block">
+          <p>
+            บทความของ CX ENERTECH อธิบายวิธีเลือกขนาดระบบ จุดคืนทุน PPA และ EV Station
+            อ่านคู่กับความรู้ Solar/EV และกรณีศึกษาจากหน้างาน
+          </p>
+        </div>
         <div v-if="showFilters" class="filters">
           <NuxtLink
             to="/knowledge/articles"
