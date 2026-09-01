@@ -56,6 +56,18 @@ Cloudflare Pages (git integration):
 - ถ้า generate แบบ static ไม่มี Worker ให้ตั้ง `NUXT_PUBLIC_PARTNER_REGISTER_URL` ชี้ public API ของ CMMS
 
 
+## ขอใบเสนอราคา (Quote Leads)
+
+หน้า `/contact/quotation` ส่งคำขอใบเสนอราคาไปยัง CMMS ตาราง `quote_leads`
+
+1. เบราว์เซอร์โพสต์ไปที่ `/api/contact/quotation` (Nitro / Cloudflare Worker)
+2. Worker ส่งต่อไป `NUXT_CMMS_API_BASE_URL/api/public/quote-leads`
+3. หลังบ้านดูรายการได้ที่ CMMS เมนู **Quote Leads (ฟอร์มขอใบเสนอ)**
+
+ค่าที่ต้องตั้งเหมือน Partner registration (`NUXT_CMMS_API_BASE_URL`, `PARTNER_INGEST_SECRET`)
+ถ้า generate แบบ static ไม่มี Worker ให้ตั้ง `NUXT_PUBLIC_QUOTE_REQUEST_URL` ชี้ `.../api/public/quote-leads`
+
+
 ## CX Charge Packages (จาก CMMS)
 
 หน้า `/ev-charging/packages` ดึงข้อมูลผ่าน Nitro API ของเว็บไซต์ แล้ว proxy ไป CMMS:

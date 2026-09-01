@@ -44,6 +44,8 @@ export default defineNuxtConfig({
     public: {
       /** ว่าง = ใช้ /api/partners/register (Nitro / Cloudflare Worker) */
       partnerRegisterUrl: process.env.NUXT_PUBLIC_PARTNER_REGISTER_URL || '',
+      /** ว่าง = ใช้ /api/contact/quotation (Nitro / Cloudflare Worker) */
+      quoteRequestUrl: process.env.NUXT_PUBLIC_QUOTE_REQUEST_URL || '',
       /** Google Tag Manager — Tag Assistant container */
       gtmId: process.env.NUXT_PUBLIC_GTM_ID || 'GTM-5MKFVS3N',
       /** Google Analytics 4 (gtag.js) */
@@ -63,6 +65,13 @@ export default defineNuxtConfig({
     },
     routeRules: {
       '/api/partners/**': {
+        cors: true,
+        headers: {
+          'Access-Control-Allow-Methods': 'POST,OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      },
+      '/api/contact/**': {
         cors: true,
         headers: {
           'Access-Control-Allow-Methods': 'POST,OPTIONS',
