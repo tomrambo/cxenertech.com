@@ -92,6 +92,6 @@ export const contactInfo = {
   tagline: 'Smart Energy & Technology Solutions',
   email: 'phachirawat.cx@gmail.com',
   phone: '+6699-624-6444',
-  line: '@cxenertech',
+  line: 'cxenertech',
   address: 'เลขที่ 429/20 หมู่บ้านพรีเมี่ยมเพลส 9 ถนนสุคนธสวัสดิ์ แขวงลาดพร้าว เขตลาดพร้าว กรุงเทพมหานคร 10230',
 }
