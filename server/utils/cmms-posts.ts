@@ -6,6 +6,7 @@ import type { H3Event } from 'h3'
 import {
   fallbackCoverPath,
   firstHtmlImage,
+  rewriteArticleLinks,
   rewriteHtmlMedia,
   toSiteMediaUrl,
 } from './cmms-media'
@@ -132,7 +133,7 @@ function normalizeArticle(raw: unknown): CmmsArticle | null {
   const coverImage = toSiteMediaUrl(
     firstImage(row) || firstHtmlImage(contentRaw) || fallbackCoverPath(slug),
   )
-  const content = rewriteHtmlMedia(contentRaw)
+  const content = rewriteArticleLinks(rewriteHtmlMedia(contentRaw))
   const createdAt = asString(row.createdAt) || asString(row.created_at)
   const publishedAt =
     asString(row.publishedAt) || asString(row.published_at) || createdAt
@@ -170,7 +171,7 @@ export async function fetchCmmsArticles(
 ): Promise<{ articles: CmmsArticle[]; source: 'cmms'; total: number }> {
   const base = requireBase(event)
   const query: Record<string, string> = {
-    limit: String(filters?.limit && filters.limit > 0 ? Math.min(50, filters.limit) : 50),
+    limit: String(filters?.limit && filters.limit > 0 ? Math.min(100, filters.limit) : 100),
   }
   if (filters?.category) query.category = filters.category
 

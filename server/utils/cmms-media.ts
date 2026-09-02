@@ -47,6 +47,65 @@ export function rewriteHtmlMedia(html: string) {
   )
 }
 
+const PATH_ALIASES: Record<string, string> = {
+  '/blog': '/knowledge/articles',
+  '/public/solar-rooftop': '/solar/quotation',
+  '/public/ev-station': '/contact/quotation',
+}
+
+/** บทความจาก CMMS ใช้ /blog/{slug} แต่เว็บนี้เสิร์ฟที่ /knowledge/articles/{slug} */
+export function rewriteArticleLinks(html: string) {
+  return html.replace(
+    /\bhref\s*=\s*(["'])([^"']+)\1/gi,
+    (full, quote: string, href: string) => {
+      const next = rewriteArticleHref(href)
+      return next === href ? full : `href=${quote}${next}${quote}`
+    },
+  )
+}
+
+export function rewriteArticleHref(href: string) {
+  const raw = href.trim()
+  if (!raw || raw.startsWith('#') || raw.startsWith('mailto:') || raw.startsWith('tel:')) {
+    return href
+  }
+
+  let url: URL | null = null
+  let path = raw
+  let rest = ''
+  try {
+    if (/^https?:\/\//i.test(raw)) {
+      url = new URL(raw)
+      if (!/(^|\.)cxenertech\.com$/i.test(url.hostname) && url.hostname !== 'localhost') {
+        return href
+      }
+      path = url.pathname
+      rest = `${url.search}${url.hash}`
+    } else {
+      const cut = raw.search(/[?#]/)
+      if (cut >= 0) {
+        path = raw.slice(0, cut)
+        rest = raw.slice(cut)
+      }
+    }
+  } catch {
+    return href
+  }
+
+  const alias = PATH_ALIASES[path.replace(/\/$/, '') || '/']
+  if (alias) {
+    return url ? `${url.origin}${alias}${rest}` : `${alias}${rest}`
+  }
+
+  const blog = path.match(/^\/blog\/([^/]+)\/?$/)
+  if (blog) {
+    const dest = `/knowledge/articles/${decodeURIComponent(blog[1])}`
+    return url ? `${url.origin}${dest}${rest}` : `${dest}${rest}`
+  }
+
+  return href
+}
+
 function hostOf(origin: string) {
   try {
     return new URL(origin).host

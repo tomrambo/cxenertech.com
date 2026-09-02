@@ -1,6 +1,6 @@
 import { SITE_STATIC_PATHS } from '../../app/utils/sitemap-routes'
 import { fetchCmmsSolarPackages } from '../utils/cmms-solar-packages'
-import { listLocalArticles } from '../../app/utils/local-articles'
+import { resolveWebsiteArticles } from '../utils/website-articles'
 import { knowledgeCases } from '../../app/utils/knowledge'
 
 function origin() {
@@ -27,8 +27,13 @@ export default defineEventHandler(async (event) => {
   } catch {
     // static paths still publish even if the catalog is unavailable
   }
-  for (const article of listLocalArticles()) {
-    paths.add(`/knowledge/articles/${article.slug}`)
+  try {
+    const { articles } = await resolveWebsiteArticles(event)
+    for (const article of articles) {
+      if (article.slug) paths.add(`/knowledge/articles/${article.slug}`)
+    }
+  } catch {
+    // keep static paths if CMMS articles are unavailable
   }
   for (const item of knowledgeCases) {
     paths.add(`/knowledge/case-studies/${item.slug}`)

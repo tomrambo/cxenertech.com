@@ -64,6 +64,8 @@ export default defineNuxtConfig({
       deployConfig: false,
     },
     routeRules: {
+      '/blog': { redirect: { to: '/knowledge/articles', statusCode: 301 } },
+      '/blog/**': { redirect: { to: '/knowledge/articles/**', statusCode: 301 } },
       '/api/partners/**': {
         cors: true,
         headers: {
