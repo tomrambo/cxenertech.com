@@ -1,55 +1,49 @@
 <template>
   <div>
     <PageHero
-      title="Smart Energy"
-      description="Concept เชื่อม Solar กับ EV สู่ Energy Management และอนาคตที่ยั่งยืน"
-      :crumbs="[{ label: 'Home', to: '/' }, { label: 'Smart Energy' }]"
+      title="Smart Energy — เชื่อมโซลาร์กับสถานีชาร์จ"
+      description="บริหารพลังงานจากหลังคาโซลาร์ไปยัง EV Charging ในระบบเดียว ไม่ใช่แผนกไอทีแยก"
+      :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'Smart Energy' }]"
     />
 
     <section class="section">
       <div class="container">
         <div class="section-header centered">
           <span class="section-label">Smart Energy Ecosystem</span>
-          <h2 class="section-title">ไม่ใช่ IT Business Unit — แต่เป็น Ecosystem</h2>
+          <h2 class="section-title">ผลิต ชาร์จ และวัดผลในวงจรเดียวกัน</h2>
           <p class="section-lead">
-            Smart Energy ของ CX ENERTECH คือแนวคิดเชื่อมโยง Solar Energy กับ EV Charging
-            เพื่อบริหารจัดการพลังงานอย่างมีประสิทธิภาพ สู่ Sustainable Future
+            Smart Energy ของ CX ENERTECH คือการเอาไฟฟ้าจากโซล่าเซลล์ไปใช้ที่สถานีชาร์จและโหลดอาคาร
+            พร้อมระบบมอนิเตอร์ ไม่ได้ขายซอฟต์แวร์แยกจากงานติดตั้ง
           </p>
         </div>
 
         <div class="flow">
           <div class="flow__node">CX ENERTECH</div>
           <div class="flow__line" />
-          <div class="flow__node flow__node--accent">SMART ENERGY ECOSYSTEM</div>
+          <div class="flow__node flow__node--accent">SMART ENERGY</div>
           <div class="flow__line" />
           <div class="flow__split">
-            <NuxtLink to="/solar" class="flow__box">
-              <strong>SOLAR ENERGY</strong>
-              <span>Rooftop · Farm · EPC · O&amp;M</span>
+            <NuxtLink to="/solar/rooftop" class="flow__box">
+              <strong>รับติดตั้งโซล่าเซลล์</strong>
+              <span>Rooftop · โรงงาน · EPC</span>
             </NuxtLink>
-            <NuxtLink to="/ev-charging" class="flow__box">
-              <strong>EV CHARGING</strong>
-              <span>AC · DC · Station · EV EPC</span>
+            <NuxtLink to="/ev-charging/station" class="flow__box">
+              <strong>รับติดตั้ง EV Station</strong>
+              <span>DC Fast · AC · แพลตฟอร์ม</span>
             </NuxtLink>
           </div>
-          <div class="flow__line" />
-          <div class="flow__node flow__node--teal">ENERGY MANAGEMENT</div>
-          <div class="flow__line" />
-          <div class="flow__node flow__node--solar">SUSTAINABLE FUTURE</div>
         </div>
-      </div>
-    </section>
 
-    <section class="section" style="background: #101010">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Capabilities</span>
-          <h2 class="section-title">ความสามารถด้าน Smart Energy</h2>
-        </div>
-        <div class="sub-links">
-          <NuxtLink v-for="l in links" :key="l.to" :to="l.to" class="sub-link">
-            {{ l.label }} <span>→</span>
-          </NuxtLink>
+        <div class="content-block" style="margin-top: 3rem">
+          <h2>มอนิเตอร์และบริหารพลังงาน</h2>
+          <p>
+            หลังติดตั้ง วัดการผลิต การชาร์จ และค่าไฟจากกริด เพื่อปรับตารางชาร์จให้ใช้ไฟโซลาร์กลางวัน
+            งานปรับแต่งเฉพาะไซต์คุยตอนสำรวจ ไม่แยกเป็นหน้าย่อยที่ไม่มีเนื้อหา
+          </p>
+          <p>
+            ถ้ารวมโซลาร์กับสถานีชาร์จในที่ดินเดียวกัน อ่านหน้า
+            <NuxtLink to="/smart-energy/solar-ev-integration">Solar + EV Integration</NuxtLink>
+          </p>
         </div>
       </div>
     </section>
@@ -59,18 +53,15 @@
 </template>
 
 <script setup lang="ts">
-const links = [
-  { label: 'Energy Management', to: '/smart-energy/energy-management' },
-  { label: 'Solar + EV Integration', to: '/smart-energy/solar-ev-integration' },
-  { label: 'Energy Monitoring', to: '/smart-energy/energy-monitoring' },
-  { label: 'EV Charging Management', to: '/smart-energy/ev-charging-management' },
-  { label: 'Energy Optimization', to: '/smart-energy/energy-optimization' },
-  { label: 'Customized Energy Solutions', to: '/smart-energy/customized' },
-]
-
-useSeoMeta({
-  title: 'Smart Energy | CX ENERTECH',
-  description: 'Smart Energy Ecosystem — เชื่อม Solar กับ EV สู่อนาคตที่ยั่งยืน',
+usePageSeo({
+  title: 'Smart Energy | เชื่อมโซลาร์กับ EV Charging',
+  description:
+    'Smart Energy ของ CX ENERTECH เชื่อมโซล่าเซลล์กับสถานีชาร์จรถไฟฟ้า พร้อมมอนิเตอร์พลังงานในงานติดตั้งเดียวกัน',
+  path: '/smart-energy',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'Smart Energy', path: '/smart-energy' },
+  ],
 })
 </script>
 
@@ -98,16 +89,6 @@ useSeoMeta({
   background: var(--color-forest-mid);
   color: var(--color-teal-bright);
   font-size: 0.8rem;
-}
-
-.flow__node--teal {
-  background: var(--color-teal);
-  color: white;
-}
-
-.flow__node--solar {
-  background: var(--color-solar);
-  color: var(--color-white);
 }
 
 .flow__line {

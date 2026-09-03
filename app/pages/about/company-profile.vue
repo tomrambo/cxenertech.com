@@ -1,12 +1,12 @@
 <template>
   <div>
     <PageHero
-      title="Company Profile"
-      description="ประวัติและภาพรวมบริษัท CX ENERTECH CO., LTD."
+      title="ประวัติบริษัท CX ENERTECH"
+      description="บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์และ EV Station"
       :crumbs="[
-        { label: 'Home', to: '/' },
-        { label: 'About', to: '/about' },
-        { label: 'Company Profile' },
+        { label: 'หน้าแรก', to: '/' },
+        { label: 'เกี่ยวกับเรา', to: '/about' },
+        { label: 'ประวัติบริษัท' },
       ]"
     />
 
@@ -47,9 +47,15 @@
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-  title: 'Company Profile | CX ENERTECH',
-  description: 'CX ENERTECH CO., LTD. — บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
+usePageSeo({
+  title: 'ประวัติบริษัท | CX ENERTECH รับติดตั้งโซล่าเซลล์',
+  description: 'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop และสถานีชาร์จรถไฟฟ้าแบบ EPC',
+  path: '/about/company-profile',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'เกี่ยวกับเรา', path: '/about' },
+    { name: 'ประวัติบริษัท', path: '/about/company-profile' },
+  ],
 })
 </script>
 

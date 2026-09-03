@@ -18,18 +18,23 @@ function onSubmit() {
   })
 }
 
-useSeoMeta({
-  title: 'Contact Us | CX ENERTECH',
-  description: 'ติดต่อ CX ENERTECH เพื่อสอบถามบริการ Solar และ EV Charging',
+usePageSeo({
+  title: 'ติดต่อ CX ENERTECH | ขอใบเสนอราคาโซล่าเซลล์และ EV',
+  description: 'ติดต่อทีม CX ENERTECH เพื่อปรึกษาติดตั้งโซล่าเซลล์ EV Station หรือนัดสำรวจพื้นที่',
+  path: '/contact',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ติดต่อเรา', path: '/contact' },
+  ],
 })
 </script>
 
 <template>
   <div>
     <PageHero
-      title="Contact Us"
-      description="ติดต่อทีม CX ENERTECH สำหรับคำปรึกษา ใบเสนอราคา หรือขอสำรวจพื้นที่"
-      :crumbs="[{ label: 'Home', to: '/' }, { label: 'Contact' }]"
+      title="ติดต่อเรา"
+      description="ปรึกษาติดตั้งโซล่าเซลล์ EV Station หรือนัดสำรวจพื้นที่กับทีม CX ENERTECH"
+      :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'ติดต่อเรา' }]"
     />
 
     <section class="section">
@@ -52,7 +57,7 @@ useSeoMeta({
             </li>
             <li>
               <strong>LINE OA</strong>
-              <NuxtLink to="/contact/line">{{ contactInfo.line }}</NuxtLink>
+              <span>{{ contactInfo.line }}</span>
             </li>
             <li>
               <strong>Address</strong>
@@ -63,8 +68,6 @@ useSeoMeta({
           <div class="quick-links">
             <NuxtLink to="/contact/quotation" class="sub-link">ขอใบเสนอราคา <span>→</span></NuxtLink>
             <NuxtLink to="/contact/site-survey" class="sub-link">ขอสำรวจพื้นที่ <span>→</span></NuxtLink>
-            <NuxtLink to="/contact/support" class="sub-link">Service &amp; Support <span>→</span></NuxtLink>
-            <NuxtLink to="/contact/maps" class="sub-link">Google Maps <span>→</span></NuxtLink>
           </div>
         </div>
 

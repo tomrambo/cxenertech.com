@@ -1,4 +1,5 @@
 import { SITE_STATIC_PATHS } from '../../app/utils/sitemap-routes'
+import { SEO_REDIRECTS } from '../../app/utils/seo-redirects'
 import { fetchCmmsSolarPackages } from '../utils/cmms-solar-packages'
 import { resolveWebsiteArticles } from '../utils/website-articles'
 import { knowledgeCases } from '../../app/utils/knowledge'
@@ -18,7 +19,7 @@ function urlEntry(path: string, changefreq = 'weekly') {
 }
 
 export default defineEventHandler(async (event) => {
-  const paths = new Set<string>(SITE_STATIC_PATHS)
+  const paths = new Set<string>(SITE_STATIC_PATHS.filter((path) => !SEO_REDIRECTS[path]))
   try {
     const { packages } = await fetchCmmsSolarPackages(event)
     for (const pkg of packages) {

@@ -52,7 +52,6 @@ export const footerNav = {
   company: [
     { key: 'about', to: '/about' },
     { key: 'vision', to: '/about/vision-mission' },
-    { key: 'org', to: '/about/organization' },
     { key: 'career', to: '/career' },
   ],
   solar: [

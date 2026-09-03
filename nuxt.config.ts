@@ -1,4 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { SEO_REDIRECTS } from './app/utils/seo-redirects'
+
+const seoRedirectRules = Object.fromEntries(
+  Object.entries(SEO_REDIRECTS).map(([from, to]) => [
+    from,
+    { redirect: { to, statusCode: 301 as const } },
+  ]),
+)
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -17,7 +26,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'CX ENERTECH — Powering a Sustainable Future',
+      title: 'CX ENERTECH | รับติดตั้งโซล่าเซลล์ และ EV Charging',
       htmlAttrs: { lang: 'th' },
       meta: [
         { charset: 'utf-8' },
@@ -25,7 +34,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'CX ENERTECH CO., LTD. — Smart Energy & EV Infrastructure โซลูชันพลังงานสะอาดและโครงสร้างพื้นฐาน EV แบบครบวงจร',
+            'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop และ EV Station ดูแพ็กเกจราคา จุดคืนทุน และขอใบเสนอราคา',
         },
         { name: 'theme-color', content: '#0B0B0B' },
       ],
@@ -64,6 +73,7 @@ export default defineNuxtConfig({
       deployConfig: false,
     },
     routeRules: {
+      ...seoRedirectRules,
       '/blog': { redirect: { to: '/knowledge/articles', statusCode: 301 } },
       '/blog/**': { redirect: { to: '/knowledge/articles/**', statusCode: 301 } },
       '/api/partners/**': {

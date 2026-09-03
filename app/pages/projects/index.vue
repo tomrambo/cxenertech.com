@@ -12,18 +12,23 @@ const filters = [
   { label: 'EPC', value: 'epc' },
 ]
 
-useSeoMeta({
-  title: 'Projects | CX ENERTECH',
-  description: 'โครงการ Solar Energy และ EV Charging จากทีม CX ENERTECH',
+usePageSeo({
+  title: 'โครงการโซล่าเซลล์และ EV Station',
+  description: 'ผลงานติดตั้งโซล่าเซลล์โรงงาน คลังสินค้า และสถานีชาร์จรถไฟฟ้า โดย CX ENERTECH',
+  path: '/projects',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ผลงาน', path: '/projects' },
+  ],
 })
 </script>
 
 <template>
   <div>
     <PageHero
-      title="Projects"
-      description="ผลงานโครงการ Solar, EV Charging และ EPC ที่ส่งมอบโดย CX ENERTECH"
-      :crumbs="[{ label: 'Home', to: '/' }, { label: 'Projects' }]"
+      title="ผลงานโครงการ"
+      description="งานติดตั้งโซล่าเซลล์และ EV Station ที่ส่งมอบแล้ว ใช้ยืนยันว่าทีมลงหน้างานได้จริง"
+      :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'ผลงาน' }]"
     />
 
     <section class="section">

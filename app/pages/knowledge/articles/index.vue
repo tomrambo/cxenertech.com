@@ -54,8 +54,8 @@ usePageSeo({
 <template>
   <div>
     <PageHero
-      :title="t('articles.title')"
-      :description="t('articles.description')"
+      title="บทความโซล่าเซลล์และ EV Station"
+      description="วิธีเลือกขนาดระบบ จุดคืนทุน PPA และสถานีชาร์จรถไฟฟ้า จากทีมติดตั้งจริง"
       :crumbs="[
         { label: t('common.home'), to: '/' },
         { label: t('nav.knowledge'), to: '/knowledge' },

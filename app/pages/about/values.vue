@@ -1,9 +1,9 @@
 <template>
   <div>
     <PageHero
-      title="Our Values"
-      description="ค่านิยมองค์กรที่ขับเคลื่อนทีม CX ENERTECH ในทุกโครงการ"
-      :crumbs='[{"label":"Home","to":"/"},{"label":"About","to":"/about"},{"label":"Our Values"}]'
+      title="ค่านิยมองค์กร"
+      description="ค่านิยมที่ทีมติดตั้งโซล่าเซลล์และ EV Station ของ CX ENERTECH ใช้กับงานหน้างาน"
+      :crumbs='[{"label":"หน้าแรก","to":"/"},{"label":"เกี่ยวกับเรา","to":"/about"},{"label":"ค่านิยม"}]'
     />
     <section class="section">
       <div class="container">
@@ -18,8 +18,14 @@
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-  title: 'Our Values | CX ENERTECH',
-  description: 'ค่านิยมองค์กรที่ขับเคลื่อนทีม CX ENERTECH ในทุกโครงการ',
+usePageSeo({
+  title: 'ค่านิยมองค์กร | CX ENERTECH',
+  description: 'ค่านิยมทีมติดตั้งโซล่าเซลล์และ EV Station ของบริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
+  path: '/about/values',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'เกี่ยวกับเรา', path: '/about' },
+    { name: 'ค่านิยม', path: '/about/values' },
+  ],
 })
 </script>

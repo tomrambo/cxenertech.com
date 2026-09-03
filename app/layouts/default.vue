@@ -22,9 +22,12 @@ useHead(() => ({
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: contactInfo.legalEn,
-        alternateName: contactInfo.legalTh,
+        '@type': 'LocalBusiness',
+        '@id': `${origin}/#business`,
+        name: contactInfo.legalTh,
+        alternateName: contactInfo.legalEn,
+        description:
+          'รับติดตั้งโซล่าเซลล์ solar rooftop และ EV Station ครบวงจร บ้านถึงโรงงาน',
         url: origin,
         logo: `${origin}/logo-on-dark.png`,
         email: contactInfo.email,
@@ -38,6 +41,25 @@ useHead(() => ({
           addressCountry: 'TH',
         },
         areaServed: 'TH',
+        knowsAbout: ['รับติดตั้งโซล่าเซลล์', 'Solar Rooftop', 'EV Station', 'DC Fast Charger'],
+        makesOffer: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'รับติดตั้งโซล่าเซลล์',
+              url: `${origin}/solar/rooftop`,
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'รับติดตั้ง EV Station',
+              url: `${origin}/ev-charging/station`,
+            },
+          },
+        ],
       }),
     },
   ],

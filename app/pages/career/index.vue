@@ -1,28 +1,15 @@
 <template>
   <div>
     <PageHero
-      title="Career"
-      description="ร่วมงานกับ CX ENERTECH — สร้างอนาคตพลังงานสะอาดไปด้วยกัน"
-      :crumbs='[{"label":"Home","to":"/"},{"label":"Career"}]'
+      title="ร่วมงานกับ CX ENERTECH"
+      description="รับสมัครทีมงานพลังงานสะอาดและ EV Infrastructure"
+      :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'ร่วมงาน' }]"
     />
     <section class="section">
       <div class="container">
         <div class="content-block">
-          <p>ร่วมงานกับ CX ENERTECH — สร้างอนาคตพลังงานสะอาดไปด้วยกัน</p>
-          
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">สำรวจเพิ่มเติม</span>
-          <h2 class="section-title">หัวข้อที่เกี่ยวข้อง</h2>
-        </div>
-        <div class="sub-links">
-          <NuxtLink to="/career/life" class="sub-link">Life at CX ENERTECH <span>→</span></NuxtLink>
-          <NuxtLink to="/career/positions" class="sub-link">Open Positions <span>→</span></NuxtLink>
-          <NuxtLink to="/career/submit-resume" class="sub-link">Submit Resume <span>→</span></NuxtLink>
+          <p>ส่งประวัติมาที่อีเมลบริษัท หรือติดต่อผ่านหน้าติดต่อเรา หากมีตำแหน่งเปิดจะแจ้งกลับ</p>
+          <p><NuxtLink class="btn btn-primary" to="/contact">ติดต่อฝ่ายบุคคล</NuxtLink></p>
         </div>
       </div>
     </section>
@@ -31,8 +18,10 @@
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-  title: 'Career | CX ENERTECH',
-  description: 'ร่วมงานกับ CX ENERTECH — สร้างอนาคตพลังงานสะอาดไปด้วยกัน',
+usePageSeo({
+  title: 'ร่วมงานกับ CX ENERTECH',
+  description: 'ร่วมงานติดตั้งโซล่าเซลล์และ EV Station กับ CX ENERTECH',
+  path: '/career',
+  robots: 'noindex, follow',
 })
 </script>

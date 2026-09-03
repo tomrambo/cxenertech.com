@@ -4,9 +4,9 @@
       title="ดาวน์โหลด Company Profile"
       description="เอกสารแนะนำบริษัท CX ENERTECH CO., LTD."
       :crumbs="[
-        { label: 'Home', to: '/' },
-        { label: 'About', to: '/about' },
-        { label: 'Download' },
+        { label: 'หน้าแรก', to: '/' },
+        { label: 'เกี่ยวกับเรา', to: '/about' },
+        { label: 'ดาวน์โหลดโปรไฟล์' },
       ]"
     />
 
@@ -34,9 +34,15 @@
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-  title: 'Download Company Profile | CX ENERTECH',
-  description: 'ดาวน์โหลดเอกสารแนะนำบริษัท CX ENERTECH CO., LTD.',
+usePageSeo({
+  title: 'ดาวน์โหลดโปรไฟล์บริษัท | CX ENERTECH',
+  description: 'ดาวน์โหลดเอกสารแนะนำบริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด ผู้รับติดตั้งโซล่าเซลล์และ EV Station',
+  path: '/about/download',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'เกี่ยวกับเรา', path: '/about' },
+    { name: 'ดาวน์โหลดโปรไฟล์', path: '/about/download' },
+  ],
 })
 </script>
 

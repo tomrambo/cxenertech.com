@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageHero
-      title="พลังงานแสงอาทิตย์ครบวงจร — รับติดตั้งโซล่าเซลล์"
-      description="ออกแบบ ติดตั้ง Solar Rooftop บ้านถึงโรงงาน พร้อม EPC PPA และระบบกักเก็บพลังงาน"
+      title="โซลาร์ครบวงจร — Rooftop EPC PPA และระบบกักเก็บพลังงาน"
+      description="เลือกงานติดตั้งโซล่าเซลล์ ดูแพ็กเกจราคา จุดคืนทุน หรือโมเดล PPA ไม่ต้องลงทุนเอง"
       :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'โซลาร์' }]"
     />
 
@@ -29,7 +29,7 @@
       <div class="container">
         <div class="section-header">
           <span class="section-label">Services</span>
-          <h2 class="section-title">บริการ Solar ของเรา</h2>
+          <h2 class="section-title">บริการโซลาร์แยกตามเจตนาค้น</h2>
         </div>
         <div class="sub-links">
           <NuxtLink v-for="l in links" :key="l.to" :to="l.to" class="sub-link">
@@ -74,9 +74,9 @@ const links = [
 ]
 
 usePageSeo({
-  title: 'ติดตั้งโซล่าเซลล์ | Solar Energy ครบวงจร',
+  title: 'โซลาร์ครบวงจร | Solar Rooftop EPC PPA',
   description:
-    'CX ENERTECH รับติดตั้งโซล่าเซลล์ บ้านถึงโรงงาน แพ็กเกจราคา Solar EPC PPA และระบบกักเก็บพลังงาน',
+    'บริการโซลาร์ของ CX ENERTECH แยกหน้าชัดเจน: รับติดตั้งโซล่าเซลล์ แพ็กเกจราคา โรงงาน จุดคืนทุน PPA และ EPC',
   path: '/solar',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },

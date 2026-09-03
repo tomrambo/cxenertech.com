@@ -23,7 +23,7 @@
             {{ t('home.lead') }}
           </p>
           <div class="hero__actions animate-fade-up animate-delay-3">
-            <NuxtLink to="/solar" class="btn btn-primary">
+            <NuxtLink to="/solar/rooftop" class="btn btn-primary">
               {{ t('home.seeServices') }}
               <span aria-hidden="true">→</span>
             </NuxtLink>
@@ -72,7 +72,25 @@
       </div>
     </section>
 
-    <!-- Solar Packages entry -->
+    <section class="section intent">
+      <div class="container">
+        <div class="services__head">
+          <div>
+            <span class="section-label">ค้นหาบริการ</span>
+            <h2 class="section-title">งานติดตั้งที่ลูกค้าค้นหา</h2>
+          </div>
+          <p class="section-lead">
+            หนึ่งหน้าต่อหนึ่งเจตนาค้น — เลือกหน้าตามงานที่ต้องการ ไม่ใช่เมนูบริษัท
+          </p>
+        </div>
+        <div class="intent__grid">
+          <NuxtLink v-for="item in searchIntents" :key="item.to" :to="item.to" class="intent__card">
+            <strong>{{ item.label }}</strong>
+            <span>{{ item.hint }}</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
     <section class="solar-pkg">
       <div class="container-wide solar-pkg__inner">
         <div class="solar-pkg__copy">
@@ -207,15 +225,15 @@ const stats = computed(() => [
 
 const services = computed(() => [
   {
-    to: '/solar',
-    title: 'Solar Energy',
+    to: '/solar/rooftop',
+    title: 'รับติดตั้งโซล่าเซลล์',
     desc: t('home.svcSolarDesc'),
     image:
       'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1100&q=80',
   },
   {
-    to: '/ev-charging',
-    title: 'EV Charging',
+    to: '/ev-charging/station',
+    title: 'รับติดตั้ง EV Station',
     desc: t('home.svcEvDesc'),
     image:
       'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1100&q=80',
@@ -237,10 +255,19 @@ const solarSizes = computed(() => [
   { kw: 20, label: t('home.sizeCommercial') },
 ])
 
+const searchIntents = [
+  { label: 'รับติดตั้งโซล่าเซลล์', hint: 'บ้าน อาคาร โรงงาน', to: '/solar/rooftop' },
+  { label: 'ราคาติดตั้งโซล่าเซลล์', hint: 'แพ็กเกจ On-grid / Hybrid', to: '/solar/rooftop/packages' },
+  { label: 'โซล่าเซลล์โรงงาน', hint: 'EPC 100 kW–1 MW', to: '/solar/rooftop/factory' },
+  { label: 'รับติดตั้ง EV Station', hint: 'สถานีชาร์จรถไฟฟ้า', to: '/ev-charging/station' },
+  { label: 'ราคา EV Station', hint: 'แพ็กเกจ CX Charge', to: '/ev-charging/packages' },
+  { label: 'ขอใบเสนอราคา', hint: 'สำรวจไซต์แล้วออกข้อเสนอ', to: '/contact/quotation' },
+]
+
 const why = computed(() => [
-  { title: 'Expert Team', desc: t('home.whyExpert') },
-  { title: 'International Standards', desc: t('home.whyStandards') },
-  { title: 'End-to-End Delivery', desc: t('home.whyE2e') },
+  { title: 'ทีมติดตั้งเอง', desc: t('home.whyExpert') },
+  { title: 'มาตรฐานงานไฟฟ้า', desc: t('home.whyStandards') },
+  { title: 'ออกแบบถึงส่งมอบ', desc: t('home.whyE2e') },
 ])
 
 const projectTeasers = computed(() => [
@@ -272,6 +299,21 @@ usePageSeo({
   description:
     'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop บ้านถึงโรงงาน พร้อมแพ็กเกจราคา จุดคืนทุน PPA และ EV Charging ครบวงจร',
   path: '/',
+  faq: [
+    {
+      q: 'CX ENERTECH รับติดตั้งโซล่าเซลล์ไหม?',
+      a: 'รับติดตั้งโซล่าเซลล์แบบรับเหมาครบวงจร ทั้งบ้าน อาคาร และโรงงาน ดูแพ็กเกจที่ /solar/rooftop/packages แล้วขอใบเสนอราคาตามหลังคาจริง',
+    },
+    {
+      q: 'รับติดตั้ง EV Station ด้วยหรือไม่?',
+      a: 'รับสร้างและติดตั้งสถานีชาร์จรถยนต์ไฟฟ้า DC/AC งาน EPC หม้อแปลง และแพลตฟอร์มคิดเงิน รายละเอียดอยู่ที่หน้า รับติดตั้ง EV Station',
+    },
+    {
+      q: 'ดูราคาติดตั้งได้ที่ไหน?',
+      a: 'ราคาโซล่าเซลล์อยู่ที่แพ็กเกจโซลาร์ ราคา EV Station อยู่ที่แพ็กเกจ CX Charge ตัวเลขบนเว็บเป็นราคาอ้างอิง ใบเสนอราคาจริงต้องสำรวจไซต์',
+    },
+  ],
+  crumbs: [{ name: 'หน้าแรก', path: '/' }],
 })
 </script>
 
@@ -540,6 +582,53 @@ usePageSeo({
   font-weight: 600;
   font-size: 0.88rem;
   color: var(--color-lime);
+}
+
+.intent {
+  background: #101010;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.intent__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.intent__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.15rem 1.25rem;
+  background: var(--color-panel);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.intent__card:hover {
+  border-color: rgba(212, 255, 0, 0.35);
+}
+
+.intent__card strong {
+  font-family: var(--font-display);
+  color: var(--color-white);
+  font-size: 1.02rem;
+}
+
+.intent__card span {
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 800px) {
+  .intent__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .intent__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ========== SOLAR PACKAGES ========== */

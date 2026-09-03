@@ -1,17 +1,16 @@
 <template>
   <div>
     <PageHero
-      title="Partners"
-      description="พันธมิตรด้านเทคโนโลยี อุปกรณ์ และธุรกิจของ CX ENERTECH"
-      :crumbs='[{"label":"Home","to":"/"},{"label":"Partners"}]'
+      title="พันธมิตรขายโซล่าเซลล์และ EV Station"
+      description="เปิดรับเซลล์อิสระที่อยากขายงานติดตั้ง โดยมีทีมสำรวจและติดตั้งซัพพอร์ตให้"
+      :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'พันธมิตร' }]"
     />
     <section class="section">
       <div class="container">
         <div class="content-block">
-          <p>พันธมิตรด้านเทคโนโลยี อุปกรณ์ และธุรกิจของ CX ENERTECH</p>
           <p>
-            เปิดรับ Sale Freelance ที่อยากขายโซลูชัน Solar และ EV Charging
-            โดยมีทีมติดตั้งและบริการหลังการขายซัพพอร์ตให้ครบวงจร
+            หน้านี้สำหรับคนที่อยากขายโซลูชัน Solar และ EV Charging ร่วมกับ CX ENERTECH
+            ไม่ใช่หน้าให้ลูกค้าค้นหาเพื่อติดตั้ง — ลูกค้าที่ต้องการติดตั้งไปที่แพ็กเกจหรือใบเสนอราคา
           </p>
           <p>
             <NuxtLink class="btn btn-primary" to="/partners/become-a-partner">
@@ -21,27 +20,26 @@
         </div>
       </div>
     </section>
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">สำรวจเพิ่มเติม</span>
-          <h2 class="section-title">หัวข้อที่เกี่ยวข้อง</h2>
-        </div>
-        <div class="sub-links">
-          <NuxtLink to="/partners/technology" class="sub-link">Technology Partners <span>→</span></NuxtLink>
-          <NuxtLink to="/partners/equipment" class="sub-link">Equipment Partners <span>→</span></NuxtLink>
-          <NuxtLink to="/partners/business" class="sub-link">Business Partners <span>→</span></NuxtLink>
-          <NuxtLink to="/partners/become-a-partner" class="sub-link">Become a Partner <span>→</span></NuxtLink>
-        </div>
-      </div>
-    </section>
-    <CtaBand />
+    <CtaBand
+      title="ลูกค้าต้องการติดตั้ง ไม่ใช่สมัครเซลล์?"
+      description="ดูแพ็กเกจราคา หรือส่งรายละเอียดไซต์เพื่อรับใบเสนอราคา"
+      primary-label="ขอใบเสนอราคา"
+      primary-to="/contact/quotation"
+      secondary-label="แพ็กเกจโซล่าเซลล์"
+      secondary-to="/solar/rooftop/packages"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-  title: 'Partners | CX ENERTECH',
-  description: 'พันธมิตรด้านเทคโนโลยี อุปกรณ์ และธุรกิจของ CX ENERTECH',
+usePageSeo({
+  title: 'พันธมิตรขายโซล่าเซลล์และ EV',
+  description: 'สมัครเซลล์อิสระขายงานติดตั้งโซล่าเซลล์และ EV Station กับทีม CX ENERTECH',
+  path: '/partners',
+  robots: 'noindex, follow',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'พันธมิตร', path: '/partners' },
+  ],
 })
 </script>

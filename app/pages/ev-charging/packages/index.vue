@@ -24,7 +24,7 @@
           </nav>
           <p class="hero__brand animate-fade-up">CX ENERTECH</p>
           <h1 class="hero__title animate-fade-up animate-delay-1">
-            แพ็กเกจ <em>EV Station</em>
+            แพ็กเกจ <em>EV Station</em> ราคาอ้างอิง
           </h1>
           <p class="hero__lead animate-fade-up animate-delay-2">
             เลือกแพ็กเกจสถานีชาร์จรถยนต์ไฟฟ้าและเครื่องชาร์จ — สเปก ราคาอ้างอิง และจุดคืนทุนในที่เดียว

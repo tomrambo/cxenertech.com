@@ -18,6 +18,7 @@ export function usePageSeo(input: {
   path?: string
   image?: string
   type?: 'website' | 'article'
+  robots?: string
   faq?: SeoFaq[]
   crumbs?: SeoCrumb[]
 }) {
@@ -28,11 +29,12 @@ export function usePageSeo(input: {
     ? input.title
     : `${input.title} | CX ENERTECH`
   const image = absoluteUrl(input.image || '/logo-on-dark.png')
+  const robots = input.robots || 'index, follow'
 
   useSeoMeta({
     title,
     description: input.description,
-    robots: 'index, follow',
+    robots,
     ogTitle: title,
     ogDescription: input.description,
     ogType: input.type || 'website',

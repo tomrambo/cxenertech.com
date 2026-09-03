@@ -99,7 +99,7 @@ const th = {
   articles: {
     title: 'บทความ',
     description: 'บทความเชิงลึกด้านพลังงานสะอาด Solar Rooftop และ EV Infrastructure',
-    seoTitle: 'Articles | CX ENERTECH',
+    seoTitle: 'บทความโซล่าเซลล์และ EV Station | CX ENERTECH',
     seoDescription:
       'บทความเชิงลึกด้านพลังงานสะอาด Solar Rooftop และ EV Infrastructure จาก CX ENERTECH',
     all: 'ทั้งหมด',
@@ -128,11 +128,11 @@ const th = {
   },
   home: {
     kicker: 'Smart Energy & Technology',
-    titleBefore: 'ขับเคลื่อนอนาคตที่',
-    titleAccent: 'ยั่งยืน',
-    titleAfter: '',
-    lead: 'Smart Energy & Technology Solutions — โซลูชันพลังงานสะอาด และโครงสร้างพื้นฐาน EV แบบครบวงจร',
-    seeServices: 'ดูบริการของเรา',
+    titleBefore: 'รับติดตั้ง',
+    titleAccent: 'โซล่าเซลล์',
+    titleAfter: ' และ EV Charging',
+    lead: 'บริษัทรับติดตั้งโซล่าเซลล์ solar rooftop และสถานีชาร์จรถไฟฟ้า ดูแพ็กเกจราคา จุดคืนทุน แล้วขอใบเสนอราคาตามไซต์จริง',
+    seeServices: 'ดูงานติดตั้งโซล่าเซลล์',
     quote: 'ขอใบเสนอราคา',
     panelSolar: 'Solar Energy',
     panelEv: 'EV Charging',
@@ -144,8 +144,8 @@ const th = {
     whatWeDo: 'What We Do',
     servicesTitle: 'บริการของเรา',
     servicesLead: 'จาก Solar Energy สู่ EV Charging และ Smart Energy Ecosystem',
-    svcSolarDesc: 'Design • EPC • Installation • O&M — จาก Rooftop ถึง Solar Farm',
-    svcEvDesc: 'Home • Commercial • Station EPC • Management Platform',
+    svcSolarDesc: 'รับเหมาติดตั้งโซล่าเซลล์บ้านถึงโรงงาน — แพ็กเกจราคา EPC และยื่นการไฟฟ้า',
+    svcEvDesc: 'รับติดตั้ง EV Station DC Fast / AC งานไฟฟ้า หม้อแปลง และแพลตฟอร์มคิดเงิน',
     svcSmartDesc: 'เชื่อม Solar กับ EV สู่ Energy Management ที่ชาญฉลาด',
     solarPkgTitle: 'แพ็กเกจโซลาร์รูฟท็อป',
     solarPkgLead:

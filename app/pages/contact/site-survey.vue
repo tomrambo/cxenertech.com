@@ -3,7 +3,7 @@
     <PageHero
       title="ขอสำรวจพื้นที่"
       description="นัดหมายทีม CX ENERTECH เพื่อสำรวจพื้นที่ก่อนออกแบบระบบ Solar หรือ EV"
-      :crumbs='[{"label":"Home","to":"/"},{"label":"Contact","to":"/contact"},{"label":"Site Survey"}]'
+      :crumbs='[{"label":"หน้าแรก","to":"/"},{"label":"ติดต่อเรา","to":"/contact"},{"label":"ขอสำรวจพื้นที่"}]'
     />
     <section class="section">
       <div class="container">
@@ -18,8 +18,14 @@
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-  title: 'ขอสำรวจพื้นที่ | CX ENERTECH',
-  description: 'นัดหมายทีม CX ENERTECH เพื่อสำรวจพื้นที่ก่อนออกแบบระบบ Solar หรือ EV',
+usePageSeo({
+  title: 'ขอสำรวจพื้นที่ติดตั้งโซล่าเซลล์และ EV',
+  description: 'นัดทีม CX ENERTECH สำรวจหลังคาหรือที่จอด ก่อนออกแบบระบบโซล่าเซลล์หรือ EV Station',
+  path: '/contact/site-survey',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ติดต่อเรา', path: '/contact' },
+    { name: 'ขอสำรวจพื้นที่', path: '/contact/site-survey' },
+  ],
 })
 </script>

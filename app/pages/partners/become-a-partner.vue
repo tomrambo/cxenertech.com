@@ -137,10 +137,12 @@ const preferredLabel = computed(() =>
     .join(', ') || '—',
 )
 
-useSeoMeta({
-  title: 'สมัคร Sale Freelance Partner | CX ENERTECH',
+usePageSeo({
+  title: 'สมัคร Sale Freelance Partner',
   description:
     'สมัครเป็นเซลล์อิสระของ CX ENERTECH ขายโซลูชัน Solar และ EV Charging พร้อมทีมซัพพอร์ตการติดตั้ง',
+  path: '/partners/become-a-partner',
+  robots: 'noindex, follow',
 })
 </script>
 

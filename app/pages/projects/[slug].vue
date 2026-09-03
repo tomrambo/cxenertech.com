@@ -8,9 +8,16 @@ if (!project.value) {
   throw createError({ statusCode: 404, statusMessage: 'Project not found' })
 }
 
-useSeoMeta({
-  title: `${project.value.title} | CX ENERTECH`,
+usePageSeo({
+  title: `${project.value.title} | ผลงาน CX ENERTECH`,
   description: project.value.overview,
+  path: `/projects/${project.value.slug}`,
+  type: 'article',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ผลงาน', path: '/projects' },
+    { name: project.value.title, path: `/projects/${project.value.slug}` },
+  ],
 })
 </script>
 
@@ -20,8 +27,8 @@ useSeoMeta({
       :title="project.title"
       :description="`${project.capacity} · ${project.location}`"
       :crumbs="[
-        { label: 'Home', to: '/' },
-        { label: 'Projects', to: '/projects' },
+        { label: 'หน้าแรก', to: '/' },
+        { label: 'ผลงาน', to: '/projects' },
         { label: project.title },
       ]"
     />

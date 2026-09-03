@@ -65,9 +65,15 @@ async function onSubmit() {
   }
 }
 
-useSeoMeta({
-  title: 'ขอใบเสนอราคา | CX ENERTECH',
-  description: 'ขอใบเสนอราคาระบบ Solar Energy หรือ EV Charging จาก CX ENERTECH',
+usePageSeo({
+  title: 'ขอใบเสนอราคาโซล่าเซลล์และ EV Station',
+  description: 'ขอใบเสนอราคาติดตั้งโซล่าเซลล์ หรือ EV Station จาก CX ENERTECH ตามไซต์จริง',
+  path: '/contact/quotation',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'ติดต่อเรา', path: '/contact' },
+    { name: 'ขอใบเสนอราคา', path: '/contact/quotation' },
+  ],
 })
 </script>
 
@@ -77,9 +83,9 @@ useSeoMeta({
       title="ขอใบเสนอราคา"
       description="กรอกข้อมูลโครงการของคุณ ทีม CX ENERTECH จะจัดทำข้อเสนอที่เหมาะสม"
       :crumbs="[
-        { label: 'Home', to: '/' },
-        { label: 'Contact', to: '/contact' },
-        { label: 'Request Quotation' },
+        { label: 'หน้าแรก', to: '/' },
+        { label: 'ติดต่อเรา', to: '/contact' },
+        { label: 'ขอใบเสนอราคา' },
       ]"
     />
 

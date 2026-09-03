@@ -1,9 +1,9 @@
 <template>
   <div>
     <PageHero
-      title="Vision & Mission"
-      description="วิสัยทัศน์: เป็นผู้นำด้าน Smart Energy & EV Infrastructure ในภูมิภาค — พันธกิจ: ส่งมอบโซลูชันพลังงานสะอาดที่เชื่อถือได้ครบวงจร"
-      :crumbs='[{"label":"Home","to":"/"},{"label":"About","to":"/about"},{"label":"Vision & Mission"}]'
+      title="วิสัยทัศน์และพันธกิจ"
+      description="มุ่งติดตั้งโซล่าเซลล์และ EV Station ให้ธุรกิจไทยใช้พลังงานสะอาดได้จริง"
+      :crumbs='[{"label":"หน้าแรก","to":"/"},{"label":"เกี่ยวกับเรา","to":"/about"},{"label":"วิสัยทัศน์และพันธกิจ"}]'
     />
     <section class="section">
       <div class="container">
@@ -18,8 +18,14 @@
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-  title: 'Vision & Mission | CX ENERTECH',
-  description: 'วิสัยทัศน์: เป็นผู้นำด้าน Smart Energy & EV Infrastructure ในภูมิภาค — พันธกิจ: ส่งมอบโซลูชันพลังงานสะอาดที่เชื่อถือได้ครบวงจร',
+usePageSeo({
+  title: 'วิสัยทัศน์และพันธกิจ | CX ENERTECH',
+  description: 'วิสัยทัศน์และพันธกิจของบริษัทติดตั้งโซล่าเซลล์และ EV Station CX ENERTECH',
+  path: '/about/vision-mission',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'เกี่ยวกับเรา', path: '/about' },
+    { name: 'วิสัยทัศน์และพันธกิจ', path: '/about/vision-mission' },
+  ],
 })
 </script>

@@ -13,19 +13,19 @@
       <div class="container hero__inner">
         <p class="hero__brand animate-fade-up">CX ENERTECH · EV Charging</p>
         <h1 class="hero__title animate-fade-up animate-delay-1">
-          รับติดตั้ง EV Station
-          <em>สถานีชาร์จรถยนต์ไฟฟ้า</em>
+          EV Charging
+          <em>เครื่องชาร์จและสถานีชาร์จรถไฟฟ้า</em>
         </h1>
         <p class="hero__lead animate-fade-up animate-delay-2">
-          บริษัทติดตั้งสถานีชาร์จรถไฟฟ้า ครบวงจร — ออกแบบ EPC ราคา DC Fast
-          และแพลตฟอร์มบริหาร ในมาตรฐานเดียวของ CX ENERTECH
+          เลือกเครื่องชาร์จ DC/AC แพ็กเกจสถานี หรืองานรับติดตั้ง EV Station แบบ EPC
+          — แต่ละเจตนาค้นมีหน้าที่เป็นของตัวเอง
         </p>
         <div class="hero__actions animate-fade-up animate-delay-3">
-          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">
-            ดู CX Charge Packages
+          <NuxtLink to="/ev-charging/station" class="btn btn-primary">
+            รับติดตั้ง EV Station
             <span aria-hidden="true">→</span>
           </NuxtLink>
-          <NuxtLink to="/ev-charging/quotation" class="btn btn-secondary">ขอใบเสนอราคา</NuxtLink>
+          <NuxtLink to="/ev-charging/packages" class="btn btn-secondary">ดูแพ็กเกจราคา</NuxtLink>
         </div>
       </div>
     </section>
@@ -320,9 +320,9 @@ const gallery = [
 ]
 
 usePageSeo({
-  title: 'รับติดตั้ง EV Station | สถานีชาร์จรถยนต์ไฟฟ้า',
+  title: 'EV Charging | เครื่องชาร์จและสถานีชาร์จรถไฟฟ้า',
   description:
-    'CX ENERTECH รับติดตั้ง EV Station สถานีชาร์จรถไฟฟ้า DC Fast AC Charging งาน EPC ราคา และจุดคืนทุน ครบวงจร',
+    'รวมบริการ EV Charging ของ CX ENERTECH: รับติดตั้ง EV Station แพ็กเกจราคา DC Fast และจุดคืนทุน แยกหน้าตามเจตนาค้น',
   path: '/ev-charging',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },

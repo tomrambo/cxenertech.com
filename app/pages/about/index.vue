@@ -3,7 +3,7 @@
     <PageHero
       title="เกี่ยวกับ CX ENERTECH"
       description="ผู้ให้บริการโซลูชันพลังงานสะอาดและโครงสร้างพื้นฐาน EV แบบครบวงจร"
-      :crumbs="[{ label: 'Home', to: '/' }, { label: 'About Us' }]"
+      :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'เกี่ยวกับเรา' }]"
     />
 
     <section class="section">
@@ -60,17 +60,21 @@ const stats = [
 ]
 
 const links = [
-  { label: 'Company Profile', to: '/about/company-profile' },
-  { label: 'Vision & Mission', to: '/about/vision-mission' },
-  { label: 'Our Values', to: '/about/values' },
-  { label: 'Business Overview', to: '/about/business-overview' },
-  { label: 'Organization', to: '/about/organization' },
-  { label: 'Certifications', to: '/about/certifications' },
+  { label: 'ประวัติบริษัท', to: '/about/company-profile' },
+  { label: 'วิสัยทัศน์และพันธกิจ', to: '/about/vision-mission' },
+  { label: 'ค่านิยม', to: '/about/values' },
+  { label: 'ดาวน์โหลดโปรไฟล์', to: '/about/download' },
 ]
 
-useSeoMeta({
-  title: 'About Us | CX ENERTECH',
-  description: 'เกี่ยวกับ CX ENERTECH — Smart Energy & EV Infrastructure',
+usePageSeo({
+  title: 'เกี่ยวกับ CX ENERTECH | บริษัทติดตั้งโซล่าเซลล์และ EV Station',
+  description:
+    'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์และสถานีชาร์จรถไฟฟ้า แบบ EPC ครบวงจร',
+  path: '/about',
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'เกี่ยวกับเรา', path: '/about' },
+  ],
 })
 </script>
 
