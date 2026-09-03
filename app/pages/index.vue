@@ -229,21 +229,21 @@ const services = computed(() => [
     title: 'รับติดตั้งโซล่าเซลล์',
     desc: t('home.svcSolarDesc'),
     image:
-      'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1100&q=80',
+    image: '/images/projects/project-factory-rooftop.jpg',
   },
   {
     to: '/ev-charging/station',
     title: 'รับติดตั้ง EV Station',
     desc: t('home.svcEvDesc'),
     image:
-      'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1100&q=80',
+    image: '/images/projects/project-dc-station.jpg',
   },
   {
     to: '/smart-energy',
     title: 'Smart Energy',
     desc: t('home.svcSmartDesc'),
     image:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1100&q=80',
+    image: '/images/projects/project-warehouse-epc.jpg',
   },
 ])
 
@@ -822,7 +822,7 @@ usePageSeo({
   padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 3.5rem);
   background:
     linear-gradient(145deg, rgba(212, 255, 0, 0.94), rgba(184, 219, 0, 0.9)),
-    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=70')
+    url('/images/projects/project-factory-rooftop.jpg')
       center / cover;
   color: #111;
   display: flex;
