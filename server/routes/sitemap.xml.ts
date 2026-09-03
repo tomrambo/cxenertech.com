@@ -1,6 +1,7 @@
 import { SITE_STATIC_PATHS } from '../../app/utils/sitemap-routes'
 import { SEO_REDIRECTS } from '../../app/utils/seo-redirects'
 import { fetchCmmsSolarPackages } from '../utils/cmms-solar-packages'
+import { fetchCmmsChargePackages } from '../utils/cmms-charge-packages'
 import { resolveWebsiteArticles } from '../utils/website-articles'
 import { knowledgeCases } from '../../app/utils/knowledge'
 
@@ -41,6 +42,16 @@ export default defineEventHandler(async (event) => {
     }
   } catch {
     // static paths still publish even if the catalog is unavailable
+  }
+  try {
+    const { packages } = await fetchCmmsChargePackages(event)
+    for (const pkg of packages) {
+      if (!pkg.slug) continue
+      const path = `/ev-charging/packages/${pkg.slug}`
+      paths.add(path)
+    }
+  } catch {
+    // keep static paths if EV catalog is unavailable
   }
   try {
     const { articles } = await resolveWebsiteArticles(event)

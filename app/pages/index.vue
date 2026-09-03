@@ -228,21 +228,18 @@ const services = computed(() => [
     to: '/solar/rooftop',
     title: 'รับติดตั้งโซล่าเซลล์',
     desc: t('home.svcSolarDesc'),
-    image:
     image: '/images/projects/project-factory-rooftop.jpg',
   },
   {
     to: '/ev-charging/station',
     title: 'รับติดตั้ง EV Station',
     desc: t('home.svcEvDesc'),
-    image:
     image: '/images/projects/project-dc-station.jpg',
   },
   {
     to: '/smart-energy',
     title: 'Smart Energy',
     desc: t('home.svcSmartDesc'),
-    image:
     image: '/images/projects/project-warehouse-epc.jpg',
   },
 ])
