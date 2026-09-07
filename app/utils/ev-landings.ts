@@ -92,6 +92,8 @@ export const evLandings: Record<string, EvLanding> = {
       },
     ],
     related: [
+      { label: 'แพ็กเกจและราคา EV Station', to: '/ev-charging/packages' },
+      { label: 'ออกแบบสถานีตามพื้นที่', to: '/ev-charging/station/design' },
       { label: 'ราคาและต้นทุน EV Station', to: '/ev-charging/cost' },
       { label: 'ลงทุน / จุดคืนทุน', to: '/ev-charging/investment' },
       { label: 'EV Station Turnkey EPC', to: '/ev-charging/station/epc' },
@@ -481,6 +483,7 @@ export const evLandings: Record<string, EvLanding> = {
       },
     ],
     related: [
+      { label: 'รับติดตั้ง EV Station', to: '/ev-charging/station' },
       { label: 'Turnkey EPC', to: '/ev-charging/station/epc' },
       { label: 'ประเมินทำเล', to: '/ev-charging/investment' },
       { label: 'ขอใบเสนอราคา / BOQ', to: '/ev-charging/quotation' },

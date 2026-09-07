@@ -90,6 +90,7 @@
             >
               ขอใบเสนอราคา
             </NuxtLink>
+            <NuxtLink to="/solar/rooftop" class="aside-link">รับติดตั้งโซล่าเซลล์</NuxtLink>
             <NuxtLink to="/solar/rooftop/packages" class="aside-link">← แพ็กเกจทั้งหมด</NuxtLink>
           </div>
         </aside>
@@ -103,6 +104,8 @@
 <script setup lang="ts">
 import { formatThb, phaseLabel } from '~/utils/solar-format'
 import { systemTypeLabel, type SolarWebsitePackage } from '~/utils/solar-packages'
+import { resolvePackageImage } from '~/utils/package-image'
+import { buildProductJsonLd } from '~/utils/product-jsonld'
 
 function equipmentLabel(row: { brand: string | null; model?: string | null; qty?: number | null }) {
   const name = [row.brand, row.model].filter(Boolean).join(' ')
@@ -134,17 +137,23 @@ onMounted(() => {
   })
 })
 
+const packagePath = `/solar/rooftop/packages/${pkg.value.slug}`
+const packageImage =
+  resolvePackageImage(pkg.value.image) || '/images/projects/project-residential-solar.jpg'
+
 usePageSeo({
   title: pkg.value.name_th,
   description:
     pkg.value.description ||
     `แพ็กเกจโซล่าเซลล์ ${pkg.value.power_kw} kW ราคาเริ่มต้น ${pkg.value.price_from.toLocaleString('th-TH')} บาท`,
-  path: `/solar/rooftop/packages/${pkg.value.slug}`,
+  path: packagePath,
+  image: packageImage,
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
     { name: 'โซลาร์', path: '/solar' },
+    { name: 'รับติดตั้งโซล่าเซลล์', path: '/solar/rooftop' },
     { name: 'แพ็กเกจโซล่าเซลล์', path: '/solar/rooftop/packages' },
-    { name: pkg.value.code, path: `/solar/rooftop/packages/${pkg.value.slug}` },
+    { name: pkg.value.code, path: packagePath },
   ],
 })
 
@@ -153,21 +162,17 @@ useHead({
     {
       key: 'ld-product',
       type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: pkg.value.name_th,
-        description: pkg.value.description || pkg.value.tagline,
-        sku: pkg.value.code,
-        brand: { '@type': 'Brand', name: 'CX ENERTECH' },
-        offers: {
-          '@type': 'Offer',
-          priceCurrency: 'THB',
+      innerHTML: JSON.stringify(
+        buildProductJsonLd({
+          name: pkg.value.name_th,
+          description: pkg.value.description || pkg.value.tagline,
+          sku: pkg.value.code,
+          image: absoluteUrl(packageImage),
+          url: absoluteUrl(packagePath),
           price: pkg.value.price_from,
-          url: absoluteUrl(`/solar/rooftop/packages/${pkg.value.slug}`),
-          availability: 'https://schema.org/InStock',
-        },
-      }),
+          priceValidUntil: pkg.value.effective_from,
+        }),
+      ),
     },
   ],
 })

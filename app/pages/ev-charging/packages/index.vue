@@ -20,6 +20,8 @@
             <span aria-hidden="true">/</span>
             <NuxtLink to="/ev-charging">EV Charging</NuxtLink>
             <span aria-hidden="true">/</span>
+            <NuxtLink to="/ev-charging/station">รับติดตั้ง EV Station</NuxtLink>
+            <span aria-hidden="true">/</span>
             <span>แพ็กเกจสถานีชาร์จ</span>
           </nav>
           <p class="hero__brand animate-fade-up">CX ENERTECH</p>
@@ -34,6 +36,9 @@
               เลือกแพ็กเกจ
               <span aria-hidden="true">↓</span>
             </a>
+            <NuxtLink to="/ev-charging/station" class="btn btn-secondary">
+              รับติดตั้ง EV Station
+            </NuxtLink>
             <NuxtLink to="/ev-charging/packages/payback" class="btn btn-secondary">
               ดูจุดคืนทุน
             </NuxtLink>
@@ -520,6 +525,7 @@ usePageSeo({
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
     { name: 'EV Charging', path: '/ev-charging' },
+    { name: 'รับติดตั้ง EV Station', path: '/ev-charging/station' },
     { name: 'แพ็กเกจ EV Station', path: '/ev-charging/packages' },
   ],
 })

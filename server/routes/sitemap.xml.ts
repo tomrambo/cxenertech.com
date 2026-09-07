@@ -4,6 +4,7 @@ import { fetchCmmsSolarPackages } from '../utils/cmms-solar-packages'
 import { fetchCmmsChargePackages } from '../utils/cmms-charge-packages'
 import { resolveWebsiteArticles } from '../utils/website-articles'
 import { knowledgeCases } from '../../app/utils/knowledge'
+import { projects } from '../../app/utils/projects'
 
 function origin() {
   const config = useRuntimeConfig()
@@ -16,7 +17,7 @@ function loc(path: string) {
 }
 
 /** วันที่โครง SEO ล่าสุด — lastmod จริง ไม่ใส่วันที่วันนี้ทุกครั้ง เพราะ Google จะเลิกเชื่อ */
-const SITE_CONTENT_UPDATED = '2026-09-03'
+const SITE_CONTENT_UPDATED = '2026-09-08'
 
 function isoDate(value: string | undefined) {
   if (!value) return SITE_CONTENT_UPDATED
@@ -66,6 +67,10 @@ export default defineEventHandler(async (event) => {
   }
   for (const item of knowledgeCases) {
     paths.add(`/knowledge/case-studies/${item.slug}`)
+  }
+  for (const project of projects) {
+    if (!project.slug) continue
+    paths.add(`/projects/${project.slug}`)
   }
 
   const urls = [...paths]

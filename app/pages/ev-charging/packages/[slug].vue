@@ -4,9 +4,10 @@
       :title="pkg.name_th"
       :description="pkg.tagline"
       :crumbs="[
-        { label: 'Home', to: '/' },
+        { label: 'หน้าแรก', to: '/' },
         { label: 'EV Charging', to: '/ev-charging' },
-        { label: 'Packages', to: '/ev-charging/packages' },
+        { label: 'รับติดตั้ง EV Station', to: '/ev-charging/station' },
+        { label: 'แพ็กเกจ', to: '/ev-charging/packages' },
         { label: pkg.code },
       ]"
     />
@@ -31,7 +32,7 @@
             />
           </div>
 
-          <h1 class="name-en">{{ pkg.name }}</h1>
+          <p class="name-en">{{ pkg.name }}</p>
           <p class="lead">{{ pkg.description }}</p>
           <p class="source">Source / แหล่งข้อมูล: {{ pkg.source_label }}</p>
 
@@ -162,7 +163,8 @@
             >
               Quote / ขอใบเสนอราคา
             </NuxtLink>
-            <NuxtLink to="/ev-charging/packages" class="aside-link">← All packages / แพ็กเกจทั้งหมด</NuxtLink>
+            <NuxtLink to="/ev-charging/station" class="aside-link">รับติดตั้ง EV Station</NuxtLink>
+            <NuxtLink to="/ev-charging/packages" class="aside-link">← แพ็กเกจทั้งหมด</NuxtLink>
           </div>
         </aside>
       </div>
@@ -182,6 +184,7 @@ import {
   typeLabel,
 } from '~/utils/ev-format'
 import { resolvePackageImage } from '~/utils/package-image'
+import { buildProductJsonLd } from '~/utils/product-jsonld'
 
 type ApiPackage = {
   id: string
@@ -293,9 +296,42 @@ function formatFinanceValue(key: string, val: string | number) {
   return val.toLocaleString('th-TH')
 }
 
-useSeoMeta({
-  title: () => `${pkg.value.name_th} | ${pkg.value.name} | CX ENERTECH`,
-  description: () => pkg.value.description,
+const packagePath = `/ev-charging/packages/${pkg.value.slug}`
+const packageImage = heroImage.value || '/images/projects/project-dc-station.jpg'
+
+usePageSeo({
+  title: pkg.value.name_th,
+  description:
+    pkg.value.description ||
+    `แพ็กเกจ EV Station ${pkg.value.name_th} สเปกและราคาอ้างอิงจาก CX ENERTECH`,
+  path: packagePath,
+  image: packageImage,
+  crumbs: [
+    { name: 'หน้าแรก', path: '/' },
+    { name: 'EV Charging', path: '/ev-charging' },
+    { name: 'รับติดตั้ง EV Station', path: '/ev-charging/station' },
+    { name: 'แพ็กเกจ EV Station', path: '/ev-charging/packages' },
+    { name: pkg.value.code, path: packagePath },
+  ],
+})
+
+useHead({
+  script: [
+    {
+      key: 'ld-product',
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(
+        buildProductJsonLd({
+          name: pkg.value.name_th,
+          description: pkg.value.description || pkg.value.tagline,
+          sku: pkg.value.code,
+          image: absoluteUrl(packageImage),
+          url: absoluteUrl(packagePath),
+          price: price.value.pending ? null : price.value.value,
+        }),
+      ),
+    },
+  ],
 })
 </script>
 

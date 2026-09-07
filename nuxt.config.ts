@@ -73,6 +73,15 @@ export default defineNuxtConfig({
       deployConfig: false,
     },
     routeRules: {
+      ...(process.env.NODE_ENV === 'production'
+        ? {
+            '/**': {
+              headers: {
+                'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+              },
+            },
+          }
+        : {}),
       ...seoRedirectRules,
       '/blog': { redirect: { to: '/knowledge/articles', statusCode: 301 } },
       '/blog/**': { redirect: { to: '/knowledge/articles/**', statusCode: 301 } },

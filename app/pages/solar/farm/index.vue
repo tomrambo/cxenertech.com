@@ -31,6 +31,10 @@
             แผงบนทุ่นลอยน้ำใช้ผิวอ่างหรือบ่อที่ไม่ใช้หลังคา ช่วยลดการระเหยและใช้พื้นที่น้ำที่ว่าง
             ต้องดูความลึก คลื่น วัสดุทุ่น และการยึดฝั่งก่อนล็อกขนาดระบบ
           </p>
+          <p>
+            ถ้ายังมีหลังคาโรงงานหรือคลังว่าง งาน rooftop มักถูกกว่าและเร็วกว่าฟาร์มภาคพื้นดิน
+            ดูหน้ารับติดตั้งโซล่าเซลล์ก่อน แล้วค่อยประเมินแปลงที่ดินเมื่อหลังคาไม่พอ
+          </p>
         </div>
       </div>
     </section>
@@ -41,6 +45,7 @@
           <h2 class="section-title">ถ้ายังไม่ใช่ฟาร์ม</h2>
         </div>
         <div class="sub-links">
+          <NuxtLink to="/solar/rooftop" class="sub-link">รับติดตั้งโซล่าเซลล์ <span>→</span></NuxtLink>
           <NuxtLink to="/solar/rooftop/factory" class="sub-link">โซล่าเซลล์โรงงาน <span>→</span></NuxtLink>
           <NuxtLink to="/solar/epc" class="sub-link">Solar EPC <span>→</span></NuxtLink>
           <NuxtLink to="/solar/ppa" class="sub-link">PPA ไม่ต้องลงทุน <span>→</span></NuxtLink>

@@ -71,19 +71,17 @@ export function usePageSeo(input: {
     })
   }
 
+  const scripts = graph.map((node, index) => ({
+    key: `ld-${String(node['@type'] || index).toLowerCase()}`,
+    type: 'application/ld+json' as const,
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      ...node,
+    }),
+  }))
+
   useHead({
     link: [{ rel: 'canonical', href: url }],
-    script: graph.length
-      ? [
-          {
-            key: 'ld-json',
-            type: 'application/ld+json',
-            innerHTML: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@graph': graph,
-            }),
-          },
-        ]
-      : [],
+    script: scripts,
   })
 }

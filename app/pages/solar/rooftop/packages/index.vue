@@ -19,6 +19,12 @@
             <h2 class="section-title">เลือกขนาดระบบที่เหมาะกับหลังคาของคุณ</h2>
             <p class="section-lead">
               ราคาเริ่มต้นอ้างอิงรวมแผง อินเวอร์เตอร์ โครงสร้าง และงานติดตั้ง · ไม่รวมงานเสริมหน้างาน
+              ดูขอบเขตงานรับติดตั้งที่
+              <NuxtLink to="/solar/rooftop">รับติดตั้งโซล่าเซลล์</NuxtLink>
+              หรือเจาะ
+              <NuxtLink to="/solar/rooftop/factory">โรงงาน</NuxtLink>
+              และ
+              <NuxtLink to="/solar/rooftop/residential">บ้านพักอาศัย</NuxtLink>
             </p>
           </div>
           <p v-if="pending" class="status">กำลังโหลด…</p>
@@ -237,6 +243,12 @@ usePageSeo({
   color: var(--color-muted);
   max-width: 36rem;
   line-height: 1.6;
+}
+
+.section-lead a {
+  color: var(--color-lime);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .status {

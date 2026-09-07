@@ -63,6 +63,7 @@ const links = [
   { label: 'แพ็กเกจและราคา', to: '/solar/rooftop/packages' },
   { label: 'โซล่าเซลล์บ้าน', to: '/solar/rooftop/residential' },
   { label: 'โซล่าเซลล์โรงงาน', to: '/solar/rooftop/factory' },
+  { label: 'โซล่าเซลล์คลังสินค้า', to: '/solar/rooftop/warehouse' },
   { label: 'โซล่าเซลล์ 5 / 10 / 15 kW', to: '/solar/5kw' },
   { label: 'จุดคืนทุน / คุ้มไหม', to: '/solar/payback' },
   { label: 'Hybrid + แบตเตอรี่', to: '/solar/hybrid' },
