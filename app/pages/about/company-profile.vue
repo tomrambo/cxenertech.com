@@ -36,7 +36,7 @@
         </div>
 
         <div class="profile__actions">
-          <NuxtLink to="/about/download" class="btn btn-primary">ดาวน์โหลด Company Profile</NuxtLink>
+          <NuxtLink to="/about/download" class="btn btn-primary">ขอ Company Profile</NuxtLink>
           <NuxtLink to="/projects" class="btn btn-outline-dark">ดูผลงานโครงการ</NuxtLink>
         </div>
       </div>

@@ -1,0 +1,348 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - link "CX ENERTECH Home" [ref=f1e6] [cursor=pointer]:
+        - /url: /
+        - img "CX ENERTECH" [ref=f1e8]
+      - generic [ref=f1e9]:
+        - group "ภาษา" [ref=f1e10]:
+          - button "ไทย" [pressed] [ref=f1e11] [cursor=pointer]: TH
+          - button "English" [ref=f1e12] [cursor=pointer]: EN
+        - button "เปิดเมนู" [ref=f1e13] [cursor=pointer]
+  - main [ref=f1e17]:
+    - generic [ref=f1e18]:
+      - generic [ref=f1e20]:
+        - navigation "Breadcrumb" [ref=f1e21]:
+          - link "หน้าแรก" [ref=f1e22] [cursor=pointer]:
+            - /url: /
+          - generic [aria-hidden] [ref=f1e23]: /
+          - link "ความรู้" [ref=f1e24] [cursor=pointer]:
+            - /url: /knowledge
+          - generic [aria-hidden] [ref=f1e25]: /
+          - link "บทความ" [ref=f1e26] [cursor=pointer]:
+            - /url: /knowledge/articles
+          - generic [aria-hidden] [ref=f1e27]: /
+          - generic [ref=f1e28]: "คู่มือวางแผน DC Fast Charger 120 kW: ระบบไฟและรายการ BOQ"
+        - 'heading "คู่มือวางแผน DC Fast Charger 120 kW: ระบบไฟและรายการ BOQ" [level=1] [ref=f1e29]'
+        - paragraph [ref=f1e30]: ตรวจข้อมูลโหลดไฟ หม้อแปลง รายการ BOQ และสมมติฐานการใช้งานก่อนขอใบเสนอราคา DC Fast Charger 120 kW
+      - generic [ref=f1e32]:
+        - article [ref=f1e33]:
+          - generic [ref=f1e34]:
+            - generic [ref=f1e35]: EV Charging
+            - time [ref=f1e36]: 2 กันยายน 2569
+            - generic [ref=f1e37]: ทีม CX ENERTECH
+          - 'img "คู่มือวางแผน DC Fast Charger 120 kW: ระบบไฟและรายการ BOQ" [ref=f1e39]'
+          - paragraph [ref=f1e40]:
+            - text: ต้องการประเมินไซต์หรือขอใบเสนอราคา?
+            - link "บริการติดตั้ง EV Station 120 kW" [ref=f1e41] [cursor=pointer]:
+              - /url: /ev-charging/120kw
+          - generic [ref=f1e42]:
+            - paragraph [ref=f1e43]:
+              - strong [ref=f1e44]: EV Station 120 kW
+              - text: คือชุด DC Fast Charger ที่ใช้เปิดจุดบริการเชิงพาณิชย์ได้โดยไม่ต้องเริ่มที่ฮับใหญ่ CX ENERTECH ติดตั้ง DC 120 kW คู่หม้อแปลงประมาณ 160 kVA และ MDB 250 A ตาม Master BOQ
+            - figure "ชุด 120 kW เหมาะกับจุดที่รถอยู่ 30–45 นาที โดยไม่ต้องขยายไฟใหญ่เกิน" [ref=f1e45]:
+              - img "ตู้ชาร์จ 120 kW ขณะเชื่อมรถยนต์ไฟฟ้า" [ref=f1e46]
+            - heading "ปัญหาที่เจอบ่อย (Problem)" [level=2] [ref=f1e48]
+            - paragraph [ref=f1e49]: หลายโครงการซื้อ 240 kW ทั้งที่ลูกค้าอยู่ครึ่งชั่วโมงและไฟหน้างานเหลือไม่พอ 120 kW ที่ออกแบบถูกมักคืนทุนเร็วกว่าตู้ใหญ่ที่ใช้งานไม่เต็ม
+            - heading "ทางออกของ CX ENERTECH (Solution)" [level=2] [ref=f1e50]
+            - paragraph [ref=f1e51]:
+              - text: ชุด 120 kW เหมาะกับปั๊ม ร้านอาหาร โรงแรมที่ลูกค้าอยู่ 30–45 นาที ชาร์จได้ระยะทางต่อเที่ยวโดยไม่ต้องขยายระบบไฟมหาศาล ถ้าทราฟฟิกขึ้นค่อยเพิ่มเป็น 2 ตู้หรือขยับ
+              - link "180 kW" [ref=f1e52] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-180kw
+            - heading "แพ็กเกจที่เลือกได้ (Package)" [level=2] [ref=f1e53]
+            - list [ref=f1e54]:
+              - listitem [ref=f1e55]:
+                - strong [ref=f1e56]: Contractor
+                - text: — ถอดปริมาณติดตั้งตามหน้างาน เจ้าของจัดซื้อตู้เองได้
+              - listitem [ref=f1e57]:
+                - strong [ref=f1e58]: Turnkey
+                - text: —
+                - link "EV Station Turnkey" [ref=f1e59] [cursor=pointer]:
+                  - /url: /knowledge/articles/ev-station-turnkey
+                - text: ออกแบบ จัดซื้อ ติดตั้ง ส่งมอบพร้อมใช้
+              - listitem [ref=f1e60]:
+                - strong [ref=f1e61]: EPC
+                - text: —
+                - link "EV Station EPC" [ref=f1e62] [cursor=pointer]:
+                  - /url: /knowledge/articles/ev-station-epc
+                - text: มีวิศวกรรม แบบก่อสร้าง และผู้รับผิดชอบงานชัดเจน
+            - heading "Specification ชุดมาตรฐาน" [level=2] [ref=f1e63]
+            - table [ref=f1e64]:
+              - rowgroup [ref=f1e65]:
+                - row [ref=f1e66]:
+                  - columnheader "ชุด" [ref=f1e67]
+                  - columnheader "ตู้ชาร์จ DC" [ref=f1e68]
+                  - columnheader "หม้อแปลง" [ref=f1e69]
+                  - columnheader "MDB" [ref=f1e70]
+                  - columnheader "เหมาะกับ" [ref=f1e71]
+              - rowgroup [ref=f1e72]:
+                - row [ref=f1e73]:
+                  - cell [ref=f1e74]:
+                    - link "EV Station 120 kW" [ref=f1e75] [cursor=pointer]:
+                      - /url: /knowledge/articles/ev-station-120kw
+                  - cell "DC 120 kW" [ref=f1e76]
+                  - cell "160 kVA" [ref=f1e77]
+                  - cell "250 A" [ref=f1e78]
+                  - cell "ปั๊ม ร้านอาหาร โรงแรมที่รถอยู่ 30–45 นาที" [ref=f1e79]
+                - row [ref=f1e80]:
+                  - cell [ref=f1e81]:
+                    - link "EV Station 180 kW" [ref=f1e82] [cursor=pointer]:
+                      - /url: /knowledge/articles/ev-station-180kw
+                  - cell "DC 180 kW" [ref=f1e83]
+                  - cell "250 kVA" [ref=f1e84]
+                  - cell "400 A" [ref=f1e85]
+                  - cell "จุดพักรถ ทางหลวง ที่ต้องการความเร็วขึ้น" [ref=f1e86]
+                - row [ref=f1e87]:
+                  - cell [ref=f1e88]:
+                    - link "EV Station 240 kW" [ref=f1e89] [cursor=pointer]:
+                      - /url: /knowledge/articles/ev-station-240kw
+                  - cell "DC 240 kW หรือ 2×120 kW" [ref=f1e90]
+                  - cell "315 kVA" [ref=f1e91]
+                  - cell "500 A" [ref=f1e92]
+                  - cell "ฮับชาร์จ นิคม โรงงาน พัฒนาที่ดิน" [ref=f1e93]
+            - paragraph [ref=f1e94]: กำลังไฟรวมไม่เท่าผลรวมกำลังสูงสุดของทุกตู้ ถ้ารถไม่ได้ชาร์จพร้อมกันทั้งสถานี ระบบจัดสรรโหลดช่วยไม่ต้องขยายหม้อแปลงทันที
+            - heading "BOQ ที่ควรมีในใบเสนอราคา" [level=2] [ref=f1e95]
+            - paragraph [ref=f1e96]: ใบเสนอราคาที่ใช้ตัดสินใจได้ต้องแยกรายการ ไม่ใช่ยอดก้อนเดียว ชุดประมาณการ CX ENERTECH อ้างอิง Master BOQ 120 / 180 / 240 kW
+            - list [ref=f1e97]:
+              - listitem [ref=f1e98]: ตู้ชาร์จ DC ตามกำลัง (120 / 180 / 240 kW) และจำนวนหัว
+              - listitem [ref=f1e99]: หม้อแปลง 160 / 250 / 315 kVA ตามโหลด
+              - listitem [ref=f1e100]: MDB, MCCB เมน, สายป้อน, ถาดสาย, สายดิน และหลักกราวด์
+              - listitem [ref=f1e101]: ฐานรากตู้ชาร์จ งานปรับพื้นที่ และป้ายช่องจอด
+              - listitem [ref=f1e102]: งานออกแบบ วิศวกรรม และค่าติดตั้งระบบไฟฟ้า
+              - listitem [ref=f1e103]: "รายการที่ไม่รวม: ค่าธรรมเนียมการไฟฟ้า ที่ดิน งาน HDD ยาว และอาคารบริการ (ถ้ามี)"
+            - heading "CAPEX งบลงทุนคร่าวๆ" [level=2] [ref=f1e104]
+            - paragraph [ref=f1e105]: ตัวเลขด้านล่างเป็นกรอบประเมินจากชุด Master BOQ (ตู้ + หม้อแปลง + MDB + งานไฟฟ้า/โยธาพื้นฐาน ระยะสายสั้น) ไม่รวมที่ดิน ค่าการไฟฟ้า งานเจาะลอดถนนยาว และอาคารบริการ
+            - paragraph [ref=f1e106]: ตู้ DC 120 kW ในชุดประมาณการประมาณ 350,000 บาท หม้อแปลง 160 kVA ประมาณ 180,000 บาท งบสถานี 1 ตู้ระยะสายสั้นประมาณ 0.9–1.6 ล้านบาท
+            - table [ref=f1e107]:
+              - rowgroup [ref=f1e108]:
+                - row [ref=f1e109]:
+                  - columnheader "ขนาด" [ref=f1e110]
+                  - columnheader "ตู้ชาร์จ (ประมาณ)" [ref=f1e111]
+                  - columnheader "หม้อแปลง (ประมาณ)" [ref=f1e112]
+                  - columnheader "งบสถานี 1 ตู้ ระยะสายสั้น" [ref=f1e113]
+              - rowgroup [ref=f1e114]:
+                - row [ref=f1e115]:
+                  - cell "120 kW" [ref=f1e116]
+                  - cell "350,000 บาท" [ref=f1e117]
+                  - cell "160 kVA ~180,000 บาท" [ref=f1e118]
+                  - cell "ประมาณ 0.9–1.6 ล้านบาท" [ref=f1e119]
+                - row [ref=f1e120]:
+                  - cell "180 kW" [ref=f1e121]
+                  - cell "480,000 บาท" [ref=f1e122]
+                  - cell "250 kVA ~250,000 บาท" [ref=f1e123]
+                  - cell "ประมาณ 1.2–2.1 ล้านบาท" [ref=f1e124]
+                - row [ref=f1e125]:
+                  - cell "240 kW" [ref=f1e126]
+                  - cell "620,000 บาท" [ref=f1e127]
+                  - cell "315 kVA ~320,000 บาท" [ref=f1e128]
+                  - cell "ประมาณ 1.5–2.8 ล้านบาท" [ref=f1e129]
+            - paragraph [ref=f1e130]:
+              - text: งาน 2×120 kW หรือฮับหลายหัวขยับขึ้นตามจำนวนฐานราก สาย และความจุหม้อแปลง ดูโครงสร้างราคาเต็มที่
+              - link "EV Station ราคา" [ref=f1e131] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-raka
+            - heading "ROI และระยะคืนทุน" [level=2] [ref=f1e132]
+            - paragraph [ref=f1e133]: ROI ของ EV Station มาจากส่วนต่างราคาขายต่อหน่วยกับค่าไฟ หลังหักสูญเสียในระบบ ค่าดีมานด์ และเวลาที่ตู้ว่าง จุดตั้งบนเส้นทางที่มีรถอยู่แล้วคืนทุนเร็วกว่าจุดที่ต้องสร้างทราฟฟิกใหม่ โดยทั่วไปโครงการเชิงพาณิชย์วางกรอบ 4–8 ปี ถ้าสมมติฐานการใช้ชัด
+            - paragraph [ref=f1e134]:
+              - text: วิธีคิดละเอียดอยู่ที่
+              - link "EV Station ROI" [ref=f1e135] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-roi
+              - text: และ
+              - link "EV Station Payback" [ref=f1e136] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-payback
+              - text: — อย่าใช้ตัวเลขโฆษณาถ้ายังไม่มีจำนวนชาร์จต่อวันจากทำเลจริง
+            - heading "ขั้นตอนงาน (Process)" [level=2] [ref=f1e137]
+            - list [ref=f1e138]:
+              - listitem [ref=f1e139]: สำรวจทำเล โหลดไฟฟ้า ระยะสาย และข้อกำหนด MEA / PEA
+              - listitem [ref=f1e140]: ออกแบบ SLD ขนาดหม้อแปลง MDB และผังช่องจอด
+              - listitem [ref=f1e141]: ถอดปริมาณ BOQ แยกอุปกรณ์ งานไฟฟ้า งานโยธา
+              - listitem [ref=f1e142]: เสนอ CAPEX และโมเดล ROI จากสมมติฐานการใช้จริง
+              - listitem [ref=f1e143]: ก่อสร้างฐานราก เดินสาย ติดตั้งตู้ หม้อแปลง และระบบคิดเงิน
+              - listitem [ref=f1e144]: ทดสอบ commissioning ส่งมอบคู่มือ และการรับประกัน
+            - heading "คำถามที่พบบ่อย (FAQ)" [level=2] [ref=f1e145]
+            - heading "EV Station 120 kW ใช้หม้อแปลงขนาดเท่าไหร่" [level=3] [ref=f1e146]
+            - paragraph [ref=f1e147]: ชุดมาตรฐานใช้หม้อแปลงประมาณ 160 kVA และ MDB 250 A สำหรับ 1 ตู้ ระยะสายสั้น ถ้ามีหลายตู้หรือโหลดเสริมต้องคำนวณใหม่
+            - heading "ติดตั้ง DC 120 kW ใช้เวลากี่วัน" [level=3] [ref=f1e148]
+            - paragraph [ref=f1e149]: งานไฟฟ้าและฐานรากตู้เดียวที่หน้างานพร้อม มักอยู่หลักสัปดาห์ ไม่รวมคิวหม้อแปลง งานขอไฟ และงานโยธาพิเศษ
+            - heading "EV Station 120 kW คืนทุนเร็วไหม" [level=3] [ref=f1e150]
+            - paragraph [ref=f1e151]: ขึ้นกับจำนวนเซสชันต่อวัน ค่าไฟต้นทาง และราคาขายต่อหน่วย ตู้ใหญ่ไม่ได้คืนทุนเร็วกว่าเสมอถ้าทำเลรถจอดนานและใช้ AC ถูกกว่า
+            - heading "ขอใบเสนอราคา (CTA)" [level=2] [ref=f1e152]
+            - paragraph [ref=f1e153]: ส่งขนาดหม้อแปลงที่มีอยู่ตอนนี้ ถ้าพอ 160 kVA จะติดตั้ง 120 kW ได้เร็วกว่าชุดใหญ่
+            - paragraph [ref=f1e154]:
+              - strong [ref=f1e155]: ขอใบเสนอราคา EV Station จาก CX ENERTECH
+              - text: — ส่งพิกัดที่ดินหรือสถานประกอบการ จำนวนช่องจอด ขนาดตู้ 120 / 180 / 240 kW และบิลค่าไฟ ทีมงานจะสำรวจ ทำ SLD + BOQ แล้วเสนอ CAPEX / ROI ก่อนสั่งอุปกรณ์
+            - paragraph [ref=f1e156]:
+              - text: "อ่านต่อ:"
+              - link "EV Station ราคา" [ref=f1e157] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-raka
+              - text: ·
+              - link "Turnkey" [ref=f1e158] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-turnkey
+              - text: ·
+              - link "EPC" [ref=f1e159] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-epc
+              - text: ·
+              - link "120 kW" [ref=f1e160] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-120kw
+              - text: ·
+              - link "180 kW" [ref=f1e161] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-180kw
+              - text: ·
+              - link "240 kW" [ref=f1e162] [cursor=pointer]:
+                - /url: /knowledge/articles/ev-station-240kw
+        - complementary [ref=f1e163]:
+          - generic [ref=f1e164]:
+            - heading "บทความอื่น" [level=2] [ref=f1e165]
+            - list [ref=f1e166]:
+              - listitem [ref=f1e167]:
+                - link "รับติดตั้ง EV Station ทั่วประเทศ — รับสร้างสถานีชาร์จ" [ref=f1e168] [cursor=pointer]:
+                  - /url: /knowledge/articles/tidtang-ev-station-thua-prathet
+              - listitem [ref=f1e170]:
+                - 'link "วางแผนสถานีชาร์จในกระบี่: ทำเล ระบบไฟ และงบลงทุน" [ref=f1e171] [cursor=pointer]':
+                  - /url: /knowledge/articles/tidtang-ev-station-krabi
+              - listitem [ref=f1e173]:
+                - 'link "วางแผนสถานีชาร์จในนครศรีธรรมราช: ทำเล ระบบไฟ และงบลงทุน" [ref=f1e174] [cursor=pointer]':
+                  - /url: /knowledge/articles/tidtang-ev-station-nakhon-si-thammarat
+              - listitem [ref=f1e176]:
+                - 'link "วางแผนสถานีชาร์จในหัวหิน: ทำเล ระบบไฟ และงบลงทุน" [ref=f1e177] [cursor=pointer]':
+                  - /url: /knowledge/articles/tidtang-ev-station-hua-hin
+            - link "← บทความทั้งหมด" [ref=f1e179] [cursor=pointer]:
+              - /url: /knowledge/articles
+            - link "ขอใบเสนอราคา" [ref=f1e180] [cursor=pointer]:
+              - /url: /contact/quotation
+      - generic [ref=f1e182]:
+        - generic [ref=f1e183]:
+          - heading "พร้อมเริ่มต้นโครงการของคุณ?" [level=2] [ref=f1e184]
+          - paragraph [ref=f1e185]: ทีม CX ENERTECH พร้อมให้คำปรึกษา ออกแบบ และเสนอราคาโซลูชันที่เหมาะสมกับความต้องการของคุณ
+        - generic [ref=f1e186]:
+          - link "ขอใบเสนอราคา" [ref=f1e187] [cursor=pointer]:
+            - /url: /contact/quotation
+          - link "ติดต่อเรา" [ref=f1e188] [cursor=pointer]:
+            - /url: /contact
+  - contentinfo [ref=f1e189]:
+    - generic [ref=f1e190]:
+      - generic [ref=f1e191]:
+        - link [ref=f1e192] [cursor=pointer]:
+          - /url: /
+          - img "CX ENERTECH" [ref=f1e194]
+        - paragraph [ref=f1e195]: บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด
+        - paragraph [ref=f1e196]: Smart Energy & Technology Solutions
+        - paragraph [ref=f1e197]: Empowering a Sustainable Future with Smart Energy & Technology Solutions
+        - generic [ref=f1e198]:
+          - link "phachirawat.cx@gmail.com" [ref=f1e199] [cursor=pointer]:
+            - /url: mailto:phachirawat.cx@gmail.com
+          - generic [ref=f1e200]: +6699-624-6444
+          - generic [ref=f1e201]: "LINE: cxenertech"
+          - link "www.cxenertech.com" [ref=f1e202] [cursor=pointer]:
+            - /url: https://www.cxenertech.com
+      - generic [ref=f1e203]:
+        - generic [ref=f1e204]:
+          - heading "บริษัท" [level=4] [ref=f1e205]
+          - list [ref=f1e206]:
+            - listitem [ref=f1e207]:
+              - link "เกี่ยวกับเรา" [ref=f1e208] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f1e209]:
+              - link "วิสัยทัศน์และพันธกิจ" [ref=f1e210] [cursor=pointer]:
+                - /url: /about/vision-mission
+            - listitem [ref=f1e211]:
+              - link "ร่วมงานกับเรา" [ref=f1e212] [cursor=pointer]:
+                - /url: /career
+        - generic [ref=f1e213]:
+          - heading "Solar Energy" [level=4] [ref=f1e214]
+          - list [ref=f1e215]:
+            - listitem [ref=f1e216]:
+              - link "รับติดตั้งโซล่าเซลล์" [ref=f1e217] [cursor=pointer]:
+                - /url: /solar/rooftop
+            - listitem [ref=f1e218]:
+              - link "โซล่าเซลล์บ้าน" [ref=f1e219] [cursor=pointer]:
+                - /url: /solar/rooftop/residential
+            - listitem [ref=f1e220]:
+              - link "โซล่าเซลล์โรงงาน" [ref=f1e221] [cursor=pointer]:
+                - /url: /solar/rooftop/factory
+            - listitem [ref=f1e222]:
+              - link "โซล่าเซลล์คลังสินค้า" [ref=f1e223] [cursor=pointer]:
+                - /url: /solar/rooftop/warehouse
+            - listitem [ref=f1e224]:
+              - link "โซลาร์ฟาร์ม" [ref=f1e225] [cursor=pointer]:
+                - /url: /solar/farm
+            - listitem [ref=f1e226]:
+              - link "แพ็กเกจโซลาร์รูฟท็อป" [ref=f1e227] [cursor=pointer]:
+                - /url: /solar/rooftop/packages
+            - listitem [ref=f1e228]:
+              - link "จุดคืนทุนโซลาร์" [ref=f1e229] [cursor=pointer]:
+                - /url: /solar/payback
+            - listitem [ref=f1e230]:
+              - link "PPA Solar" [ref=f1e231] [cursor=pointer]:
+                - /url: /solar/ppa
+            - listitem [ref=f1e232]:
+              - link "Solar EPC" [ref=f1e233] [cursor=pointer]:
+                - /url: /solar/epc
+        - generic [ref=f1e234]:
+          - heading "EV Charging" [level=4] [ref=f1e235]
+          - list [ref=f1e236]:
+            - listitem [ref=f1e237]:
+              - link "รับติดตั้ง EV Station" [ref=f1e238] [cursor=pointer]:
+                - /url: /ev-charging/station
+            - listitem [ref=f1e239]:
+              - link "ออกแบบ EV Station" [ref=f1e240] [cursor=pointer]:
+                - /url: /ev-charging/station/design
+            - listitem [ref=f1e241]:
+              - link "CX Charge Packages" [ref=f1e242] [cursor=pointer]:
+                - /url: /ev-charging/packages
+            - listitem [ref=f1e243]:
+              - link "ราคา EV Station" [ref=f1e244] [cursor=pointer]:
+                - /url: /ev-charging/cost
+            - listitem [ref=f1e245]:
+              - link "จุดคืนทุน" [ref=f1e246] [cursor=pointer]:
+                - /url: /ev-charging/investment
+            - listitem [ref=f1e247]:
+              - link "Commercial Charger" [ref=f1e248] [cursor=pointer]:
+                - /url: /ev-charging/commercial
+            - listitem [ref=f1e249]:
+              - link "Management Platform" [ref=f1e250] [cursor=pointer]:
+                - /url: /ev-charging/management
+            - listitem [ref=f1e251]:
+              - link "Home Charger" [ref=f1e252] [cursor=pointer]:
+                - /url: /ev-charging/home-charger
+        - generic [ref=f1e253]:
+          - heading "ทรัพยากร" [level=4] [ref=f1e254]
+          - list [ref=f1e255]:
+            - listitem [ref=f1e256]:
+              - link "โครงการ" [ref=f1e257] [cursor=pointer]:
+                - /url: /projects
+            - listitem [ref=f1e258]:
+              - link "ผลิตภัณฑ์" [ref=f1e259] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=f1e260]:
+              - link "บทความ" [ref=f1e261] [cursor=pointer]:
+                - /url: /knowledge/articles
+            - listitem [ref=f1e262]:
+              - link "ศูนย์ความรู้" [ref=f1e263] [cursor=pointer]:
+                - /url: /knowledge
+            - listitem [ref=f1e264]:
+              - link "ข่าวสาร" [ref=f1e265] [cursor=pointer]:
+                - /url: /knowledge/news
+            - listitem [ref=f1e266]:
+              - link "กรณีศึกษา" [ref=f1e267] [cursor=pointer]:
+                - /url: /knowledge/case-studies
+            - listitem [ref=f1e268]:
+              - link "FAQ" [ref=f1e269] [cursor=pointer]:
+                - /url: /knowledge/faq
+            - listitem [ref=f1e270]:
+              - link "พันธมิตร" [ref=f1e271] [cursor=pointer]:
+                - /url: /partners
+            - listitem [ref=f1e272]:
+              - link "Smart Energy" [ref=f1e273] [cursor=pointer]:
+                - /url: /smart-energy
+            - listitem [ref=f1e274]:
+              - link "ติดต่อเรา" [ref=f1e275] [cursor=pointer]:
+                - /url: /contact
+    - generic [ref=f1e277]:
+      - paragraph [ref=f1e278]: © 2026 CX ENERTECH CO., LTD.. สงวนลิขสิทธิ์.
+      - generic [ref=f1e279]:
+        - link "ขอใบเสนอราคา" [ref=f1e280] [cursor=pointer]:
+          - /url: /contact/quotation
+        - link "ขอสำรวจพื้นที่" [ref=f1e281] [cursor=pointer]:
+          - /url: /contact/site-survey
+        - link "เป็นพันธมิตร" [ref=f1e282] [cursor=pointer]:
+          - /url: /partners/become-a-partner

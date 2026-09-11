@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 import { contactInfo } from '~/utils/nav'
+import { serializeJsonLd } from '~/utils/structured-data'
 
 const { locale } = useLocale()
 const origin = siteOrigin()
@@ -20,7 +21,7 @@ useHead(() => ({
     {
       key: 'ld-org',
       type: 'application/ld+json',
-      innerHTML: JSON.stringify({
+      innerHTML: serializeJsonLd({
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         '@id': `${origin}/#business`,

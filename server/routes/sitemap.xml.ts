@@ -5,6 +5,7 @@ import { fetchCmmsChargePackages } from '../utils/cmms-charge-packages'
 import { resolveWebsiteArticles } from '../utils/website-articles'
 import { knowledgeCases } from '../../app/utils/knowledge'
 import { projects } from '../../app/utils/projects'
+import { escapeXml, isIndexableArticle } from '../utils/sitemap-entry'
 
 function origin() {
   const config = useRuntimeConfig()
@@ -27,7 +28,7 @@ function isoDate(value: string | undefined) {
 }
 
 function urlEntry(path: string, lastmod = SITE_CONTENT_UPDATED) {
-  return `  <url><loc>${loc(path)}</loc><lastmod>${lastmod}</lastmod></url>`
+  return `  <url><loc>${escapeXml(loc(path))}</loc><lastmod>${escapeXml(lastmod)}</lastmod></url>`
 }
 
 export default defineEventHandler(async (event) => {
@@ -57,7 +58,7 @@ export default defineEventHandler(async (event) => {
   try {
     const { articles } = await resolveWebsiteArticles(event)
     for (const article of articles) {
-      if (!article.slug) continue
+      if (!isIndexableArticle(article)) continue
       const path = `/knowledge/articles/${article.slug}`
       paths.add(path)
       lastmodByPath.set(path, isoDate(article.updatedAt || article.publishedAt || article.createdAt))

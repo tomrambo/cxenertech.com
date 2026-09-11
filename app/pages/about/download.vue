@@ -1,12 +1,12 @@
 <template>
   <div>
     <PageHero
-      title="ดาวน์โหลด Company Profile"
+      title="ขอ Company Profile"
       description="เอกสารแนะนำบริษัท CX ENERTECH CO., LTD."
       :crumbs="[
         { label: 'หน้าแรก', to: '/' },
         { label: 'เกี่ยวกับเรา', to: '/about' },
-        { label: 'ดาวน์โหลดโปรไฟล์' },
+        { label: 'ขอโปรไฟล์บริษัท' },
       ]"
     />
 
@@ -17,13 +17,12 @@
           <h2>Company Profile (PDF)</h2>
           <p>บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด — CX ENERTECH CO., LTD.</p>
           <p class="download__meta">Smart Energy &amp; EV Infrastructure</p>
-          <a class="btn btn-primary" href="/docs/CX-ENERTECH-Company-Profile.pdf" download>
-            ดาวน์โหลด PDF
+          <a class="btn btn-primary" href="mailto:phachirawat.cx@gmail.com?subject=Company%20Profile%20CX%20ENERTECH">
+            ขอ Company Profile ทางอีเมล
           </a>
           <p class="download__hint">
-            หากไฟล์ยังไม่พร้อม ติดต่อ
-            <a href="mailto:phachirawat.cx@gmail.com">phachirawat.cx@gmail.com</a>
-            เพื่อรับ Company Profile
+            ติดต่อทีมงานเพื่อรับเอกสารฉบับล่าสุด หรือ
+            <NuxtLink to="/about/company-profile">อ่านข้อมูลบริษัทบนเว็บไซต์</NuxtLink>
           </p>
         </div>
       </div>
@@ -35,13 +34,13 @@
 
 <script setup lang="ts">
 usePageSeo({
-  title: 'ดาวน์โหลดโปรไฟล์บริษัท | CX ENERTECH',
-  description: 'ดาวน์โหลดเอกสารแนะนำบริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด ผู้รับติดตั้งโซล่าเซลล์และ EV Station',
+  title: 'ขอโปรไฟล์บริษัท | CX ENERTECH',
+  description: 'ขอเอกสารแนะนำบริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด ฉบับล่าสุด หรือตรวจสอบข้อมูลบริษัทผู้รับติดตั้งโซล่าเซลล์และ EV Station บนเว็บไซต์',
   path: '/about/download',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
     { name: 'เกี่ยวกับเรา', path: '/about' },
-    { name: 'ดาวน์โหลดโปรไฟล์', path: '/about/download' },
+    { name: 'ขอโปรไฟล์บริษัท', path: '/about/download' },
   ],
 })
 </script>

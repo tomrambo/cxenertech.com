@@ -21,6 +21,7 @@ export type Article = {
   publishedAt?: string
   createdAt: string
   updatedAt?: string
+  relatedService?: { path: string; label: string }
   seo?: {
     title: string
     description: string

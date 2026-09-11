@@ -5,6 +5,7 @@ import {
   formatArticleDate,
   type Article,
 } from '~/utils/articles'
+import { buildArticleJsonLd, serializeJsonLd } from '~/utils/structured-data'
 
 const { t, locale } = useLocale()
 
@@ -29,6 +30,7 @@ function hideBrokenImage(event: Event) {
 }
 
 const article = computed(() => data.value!.article)
+const service = computed(() => article.value.relatedService)
 const related = computed(() => data.value?.related ?? [])
 const coverBroken = ref(false)
 watch(
@@ -61,6 +63,14 @@ useSeoMeta({
   articleAuthor: () => article.value.authorName || 'CX ENERTECH',
   robots: () => article.value.seo?.robots || 'index, follow',
 })
+const articleOrigin = siteOrigin()
+useHead(() => ({
+  script: [{
+    key: 'ld-article',
+    type: 'application/ld+json',
+    innerHTML: serializeJsonLd(buildArticleJsonLd(article.value, articleOrigin)),
+  }],
+}))
 </script>
 
 <template>
@@ -104,6 +114,11 @@ useSeoMeta({
               @error="coverBroken = true"
             />
           </div>
+
+          <p v-if="service" class="service-link">
+            ต้องการประเมินไซต์หรือขอใบเสนอราคา?
+            <NuxtLink :to="service.path">{{ service.label }}</NuxtLink>
+          </p>
 
           <div
             v-if="article.content"
@@ -185,6 +200,20 @@ useSeoMeta({
 .fallback {
   color: var(--color-muted);
   max-width: 40rem;
+}
+
+.service-link {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-left: 3px solid var(--color-lime);
+  background: var(--color-panel);
+  color: var(--color-muted);
+}
+
+.service-link a {
+  color: var(--color-lime);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .prose {

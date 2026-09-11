@@ -62,7 +62,7 @@ const packages = computed(() => (packagesQuery.value ? data.value?.packages ?? [
     <section v-if="packages.length" class="section" style="background: #101010">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">แพ็กเกจจากฐานข้อมูล</span>
+          <span class="section-label">แพ็กเกจที่เกี่ยวข้อง</span>
           <h2 class="section-title">ราคาเริ่มต้นที่เลือกได้ทันที</h2>
         </div>
         <div class="pkg-list">

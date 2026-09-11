@@ -185,6 +185,7 @@ import {
 } from '~/utils/ev-format'
 import { resolvePackageImage } from '~/utils/package-image'
 import { buildProductJsonLd } from '~/utils/product-jsonld'
+import { serializeJsonLd } from '~/utils/structured-data'
 
 type ApiPackage = {
   id: string
@@ -320,7 +321,7 @@ useHead({
     {
       key: 'ld-product',
       type: 'application/ld+json',
-      innerHTML: JSON.stringify(
+      innerHTML: serializeJsonLd(
         buildProductJsonLd({
           name: pkg.value.name_th,
           description: pkg.value.description || pkg.value.tagline,

@@ -29,7 +29,7 @@
       <div class="container">
         <div class="section-header">
           <span class="section-label">Services</span>
-          <h2 class="section-title">บริการโซลาร์แยกตามเจตนาค้น</h2>
+          <h2 class="section-title">เลือกบริการโซลาร์ให้เหมาะกับอาคารของคุณ</h2>
         </div>
         <div class="sub-links">
           <NuxtLink v-for="l in links" :key="l.to" :to="l.to" class="sub-link">
@@ -62,6 +62,7 @@ const links = [
   { label: 'รับติดตั้งโซล่าเซลล์', to: '/solar/rooftop' },
   { label: 'แพ็กเกจและราคา', to: '/solar/rooftop/packages' },
   { label: 'โซล่าเซลล์บ้าน', to: '/solar/rooftop/residential' },
+  { label: 'โซล่าเซลล์สำนักงานและอาคารพาณิชย์', to: '/solar/rooftop/commercial' },
   { label: 'โซล่าเซลล์โรงงาน', to: '/solar/rooftop/factory' },
   { label: 'โซล่าเซลล์คลังสินค้า', to: '/solar/rooftop/warehouse' },
   { label: 'โซล่าเซลล์ 5 / 10 / 15 kW', to: '/solar/5kw' },

@@ -72,13 +72,13 @@
                 <td class="sell">{{ formatThb(r.sellPrice) }}</td>
                 <td>
                   <NuxtLink
-                    v-if="packageSlug(r.skuCode)"
-                    :to="`/ev-charging/packages/${packageSlug(r.skuCode)}`"
+                    v-if="packageSlug(r)"
+                    :to="`/ev-charging/packages/${packageSlug(r)}`"
                     class="pkg-link"
                   >
                     ดูแพ็กเกจ
                   </NuxtLink>
-                  <span v-else class="muted">—</span>
+                  <NuxtLink v-else to="/ev-charging/quotation" class="pkg-link">สอบถามรุ่นนี้</NuxtLink>
                 </td>
               </tr>
             </tbody>
@@ -103,6 +103,7 @@
 
 <script setup lang="ts">
 import { formatThb } from '~/utils/ev-format'
+import { packageSlugForRate, type PackageRateLink } from '~/utils/price-rate-package'
 
 type QtyTier = '<3' | '3-10' | '10-30' | '>30'
 
@@ -126,9 +127,10 @@ const filters = [
   { label: 'AC', value: 'AC' as const },
 ]
 
-const { data, pending, error } = await useFetch<{ rates: PriceRate[] }>(
-  '/api/ev/price-rates',
-)
+const [{ data, pending, error }, { data: catalog }] = await Promise.all([
+  useFetch<{ rates: PriceRate[] }>('/api/ev/price-rates'),
+  useFetch<{ packages: PackageRateLink[] }>('/api/ev/packages', { query: { type: 'equipment' } }),
+])
 
 const filteredRates = computed(() => {
   const rates = data.value?.rates ?? []
@@ -136,23 +138,8 @@ const filteredRates = computed(() => {
   return rates.filter((r) => r.currentType === typeFilter.value)
 })
 
-/** Map price-rate SKU → package slug */
-const SKU_TO_SLUG: Record<string, string> = {
-  'CX-DC60-S': 'cx-dc-60',
-  'CX-DC120-S': 'cx-dc-120',
-  'CX-DC60-J': 'cx-dc-60-j',
-  'CX-DC120-J': 'cx-dc-120-j',
-  'CX-DC180-J': 'cx-dc-180',
-  'CX-DC240-J': 'cx-dc-240-j',
-  'CX-AC7-G': 'cx-ac-7-g',
-  'CX-AC7-K': 'cx-ac-7-k',
-  'CX-AC7-MINIZ': 'cx-ac-7-miniz',
-  'CX-AC11-E': 'cx-ac-11-e',
-  'CX-AC22-E': 'cx-ac-22-e',
-}
-
-function packageSlug(sku: string) {
-  return SKU_TO_SLUG[sku] ?? null
+function packageSlug(rate: PriceRate) {
+  return packageSlugForRate(rate, catalog.value?.packages ?? [])
 }
 
 usePageSeo({

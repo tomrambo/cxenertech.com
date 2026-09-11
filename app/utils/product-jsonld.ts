@@ -8,19 +8,7 @@ type ProductJsonLdInput = {
   priceValidUntil?: string
 }
 
-function offerValidUntil(from?: string) {
-  if (from) {
-    const parsed = Date.parse(from)
-    if (Number.isFinite(parsed)) {
-      const next = new Date(parsed)
-      next.setFullYear(next.getFullYear() + 1)
-      return next.toISOString().slice(0, 10)
-    }
-  }
-  return '2027-12-31'
-}
-
-/** Product + Offer that satisfies schema.org and Google merchant listing required fields. */
+/** Product pricing uses only catalog facts; fulfillment policies require verified data. */
 export function buildProductJsonLd(input: ProductJsonLdInput) {
   const product: Record<string, unknown> = {
     '@context': 'https://schema.org',
@@ -38,37 +26,13 @@ export function buildProductJsonLd(input: ProductJsonLdInput) {
       url: input.url,
       priceCurrency: 'THB',
       price: input.price.toFixed(2),
-      priceValidUntil: offerValidUntil(input.priceValidUntil),
-      availability: 'https://schema.org/InStock',
-      itemCondition: 'https://schema.org/NewCondition',
+      ...(input.priceValidUntil && /^\d{4}-\d{2}-\d{2}$/.test(input.priceValidUntil)
+        && Number.isFinite(Date.parse(input.priceValidUntil))
+        ? { priceValidUntil: input.priceValidUntil }
+        : {}),
       seller: {
         '@type': 'Organization',
         name: 'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
-      },
-      hasMerchantReturnPolicy: {
-        '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'TH',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
-      },
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'THB' },
-        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'TH' },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 7,
-            maxValue: 45,
-            unitCode: 'DAY',
-          },
-          transitTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 0,
-            maxValue: 0,
-            unitCode: 'DAY',
-          },
-        },
       },
     }
   }

@@ -1,0 +1,255 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "CX ENERTECH Home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "CX ENERTECH" [ref=e8]
+      - navigation "เมนูหลัก" [ref=e9]:
+        - link "หน้าแรก" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "เกี่ยวกับเรา" [ref=e11] [cursor=pointer]:
+          - /url: /about
+        - link "โซลาร์" [ref=e13] [cursor=pointer]:
+          - /url: /solar
+        - link "ชาร์จ EV" [ref=e16] [cursor=pointer]:
+          - /url: /ev-charging
+        - link "โครงการ" [ref=e18] [cursor=pointer]:
+          - /url: /projects
+        - link "บทความ" [ref=e19] [cursor=pointer]:
+          - /url: /knowledge/articles
+        - link "ความรู้" [ref=e21] [cursor=pointer]:
+          - /url: /knowledge
+        - link "ติดต่อ" [ref=e23] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e24]:
+        - group "ภาษา" [ref=e25]:
+          - button "ไทย" [pressed] [ref=e26] [cursor=pointer]: TH
+          - button "English" [ref=e27] [cursor=pointer]: EN
+        - link "ติดต่อเรา" [ref=e28] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e31]:
+    - generic [ref=e32]:
+      - generic [ref=e34]:
+        - navigation "Breadcrumb" [ref=e35]:
+          - link "หน้าแรก" [ref=e36] [cursor=pointer]:
+            - /url: /
+          - generic [aria-hidden] [ref=e37]: /
+          - generic [ref=e38]: โซลาร์
+        - heading "โซลาร์ครบวงจร — Rooftop EPC PPA และระบบกักเก็บพลังงาน" [level=1] [ref=e39]
+        - paragraph [ref=e40]: เลือกงานติดตั้งโซล่าเซลล์ ดูแพ็กเกจราคา จุดคืนทุน หรือโมเดล PPA ไม่ต้องลงทุนเอง
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Overview
+          - heading "พลังงานแสงอาทิตย์ครบวงจร" [level=2] [ref=e45]
+          - paragraph [ref=e46]: CX ENERTECH ให้บริการออกแบบ จัดหา ติดตั้ง และดูแลระบบโซลาร์สำหรับทุกขนาดโครงการ พร้อมระบบ BOS และ Energy Monitoring
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - heading "แพ็กเกจโซลาร์" [level=3] [ref=e49]
+            - paragraph [ref=e50]: On-grid / Hybrid / Off-grid พร้อมราคาเริ่มต้นจากฐานข้อมูล
+          - generic [ref=e51]:
+            - heading "Solar Rooftop" [level=3] [ref=e52]
+            - paragraph [ref=e53]: รับติดตั้งโซล่าเซลล์บ้าน อาคาร โรงงาน และคลังสินค้า
+          - generic [ref=e54]:
+            - heading "จุดคืนทุนและ PPA" [level=3] [ref=e55]
+            - paragraph [ref=e56]: ดูว่าติดโซล่าเซลล์คุ้มไหม หรือเลือกโมเดลไม่ต้องลงทุนเอง
+          - generic [ref=e57]:
+            - heading "Solar EPC" [level=3] [ref=e58]
+            - paragraph [ref=e59]: ออกแบบ จัดซื้อ ติดตั้ง ทดสอบ และ O&M จบในที่เดียว
+      - generic [ref=e61]:
+        - generic [ref=e62]:
+          - generic [ref=e63]: Services
+          - heading "เลือกบริการโซลาร์ให้เหมาะกับอาคารของคุณ" [level=2] [ref=e64]
+        - generic [ref=e65]:
+          - link "รับติดตั้งโซล่าเซลล์ →" [ref=e66] [cursor=pointer]:
+            - /url: /solar/rooftop
+            - text: รับติดตั้งโซล่าเซลล์
+            - generic [ref=e67]: →
+          - link "แพ็กเกจและราคา →" [ref=e68] [cursor=pointer]:
+            - /url: /solar/rooftop/packages
+            - text: แพ็กเกจและราคา
+            - generic [ref=e69]: →
+          - link "โซล่าเซลล์บ้าน →" [ref=e70] [cursor=pointer]:
+            - /url: /solar/rooftop/residential
+            - text: โซล่าเซลล์บ้าน
+            - generic [ref=e71]: →
+          - link "โซล่าเซลล์สำนักงานและอาคารพาณิชย์ →" [ref=e72] [cursor=pointer]:
+            - /url: /solar/rooftop/commercial
+            - text: โซล่าเซลล์สำนักงานและอาคารพาณิชย์
+            - generic [ref=e73]: →
+          - link "โซล่าเซลล์โรงงาน →" [ref=e74] [cursor=pointer]:
+            - /url: /solar/rooftop/factory
+            - text: โซล่าเซลล์โรงงาน
+            - generic [ref=e75]: →
+          - link "โซล่าเซลล์คลังสินค้า →" [ref=e76] [cursor=pointer]:
+            - /url: /solar/rooftop/warehouse
+            - text: โซล่าเซลล์คลังสินค้า
+            - generic [ref=e77]: →
+          - link "โซล่าเซลล์ 5 / 10 / 15 kW →" [ref=e78] [cursor=pointer]:
+            - /url: /solar/5kw
+            - text: โซล่าเซลล์ 5 / 10 / 15 kW
+            - generic [ref=e79]: →
+          - link "จุดคืนทุน / คุ้มไหม →" [ref=e80] [cursor=pointer]:
+            - /url: /solar/payback
+            - text: จุดคืนทุน / คุ้มไหม
+            - generic [ref=e81]: →
+          - link "Hybrid + แบตเตอรี่ →" [ref=e82] [cursor=pointer]:
+            - /url: /solar/hybrid
+            - text: Hybrid + แบตเตอรี่
+            - generic [ref=e83]: →
+          - link "Solar BESS →" [ref=e84] [cursor=pointer]:
+            - /url: /solar/bess
+            - text: Solar BESS
+            - generic [ref=e85]: →
+          - link "PPA ไม่ต้องลงทุน →" [ref=e86] [cursor=pointer]:
+            - /url: /solar/ppa
+            - text: PPA ไม่ต้องลงทุน
+            - generic [ref=e87]: →
+          - link "Solar EPC →" [ref=e88] [cursor=pointer]:
+            - /url: /solar/epc
+            - text: Solar EPC
+            - generic [ref=e89]: →
+          - link "Solar Farm →" [ref=e90] [cursor=pointer]:
+            - /url: /solar/farm
+            - text: Solar Farm
+            - generic [ref=e91]: →
+          - link "ขอใบเสนอราคาโซล่าเซลล์ →" [ref=e92] [cursor=pointer]:
+            - /url: /solar/quotation
+            - text: ขอใบเสนอราคาโซล่าเซลล์
+            - generic [ref=e93]: →
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - heading "ขอใบเสนอราคา Solar" [level=2] [ref=e97]
+          - paragraph [ref=e98]: ปรึกษาทีมวิศวกรเพื่อออกแบบระบบโซลาร์ที่เหมาะสมกับไซต์ของคุณ
+        - generic [ref=e99]:
+          - link "ขอใบเสนอราคา Solar" [ref=e100] [cursor=pointer]:
+            - /url: /solar/quotation
+          - link "ดูโครงการ Solar" [ref=e101] [cursor=pointer]:
+            - /url: /projects?category=solar
+  - contentinfo [ref=e102]:
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - link [ref=e105] [cursor=pointer]:
+          - /url: /
+          - img "CX ENERTECH" [ref=e107]
+        - paragraph [ref=e108]: บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด
+        - paragraph [ref=e109]: Smart Energy & Technology Solutions
+        - paragraph [ref=e110]: Empowering a Sustainable Future with Smart Energy & Technology Solutions
+        - generic [ref=e111]:
+          - link "phachirawat.cx@gmail.com" [ref=e112] [cursor=pointer]:
+            - /url: mailto:phachirawat.cx@gmail.com
+          - generic [ref=e113]: +6699-624-6444
+          - generic [ref=e114]: "LINE: cxenertech"
+          - link "www.cxenertech.com" [ref=e115] [cursor=pointer]:
+            - /url: https://www.cxenertech.com
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - heading "บริษัท" [level=4] [ref=e118]
+          - list [ref=e119]:
+            - listitem [ref=e120]:
+              - link "เกี่ยวกับเรา" [ref=e121] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e122]:
+              - link "วิสัยทัศน์และพันธกิจ" [ref=e123] [cursor=pointer]:
+                - /url: /about/vision-mission
+            - listitem [ref=e124]:
+              - link "ร่วมงานกับเรา" [ref=e125] [cursor=pointer]:
+                - /url: /career
+        - generic [ref=e126]:
+          - heading "Solar Energy" [level=4] [ref=e127]
+          - list [ref=e128]:
+            - listitem [ref=e129]:
+              - link "รับติดตั้งโซล่าเซลล์" [ref=e130] [cursor=pointer]:
+                - /url: /solar/rooftop
+            - listitem [ref=e131]:
+              - link "โซล่าเซลล์บ้าน" [ref=e132] [cursor=pointer]:
+                - /url: /solar/rooftop/residential
+            - listitem [ref=e133]:
+              - link "โซล่าเซลล์โรงงาน" [ref=e134] [cursor=pointer]:
+                - /url: /solar/rooftop/factory
+            - listitem [ref=e135]:
+              - link "โซล่าเซลล์คลังสินค้า" [ref=e136] [cursor=pointer]:
+                - /url: /solar/rooftop/warehouse
+            - listitem [ref=e137]:
+              - link "โซลาร์ฟาร์ม" [ref=e138] [cursor=pointer]:
+                - /url: /solar/farm
+            - listitem [ref=e139]:
+              - link "แพ็กเกจโซลาร์รูฟท็อป" [ref=e140] [cursor=pointer]:
+                - /url: /solar/rooftop/packages
+            - listitem [ref=e141]:
+              - link "จุดคืนทุนโซลาร์" [ref=e142] [cursor=pointer]:
+                - /url: /solar/payback
+            - listitem [ref=e143]:
+              - link "PPA Solar" [ref=e144] [cursor=pointer]:
+                - /url: /solar/ppa
+            - listitem [ref=e145]:
+              - link "Solar EPC" [ref=e146] [cursor=pointer]:
+                - /url: /solar/epc
+        - generic [ref=e147]:
+          - heading "EV Charging" [level=4] [ref=e148]
+          - list [ref=e149]:
+            - listitem [ref=e150]:
+              - link "รับติดตั้ง EV Station" [ref=e151] [cursor=pointer]:
+                - /url: /ev-charging/station
+            - listitem [ref=e152]:
+              - link "ออกแบบ EV Station" [ref=e153] [cursor=pointer]:
+                - /url: /ev-charging/station/design
+            - listitem [ref=e154]:
+              - link "CX Charge Packages" [ref=e155] [cursor=pointer]:
+                - /url: /ev-charging/packages
+            - listitem [ref=e156]:
+              - link "ราคา EV Station" [ref=e157] [cursor=pointer]:
+                - /url: /ev-charging/cost
+            - listitem [ref=e158]:
+              - link "จุดคืนทุน" [ref=e159] [cursor=pointer]:
+                - /url: /ev-charging/investment
+            - listitem [ref=e160]:
+              - link "Commercial Charger" [ref=e161] [cursor=pointer]:
+                - /url: /ev-charging/commercial
+            - listitem [ref=e162]:
+              - link "Management Platform" [ref=e163] [cursor=pointer]:
+                - /url: /ev-charging/management
+            - listitem [ref=e164]:
+              - link "Home Charger" [ref=e165] [cursor=pointer]:
+                - /url: /ev-charging/home-charger
+        - generic [ref=e166]:
+          - heading "ทรัพยากร" [level=4] [ref=e167]
+          - list [ref=e168]:
+            - listitem [ref=e169]:
+              - link "โครงการ" [ref=e170] [cursor=pointer]:
+                - /url: /projects
+            - listitem [ref=e171]:
+              - link "ผลิตภัณฑ์" [ref=e172] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=e173]:
+              - link "บทความ" [ref=e174] [cursor=pointer]:
+                - /url: /knowledge/articles
+            - listitem [ref=e175]:
+              - link "ศูนย์ความรู้" [ref=e176] [cursor=pointer]:
+                - /url: /knowledge
+            - listitem [ref=e177]:
+              - link "ข่าวสาร" [ref=e178] [cursor=pointer]:
+                - /url: /knowledge/news
+            - listitem [ref=e179]:
+              - link "กรณีศึกษา" [ref=e180] [cursor=pointer]:
+                - /url: /knowledge/case-studies
+            - listitem [ref=e181]:
+              - link "FAQ" [ref=e182] [cursor=pointer]:
+                - /url: /knowledge/faq
+            - listitem [ref=e183]:
+              - link "พันธมิตร" [ref=e184] [cursor=pointer]:
+                - /url: /partners
+            - listitem [ref=e185]:
+              - link "Smart Energy" [ref=e186] [cursor=pointer]:
+                - /url: /smart-energy
+            - listitem [ref=e187]:
+              - link "ติดต่อเรา" [ref=e188] [cursor=pointer]:
+                - /url: /contact
+    - generic [ref=e190]:
+      - paragraph [ref=e191]: © 2026 CX ENERTECH CO., LTD.. สงวนลิขสิทธิ์.
+      - generic [ref=e192]:
+        - link "ขอใบเสนอราคา" [ref=e193] [cursor=pointer]:
+          - /url: /contact/quotation
+        - link "ขอสำรวจพื้นที่" [ref=e194] [cursor=pointer]:
+          - /url: /contact/site-survey
+        - link "เป็นพันธมิตร" [ref=e195] [cursor=pointer]:
+          - /url: /partners/become-a-partner

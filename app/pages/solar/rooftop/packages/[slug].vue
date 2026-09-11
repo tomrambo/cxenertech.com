@@ -106,6 +106,7 @@ import { formatThb, phaseLabel } from '~/utils/solar-format'
 import { systemTypeLabel, type SolarWebsitePackage } from '~/utils/solar-packages'
 import { resolvePackageImage } from '~/utils/package-image'
 import { buildProductJsonLd } from '~/utils/product-jsonld'
+import { serializeJsonLd } from '~/utils/structured-data'
 
 function equipmentLabel(row: { brand: string | null; model?: string | null; qty?: number | null }) {
   const name = [row.brand, row.model].filter(Boolean).join(' ')
@@ -162,7 +163,7 @@ useHead({
     {
       key: 'ld-product',
       type: 'application/ld+json',
-      innerHTML: JSON.stringify(
+      innerHTML: serializeJsonLd(
         buildProductJsonLd({
           name: pkg.value.name_th,
           description: pkg.value.description || pkg.value.tagline,
@@ -170,7 +171,6 @@ useHead({
           image: absoluteUrl(packageImage),
           url: absoluteUrl(packagePath),
           price: pkg.value.price_from,
-          priceValidUntil: pkg.value.effective_from,
         }),
       ),
     },

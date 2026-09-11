@@ -1,3 +1,5 @@
+import { serializeJsonLd } from '~/utils/structured-data'
+
 export type SeoCrumb = { name: string; path: string }
 export type SeoFaq = { q: string; a: string }
 
@@ -74,7 +76,7 @@ export function usePageSeo(input: {
   const scripts = graph.map((node, index) => ({
     key: `ld-${String(node['@type'] || index).toLowerCase()}`,
     type: 'application/ld+json' as const,
-    innerHTML: JSON.stringify({
+    innerHTML: serializeJsonLd({
       '@context': 'https://schema.org',
       ...node,
     }),

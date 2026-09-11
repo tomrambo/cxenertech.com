@@ -6,6 +6,13 @@ export const SEO_REDIRECTS: Record<string, string> = {
   '/blog/ev-station-240kw': '/ev-charging/240kw',
   '/blog/ev-station-epc': '/ev-charging/station/epc',
 
+  // Retired article links still present in CMMS content.
+  '/knowledge/articles/raka-tidtang-sola-cell': '/solar/rooftop/packages',
+  '/knowledge/articles/kho-bai-sanoe-raka-sola-cell': '/solar/quotation',
+  '/knowledge/articles/raka-sola-cell-rongngan-100kw-1mw': '/solar/rooftop/factory',
+  '/knowledge/articles/solar-epc-rongngan': '/solar/epc',
+  '/knowledge/articles/tidtang-sola-cell-rongngan': '/solar/rooftop/factory',
+
   '/solar/epc/engineering': '/solar/epc',
   '/solar/epc/procurement': '/solar/epc',
   '/solar/epc/construction': '/solar/epc',

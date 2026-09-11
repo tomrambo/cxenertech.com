@@ -8,6 +8,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "test:seo": "node --import jiti/register --test tests/seo.test.ts",
     "deploy": "wrangler deploy",
     "postinstall": "nuxt prepare",
     "db:seed": "node --import jiti/register ./scripts/seed-ev-packages.ts",

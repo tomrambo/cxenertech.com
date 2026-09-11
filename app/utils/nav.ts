@@ -13,6 +13,7 @@ export const mainNav: NavItem[] = [
     { key: 'solarOverview', to: '/solar' },
     { key: 'solarRooftop', to: '/solar/rooftop' },
     { key: 'solarResidential', to: '/solar/rooftop/residential' },
+    { key: 'solarCommercial', to: '/solar/rooftop/commercial' },
     { key: 'solarFactory', to: '/solar/rooftop/factory' },
     { key: 'solarWarehouse', to: '/solar/rooftop/warehouse' },
     { key: 'solarPackages', to: '/solar/rooftop/packages' },

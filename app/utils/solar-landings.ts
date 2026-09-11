@@ -95,6 +95,7 @@ export const solarLandings: Record<string, SolarLanding> = {
     related: [
       { label: 'แพ็กเกจและราคาติดตั้ง', to: '/solar/rooftop/packages' },
       { label: 'ติดตั้งโซล่าเซลล์บ้าน', to: '/solar/rooftop/residential' },
+      { label: 'โซล่าเซลล์สำนักงานและอาคารพาณิชย์', to: '/solar/rooftop/commercial' },
       { label: 'ติดตั้งโซล่าเซลล์โรงงาน', to: '/solar/rooftop/factory' },
       { label: 'โซล่าเซลล์คลังสินค้า', to: '/solar/rooftop/warehouse' },
       { label: 'ขอใบเสนอราคาโซล่าเซลล์', to: '/solar/quotation' },
@@ -343,8 +344,8 @@ export const solarLandings: Record<string, SolarLanding> = {
       },
     ],
     related: [
-      { label: 'Engineering', to: '/solar/epc/engineering' },
-      { label: 'Construction', to: '/solar/epc/construction' },
+      { label: 'แพ็กเกจและขนาดระบบ', to: '/solar/rooftop/packages' },
+      { label: 'ผลงานติดตั้ง', to: '/projects?category=solar' },
       { label: 'โซล่าเซลล์โรงงาน', to: '/solar/rooftop/factory' },
       { label: 'PPA', to: '/solar/ppa' },
     ],

@@ -1,4 +1,5 @@
 import type { SeoCrumb, SeoFaq } from '~/composables/usePageSeo'
+import { EV_SERVICE_AREAS as places } from './ev-service-areas'
 
 export type EvLandingSection = {
   heading: string
@@ -376,11 +377,9 @@ export const evLandings: Record<string, EvLanding> = {
       },
     ],
     related: [
-      { label: 'Charger Management', to: '/ev-charging/management/charger' },
-      { label: 'Payment', to: '/ev-charging/management/payment' },
-      { label: 'Monitoring', to: '/ev-charging/management/monitoring' },
-      { label: 'Reporting', to: '/ev-charging/management/reporting' },
-      { label: 'ERP', to: '/ev-charging/management/erp' },
+      { label: 'วางแผนรายได้และค่าใช้จ่าย', to: '/ev-charging/investment' },
+      { label: 'ดูแลสถานีหลังเปิดให้บริการ', to: '/ev-charging/station/om' },
+      { label: 'ขอประเมินระบบบริหารสถานี', to: '/ev-charging/quotation' },
       { label: 'EV Station', to: '/ev-charging/station' },
     ],
   },
@@ -761,26 +760,6 @@ evLandings['120kw'] = powerLanding(120)
 evLandings['180kw'] = powerLanding(180)
 evLandings['240kw'] = powerLanding(240)
 
-const places: { slug: string; th: string; intro: string }[] = [
-  { slug: 'bangkok', th: 'กรุงเทพ', intro: 'กรุงเทพมีห้าง โรงแรม สำนักงาน และที่จอดหนาแน่น งานติดตั้ง EV Station มักชนเรื่องมิเตอร์อาคาร นิติบุคคล และจราจรในลานจอด' },
-  { slug: 'chonburi', th: 'ชลบุรี', intro: 'ชลบุรีอยู่ใน EEC นิคม มอเตอร์เวย์ และเมืองท่องเที่ยว เหมาะกับ DC Fast สำหรับฟลีตและรถทางไกล' },
-  { slug: 'rayong', th: 'ระยอง', intro: 'ระยองมีนิคมและเส้นทางขนส่ง โรงงานและโลจิสติกส์มักต้องการสถานีชาร์จฟลีตและจุด DC ริมทาง' },
-  { slug: 'chachoengsao', th: 'ฉะเชิงเทรา', intro: 'ฉะเชิงเทราเชื่อมกรุงเทพกับ EEC ที่จอดนิคมและทางผ่านเป็นทำเลที่ประเมินโหลดไฟฟ้าก่อนล็อกขนาดเครื่อง' },
-  { slug: 'nakhon-ratchasima', th: 'นครราชสีมา', intro: 'นครราชสีมาเป็นชุมทางอีสาน เหมาะกับสถานีชาร์จบนเส้นทางไกลและจุดบริการในเมือง' },
-  { slug: 'khon-kaen', th: 'ขอนแก่น', intro: 'ขอนแก่นเป็นศูนย์กลางอีสานตอนกลาง ห้าง มหาวิทยาลัย และโรงแรมเป็นไซต์ที่ติดตั้ง EV Charger สำหรับธุรกิจได้' },
-  { slug: 'udon-thani', th: 'อุดรธานี', intro: 'อุดรธานีรองรับรถทางผ่านและเมืองท่องเที่ยว ควรออกแบบ DC ตามปริมาณรถจริงไม่เกินโหลดการไฟฟ้าท้องถิ่น' },
-  { slug: 'chiang-mai', th: 'เชียงใหม่', intro: 'เชียงใหม่มีโรงแรม ที่พัก และรถเช่าหนาแน่น จุด AC ในที่พักกับ DC ในเมืองคนละโมเดลธุรกิจ' },
-  { slug: 'phitsanulok', th: 'พิษณุโลก', intro: 'พิษณุโลกเป็นจุดแวะภาคเหนือตอนล่าง สถานีริมทางหลวงเน้น DC Fast และงานไฟฟ้าที่ขยายได้' },
-  { slug: 'nakhon-sawan', th: 'นครสวรรค์', intro: 'นครสวรรค์อยู่บนเส้นเหนือ–กลาง ทำเลปั๊มและจุดพักรถเหมาะกับประเมิน ROI จากรถทางผ่าน' },
-  { slug: 'ayutthaya', th: 'อยุธยา', intro: 'อยุธยามีทั้งนิคม นักท่องเที่ยว และรถออกจากกรุงเทพ เลือกกำลังเครื่องตามประเภทลูกค้าหลักของไซต์' },
-  { slug: 'saraburi', th: 'สระบุรี', intro: 'สระบุรีเป็นทางผ่านและพื้นที่อุตสาหกรรม โหลดโรงงานกับจุดบริการริมทางใช้แบบไฟฟ้าคนละชุด' },
-  { slug: 'hua-hin', th: 'หัวหิน', intro: 'หัวหินเน้นโรงแรม ร้านอาหาร และที่พักวันหยุด DC สำหรับ walk-in กับ AC สำหรับแขกค้างคืนมักใช้คู่กัน' },
-  { slug: 'surat-thani', th: 'สุราษฎร์ธานี', intro: 'สุราษฎร์เป็นประตูสู่เกาะและภาคใต้ งานสถานีต้องเผื่อระยะเดินทางและช่วงเทศกาล' },
-  { slug: 'nakhon-si-thammarat', th: 'นครศรีธรรมราช', intro: 'นครศรีธรรมราชมีทั้งเมืองและเส้นทางใต้ ติดตั้ง EV Station ควรวางแผนการไฟฟ้าพื้นที่ให้ชัดก่อนสั่งเครื่อง' },
-  { slug: 'phuket', th: 'ภูเก็ต', intro: 'ภูเก็ตมีโรงแรม รีสอร์ต และรถเช่าหนาแน่น สถานีชาร์จเป็นทั้งบริการแขกและจุดรายได้ของที่จอด' },
-  { slug: 'krabi', th: 'กระบี่', intro: 'กระบี่เน้นท่องเที่ยวและที่พัก จุดชาร์จโรงแรมกับจุดสาธารณะในเมืองคนละปริมาณการใช้' },
-  { slug: 'koh-samui', th: 'เกาะสมุย', intro: 'เกาะสมุยมีข้อจำกัดระบบไฟฟ้าและโลจิสติกส์อุปกรณ์ ต้องสำรวจโหลดเกาะก่อนล็อก DC Fast ขนาดใหญ่' },
-]
 
 for (const place of places) {
   evLandings[place.slug] = {
@@ -800,6 +779,11 @@ for (const place of places) {
       `บริการติดตั้ง EV Station ${place.th} รวมสำรวจทำเล ออกแบบไฟฟ้า ติดตั้งเครื่อง และยื่นการไฟฟ้าตามพื้นที่`,
     ],
     sections: [
+      {
+        heading: `ประเมินหน้างานใน${place.th}ก่อนเลือกเครื่องชาร์จ`,
+        paragraphs: ['คำถามต่อไปนี้ช่วยกำหนดรูปแบบสถานีและข้อมูลที่ต้องเก็บระหว่างสำรวจ ต้นทุนและกำหนดการยืนยันตามข้อมูลไซต์จริง'],
+        bullets: place.checks,
+      },
       {
         heading: 'สิ่งที่ควรเตรียมก่อนสำรวจ',
         paragraphs: ['ใช้ได้ทั้งเจ้าของที่ดินและผู้ประกอบการในพื้นที่'],

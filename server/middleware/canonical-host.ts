@@ -1,16 +1,16 @@
-/**
- * Apex (cxenertech.com) must 301 to www. If Cloudflare returns 522 on apex,
- * this never runs — the custom domain still has to point at the same Worker.
- */
-const APEX_HOST = 'cxenertech.com'
-const CANONICAL_HOST = 'www.cxenertech.com'
+import { canonicalRedirect } from '../utils/canonical-url'
+import { defineEventHandler, getRequestURL, sendRedirect } from 'h3'
 
 export default defineEventHandler((event) => {
-  const hostHeader = getRequestHeader(event, 'host') || getRequestHeader(event, 'x-forwarded-host') || ''
-  const host = hostHeader.split(',')[0].split(':')[0].trim().toLowerCase()
-  if (host !== APEX_HOST) return
-
-  const url = getRequestURL(event)
-  const location = `https://${CANONICAL_HOST}${url.pathname}${url.search}`
-  return sendRedirect(event, location, 301)
+  // Prefer the original Fetch request on Workers, where the Node request is
+  // an adapter. On a Node proxy use the forwarded protocol, never its host.
+  const requestUrl = event.context.cloudflare?.request?.url ||
+    event.context._platform?.cloudflare?.request?.url || event.web?.request?.url
+  const url = requestUrl
+    ? new URL(requestUrl)
+    : getRequestURL(event, { xForwardedHost: false, xForwardedProto: true })
+  const location = canonicalRedirect(url)
+  if (!location) return
+  const status = ['GET', 'HEAD'].includes(event.method) ? 301 : 308
+  return sendRedirect(event, location, status)
 })
