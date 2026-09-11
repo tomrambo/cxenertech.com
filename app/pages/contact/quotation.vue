@@ -11,6 +11,7 @@ const form = reactive({
   company: '',
   email: '',
   phone: '',
+  lineId: '',
   province: '',
   type:
     (route.query.type as string) === 'ev'
@@ -39,6 +40,7 @@ async function onSubmit() {
         company: form.company.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),
+        lineId: form.lineId.trim().replace(/^@+/, ''),
         province: form.province.trim(),
         type: form.type,
         capacity: form.capacity.trim(),
@@ -123,6 +125,17 @@ usePageSeo({
               <label for="phone">เบอร์โทร *</label>
               <input id="phone" v-model="form.phone" required type="tel" />
             </div>
+          </div>
+          <div class="form-field">
+            <label for="lineId">Line ID</label>
+            <input
+              id="lineId"
+              v-model="form.lineId"
+              type="text"
+              maxlength="64"
+              autocomplete="off"
+              placeholder="เช่น cxenertech หรือ ID ที่ค้นหาใน LINE"
+            />
           </div>
           <div class="form-grid two-col">
             <div class="form-field">
