@@ -71,6 +71,36 @@ useHead(() => ({
     innerHTML: serializeJsonLd(buildArticleJsonLd(article.value, articleOrigin)),
   }],
 }))
+
+const READER_KEY = 'cx-article-reader'
+const READER_RE = /^[a-zA-Z0-9_-]{8,80}$/
+
+function articleReaderId() {
+  if (typeof window === 'undefined' || !window.localStorage) return ''
+  try {
+    const existing = window.localStorage.getItem(READER_KEY)?.trim()
+    if (existing && READER_RE.test(existing)) return existing
+    const next =
+      typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+        ? crypto.randomUUID()
+        : `r${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`
+    window.localStorage.setItem(READER_KEY, next)
+    return next
+  } catch {
+    return ''
+  }
+}
+
+onMounted(() => {
+  const current = slug.value
+  if (!current || !article.value) return
+  const visitorId = articleReaderId()
+  if (!visitorId) return
+  $fetch(`/api/articles/${encodeURIComponent(current)}/view`, {
+    method: 'POST',
+    body: { visitorId },
+  }).catch(() => undefined)
+})
 </script>
 
 <template>

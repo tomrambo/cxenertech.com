@@ -232,3 +232,33 @@ export async function fetchCmmsArticleBySlug(
     })
   }
 }
+
+export async function recordCmmsArticleView(
+  event: H3Event,
+  slug: string,
+  visitorId: string,
+): Promise<{ viewCount: number; counted: boolean }> {
+  const base = requireBase(event)
+  try {
+    const res = await $fetch<{ viewCount?: number; counted?: boolean }>(
+      `${base}/api/public/posts/${encodeURIComponent(slug)}/view`,
+      {
+        method: 'POST',
+        body: { visitorId },
+      },
+    )
+    return {
+      viewCount: Number(res?.viewCount) || 0,
+      counted: Boolean(res?.counted),
+    }
+  } catch (err) {
+    const parsed = errorMessage(err, 'CMMS article view unavailable')
+    if (parsed.statusCode === 404) {
+      throw createError({ statusCode: 404, statusMessage: 'ไม่พบบทความ' })
+    }
+    throw createError({
+      statusCode: parsed.statusCode >= 400 ? parsed.statusCode : 502,
+      statusMessage: `CMMS article view: ${parsed.message}`,
+    })
+  }
+}
