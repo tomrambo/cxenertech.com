@@ -11,6 +11,16 @@ watch(() => route.path, () => {
   openGroup.value = null
 })
 
+watch(open, (isOpen) => {
+  if (!import.meta.client) return
+  document.body.style.overflow = isOpen ? 'hidden' : ''
+})
+
+onBeforeUnmount(() => {
+  if (!import.meta.client) return
+  document.body.style.overflow = ''
+})
+
 const isActive = (to: string) => {
   if (to === '/') return route.path === '/'
   const matches = route.path === to || route.path.startsWith(`${to}/`)
@@ -118,11 +128,24 @@ const onGroupClick = (event: MouseEvent, key: string) => {
   z-index: 100;
   height: var(--header-h);
   background: rgba(11, 11, 11, 0.88);
-  backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(212, 255, 0, 0.08);
+  overflow: visible;
+}
+
+/* Keep blur off the header itself so the mobile overlay is not trapped
+   in a backdrop-filter containing block (which would collapse its height). */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  pointer-events: none;
 }
 
 .header__inner {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -283,10 +306,14 @@ const onGroupClick = (event: MouseEvent, key: string) => {
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-h));
+    height: calc(100dvh - var(--header-h));
     background: var(--color-black);
     padding: 1.5rem;
     gap: 0.25rem;
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .nav__group {
