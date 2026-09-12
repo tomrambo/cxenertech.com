@@ -21,6 +21,18 @@
             <span class="phase">{{ systemTypeLabel(pkg.product_type) }} · {{ phaseLabel(pkg.phase) }}</span>
           </div>
 
+          <div v-if="heroImage" class="hero-visual">
+            <img
+              :src="heroImage"
+              :alt="pkg.name_th"
+              loading="lazy"
+              width="1200"
+              height="675"
+              decoding="async"
+              referrerpolicy="no-referrer"
+            />
+          </div>
+
           <p class="lead">{{ pkg.description }}</p>
           <p class="source">แหล่งข้อมูล: {{ pkg.source_label }} · มีผล {{ pkg.effective_from }}</p>
 
@@ -127,6 +139,7 @@ if (error.value || !data.value?.package) {
 }
 
 const pkg = computed(() => data.value!.package)
+const heroImage = computed(() => resolvePackageImage(pkg.value.image))
 
 onMounted(() => {
   trackGtm('view_item', {
@@ -213,6 +226,20 @@ useHead({
 .phase {
   font-size: 0.85rem;
   color: var(--color-muted);
+}
+
+.hero-visual {
+  margin: 0.35rem 0 1.5rem;
+  overflow: hidden;
+  background: #0e1a2b;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .lead {

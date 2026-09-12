@@ -2,6 +2,7 @@
 import { formatThb } from '~/utils/solar-format'
 import { getSolarLanding, type SolarLanding } from '~/utils/solar-landings'
 import type { SolarWebsitePackage } from '~/utils/solar-packages'
+import { resolvePackageImage } from '~/utils/package-image'
 
 const props = defineProps<{
   id: string
@@ -24,6 +25,10 @@ const { data } = await useFetch<{ packages: SolarWebsitePackage[] }>('/api/solar
   immediate: Boolean(packagesQuery.value),
 })
 const packages = computed(() => (packagesQuery.value ? data.value?.packages ?? [] : []))
+
+function packageImage(pkg: SolarWebsitePackage) {
+  return resolvePackageImage(pkg.image)
+}
 </script>
 
 <template>
@@ -67,6 +72,18 @@ const packages = computed(() => (packagesQuery.value ? data.value?.packages ?? [
         </div>
         <div class="pkg-list">
           <article v-for="pkg in packages" :key="pkg.id" class="pkg-card">
+            <NuxtLink :to="`/solar/rooftop/packages/${pkg.slug}`" class="pkg-card__media">
+              <img
+                v-if="packageImage(pkg)"
+                :src="packageImage(pkg)!"
+                :alt="pkg.name_th"
+                loading="lazy"
+                width="640"
+                height="360"
+                decoding="async"
+                referrerpolicy="no-referrer"
+              />
+            </NuxtLink>
             <p class="pkg-card__code">{{ pkg.code }}</p>
             <h3>{{ pkg.name_th }}</h3>
             <p>{{ pkg.tagline }}</p>
@@ -125,10 +142,31 @@ const packages = computed(() => (packagesQuery.value ? data.value?.packages ?? [
 .pkg-card {
   background: var(--color-panel);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 1.25rem;
+  padding: 0 0 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
+  overflow: hidden;
+}
+.pkg-card__media {
+  display: block;
+  height: 160px;
+  background: #0e1a2b;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+.pkg-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pkg-card__code,
+.pkg-card h3,
+.pkg-card p,
+.pkg-card .btn {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
 }
 .pkg-card h3 {
   font-size: 1.05rem;

@@ -69,6 +69,20 @@
 
         <div v-if="packages.length" class="grid">
           <article v-for="pkg in packages" :key="pkg.id" class="card">
+            <NuxtLink :to="`/solar/rooftop/packages/${pkg.slug}`" class="card__media">
+              <img
+                v-if="packageImage(pkg) && !failedCovers.has(pkg.id)"
+                :src="packageImage(pkg)!"
+                :alt="pkg.name_th"
+                loading="lazy"
+                width="640"
+                height="360"
+                decoding="async"
+                referrerpolicy="no-referrer"
+                @error="markCoverFailed(pkg.id)"
+              />
+              <div v-else class="card__media-empty" aria-hidden="true" />
+            </NuxtLink>
             <div class="card__body">
               <div class="card__top">
                 <span class="card__code">{{ pkg.code }}</span>
@@ -142,6 +156,7 @@
 <script setup lang="ts">
 import { formatThb, phaseLabel } from '~/utils/solar-format'
 import { systemTypeLabel, type SolarWebsitePackage } from '~/utils/solar-packages'
+import { resolvePackageImage } from '~/utils/package-image'
 
 type ApiResponse = {
   packages: SolarWebsitePackage[]
@@ -208,6 +223,14 @@ const { data, pending, error } = await useFetch<ApiResponse>(
 )
 
 const packages = computed(() => data.value?.packages ?? [])
+
+const failedCovers = ref(new Set<string>())
+function markCoverFailed(id: string) {
+  failedCovers.value = new Set(failedCovers.value).add(id)
+}
+function packageImage(pkg: SolarWebsitePackage) {
+  return resolvePackageImage(pkg.image)
+}
 
 const powerFilters = computed(() => {
   const sizes = (data.value?.meta?.power_kw ?? []).map(String)
@@ -313,6 +336,30 @@ usePageSeo({
 .card {
   background: var(--color-panel);
   border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__media {
+  display: block;
+  height: 180px;
+  background: #0e1a2b;
+  overflow: hidden;
+}
+
+.card__media img,
+.card__media-empty {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card__media-empty {
+  background:
+    radial-gradient(circle at 70% 30%, rgba(212, 255, 0, 0.08), transparent 50%),
+    #0e1218;
 }
 
 .card__body {
