@@ -150,7 +150,7 @@ function packageImage(pkg: SolarWebsitePackage) {
 }
 .pkg-card__media {
   display: block;
-  height: 160px;
+  aspect-ratio: 16 / 9;
   background: #0e1a2b;
   overflow: hidden;
   margin-bottom: 0.35rem;
@@ -158,7 +158,7 @@ function packageImage(pkg: SolarWebsitePackage) {
 .pkg-card__media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 .pkg-card__code,

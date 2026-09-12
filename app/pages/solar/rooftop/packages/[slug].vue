@@ -230,7 +230,6 @@ useHead({
 
 .hero-visual {
   margin: 0.35rem 0 1.5rem;
-  overflow: hidden;
   background: #0e1a2b;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -238,8 +237,8 @@ useHead({
 .hero-visual img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .lead {

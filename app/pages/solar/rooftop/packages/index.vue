@@ -343,7 +343,7 @@ usePageSeo({
 
 .card__media {
   display: block;
-  height: 180px;
+  aspect-ratio: 16 / 9;
   background: #0e1a2b;
   overflow: hidden;
 }
@@ -352,7 +352,7 @@ usePageSeo({
 .card__media-empty {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
