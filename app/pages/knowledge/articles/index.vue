@@ -4,6 +4,7 @@ import {
   articleCategoryLabel,
   articleDate,
   formatArticleDate,
+  formatArticleViews,
   type Article,
 } from '~/utils/articles'
 
@@ -132,6 +133,9 @@ usePageSeo({
                 >
                   {{ formatArticleDate(articleDate(article), locale) }}
                 </time>
+                <span v-if="article.viewCount !== undefined" class="item__views">
+                  {{ formatArticleViews(article.viewCount, locale) }}
+                </span>
               </div>
               <h2>{{ article.title }}</h2>
               <p v-if="article.excerpt">{{ article.excerpt }}</p>
@@ -258,7 +262,8 @@ usePageSeo({
 }
 
 .item__cat,
-.item__date {
+.item__date,
+.item__views {
   font-size: 0.7rem;
   font-family: var(--font-display);
   font-weight: 600;

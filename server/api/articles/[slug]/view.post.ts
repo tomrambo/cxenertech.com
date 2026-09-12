@@ -3,6 +3,8 @@ import { recordCmmsArticleView } from '../../../utils/cmms-posts'
 const VISITOR_RE = /^[a-zA-Z0-9_-]{8,80}$/
 
 export default defineEventHandler(async (event) => {
+  setHeader(event, 'cache-control', 'no-store')
+
   const slug = getRouterParam(event, 'slug')?.trim()
   if (!slug) {
     throw createError({ statusCode: 400, statusMessage: 'Missing article slug' })

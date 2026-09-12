@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { articleDate, formatArticleDate, type Article } from '~/utils/articles'
+import { articleDate, formatArticleDate, formatArticleViews, type Article } from '~/utils/articles'
 
 const { data, pending, error } = await useFetch<{ articles: Article[] }>('/api/articles', {
   query: { category: 'news' },
@@ -52,9 +52,14 @@ usePageSeo({
               <img :src="item.coverImage" :alt="item.title" loading="lazy" width="640" height="360" />
             </div>
             <div class="item__body">
-              <time v-if="articleDate(item)" :datetime="articleDate(item)">
-                {{ formatArticleDate(articleDate(item), 'th') }}
-              </time>
+              <div class="item__meta">
+                <time v-if="articleDate(item)" :datetime="articleDate(item)">
+                  {{ formatArticleDate(articleDate(item), 'th') }}
+                </time>
+                <span v-if="item.viewCount !== undefined">
+                  {{ formatArticleViews(item.viewCount, 'th') }}
+                </span>
+              </div>
               <h2>{{ item.title }}</h2>
               <p>{{ item.excerpt }}</p>
               <span class="item__more">อ่านข่าว →</span>
@@ -87,7 +92,13 @@ usePageSeo({
 .item__visual { height: 180px; overflow: hidden; background: #0e1a2b; }
 .item__visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .item__body { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem; flex: 1; }
-.item__body time {
+.item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+.item__meta time,
+.item__meta span {
   font-size: 0.72rem;
   font-family: var(--font-display);
   letter-spacing: 0.08em;

@@ -21,6 +21,7 @@ export type Article = {
   publishedAt?: string
   createdAt: string
   updatedAt?: string
+  viewCount?: number
   relatedService?: { path: string; label: string }
   seo?: {
     title: string
@@ -28,6 +29,22 @@ export type Article = {
     image: string | null
     robots?: string
   }
+}
+
+export function normalizeArticleViewCount(value: unknown) {
+  const count = typeof value === 'number' ? value : Number(value)
+  return Number.isFinite(count) && count > 0 ? Math.floor(count) : 0
+}
+
+export function formatArticleViews(
+  value: unknown,
+  locale: string | null | undefined = 'th',
+) {
+  const loc: LocaleCode = locale === 'en' ? 'en' : 'th'
+  const count = normalizeArticleViewCount(value)
+  const formatted = new Intl.NumberFormat(loc === 'en' ? 'en-US' : 'th-TH').format(count)
+  if (loc === 'en') return `${formatted} ${count === 1 ? 'view' : 'views'}`
+  return `อ่านแล้ว ${formatted} ครั้ง`
 }
 
 export function articleCategoryLabel(

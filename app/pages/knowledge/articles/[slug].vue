@@ -3,6 +3,8 @@ import {
   articleCategoryLabel,
   articleDate,
   formatArticleDate,
+  formatArticleViews,
+  normalizeArticleViewCount,
   type Article,
 } from '~/utils/articles'
 import { buildArticleJsonLd, serializeJsonLd } from '~/utils/structured-data'
@@ -32,13 +34,9 @@ function hideBrokenImage(event: Event) {
 const article = computed(() => data.value!.article)
 const service = computed(() => article.value.relatedService)
 const related = computed(() => data.value?.related ?? [])
+const hasPublicViewCount = computed(() => article.value.viewCount !== undefined)
+const displayedViewCount = ref(normalizeArticleViewCount(article.value.viewCount))
 const coverBroken = ref(false)
-watch(
-  () => article.value.slug,
-  () => {
-    coverBroken.value = false
-  },
-)
 const seoTitle = computed(() => article.value.seo?.title || article.value.title)
 const seoDescription = computed(
   () => article.value.seo?.description || article.value.excerpt || article.value.title,
@@ -91,15 +89,47 @@ function articleReaderId() {
   }
 }
 
-onMounted(() => {
-  const current = slug.value
-  if (!current || !article.value) return
+let trackedSlug = ''
+
+async function trackArticleView() {
+  const current = article.value.slug
+  if (!current || trackedSlug === current) return
+  trackedSlug = current
+  trackGtm('article_view', {
+    article_slug: current,
+    article_title: article.value.title,
+    article_category: article.value.category || 'uncategorized',
+  })
+  if (!hasPublicViewCount.value) return
   const visitorId = articleReaderId()
   if (!visitorId) return
-  $fetch(`/api/articles/${encodeURIComponent(current)}/view`, {
-    method: 'POST',
-    body: { visitorId },
-  }).catch(() => undefined)
+  try {
+    const result = await $fetch<{ viewCount: number; counted: boolean }>(
+      `/api/articles/${encodeURIComponent(current)}/view`,
+      {
+        method: 'POST',
+        body: { visitorId },
+      },
+    )
+    if (article.value.slug === current) {
+      displayedViewCount.value = normalizeArticleViewCount(result.viewCount)
+    }
+  } catch {
+    // Keep the last known count when the analytics service is unavailable.
+  }
+}
+
+watch(
+  () => article.value.slug,
+  (current, previous) => {
+    coverBroken.value = false
+    displayedViewCount.value = normalizeArticleViewCount(article.value.viewCount)
+    if (current !== previous && import.meta.client) void trackArticleView()
+  },
+)
+
+onMounted(() => {
+  void trackArticleView()
 })
 </script>
 
@@ -130,6 +160,13 @@ onMounted(() => {
               {{ formatArticleDate(articleDate(article), locale) }}
             </time>
             <span v-if="article.authorName">{{ article.authorName }}</span>
+            <span v-if="hasPublicViewCount" class="meta__views" aria-live="polite">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.2 12s3.5-6 9.8-6 9.8 6 9.8 6-3.5 6-9.8 6-9.8-6-9.8-6Z" />
+                <circle cx="12" cy="12" r="2.7" />
+              </svg>
+              {{ formatArticleViews(displayedViewCount, locale) }}
+            </span>
           </div>
 
           <div v-if="article.coverImage && !coverBroken" class="hero-visual">
@@ -212,6 +249,20 @@ onMounted(() => {
   text-transform: uppercase;
   color: var(--color-teal);
   margin-bottom: 1.25rem;
+}
+
+.meta__views {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.meta__views svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
 }
 
 .hero-visual {

@@ -3,6 +3,7 @@
  */
 
 import type { H3Event } from 'h3'
+import { normalizeArticleViewCount } from '../../app/utils/articles'
 import {
   fallbackCoverPath,
   firstHtmlImage,
@@ -30,6 +31,7 @@ export type CmmsArticle = {
   publishedAt: string
   createdAt: string
   updatedAt?: string
+  viewCount: number
   seo?: CmmsArticleSeo
 }
 
@@ -150,6 +152,7 @@ function normalizeArticle(raw: unknown): CmmsArticle | null {
     publishedAt,
     createdAt,
     updatedAt: asString(row.updatedAt) || asString(row.updated_at) || undefined,
+    viewCount: normalizeArticleViewCount(row.viewCount ?? row.view_count),
     seo: normalizeSeo(row, { title, excerpt, image: coverImage }),
   }
 }
@@ -248,7 +251,7 @@ export async function recordCmmsArticleView(
       },
     )
     return {
-      viewCount: Number(res?.viewCount) || 0,
+      viewCount: normalizeArticleViewCount(res?.viewCount),
       counted: Boolean(res?.counted),
     }
   } catch (err) {

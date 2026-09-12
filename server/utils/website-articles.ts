@@ -1,6 +1,7 @@
 import { fetchCmmsArticleBySlug, fetchCmmsArticles, type CmmsArticle } from './cmms-posts'
 import { getLocalArticleBySlug, listLocalArticles } from '../../app/utils/local-articles'
 import type { Article } from '../../app/utils/articles'
+import { normalizeArticleViewCount } from '../../app/utils/articles'
 import { rewriteArticleLinks } from '../../app/utils/seo-links'
 import { getArticleService } from '../../app/utils/article-service'
 
@@ -23,6 +24,10 @@ function asArticle(item: Article | CmmsArticle): Article {
     publishedAt: item.publishedAt,
     createdAt: item.createdAt,
     updatedAt,
+    viewCount:
+      item.viewCount === undefined
+        ? undefined
+        : normalizeArticleViewCount(item.viewCount),
     relatedService: service ? { path: service.path, label: service.label } : undefined,
     seo: service ? {
       ...item.seo,
