@@ -18,7 +18,7 @@ export type EvLanding = {
   sections: EvLandingSection[]
   features?: { title: string; desc: string }[]
   faqs: SeoFaq[]
-  related: { label: string; to: string }[]
+  related: { label: string; to: string; primary?: boolean }[]
   heroActions?: { label: string; to: string; primary?: boolean }[]
   payChoice?: { asset: 'solar' | 'ev'; context: 'catalog' | 'finance' }
   ctaTitle?: string
@@ -236,8 +236,8 @@ export const evLandings: Record<string, EvLanding> = {
       'สินเชื่อ EV Station ผ่อนติดตั้งสถานีชาร์จรถไฟฟ้าของตนเอง โดย CX ENERTECH ผู้ติดตั้งจัดใบเสนอราคาตามไซต์ให้ธนาคารพิจารณา ไม่ใช่ผู้ให้กู้และไม่ใช่แพ็กเกจลงทุนสถานี',
     crumbs: [home, ev, { name: 'สินเชื่อ EV Station', path: '/ev-charging/finance' }],
     heroActions: [
-      { label: 'ขอจัดสินเชื่อ', to: '/contact/quotation?intent=finance&type=ev', primary: true },
-      { label: 'เลือกแพ็กเกจแล้วผ่อน', to: '/ev-charging/packages' },
+      { label: 'สมัครสินเชื่อ EV Station', to: '/contact/quotation?intent=finance&type=ev', primary: true },
+      { label: 'ขอใบเสนอราคา', to: '/contact/quotation?type=ev' },
     ],
     payChoice: { asset: 'ev', context: 'finance' },
     intro: [
@@ -289,7 +289,8 @@ export const evLandings: Record<string, EvLanding> = {
       },
     ],
     related: [
-      { label: 'กรอกแบบฟอร์มสินเชื่อ', to: '/contact/quotation?intent=finance&type=ev' },
+      { label: 'สมัครสินเชื่อ EV Station', to: '/contact/quotation?intent=finance&type=ev', primary: true },
+      { label: 'ขอใบเสนอราคา', to: '/contact/quotation?type=ev', primary: true },
       { label: 'แพ็กเกจและราคา', to: '/ev-charging/packages' },
       { label: 'ราคาและต้นทุน', to: '/ev-charging/cost' },
       { label: 'ลงทุน EV Station (คนละเจตนา)', to: '/ev-charging/investment' },
@@ -298,10 +299,10 @@ export const evLandings: Record<string, EvLanding> = {
     ],
     ctaTitle: 'ส่งข้อมูลเพื่อจัดชุดเอกสารสินเชื่อ EV Station',
     ctaDescription: 'ทีมสำรวจที่จอดและโหลดไฟ ทำใบเสนอราคาตามไซต์ แล้วจัดเอกสารผู้ขายให้ธนาคารพิจารณา',
-    ctaPrimaryLabel: 'ขอจัดสินเชื่อ EV Station',
+    ctaPrimaryLabel: 'สมัครสินเชื่อ EV Station',
     ctaPrimaryTo: '/contact/quotation?intent=finance&type=ev',
-    ctaSecondaryLabel: 'เลือกแพ็กเกจแล้วผ่อน',
-    ctaSecondaryTo: '/ev-charging/packages',
+    ctaSecondaryLabel: 'ขอใบเสนอราคา',
+    ctaSecondaryTo: '/contact/quotation?type=ev',
   },
 
   epc: {
@@ -694,6 +695,11 @@ export const evLandings: Record<string, EvLanding> = {
     seoDescription:
       'ขอใบเสนอราคา EV Station ประเมินต้นทุน รับทำ BOQ รับวิเคราะห์ทำเลและ ROI โดย CX ENERTECH',
     crumbs: [home, ev, { name: 'ขอใบเสนอราคา EV Station', path: '/ev-charging/quotation' }],
+    heroActions: [
+      { label: 'ขอใบเสนอราคา', to: '/contact/quotation?type=ev', primary: true },
+      { label: 'สมัครสินเชื่อ EV Station', to: '/contact/quotation?intent=finance&type=ev' },
+    ],
+    payChoice: { asset: 'ev', context: 'finance' },
     intro: [
       'ใบเสนอราคา EV Station ที่ใช้ตัดสินใจได้ต้องมาจากทำเลและโหลดจริง แบบฟอร์มนี้ส่งต่อทีมขายและวิศวกร เพื่อประเมินราคา ประเมินต้นทุน และวางแผนลงทุนตามงบ',
       'เหมาะกับเจ้าของที่ดิน เจ้าของพื้นที่ ปั๊มน้ำมัน Developer และผู้ที่ต้องการที่ปรึกษาธุรกิจสถานีชาร์จ',
@@ -717,14 +723,18 @@ export const evLandings: Record<string, EvLanding> = {
       },
     ],
     related: [
-      { label: 'ไปที่แบบฟอร์ม', to: '/contact/quotation?type=ev' },
-      { label: 'สินเชื่อติดตั้งสถานีของตนเอง', to: '/ev-charging/finance' },
+      { label: 'ขอใบเสนอราคา', to: '/contact/quotation?type=ev', primary: true },
+      { label: 'สมัครสินเชื่อ EV Station', to: '/contact/quotation?intent=finance&type=ev', primary: true },
       { label: 'ราคาและต้นทุน', to: '/ev-charging/cost' },
       { label: 'ลงทุน / ROI', to: '/ev-charging/investment' },
       { label: 'แพ็กเกจ', to: '/ev-charging/packages' },
     ],
     ctaTitle: 'กรอกแบบฟอร์มขอใบเสนอราคา EV',
     ctaDescription: 'ทีมจะติดต่อกลับเพื่อนัดสำรวจหรือส่งข้อเสนอเบื้องต้น',
+    ctaPrimaryLabel: 'ขอใบเสนอราคา',
+    ctaPrimaryTo: '/contact/quotation?type=ev',
+    ctaSecondaryLabel: 'สมัครสินเชื่อ EV Station',
+    ctaSecondaryTo: '/contact/quotation?intent=finance&type=ev',
   },
 
   'solar-ev': {

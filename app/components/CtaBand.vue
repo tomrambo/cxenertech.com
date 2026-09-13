@@ -29,7 +29,7 @@ const secondaryToValue = computed(() => props.secondaryTo ?? '/contact')
       </div>
       <div class="cta-actions-wrap">
         <div class="cta-actions">
-          <NuxtLink :to="primaryToValue" class="btn btn-primary">{{ primaryLabelText }}</NuxtLink>
+          <NuxtLink :to="primaryToValue" class="btn btn-primary btn-lg">{{ primaryLabelText }}</NuxtLink>
           <NuxtLink v-if="secondaryLabelText" :to="secondaryToValue" class="btn btn-secondary">
             {{ secondaryLabelText }}
           </NuxtLink>

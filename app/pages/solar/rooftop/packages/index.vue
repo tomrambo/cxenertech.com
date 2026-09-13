@@ -21,7 +21,6 @@
         <PayChoiceBar asset="solar" context="catalog" />
         <div class="intro">
           <div>
-            <span class="section-label">CX Solar · จากฐานข้อมูล CMMS</span>
             <h2 class="section-title">เลือกขนาดระบบที่เหมาะกับหลังคาของคุณ</h2>
             <p class="section-lead">
               ราคาเริ่มต้นอ้างอิงรวมแผง อินเวอร์เตอร์ โครงสร้าง และงานติดตั้ง · ไม่รวมงานเสริมหน้างาน

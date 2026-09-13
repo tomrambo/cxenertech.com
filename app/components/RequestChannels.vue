@@ -90,8 +90,18 @@ function track(channel: string, location: string) {
 }
 
 .channels--compact {
-  grid-template-columns: 1fr;
-  margin: 0 0 1rem;
+  grid-template-columns: 1fr 1fr;
+  margin: 0.25rem 0 0;
+  opacity: 0.92;
+}
+
+.channels--compact .channel {
+  padding: 0.7rem 0.85rem;
+  background: transparent;
+}
+
+.channels--compact .channel span {
+  display: none;
 }
 
 .channel {
@@ -124,9 +134,5 @@ function track(channel: string, location: string) {
 
 .channel--line strong {
   color: #9dffb8;
-}
-
-.channels--compact .channel {
-  padding: 0.85rem 1rem;
 }
 </style>

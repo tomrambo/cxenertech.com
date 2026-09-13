@@ -30,7 +30,7 @@ usePageSeo({
           :key="action.to"
           :to="action.to"
           class="btn"
-          :class="action.primary ? 'btn-primary' : 'btn-secondary'"
+          :class="action.primary ? 'btn-primary btn-lg' : 'btn-secondary'"
         >
           {{ action.label }}
         </NuxtLink>
@@ -88,7 +88,13 @@ usePageSeo({
           <h2 class="section-title">หน้าที่เกี่ยวข้อง</h2>
         </div>
         <div class="sub-links">
-          <NuxtLink v-for="l in landing.related" :key="l.to" :to="l.to" class="sub-link">
+          <NuxtLink
+            v-for="l in landing.related"
+            :key="l.to"
+            :to="l.to"
+            class="sub-link"
+            :class="{ 'sub-link--cta': l.primary }"
+          >
             {{ l.label }} <span>→</span>
           </NuxtLink>
         </div>
