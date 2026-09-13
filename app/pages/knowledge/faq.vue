@@ -30,7 +30,9 @@
             <li><NuxtLink to="/knowledge/solar">ความรู้โซล่าเซลล์</NuxtLink></li>
             <li><NuxtLink to="/knowledge/ev">ความรู้ EV Station</NuxtLink></li>
             <li><NuxtLink to="/solar/payback">จุดคืนทุนโซล่าเซลล์</NuxtLink></li>
+            <li><NuxtLink to="/solar/finance">สินเชื่อโซล่าเซลล์</NuxtLink></li>
             <li><NuxtLink to="/ev-charging/investment">ลงทุน EV Station</NuxtLink></li>
+            <li><NuxtLink to="/ev-charging/finance">สินเชื่อ EV Station</NuxtLink></li>
             <li><NuxtLink to="/knowledge/articles">บทความทั้งหมด</NuxtLink></li>
           </ul>
         </div>

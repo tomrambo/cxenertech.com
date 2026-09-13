@@ -157,12 +157,13 @@
               </div>
             </dl>
 
-            <NuxtLink
-              class="btn btn-primary"
-              :to="`/contact/quotation?type=ev&package=${pkg.code}`"
-            >
-              Quote / ขอใบเสนอราคา
-            </NuxtLink>
+            <PackagePayActions
+              asset="ev"
+              layout="aside"
+              :package-code="pkg.code"
+              :product-type="pkg.product_type"
+              quote-label="Quote / ขอใบเสนอราคา"
+            />
             <NuxtLink to="/ev-charging/station" class="aside-link">รับติดตั้ง EV Station</NuxtLink>
             <NuxtLink to="/ev-charging/packages" class="aside-link">← แพ็กเกจทั้งหมด</NuxtLink>
           </div>
@@ -170,7 +171,14 @@
       </div>
     </section>
 
-    <CtaBand />
+    <CtaBand
+      title="เลือกจ่ายก้อน หรือผ่อนติดตั้งสถานีของตนเอง"
+      description="CX ENERTECH ทำใบเสนอราคาตามโหลดไฟ — หากผ่อนเป็นเจ้าของสถานี ทีมจัดชุดเอกสารผู้ขายให้ธนาคารพิจารณา ไม่ใช่แพ็กเกจลงทุน"
+      primary-label="ขอใบเสนอราคา"
+      :primary-to="`/contact/quotation?type=ev&package=${pkg.code}`"
+      secondary-label="สินเชื่อ / ผ่อน"
+      :secondary-to="pkg.product_type === 'investment' ? '/ev-charging/finance' : `/contact/quotation?intent=finance&type=ev&package=${pkg.code}`"
+    />
   </div>
 </template>
 

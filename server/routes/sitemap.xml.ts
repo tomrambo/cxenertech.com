@@ -18,7 +18,7 @@ function loc(path: string) {
 }
 
 /** วันที่โครง SEO ล่าสุด — lastmod จริง ไม่ใส่วันที่วันนี้ทุกครั้ง เพราะ Google จะเลิกเชื่อ */
-const SITE_CONTENT_UPDATED = '2026-09-08'
+const SITE_CONTENT_UPDATED = '2026-09-13'
 
 function isoDate(value: string | undefined) {
   if (!value) return SITE_CONTENT_UPDATED

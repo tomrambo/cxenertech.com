@@ -94,15 +94,15 @@ const onGroupClick = (event: MouseEvent, key: string) => {
             {{ t(`nav.${item.key}`) }}
           </NuxtLink>
         </template>
-        <NuxtLink to="/contact" class="btn btn-primary nav__cta-mobile">
-          {{ t('nav.contactCta') }}
+        <NuxtLink to="/contact/quotation" class="btn btn-primary nav__cta-mobile">
+          {{ t('nav.quoteCta') }}
         </NuxtLink>
       </nav>
 
       <div class="header__actions">
         <LangSwitch />
-        <NuxtLink to="/contact" class="btn btn-primary header__cta">
-          {{ t('nav.contactCta') }}
+        <NuxtLink to="/contact/quotation" class="btn btn-primary header__cta">
+          {{ t('nav.quoteCta') }}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

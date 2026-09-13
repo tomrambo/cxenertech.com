@@ -2,17 +2,23 @@
   <div>
     <PageHero
       title="แพ็กเกจโซล่าเซลล์ — ราคาติดตั้งอ้างอิง"
-      description="เลือกขนาดระบบ On-grid / Hybrid / Off-grid แล้วขอใบเสนอราคาติดตั้งโซล่าเซลล์"
+      description="เลือกขนาดระบบ On-grid / Hybrid / Off-grid แล้วจ่ายก้อนหรือผ่อนกับธนาคาร"
       :crumbs="[
         { label: 'หน้าแรก', to: '/' },
         { label: 'โซลาร์', to: '/solar' },
         { label: 'โซลาร์รูฟท็อป', to: '/solar/rooftop' },
         { label: 'แพ็กเกจโซล่าเซลล์' },
       ]"
-    />
+    >
+      <div class="hero-actions">
+        <NuxtLink to="/contact/quotation?type=solar" class="btn btn-primary">ขอใบเสนอราคา</NuxtLink>
+        <NuxtLink to="/solar/finance" class="btn btn-secondary">สินเชื่อ / ผ่อน</NuxtLink>
+      </div>
+    </PageHero>
 
     <section class="section">
       <div class="container">
+        <PayChoiceBar asset="solar" context="catalog" />
         <div class="intro">
           <div>
             <span class="section-label">CX Solar · จากฐานข้อมูล CMMS</span>
@@ -25,6 +31,8 @@
               <NuxtLink to="/solar/rooftop/factory">โรงงาน</NuxtLink>
               และ
               <NuxtLink to="/solar/rooftop/residential">บ้านพักอาศัย</NuxtLink>
+              · หากผ่อนเป็นเจ้าของระบบ ดู
+              <NuxtLink to="/solar/finance">สินเชื่อโซล่าเซลล์</NuxtLink>
             </p>
           </div>
           <p v-if="pending" class="status">กำลังโหลด…</p>
@@ -122,17 +130,12 @@
                 </div>
               </div>
 
-              <div class="card__actions">
-                <NuxtLink :to="`/solar/rooftop/packages/${pkg.slug}`" class="btn btn-primary">
-                  รายละเอียด
-                </NuxtLink>
-                <NuxtLink
-                  class="btn btn-secondary"
-                  :to="`/contact/quotation?type=solar&package=${pkg.code}`"
-                >
-                  ขอใบเสนอราคา
-                </NuxtLink>
-              </div>
+              <PackagePayActions
+                class="card__actions"
+                asset="solar"
+                :package-code="pkg.code"
+                :detail-to="`/solar/rooftop/packages/${pkg.slug}`"
+              />
             </div>
           </article>
         </div>
@@ -144,11 +147,11 @@
 
     <CtaBand
       title="ต้องการประเมินหลังคาจริง?"
-      description="ทีม CX ENERTECH ออกแบบระบบและใบเสนอราคาตามพื้นที่และมิเตอร์ของคุณ"
+      description="ทีม CX ENERTECH ออกแบบระบบและใบเสนอราคาตามพื้นที่และมิเตอร์ของคุณ — หากต้องการผ่อนเป็นเจ้าของระบบ ดูสินเชื่อโซล่าเซลล์"
       primary-label="ขอใบเสนอราคา Solar"
       primary-to="/solar/quotation"
-      secondary-label="Solar Rooftop"
-      secondary-to="/solar/rooftop"
+      secondary-label="สินเชื่อ / ผ่อน"
+      secondary-to="/solar/finance"
     />
   </div>
 </template>

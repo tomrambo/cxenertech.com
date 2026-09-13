@@ -23,10 +23,27 @@ usePageSeo({
       :title="landing.heroTitle"
       :description="landing.heroDescription"
       :crumbs="landing.crumbs.map((c) => ({ label: c.name, to: c.path === landing.path ? undefined : c.path }))"
-    />
+    >
+      <div v-if="landing.heroActions?.length" class="hero-actions">
+        <NuxtLink
+          v-for="action in landing.heroActions"
+          :key="action.to"
+          :to="action.to"
+          class="btn"
+          :class="action.primary ? 'btn-primary' : 'btn-secondary'"
+        >
+          {{ action.label }}
+        </NuxtLink>
+      </div>
+    </PageHero>
 
     <section class="section">
       <div class="container">
+        <PayChoiceBar
+          v-if="landing.payChoice"
+          :asset="landing.payChoice.asset"
+          :context="landing.payChoice.context"
+        />
         <div class="content-block">
           <p v-for="(p, i) in landing.intro" :key="i">{{ p }}</p>
 
@@ -81,10 +98,10 @@ usePageSeo({
     <CtaBand
       :title="landing.ctaTitle || 'ขอใบเสนอราคา EV Station'"
       :description="landing.ctaDescription || 'ทีม CX ENERTECH ประเมินทำเล โหลดไฟฟ้า และงบลงทุนสถานีชาร์จให้'"
-      primary-label="ขอใบเสนอราคา EV"
-      primary-to="/contact/quotation?type=ev"
-      secondary-label="ดูแพ็กเกจสถานี"
-      secondary-to="/ev-charging/packages"
+      :primary-label="landing.ctaPrimaryLabel || 'ขอใบเสนอราคา EV'"
+      :primary-to="landing.ctaPrimaryTo || '/contact/quotation?type=ev'"
+      :secondary-label="landing.ctaSecondaryLabel || 'ดูแพ็กเกจสถานี'"
+      :secondary-to="landing.ctaSecondaryTo || '/ev-charging/packages'"
     />
   </div>
 </template>

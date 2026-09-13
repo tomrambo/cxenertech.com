@@ -96,12 +96,7 @@
             <h4>ราคาเริ่มต้น</h4>
             <p class="aside-price">{{ formatThb(pkg.price_from) }}</p>
             <p class="aside-note">ราคาเริ่มต้นอ้างอิงจากฐานข้อมูล · ไม่ใช่ใบเสนอราคาจริง</p>
-            <NuxtLink
-              class="btn btn-primary"
-              :to="`/contact/quotation?type=solar&package=${pkg.code}`"
-            >
-              ขอใบเสนอราคา
-            </NuxtLink>
+            <PackagePayActions asset="solar" layout="aside" :package-code="pkg.code" />
             <NuxtLink to="/solar/rooftop" class="aside-link">รับติดตั้งโซล่าเซลล์</NuxtLink>
             <NuxtLink to="/solar/rooftop/packages" class="aside-link">← แพ็กเกจทั้งหมด</NuxtLink>
           </div>
@@ -109,7 +104,14 @@
       </div>
     </section>
 
-    <CtaBand />
+    <CtaBand
+      title="เลือกจ่ายก้อน หรือผ่อนแพ็กเกจนี้"
+      description="CX ENERTECH ทำใบเสนอราคาตามหลังคาจริง — หากผ่อนเป็นเจ้าของระบบ ทีมจัดชุดเอกสารผู้ขายให้ธนาคารพิจารณา"
+      primary-label="ขอใบเสนอราคา"
+      :primary-to="`/contact/quotation?type=solar&package=${pkg.code}`"
+      secondary-label="ผ่อนแพ็กเกจนี้"
+      :secondary-to="`/contact/quotation?intent=finance&type=solar&package=${pkg.code}`"
+    />
   </div>
 </template>
 

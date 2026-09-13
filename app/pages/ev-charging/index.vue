@@ -165,6 +165,7 @@
           <NuxtLink to="/ev-charging/station" class="sub-link">รับติดตั้ง EV Station <span>→</span></NuxtLink>
           <NuxtLink to="/ev-charging/cost" class="sub-link">ราคา EV Station <span>→</span></NuxtLink>
           <NuxtLink to="/ev-charging/investment" class="sub-link">ลงทุน / ROI <span>→</span></NuxtLink>
+          <NuxtLink to="/ev-charging/finance" class="sub-link">สินเชื่อติดตั้งสถานี <span>→</span></NuxtLink>
           <NuxtLink to="/ev-charging/station/epc" class="sub-link">Turnkey EPC <span>→</span></NuxtLink>
           <NuxtLink to="/ev-charging/commercial" class="sub-link">สำหรับธุรกิจ <span>→</span></NuxtLink>
           <NuxtLink to="/ev-charging/120kw" class="sub-link">DC 120 kW <span>→</span></NuxtLink>

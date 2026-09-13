@@ -6,6 +6,17 @@ const submitting = ref(false)
 const duplicate = ref(false)
 const errorMsg = ref('')
 
+const isFinance = computed(() => String(route.query.intent || '') === 'finance')
+const financeAsset = computed(() => (String(route.query.type || '') === 'ev' ? 'ev' : 'solar'))
+
+function defaultServiceType() {
+  if (String(route.query.type || '') === 'ev') {
+    return isFinance.value ? 'EV Charging Station' : 'EV Charging'
+  }
+  if (isFinance.value) return 'Solar Rooftop'
+  return 'Solar Energy'
+}
+
 const form = reactive({
   name: '',
   company: '',
@@ -13,26 +24,45 @@ const form = reactive({
   phone: '',
   lineId: '',
   province: '',
-  type:
-    (route.query.type as string) === 'ev'
-      ? 'EV Charging'
-      : (route.query.type as string) === 'solar'
-        ? 'Solar Energy'
-        : 'Solar Energy',
+  type: defaultServiceType(),
   capacity: '',
   message: '',
   websiteUrl: '',
+  borrowerType: 'individual' as 'individual' | 'company',
+  financeProduct: 'unsure' as 'hire_purchase' | 'leasing' | 'unsure',
+  siteOwnership: 'own' as 'own' | 'rent_with_consent' | 'unsure',
+  monthlyBill: '',
+  budgetHint: '',
 })
+
+watch(
+  () => [String(route.query.type || ''), String(route.query.intent || '')] as const,
+  () => {
+    form.type = defaultServiceType()
+  },
+  { immediate: true },
+)
 
 function quoteUrl() {
   const direct = String(config.public.quoteRequestUrl || '').trim()
   return direct || '/api/contact/quotation'
 }
 
+function parseMoney(raw: string): number | undefined {
+  const n = Number(raw.replace(/[^\d.]/g, ''))
+  return Number.isFinite(n) && n > 0 ? n : undefined
+}
+
 async function onSubmit() {
   errorMsg.value = ''
+  if (isFinance.value && form.borrowerType === 'company' && !form.company.trim()) {
+    errorMsg.value = 'กรุณากรอกชื่อบริษัท / นิติบุคคล'
+    return
+  }
   submitting.value = true
   try {
+    const monthlyBill = parseMoney(form.monthlyBill)
+    const estimatedCost = parseMoney(form.budgetHint)
     const res = await $fetch<{ ok: boolean; duplicate?: boolean }>(quoteUrl(), {
       method: 'POST',
       body: {
@@ -46,15 +76,23 @@ async function onSubmit() {
         capacity: form.capacity.trim(),
         message: form.message.trim(),
         packageCode: typeof route.query.package === 'string' ? route.query.package : '',
-        pagePath: route.path,
+        pagePath: route.fullPath,
         sourceDetail: 'cxenertech.com',
         websiteUrl: form.websiteUrl,
+        entryKind: isFinance.value ? 'finance' : 'quote_form',
+        intent: isFinance.value ? 'finance' : 'quote',
+        borrowerType: isFinance.value ? form.borrowerType : undefined,
+        financeProduct: isFinance.value ? form.financeProduct : undefined,
+        siteOwnership: isFinance.value ? form.siteOwnership : undefined,
+        monthlyBill,
+        estimatedCost,
+        budgetHint: isFinance.value ? form.budgetHint.trim() : undefined,
       },
     })
     duplicate.value = Boolean(res.duplicate)
     submitted.value = true
     trackGtm('generate_lead', {
-      lead_type: 'quotation',
+      lead_type: isFinance.value ? 'finance' : 'quotation',
       service_type: form.type,
       package_code: typeof route.query.package === 'string' ? route.query.package : '',
       duplicate: Boolean(res.duplicate),
@@ -67,14 +105,30 @@ async function onSubmit() {
   }
 }
 
+const seoTitle = computed(() =>
+  isFinance.value
+    ? financeAsset.value === 'ev'
+      ? 'ขอสินเชื่อ EV Station'
+      : 'ขอสินเชื่อโซล่าเซลล์'
+    : 'ขอใบเสนอราคาโซล่าเซลล์และ EV Station',
+)
+const seoDescription = computed(() =>
+  isFinance.value
+    ? 'ส่งข้อมูลไซต์ให้ CX ENERTECH สำรวจ ทำใบเสนอราคา และจัดชุดเอกสารผู้ขายให้ธนาคารหรือลีสพิจารณา ไม่ใช่การอนุมัติสินเชื่อบนเว็บ'
+    : 'ขอใบเสนอราคาติดตั้งโซล่าเซลล์ หรือ EV Station จาก CX ENERTECH ตามไซต์จริง',
+)
+
 usePageSeo({
-  title: 'ขอใบเสนอราคาโซล่าเซลล์และ EV Station',
-  description: 'ขอใบเสนอราคาติดตั้งโซล่าเซลล์ หรือ EV Station จาก CX ENERTECH ตามไซต์จริง',
+  title: seoTitle.value,
+  description: seoDescription.value,
   path: '/contact/quotation',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
     { name: 'ติดต่อเรา', path: '/contact' },
-    { name: 'ขอใบเสนอราคา', path: '/contact/quotation' },
+    {
+      name: isFinance.value ? 'ขอสินเชื่อ' : 'ขอใบเสนอราคา',
+      path: '/contact/quotation',
+    },
   ],
 })
 </script>
@@ -82,12 +136,16 @@ usePageSeo({
 <template>
   <div>
     <PageHero
-      title="ขอใบเสนอราคา"
-      description="กรอกข้อมูลโครงการของคุณ ทีม CX ENERTECH จะจัดทำข้อเสนอที่เหมาะสม"
+      :title="isFinance ? 'ขอจัดสินเชื่อติดตั้ง' : 'ขอใบเสนอราคา'"
+      :description="
+        isFinance
+          ? 'CX ENERTECH เป็นผู้ติดตั้งและจัดชุดเอกสารผู้ขาย ไม่ใช่ธนาคาร — ทีมจะสำรวจไซต์แล้วทำใบเสนอราคาให้สถาบันการเงินพิจารณา'
+          : 'กรอกข้อมูลโครงการของคุณ ทีม CX ENERTECH จะจัดทำข้อเสนอที่เหมาะสม'
+      "
       :crumbs="[
         { label: 'หน้าแรก', to: '/' },
         { label: 'ติดต่อเรา', to: '/contact' },
-        { label: 'ขอใบเสนอราคา' },
+        { label: isFinance ? 'ขอสินเชื่อ' : 'ขอใบเสนอราคา' },
       ]"
     />
 
@@ -99,21 +157,56 @@ usePageSeo({
             {{
               duplicate
                 ? 'ทีมขายได้รับข้อมูลจากเบอร์นี้แล้ว และจะติดต่อกลับตามคิวที่มีอยู่'
-                : 'ขอบคุณที่สนใจบริการของ CX ENERTECH ทีมขายจะติดต่อกลับภายใน 1–2 วันทำการ'
+                : isFinance
+                  ? 'ทีมจะติดต่อเพื่อนัดสำรวจ ทำใบเสนอราคาตามไซต์ แล้วจัดชุดเอกสารให้ธนาคารหรือลีสพิจารณา'
+                  : 'ขอบคุณที่สนใจบริการของ CX ENERTECH ทีมขายจะติดต่อกลับภายใน 1–2 วันทำการ'
             }}
           </p>
           <NuxtLink to="/" class="btn btn-outline-dark">กลับหน้าแรก</NuxtLink>
         </div>
 
         <form v-else class="form-grid quote__form" @submit.prevent="onSubmit">
+          <p v-if="isFinance" class="quote__lead">
+            การส่งฟอร์มนี้ยังไม่ใช่การขอสินเชื่อกับธนาคาร และไม่มีการอนุมัติบนเว็บ
+            เราใช้ข้อมูลเพื่อคัดกรองความเป็นเจ้าของพื้นที่ นัดสำรวจ และทำ BOQ
+            <template v-if="financeAsset === 'solar'">
+              หากยังไม่ต้องการเป็นเจ้าของระบบ ดู
+              <NuxtLink to="/solar/ppa">PPA ไม่ต้องลงทุนเอง</NuxtLink>
+              หรือ
+              <NuxtLink to="/contact/quotation?type=solar">ขอใบเสนอราคาซื้อขาด</NuxtLink>
+            </template>
+            <template v-else>
+              หากต้องการโมเดลลงทุนสถานี ดู
+              <NuxtLink to="/ev-charging/investment">ลงทุน EV Station</NuxtLink>
+              หรือ
+              <NuxtLink to="/contact/quotation?type=ev">ขอใบเสนอราคาซื้อขาด</NuxtLink>
+            </template>
+          </p>
+          <p v-else class="quote__lead">
+            ต้องการผ่อนแล้วเป็นเจ้าของระบบ?
+            <NuxtLink to="/solar/finance">สินเชื่อโซล่าเซลล์</NuxtLink>
+            หรือ
+            <NuxtLink to="/ev-charging/finance">สินเชื่อ EV Station</NuxtLink>
+          </p>
+
+          <RequestChannels compact />
+
           <div class="form-grid two-col">
             <div class="form-field">
               <label for="name">ชื่อ-นามสกุล *</label>
               <input id="name" v-model="form.name" required type="text" maxlength="100" />
             </div>
             <div class="form-field">
-              <label for="company">บริษัท / องค์กร</label>
-              <input id="company" v-model="form.company" type="text" maxlength="255" />
+              <label for="company">
+                บริษัท / องค์กร{{ isFinance && form.borrowerType === 'company' ? ' *' : '' }}
+              </label>
+              <input
+                id="company"
+                v-model="form.company"
+                type="text"
+                maxlength="255"
+                :required="isFinance && form.borrowerType === 'company'"
+              />
             </div>
           </div>
           <div class="form-grid two-col">
@@ -137,6 +230,58 @@ usePageSeo({
               placeholder="เช่น cxenertech หรือ ID ที่ค้นหาใน LINE"
             />
           </div>
+
+          <template v-if="isFinance">
+            <div class="form-grid two-col">
+              <div class="form-field">
+                <label for="borrowerType">ผู้ขอเป็น *</label>
+                <select id="borrowerType" v-model="form.borrowerType" required>
+                  <option value="individual">บุคคลธรรมดา</option>
+                  <option value="company">นิติบุคคล / บริษัท</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="financeProduct">รูปแบบที่สนใจ *</label>
+                <select id="financeProduct" v-model="form.financeProduct" required>
+                  <option value="hire_purchase">ผ่อน (เช่าซื้อ)</option>
+                  <option value="leasing">ลีส</option>
+                  <option value="unsure">ยังไม่แน่ใจ</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grid two-col">
+              <div class="form-field">
+                <label for="siteOwnership">ความเป็นเจ้าของพื้นที่ *</label>
+                <select id="siteOwnership" v-model="form.siteOwnership" required>
+                  <option value="own">เป็นเจ้าของหลังคา / ที่จอด</option>
+                  <option value="rent_with_consent">เช่า — มีหรือจะขอความยินยอมเจ้าของ</option>
+                  <option value="unsure">ยังไม่แน่ใจ</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="monthlyBill">บิลค่าไฟ / รายได้คร่าว ๆ (บาทต่อเดือน)</label>
+                <input
+                  id="monthlyBill"
+                  v-model="form.monthlyBill"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="20"
+                  placeholder="เช่น 8000"
+                />
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="budgetHint">งบลงทุนคร่าว ๆ (ถ้ามี)</label>
+              <input
+                id="budgetHint"
+                v-model="form.budgetHint"
+                type="text"
+                maxlength="64"
+                placeholder="เช่น 350,000"
+              />
+            </div>
+          </template>
+
           <div class="form-grid two-col">
             <div class="form-field">
               <label for="type">ประเภทบริการ *</label>
@@ -170,7 +315,13 @@ usePageSeo({
           </div>
           <p v-if="errorMsg" class="quote__error">{{ errorMsg }}</p>
           <button type="submit" class="btn btn-primary" :disabled="submitting">
-            {{ submitting ? 'กำลังส่ง…' : 'ส่งคำขอใบเสนอราคา' }}
+            {{
+              submitting
+                ? 'กำลังส่ง…'
+                : isFinance
+                  ? 'ส่งคำขอจัดสินเชื่อ'
+                  : 'ส่งคำขอใบเสนอราคา'
+            }}
           </button>
         </form>
       </div>
@@ -187,6 +338,17 @@ usePageSeo({
   background: var(--color-panel);
   padding: 2rem;
   border-top: 3px solid var(--color-lime);
+}
+
+.quote__lead {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+
+.quote__lead a {
+  color: var(--color-lime);
 }
 
 .quote__error {

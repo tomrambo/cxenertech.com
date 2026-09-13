@@ -94,11 +94,11 @@
 
     <CtaBand
       title="ต้องการคำนวณจุดคืนทุนตามไซต์จริง?"
-      description="ทีม CX ENERTECH ปรับสมมติฐาน utilization, ราคาขายไฟ และ CAPEX ให้ตรงพื้นที่ของคุณ"
+      description="ทีม CX ENERTECH ปรับสมมติฐาน utilization, ราคาขายไฟ และ CAPEX ให้ตรงพื้นที่ของคุณ — หากผ่อนติดตั้งสถานีของตนเอง ดูสินเชื่อ EV Station"
       primary-label="ขอใบเสนอราคา EV"
       primary-to="/ev-charging/quotation"
-      secondary-label="ดูแคตตาล็อกแพ็กเกจ"
-      secondary-to="/ev-charging/packages"
+      secondary-label="สินเชื่อติดตั้งสถานี"
+      secondary-to="/ev-charging/finance"
     />
   </div>
 </template>

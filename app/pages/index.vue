@@ -29,6 +29,12 @@
             </NuxtLink>
             <NuxtLink to="/contact/quotation" class="btn btn-secondary">{{ t('home.quote') }}</NuxtLink>
           </div>
+          <p class="hero__pay animate-fade-up animate-delay-3">
+            {{ t('home.financeHero') }}
+            <NuxtLink to="/solar/finance">{{ t('nav.solarFinance') }}</NuxtLink>
+            <span aria-hidden="true">·</span>
+            <NuxtLink to="/ev-charging/finance">{{ t('nav.evFinance') }}</NuxtLink>
+          </p>
         </div>
 
         <dl class="hero__stats animate-fade-up animate-delay-3">
@@ -105,6 +111,7 @@
               <span aria-hidden="true">→</span>
             </NuxtLink>
             <NuxtLink to="/solar/quotation" class="btn btn-secondary">{{ t('home.quoteSolar') }}</NuxtLink>
+            <NuxtLink to="/solar/finance" class="btn btn-secondary">{{ t('home.financeSolarShort') }}</NuxtLink>
           </div>
         </div>
 
@@ -137,10 +144,49 @@
           <p>
             {{ t('home.evPkgLead') }}
           </p>
-          <NuxtLink to="/ev-charging/packages" class="btn btn-primary">
-            {{ t('home.seeCxPkg') }}
-            <span aria-hidden="true">→</span>
-          </NuxtLink>
+          <div class="pkg-banner__actions">
+            <NuxtLink to="/ev-charging/packages" class="btn btn-primary">
+              {{ t('home.seeCxPkg') }}
+              <span aria-hidden="true">→</span>
+            </NuxtLink>
+            <NuxtLink to="/ev-charging/finance" class="btn btn-secondary">{{ t('home.financeEvShort') }}</NuxtLink>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="finance" class="finance-promo">
+      <div class="container">
+        <div class="finance-promo__head">
+          <span class="section-label">{{ t('home.financeLabel') }}</span>
+          <h2 class="section-title">{{ t('home.financeTitle') }}</h2>
+          <p class="section-lead">{{ t('home.financeLead') }}</p>
+        </div>
+        <div class="finance-promo__grid">
+          <article class="finance-card">
+            <span class="finance-card__tag">Solar</span>
+            <h3>{{ t('home.financeSolarTitle') }}</h3>
+            <p>{{ t('home.financeSolarDesc') }}</p>
+            <NuxtLink to="/solar/finance" class="btn btn-primary">
+              {{ t('home.financeSolarCta') }}
+              <span aria-hidden="true">→</span>
+            </NuxtLink>
+            <NuxtLink to="/solar/rooftop/packages" class="finance-card__sub">
+              {{ t('home.financePickPackage') }}
+            </NuxtLink>
+          </article>
+          <article class="finance-card finance-card--ev">
+            <span class="finance-card__tag">EV Station</span>
+            <h3>{{ t('home.financeEvTitle') }}</h3>
+            <p>{{ t('home.financeEvDesc') }}</p>
+            <NuxtLink to="/ev-charging/finance" class="btn btn-primary">
+              {{ t('home.financeEvCta') }}
+              <span aria-hidden="true">→</span>
+            </NuxtLink>
+            <NuxtLink to="/ev-charging/packages" class="finance-card__sub">
+              {{ t('home.financePickPackage') }}
+            </NuxtLink>
+          </article>
         </div>
       </div>
     </section>
@@ -202,6 +248,19 @@
       </div>
     </section>
 
+    <section class="section request">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">ขอสินค้า</span>
+          <h2 class="section-title">เข้าถึงทีมขายได้หลายช่องทาง</h2>
+          <p class="section-lead">
+            กรอกฟอร์ม แชท LINE โทร หรือดูสินเชื่อผ่อนติดตั้ง — เลือกช่องทางที่สะดวก
+          </p>
+        </div>
+        <RequestChannels />
+      </div>
+    </section>
+
     <CtaBand
       :title="t('home.ctaTitle')"
       :description="t('home.ctaDescription')"
@@ -255,9 +314,11 @@ const solarSizes = computed(() => [
 const searchIntents = [
   { label: 'รับติดตั้งโซล่าเซลล์', hint: 'บ้าน อาคาร โรงงาน', to: '/solar/rooftop' },
   { label: 'ราคาติดตั้งโซล่าเซลล์', hint: 'แพ็กเกจ On-grid / Hybrid', to: '/solar/rooftop/packages' },
+  { label: 'สินเชื่อโซล่าเซลล์', hint: 'ผ่อนแล้วเป็นเจ้าของระบบ', to: '/solar/finance' },
   { label: 'โซล่าเซลล์โรงงาน', hint: 'EPC 100 kW–1 MW', to: '/solar/rooftop/factory' },
   { label: 'รับติดตั้ง EV Station', hint: 'สถานีชาร์จรถไฟฟ้า', to: '/ev-charging/station' },
   { label: 'ราคา EV Station', hint: 'แพ็กเกจ CX Charge', to: '/ev-charging/packages' },
+  { label: 'สินเชื่อ EV Station', hint: 'ผ่อนติดตั้งสถานีของตนเอง', to: '/ev-charging/finance' },
   { label: 'ขอใบเสนอราคา', hint: 'สำรวจไซต์แล้วออกข้อเสนอ', to: '/contact/quotation' },
 ]
 
@@ -294,7 +355,7 @@ const projectTeasers = computed(() => [
 usePageSeo({
   title: 'CX ENERTECH | รับติดตั้งโซล่าเซลล์ และ EV Charging',
   description:
-    'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop บ้านถึงโรงงาน พร้อมแพ็กเกจราคา จุดคืนทุน PPA และ EV Charging ครบวงจร',
+    'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop บ้านถึงโรงงาน พร้อมแพ็กเกจราคา จุดคืนทุน PPA สินเชื่อผ่อนเป็นเจ้าของระบบ และ EV Charging ครบวงจร',
   path: '/',
   faq: [
     {
@@ -308,6 +369,10 @@ usePageSeo({
     {
       q: 'ดูราคาติดตั้งได้ที่ไหน?',
       a: 'ราคาโซล่าเซลล์อยู่ที่แพ็กเกจโซลาร์ ราคา EV Station อยู่ที่แพ็กเกจ CX Charge ตัวเลขบนเว็บเป็นราคาอ้างอิง ใบเสนอราคาจริงต้องสำรวจไซต์',
+    },
+    {
+      q: 'ผ่อนติดตั้งโซล่าเซลล์หรือ EV Station ได้ไหม?',
+      a: 'ได้ หากต้องการเป็นเจ้าของระบบแล้วจ่ายเป็นงวด ดูหน้าสินเชื่อโซล่าเซลล์และสินเชื่อ EV Station CX ENERTECH เป็นผู้ติดตั้งจัดเอกสารผู้ขาย ไม่ใช่ธนาคารและไม่อนุมัติบนเว็บ',
     },
   ],
   crumbs: [{ name: 'หน้าแรก', path: '/' }],
@@ -457,6 +522,26 @@ usePageSeo({
   background: rgba(8, 8, 8, 0.28);
   backdrop-filter: blur(10px);
   border-color: rgba(255, 255, 255, 0.55);
+}
+
+.hero__pay {
+  margin-top: 1.15rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.72);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.55rem;
+  align-items: center;
+}
+
+.hero__pay a {
+  color: var(--color-lime);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.hero__pay a:hover {
+  color: var(--color-lime-soft);
 }
 
 .hero__stats {
@@ -768,6 +853,94 @@ usePageSeo({
   margin-bottom: 1.75rem;
 }
 
+.pkg-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.pkg-banner .btn-secondary {
+  background: rgba(8, 8, 8, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+/* ========== FINANCE PROMO ========== */
+.finance-promo {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+  background:
+    radial-gradient(ellipse 55% 70% at 8% 10%, rgba(212, 255, 0, 0.1), transparent 58%),
+    radial-gradient(ellipse 40% 60% at 95% 80%, rgba(212, 175, 55, 0.1), transparent 55%),
+    #0c0c0c;
+  border-block: 1px solid rgba(212, 255, 0, 0.12);
+}
+
+.finance-promo__head {
+  max-width: 40rem;
+  margin-bottom: 2rem;
+}
+
+.finance-promo__head .section-lead {
+  margin-top: 0.5rem;
+}
+
+.finance-promo__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.finance-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.6rem 1.7rem 1.5rem;
+  background: linear-gradient(165deg, rgba(212, 255, 0, 0.07), #141414 42%);
+  border: 1px solid rgba(212, 255, 0, 0.22);
+}
+
+.finance-card--ev {
+  background: linear-gradient(165deg, rgba(212, 175, 55, 0.1), #141414 42%);
+  border-color: rgba(212, 175, 55, 0.28);
+}
+
+.finance-card__tag {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.finance-card h3 {
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+.finance-card p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 28rem;
+  margin-bottom: 0.55rem;
+}
+
+.finance-card .btn {
+  align-self: flex-start;
+}
+
+.finance-card__sub {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-lime);
+}
+
+.finance-card__sub:hover {
+  color: var(--color-lime-soft);
+}
+
 /* ========== BELIEF ========== */
 .belief {
   display: grid;
@@ -1000,7 +1173,8 @@ usePageSeo({
 @media (max-width: 900px) {
   .belief,
   .projects__grid,
-  .solar-pkg__inner {
+  .solar-pkg__inner,
+  .finance-promo__grid {
     grid-template-columns: 1fr;
   }
 

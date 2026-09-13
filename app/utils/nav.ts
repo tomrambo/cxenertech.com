@@ -18,6 +18,7 @@ export const mainNav: NavItem[] = [
     { key: 'solarWarehouse', to: '/solar/rooftop/warehouse' },
     { key: 'solarPackages', to: '/solar/rooftop/packages' },
     { key: 'solarPayback', to: '/solar/payback' },
+    { key: 'solarFinance', to: '/solar/finance' },
     { key: 'solarPpa', to: '/solar/ppa' },
     { key: 'solarEpc', to: '/solar/epc' },
   ] },
@@ -30,6 +31,7 @@ export const mainNav: NavItem[] = [
       { key: 'evStationDesign', to: '/ev-charging/station/design' },
       { key: 'evPackages', to: '/ev-charging/packages' },
       { key: 'evInvestment', to: '/ev-charging/investment' },
+      { key: 'evFinance', to: '/ev-charging/finance' },
       { key: 'evEpc', to: '/ev-charging/station/epc' },
       { key: 'evPayback', to: '/ev-charging/packages/payback' },
     ],
@@ -66,6 +68,7 @@ export const footerNav = {
     { key: 'farm', to: '/solar/farm' },
     { key: 'peaPackages', to: '/solar/rooftop/packages' },
     { key: 'paybackSolar', to: '/solar/payback' },
+    { key: 'financeSolar', to: '/solar/finance' },
     { key: 'ppa', to: '/solar/ppa' },
     { key: 'epc', to: '/solar/epc' },
   ],
@@ -75,6 +78,7 @@ export const footerNav = {
     { key: 'chargePackages', to: '/ev-charging/packages' },
     { key: 'evCost', to: '/ev-charging/cost' },
     { key: 'payback', to: '/ev-charging/investment' },
+    { key: 'financeEv', to: '/ev-charging/finance' },
     { key: 'commercial', to: '/ev-charging/commercial' },
     { key: 'management', to: '/ev-charging/management' },
     { key: 'homeCharger', to: '/ev-charging/home-charger' },
@@ -100,4 +104,21 @@ export const contactInfo = {
   phone: '+6699-624-6444',
   line: 'cxenertech',
   address: 'เลขที่ 429/20 หมู่บ้านพรีเมี่ยมเพลส 9 ถนนสุคนธสวัสดิ์ แขวงลาดพร้าว เขตลาดพร้าว กรุงเทพมหานคร 10230',
+}
+
+export function contactTelHref() {
+  return `tel:${contactInfo.phone.replace(/[^\d+]/g, '')}`
+}
+
+export function contactLineHref() {
+  const id = contactInfo.line.replace(/^@+/, '')
+  return `https://line.me/R/ti/p/@${id}`
+}
+
+export function contactMailtoHref() {
+  return `mailto:${contactInfo.email}`
+}
+
+export function contactLineHandle() {
+  return `@${contactInfo.line.replace(/^@+/, '')}`
 }

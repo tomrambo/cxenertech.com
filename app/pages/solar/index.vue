@@ -67,6 +67,7 @@ const links = [
   { label: 'โซล่าเซลล์คลังสินค้า', to: '/solar/rooftop/warehouse' },
   { label: 'โซล่าเซลล์ 5 / 10 / 15 kW', to: '/solar/5kw' },
   { label: 'จุดคืนทุน / คุ้มไหม', to: '/solar/payback' },
+  { label: 'สินเชื่อ / ผ่อนโซล่าเซลล์', to: '/solar/finance' },
   { label: 'Hybrid + แบตเตอรี่', to: '/solar/hybrid' },
   { label: 'Solar BESS', to: '/solar/bess' },
   { label: 'PPA ไม่ต้องลงทุน', to: '/solar/ppa' },

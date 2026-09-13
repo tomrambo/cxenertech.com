@@ -20,7 +20,7 @@ function onSubmit() {
 
 usePageSeo({
   title: 'ติดต่อ CX ENERTECH | ขอใบเสนอราคาโซล่าเซลล์และ EV',
-  description: 'ติดต่อทีม CX ENERTECH เพื่อปรึกษาติดตั้งโซล่าเซลล์ EV Station หรือนัดสำรวจพื้นที่',
+  description: 'ติดต่อทีม CX ENERTECH ทางฟอร์ม LINE โทร หรือขอสินเชื่อติดตั้งโซล่าเซลล์และ EV Station',
   path: '/contact',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
@@ -33,42 +33,32 @@ usePageSeo({
   <div>
     <PageHero
       title="ติดต่อเรา"
-      description="ปรึกษาติดตั้งโซล่าเซลล์ EV Station หรือนัดสำรวจพื้นที่กับทีม CX ENERTECH"
+      description="ขอสินค้าได้หลายช่องทาง — ใบเสนอราคา LINE โทร สินเชื่อ หรือนัดสำรวจพื้นที่"
       :crumbs="[{ label: 'หน้าแรก', to: '/' }, { label: 'ติดต่อเรา' }]"
     />
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">ช่องทางขอสินค้า</span>
+          <h2 class="section-title">เลือกช่องทางที่คุยสะดวก</h2>
+          <p class="section-lead">
+            ฟอร์ม แชท LINE สายตรง หรือโมเดลผ่อน — ทีมเดียวกันเป็นผู้รับเรื่อง ไม่ต้องยื่นธนาคารบนเว็บ
+          </p>
+        </div>
+        <RequestChannels />
+        <p class="address">{{ contactInfo.address }}</p>
+      </div>
+    </section>
 
     <section class="section">
       <div class="container contact">
         <div class="contact__info">
           <span class="section-label">Get in Touch</span>
-          <h2 class="section-title">พูดคุยกับเรา</h2>
+          <h2 class="section-title">ฝากข้อความ</h2>
           <p class="section-lead">
-            เรายินดีให้คำปรึกษาเกี่ยวกับ Solar Energy, EV Charging และ Smart Energy Solutions
+            หากยังไม่พร้อมกรอกใบเสนอราคา ส่งข้อความทั่วไปไว้ก่อนได้ ทีมจะติดต่อกลับ
           </p>
-
-          <ul class="info-list">
-            <li>
-              <strong>Email</strong>
-              <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
-            </li>
-            <li>
-              <strong>Phone</strong>
-              <span>{{ contactInfo.phone }}</span>
-            </li>
-            <li>
-              <strong>LINE OA</strong>
-              <span>{{ contactInfo.line }}</span>
-            </li>
-            <li>
-              <strong>Address</strong>
-              <span>{{ contactInfo.address }}</span>
-            </li>
-          </ul>
-
-          <div class="quick-links">
-            <NuxtLink to="/contact/quotation" class="sub-link">ขอใบเสนอราคา <span>→</span></NuxtLink>
-            <NuxtLink to="/contact/site-survey" class="sub-link">ขอสำรวจพื้นที่ <span>→</span></NuxtLink>
-          </div>
         </div>
 
         <div class="contact__form-wrap">
@@ -115,42 +105,17 @@ usePageSeo({
 </template>
 
 <style scoped>
+.address {
+  margin-top: 1.5rem;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
 .contact {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3.5rem;
   align-items: start;
-}
-
-.info-list {
-  margin: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.info-list li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.info-list strong {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-teal);
-}
-
-.info-list a:hover {
-  color: var(--color-solar);
-}
-
-.quick-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
 .contact__form-wrap {

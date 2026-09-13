@@ -37,10 +37,27 @@ function packageImage(pkg: SolarWebsitePackage) {
       :title="landing.heroTitle"
       :description="landing.heroDescription"
       :crumbs="landing.crumbs.map((c) => ({ label: c.name, to: c.path === landing.path ? undefined : c.path }))"
-    />
+    >
+      <div v-if="landing.heroActions?.length" class="hero-actions">
+        <NuxtLink
+          v-for="action in landing.heroActions"
+          :key="action.to"
+          :to="action.to"
+          class="btn"
+          :class="action.primary ? 'btn-primary' : 'btn-secondary'"
+        >
+          {{ action.label }}
+        </NuxtLink>
+      </div>
+    </PageHero>
 
     <section class="section">
       <div class="container">
+        <PayChoiceBar
+          v-if="landing.payChoice"
+          :asset="landing.payChoice.asset"
+          :context="landing.payChoice.context"
+        />
         <div class="content-block">
           <p v-for="(p, i) in landing.intro" :key="i">{{ p }}</p>
 
@@ -125,10 +142,10 @@ function packageImage(pkg: SolarWebsitePackage) {
     <CtaBand
       :title="landing.ctaTitle || 'ขอใบเสนอราคาโซล่าเซลล์'"
       :description="landing.ctaDescription || 'ทีม CX ENERTECH ออกแบบระบบตามหลังคาและมิเตอร์ของคุณ'"
-      primary-label="ขอใบเสนอราคา Solar"
-      primary-to="/contact/quotation?type=solar"
-      secondary-label="ดูแพ็กเกจ"
-      secondary-to="/solar/rooftop/packages"
+      :primary-label="landing.ctaPrimaryLabel || 'ขอใบเสนอราคา Solar'"
+      :primary-to="landing.ctaPrimaryTo || '/contact/quotation?type=solar'"
+      :secondary-label="landing.ctaSecondaryLabel || 'ดูแพ็กเกจ'"
+      :secondary-to="landing.ctaSecondaryTo || '/solar/rooftop/packages'"
     />
   </div>
 </template>
