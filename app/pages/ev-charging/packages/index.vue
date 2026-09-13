@@ -29,15 +29,15 @@
             แพ็กเกจ <em>EV Station</em> ราคาอ้างอิง
           </h1>
           <p class="hero__lead animate-fade-up animate-delay-2">
-            เลือกแพ็กเกจสถานีชาร์จรถยนต์ไฟฟ้าและเครื่องชาร์จ — สเปก ราคาอ้างอิง และจุดคืนทุนในที่เดียว
+            เลือกแพ็กเกจสถานีชาร์จและเครื่องชาร์จ — จ่ายก้อน หรือผ่อนติดตั้งเป็นของตนเอง
           </p>
           <div class="hero__actions animate-fade-up animate-delay-3">
             <a href="#catalog" class="btn btn-primary">
               เลือกแพ็กเกจ
               <span aria-hidden="true">↓</span>
             </a>
-            <NuxtLink to="/ev-charging/station" class="btn btn-secondary">
-              รับติดตั้ง EV Station
+            <NuxtLink to="/ev-charging/finance" class="btn btn-secondary">
+              สินเชื่อ / ผ่อน
             </NuxtLink>
             <NuxtLink to="/ev-charging/packages/payback" class="btn btn-secondary">
               ดูจุดคืนทุน
@@ -59,6 +59,7 @@
 
     <section id="catalog" class="section catalog__body">
       <div class="container">
+        <PayChoiceBar asset="ev" context="catalog" />
         <!-- Sticky control rail -->
         <div class="rail">
           <div class="rail__top">
@@ -78,7 +79,10 @@
             </div>
             <div class="rail__links">
               <NuxtLink to="/ev-charging/quotation" class="rail__link">ขอใบเสนอราคา</NuxtLink>
-              <NuxtLink to="/ev-charging/packages/payback" class="rail__link rail__link--accent">
+              <NuxtLink to="/ev-charging/finance" class="rail__link rail__link--accent">
+                สินเชื่อ / ผ่อน
+              </NuxtLink>
+              <NuxtLink to="/ev-charging/packages/payback" class="rail__link">
                 Payback →
               </NuxtLink>
             </div>
@@ -220,20 +224,13 @@
                   </div>
                 </div>
 
-                <div class="spotlight__actions">
-                  <NuxtLink
-                    :to="`/ev-charging/packages/${group.items[0].slug}`"
-                    class="btn btn-primary"
-                  >
-                    ดูรายละเอียด
-                  </NuxtLink>
-                  <NuxtLink
-                    class="btn btn-secondary"
-                    :to="`/contact/quotation?type=ev&package=${group.items[0].code}`"
-                  >
-                    ขอใบเสนอราคา
-                  </NuxtLink>
-                </div>
+                <PackagePayActions
+                  class="spotlight__actions"
+                  asset="ev"
+                  :package-code="group.items[0].code"
+                  :product-type="group.items[0].product_type"
+                  :detail-to="`/ev-charging/packages/${group.items[0].slug}`"
+                />
               </div>
             </article>
 
@@ -290,17 +287,14 @@
                     <strong v-else class="card__price-pending">ขอใบเสนอราคา</strong>
                   </div>
 
-                  <div class="card__actions">
-                    <NuxtLink :to="`/ev-charging/packages/${pkg.slug}`" class="btn btn-primary">
-                      รายละเอียด
-                    </NuxtLink>
-                    <NuxtLink
-                      class="btn btn-secondary"
-                      :to="`/contact/quotation?type=ev&package=${pkg.code}`"
-                    >
-                      ใบเสนอราคา
-                    </NuxtLink>
-                  </div>
+                  <PackagePayActions
+                    class="card__actions"
+                    asset="ev"
+                    :package-code="pkg.code"
+                    :product-type="pkg.product_type"
+                    :detail-to="`/ev-charging/packages/${pkg.slug}`"
+                    quote-label="ใบเสนอราคา"
+                  />
                 </div>
               </article>
             </div>
@@ -320,11 +314,11 @@
 
     <CtaBand
       title="อยากได้แพ็กเกจที่ตัดตามพื้นที่จริง?"
-      description="ทีม CX ENERTECH ออกแบบ BOQ และใบเสนอราคาตามโหลดไฟและพฤติกรรมการใช้งาน"
+      description="ทีม CX ENERTECH ออกแบบ BOQ และใบเสนอราคาตามโหลดไฟ — หากต้องการผ่อนติดตั้งสถานีของตนเอง ดูสินเชื่อ EV Station"
       primary-label="ขอใบเสนอราคา EV"
       primary-to="/ev-charging/quotation"
-      secondary-label="กลับ Ev Charging"
-      secondary-to="/ev-charging"
+      secondary-label="สินเชื่อติดตั้งสถานี"
+      secondary-to="/ev-charging/finance"
     />
   </div>
 </template>

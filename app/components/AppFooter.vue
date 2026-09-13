@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { footerNav, contactInfo } from '~/utils/nav'
+import { footerNav, contactInfo, contactLineHandle, contactLineHref, contactTelHref } from '~/utils/nav'
 
 const { t, locale } = useLocale()
 const legalName = computed(() =>
@@ -21,8 +21,10 @@ const legalName = computed(() =>
         </p>
         <div class="footer__contact">
           <a :href="`mailto:${contactInfo.email}`">{{ contactInfo.email }}</a>
-          <span>{{ contactInfo.phone }}</span>
-          <span>LINE: {{ contactInfo.line }}</span>
+          <a :href="contactTelHref()">{{ contactInfo.phone }}</a>
+          <a :href="contactLineHref()" target="_blank" rel="noopener noreferrer">
+            LINE {{ contactLineHandle() }}
+          </a>
           <a href="https://www.cxenertech.com" target="_blank" rel="noopener">www.cxenertech.com</a>
         </div>
       </div>
@@ -70,6 +72,7 @@ const legalName = computed(() =>
         <p>© {{ new Date().getFullYear() }} {{ contactInfo.legalEn }}. {{ t('footer.rights') }}.</p>
         <div class="footer__bottom-links">
           <NuxtLink to="/contact/quotation">{{ t('footer.quote') }}</NuxtLink>
+          <NuxtLink to="/solar/finance">{{ t('footer.financeSolar') }}</NuxtLink>
           <NuxtLink to="/contact/site-survey">{{ t('footer.survey') }}</NuxtLink>
           <NuxtLink to="/partners/become-a-partner">{{ t('footer.becomePartner') }}</NuxtLink>
         </div>
@@ -176,6 +179,7 @@ const legalName = computed(() =>
 
 .footer__bottom-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 

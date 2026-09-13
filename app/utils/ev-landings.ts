@@ -19,8 +19,14 @@ export type EvLanding = {
   features?: { title: string; desc: string }[]
   faqs: SeoFaq[]
   related: { label: string; to: string }[]
+  heroActions?: { label: string; to: string; primary?: boolean }[]
+  payChoice?: { asset: 'solar' | 'ev'; context: 'catalog' | 'finance' }
   ctaTitle?: string
   ctaDescription?: string
+  ctaPrimaryLabel?: string
+  ctaPrimaryTo?: string
+  ctaSecondaryLabel?: string
+  ctaSecondaryTo?: string
 }
 
 const home: SeoCrumb = { name: 'หน้าแรก', path: '/' }
@@ -101,6 +107,7 @@ export const evLandings: Record<string, EvLanding> = {
       { label: 'DC Fast Charger', to: '/ev-charging/commercial/dc-fast' },
       { label: 'สถานีชาร์จสำหรับธุรกิจ', to: '/ev-charging/commercial' },
       { label: 'ขอใบเสนอราคา EV Station', to: '/ev-charging/quotation' },
+      { label: 'สินเชื่อติดตั้งสถานีของตนเอง', to: '/ev-charging/finance' },
     ],
     ctaTitle: 'ต้องการผู้รับเหมา EV Station ประเมินไซต์?',
     ctaDescription: 'ส่งผังที่จอดและข้อมูลมิเตอร์ เพื่อรับใบเสนอราคาติดตั้งสถานีชาร์จรถยนต์ไฟฟ้า',
@@ -159,6 +166,7 @@ export const evLandings: Record<string, EvLanding> = {
       { label: 'EV Station 180 kW', to: '/ev-charging/180kw' },
       { label: 'EV Station 240 kW', to: '/ev-charging/240kw' },
       { label: 'ลงทุนและ ROI', to: '/ev-charging/investment' },
+      { label: 'สินเชื่อติดตั้งสถานีของตนเอง', to: '/ev-charging/finance' },
     ],
     ctaTitle: 'ต้องการประเมินต้นทุน EV Station ตามงบ?',
     ctaDescription: 'ส่งจำนวนจุดชาร์จและข้อมูลมิเตอร์ เพื่อรับกรอบงบลงทุน',
@@ -210,11 +218,90 @@ export const evLandings: Record<string, EvLanding> = {
       { label: 'ตารางจุดคืนทุนแพ็กเกจ', to: '/ev-charging/packages/payback' },
       { label: 'ราคาและต้นทุน', to: '/ev-charging/cost' },
       { label: 'แพ็กเกจลงทุน', to: '/ev-charging/packages' },
+      { label: 'สินเชื่อติดตั้งสถานีของตนเอง', to: '/ev-charging/finance' },
       { label: 'วิเคราะห์ทำเล / ใบเสนอราคา', to: '/ev-charging/quotation' },
       { label: 'ติดตั้งทั่วประเทศ', to: '/ev-charging/thailand' },
     ],
     ctaTitle: 'ปรึกษาลงทุน EV Station',
     ctaDescription: 'รับวิเคราะห์ทำเลและคำนวณ ROI เบื้องต้นจากข้อมูลพื้นที่ของคุณ',
+  },
+
+  finance: {
+    path: '/ev-charging/finance',
+    heroTitle: 'สินเชื่อ EV Station — ผ่อนติดตั้งสถานีของตนเอง',
+    heroDescription:
+      'เจ้าของที่จอดหรืออาคารที่อยากติดสถานีชาร์จเป็นของตนเอง แต่ยังไม่พร้อมจ่ายก้อน CX ENERTECH สำรวจไซต์และจัดเอกสารผู้ขายให้ธนาคารพิจารณา',
+    seoTitle: 'สินเชื่อ EV Station | ผ่อนติดตั้งสถานีชาร์จรถไฟฟ้า',
+    seoDescription:
+      'สินเชื่อ EV Station ผ่อนติดตั้งสถานีชาร์จรถไฟฟ้าของตนเอง โดย CX ENERTECH ผู้ติดตั้งจัดใบเสนอราคาตามไซต์ให้ธนาคารพิจารณา ไม่ใช่ผู้ให้กู้และไม่ใช่แพ็กเกจลงทุนสถานี',
+    crumbs: [home, ev, { name: 'สินเชื่อ EV Station', path: '/ev-charging/finance' }],
+    heroActions: [
+      { label: 'ขอจัดสินเชื่อ', to: '/contact/quotation?intent=finance&type=ev', primary: true },
+      { label: 'เลือกแพ็กเกจแล้วผ่อน', to: '/ev-charging/packages' },
+    ],
+    payChoice: { asset: 'ev', context: 'finance' },
+    intro: [
+      'สินเชื่อ EV Station คือการที่คุณเป็นเจ้าของเครื่องชาร์จและงานไฟฟ้า แต่ใช้วงเงินธนาคารหรือลีสจ่ายค่าติดตั้ง รายได้จากชาร์จหรือผลประหยัดค่าไฟบ้าน/อาคารเป็นของคุณ',
+      'หน้านี้ไม่ใช่หน้าลงทุนเปิดสถานีหารายได้แบบแพ็กเกจ CX Charge และไม่ใช่การอนุมัติสินเชื่อบนเว็บ CX ENERTECH เป็นผู้ติดตั้ง ทำ BOQ ตามไซต์ แล้วจัดชุดเอกสารผู้ขายให้สถาบันการเงินพิจารณา',
+    ],
+    sections: [
+      {
+        heading: 'ต่างจากหน้าลงทุน EV Station อย่างไร',
+        paragraphs: [
+          'หน้าลงทุน/ROI ตอบคนที่อยากเปิดสถานีเป็นธุรกิจและดูจุดคืนทุนจากค่าชาร์จ หน้าสินเชื่อตอบเจ้าของพื้นที่ที่อยากติดสถานีเป็นสินทรัพย์ของตนเองแล้วผ่อนค่าติดตั้ง เจตนาคนละแบบ อย่าปนกับแพ็กเกจลงทุน',
+        ],
+      },
+      {
+        heading: 'ธนาคารต้องการราคาติดตั้งตามไซต์',
+        paragraphs: [
+          'กำลังเครื่อง จำนวนหัวชาร์จ ระยะสาย ตู้ MDB และว่าต้องขยายเขตไฟฟ้าหรือไม่ ทำให้ราคาแต่ละที่จอดไม่เท่ากัน สถาบันการเงินจึงไม่รับเคสที่ยังมีแต่ราคาเครื่องบนเว็บ ต้องสำรวจแล้วออกใบเสนอราคาก่อนยื่น',
+        ],
+      },
+      {
+        heading: 'ขั้นตอนกับ CX ENERTECH',
+        paragraphs: ['ลำดับงานหลังได้รับคำขอ'],
+        bullets: [
+          'คัดกรองความเป็นเจ้าของที่จอดหรือความยินยอมเจ้าของอาคาร',
+          'สำรวจโหลดไฟ ผังจอด และงานไฟฟ้า แล้วทำ BOQ',
+          'จัดชุดเอกสารผู้ขายให้ธนาคารหรือลีส',
+          'เมื่ออนุมัติ จึงทำสัญญาติดตั้งและลงงาน',
+        ],
+      },
+    ],
+    features: [
+      { title: 'ไม่ใช่ผู้ให้กู้', desc: 'ไม่อนุมัติวงเงินบนเว็บ และไม่ขายพรีแอพพรูฟ' },
+      { title: 'ไม่ใช่แพ็กเกจลงทุน', desc: 'โมเดลเปิดสถานีหารายได้อยู่ที่หน้าลงทุน EV Station' },
+      { title: 'สำรวจก่อนยื่น', desc: 'ราคาที่ใช้ยื่นมาจากไซต์จริง ไม่ใช่แคตรายการเครื่องชาร์จ' },
+      { title: 'เอกสารผู้ขาย', desc: 'ใบเสนอราคาและขอบเขตงานให้สถาบันการเงิน' },
+    ],
+    faqs: [
+      {
+        q: 'ขอสินเชื่อ EV Station บนเว็บแล้วได้อนุมัติไหม?',
+        a: 'ไม่ได้ ฟอร์มนี้ใช้เพื่อนัดสำรวจและจัดเอกสารผู้ขาย ธนาคารหรือลีสเป็นผู้พิจารณา',
+      },
+      {
+        q: 'เช่าที่จอดหรือพื้นที่ห้างทำสินเชื่อได้ไหม?',
+        a: 'ต้องมีสิทธิ์ติดเครื่องและยื่นเอกสารพื้นที่ได้ หากเช่า ต้องได้รับความยินยอมเจ้าของอาคารก่อนยื่นธนาคาร',
+      },
+      {
+        q: 'อันนี้คือแพ็กเกจลงทุนเปิดสถานีไหม?',
+        a: 'ไม่ใช่ หากต้องการโมเดลลงทุนสถานีและจุดคืนทุนจากค่าชาร์จ ไปที่หน้าลงทุน EV Station และแพ็กเกจ CX Charge',
+      },
+    ],
+    related: [
+      { label: 'กรอกแบบฟอร์มสินเชื่อ', to: '/contact/quotation?intent=finance&type=ev' },
+      { label: 'แพ็กเกจและราคา', to: '/ev-charging/packages' },
+      { label: 'ราคาและต้นทุน', to: '/ev-charging/cost' },
+      { label: 'ลงทุน EV Station (คนละเจตนา)', to: '/ev-charging/investment' },
+      { label: 'รับติดตั้ง EV Station', to: '/ev-charging/station' },
+      { label: 'ขอใบเสนอราคาซื้อขาด', to: '/ev-charging/quotation' },
+    ],
+    ctaTitle: 'ส่งข้อมูลเพื่อจัดชุดเอกสารสินเชื่อ EV Station',
+    ctaDescription: 'ทีมสำรวจที่จอดและโหลดไฟ ทำใบเสนอราคาตามไซต์ แล้วจัดเอกสารผู้ขายให้ธนาคารพิจารณา',
+    ctaPrimaryLabel: 'ขอจัดสินเชื่อ EV Station',
+    ctaPrimaryTo: '/contact/quotation?intent=finance&type=ev',
+    ctaSecondaryLabel: 'เลือกแพ็กเกจแล้วผ่อน',
+    ctaSecondaryTo: '/ev-charging/packages',
   },
 
   epc: {
@@ -631,6 +718,7 @@ export const evLandings: Record<string, EvLanding> = {
     ],
     related: [
       { label: 'ไปที่แบบฟอร์ม', to: '/contact/quotation?type=ev' },
+      { label: 'สินเชื่อติดตั้งสถานีของตนเอง', to: '/ev-charging/finance' },
       { label: 'ราคาและต้นทุน', to: '/ev-charging/cost' },
       { label: 'ลงทุน / ROI', to: '/ev-charging/investment' },
       { label: 'แพ็กเกจ', to: '/ev-charging/packages' },

@@ -27,6 +27,7 @@
           <h2>คุ้มไหม และจ่ายอย่างไร</h2>
           <ul>
             <li><NuxtLink to="/solar/payback">ติดโซล่าเซลล์คุ้มไหม / จุดคืนทุน</NuxtLink></li>
+            <li><NuxtLink to="/solar/finance">สินเชื่อโซล่าเซลล์ — ผ่อนแล้วเป็นเจ้าของระบบ</NuxtLink></li>
             <li><NuxtLink to="/solar/ppa">PPA — ติดโซล่าเซลล์ไม่ต้องลงทุนเอง</NuxtLink></li>
             <li><NuxtLink to="/solar/quotation">ขอใบเสนอราคาโซล่าเซลล์</NuxtLink></li>
           </ul>

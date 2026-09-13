@@ -38,6 +38,8 @@
             <NuxtLink to="/ev-charging/investment">ลงทุน EV Station</NuxtLink>
             และตาราง
             <NuxtLink to="/ev-charging/packages/payback">จุดคืนทุนแพ็กเกจ</NuxtLink>
+            หากเจ้าของพื้นที่อยากผ่อนติดตั้งสถานีของตนเอง ดู
+            <NuxtLink to="/ev-charging/finance">สินเชื่อ EV Station</NuxtLink>
           </p>
           <h2>ลงทุน EV Station ต้องใช้เงินเท่าไหร่</h2>
           <p>

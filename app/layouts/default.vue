@@ -5,11 +5,12 @@
       <slot />
     </main>
     <AppFooter />
+    <ContactDock />
   </div>
 </template>
 
 <script setup lang="ts">
-import { contactInfo } from '~/utils/nav'
+import { contactInfo, contactLineHref } from '~/utils/nav'
 import { serializeJsonLd } from '~/utils/structured-data'
 
 const { locale } = useLocale()
@@ -42,6 +43,7 @@ useHead(() => ({
           addressCountry: 'TH',
         },
         areaServed: 'TH',
+        sameAs: [contactLineHref()],
         knowsAbout: ['รับติดตั้งโซล่าเซลล์', 'Solar Rooftop', 'EV Station', 'DC Fast Charger'],
         makesOffer: [
           {
@@ -76,5 +78,11 @@ useHead(() => ({
 
 main {
   flex: 1;
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    padding-bottom: 4.25rem;
+  }
 }
 </style>
