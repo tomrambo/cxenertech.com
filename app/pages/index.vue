@@ -3,11 +3,13 @@
     <!-- Hero: cinematic full-bleed -->
     <section class="hero">
       <div class="hero__bg" aria-hidden="true">
-        <img
+        <OptimizedPhoto
           src="/images/hero-campus.jpg"
-          alt=""
-          width="1920"
-          height="1280"
+          :width="1920"
+          :height="1280"
+          :widths="[800, 1280, 1920]"
+          sizes="100vw"
+          eager
           fetchpriority="high"
         />
       </div>
@@ -66,7 +68,16 @@
             :to="svc.to"
             class="service"
           >
-            <div class="service__media" :style="{ backgroundImage: `url(${svc.image})` }" />
+            <div class="service__media">
+              <OptimizedPhoto
+                :src="svc.image"
+                :alt="svc.title"
+                :width="1280"
+                :height="853"
+                :widths="[640, 960, 1280]"
+                sizes="(max-width: 800px) 100vw, 42vw"
+              />
+            </div>
             <div class="service__content">
               <span class="service__index">0{{ i + 1 }}</span>
               <h3>{{ svc.title }}</h3>
@@ -131,11 +142,15 @@
 
     <!-- EV Station Packages banner -->
     <section class="pkg-banner">
-      <div
-        class="pkg-banner__media"
-        style="background-image: url('/images/projects/project-dc-station.jpg')"
-        aria-hidden="true"
-      />
+      <div class="pkg-banner__media" aria-hidden="true">
+        <OptimizedPhoto
+          src="/images/projects/project-dc-station.jpg"
+          :width="1280"
+          :height="853"
+          :widths="[640, 960, 1280]"
+          sizes="100vw"
+        />
+      </div>
       <div class="pkg-banner__shade" aria-hidden="true" />
       <div class="container-wide pkg-banner__inner">
         <div class="pkg-banner__copy">
@@ -172,7 +187,7 @@
               <span aria-hidden="true">→</span>
             </NuxtLink>
             <NuxtLink to="/solar/rooftop/packages" class="finance-card__sub">
-              {{ t('home.financePickPackage') }}
+              {{ t('home.financePickSolarPackage') }}
             </NuxtLink>
           </article>
           <article class="finance-card finance-card--ev">
@@ -184,7 +199,7 @@
               <span aria-hidden="true">→</span>
             </NuxtLink>
             <NuxtLink to="/ev-charging/packages" class="finance-card__sub">
-              {{ t('home.financePickPackage') }}
+              {{ t('home.financePickEvPackage') }}
             </NuxtLink>
           </article>
         </div>
@@ -207,14 +222,25 @@
         </ul>
       </div>
       <div class="belief__mission">
-        <span class="belief__mission-label">Our Mission</span>
-        <h2>{{ t('home.missionTitle') }}</h2>
-        <p>
-          {{ t('home.missionBody') }}
-        </p>
-        <NuxtLink to="/about/vision-mission" class="btn belief__btn">
-          Vision &amp; Mission
-        </NuxtLink>
+        <div class="belief__mission-photo" aria-hidden="true">
+          <OptimizedPhoto
+            src="/images/projects/project-factory-rooftop.jpg"
+            :width="640"
+            :height="427"
+            :widths="[640]"
+            sizes="(max-width: 900px) 100vw, 40vw"
+          />
+        </div>
+        <div class="belief__mission-body">
+          <span class="belief__mission-label">Our Mission</span>
+          <h2>{{ t('home.missionTitle') }}</h2>
+          <p>
+            {{ t('home.missionBody') }}
+          </p>
+          <NuxtLink to="/about/vision-mission" class="btn belief__btn">
+            Vision &amp; Mission
+          </NuxtLink>
+        </div>
       </div>
     </section>
 
@@ -236,7 +262,14 @@
             class="project"
           >
             <div class="project__visual">
-              <img :src="p.image" :alt="p.title" loading="lazy" width="640" height="360" />
+              <OptimizedPhoto
+                :src="p.image"
+                :alt="p.title"
+                :width="1280"
+                :height="853"
+                :widths="[640, 960, 1280]"
+                sizes="(max-width: 900px) 100vw, 33vw"
+              />
             </div>
             <div class="project__meta">
               <span>{{ p.category }}</span>
@@ -257,11 +290,11 @@
             กรอกฟอร์ม แชท LINE โทร หรือดูสินเชื่อผ่อนติดตั้ง — เลือกช่องทางที่สะดวก
           </p>
         </div>
-        <RequestChannels />
+        <LazyRequestChannels />
       </div>
     </section>
 
-    <CtaBand
+    <LazyCtaBand
       :title="t('home.ctaTitle')"
       :description="t('home.ctaDescription')"
       :primary-label="t('cta.quote')"
@@ -401,7 +434,7 @@ usePageSeo({
   inset: 0;
 }
 
-.hero__bg img {
+.hero__bg :deep(img) {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -417,7 +450,7 @@ usePageSeo({
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__bg img {
+  .hero__bg :deep(img) {
     animation: none;
     transform: none;
   }
@@ -473,7 +506,7 @@ usePageSeo({
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-gold-light);
   max-width: 100%;
 }
 
@@ -621,13 +654,16 @@ usePageSeo({
 }
 
 .service__media {
-  background-size: cover;
-  background-position: center;
   min-height: 210px;
+  overflow: hidden;
+  background: #0e1a2b;
+}
+
+.service__media :deep(img) {
   transition: transform 0.7s var(--ease);
 }
 
-.service:hover .service__media {
+.service:hover .service__media :deep(img) {
   transform: scale(1.04);
 }
 
@@ -782,7 +818,7 @@ usePageSeo({
 .solar-size em {
   font-style: normal;
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ========== EV PACKAGES BANNER ========== */
@@ -801,14 +837,12 @@ usePageSeo({
   inset: 0;
 }
 
-.pkg-banner__media {
-  background-size: cover;
-  background-position: center;
+.pkg-banner__media :deep(img) {
   transform: scale(1.02);
   transition: transform 8s var(--ease);
 }
 
-.pkg-banner:hover .pkg-banner__media {
+.pkg-banner:hover .pkg-banner__media :deep(img) {
   transform: scale(1.06);
 }
 
@@ -990,16 +1024,28 @@ usePageSeo({
 
 .belief__mission {
   padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 3.5rem);
-  background:
-    linear-gradient(145deg, rgba(212, 255, 0, 0.94), rgba(184, 219, 0, 0.9)),
-    url('/images/projects/project-factory-rooftop.jpg')
-      center / cover;
+  background: #d4ff00;
   color: #111;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   overflow: hidden;
+}
+
+.belief__mission-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.belief__mission::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(145deg, rgba(212, 255, 0, 0.94), rgba(184, 219, 0, 0.9));
+  pointer-events: none;
 }
 
 .belief__mission::before {
@@ -1011,6 +1057,12 @@ usePageSeo({
   border-radius: 50%;
   right: -60px;
   top: -60px;
+  z-index: 2;
+}
+
+.belief__mission-body {
+  position: relative;
+  z-index: 2;
 }
 
 .belief__mission-label {
@@ -1020,7 +1072,7 @@ usePageSeo({
   letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: 0.85rem;
-  opacity: 0.7;
+  color: #1a1a1a;
 }
 
 .belief__mission h2 {
@@ -1093,7 +1145,7 @@ usePageSeo({
   background: #0e1a2b;
 }
 
-.project__visual img {
+.project__visual :deep(img) {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1101,7 +1153,7 @@ usePageSeo({
   transition: transform 0.5s var(--ease);
 }
 
-.project:hover .project__visual img {
+.project:hover .project__visual :deep(img) {
   transform: scale(1.04);
 }
 
@@ -1154,7 +1206,7 @@ usePageSeo({
     font-size: clamp(2.1rem, 5vw, 3.4rem);
   }
 
-  .hero__bg img {
+  .hero__bg :deep(img) {
     object-position: 55% 48%;
   }
 

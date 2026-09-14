@@ -11,7 +11,7 @@ const legalName = computed(() =>
   <footer class="footer">
     <div class="container-wide footer__top">
       <div class="footer__brand">
-        <NuxtLink to="/" class="footer__logo-link">
+        <NuxtLink to="/" class="footer__logo-link" aria-label="CX ENERTECH Home">
           <BrandLogo variant="light" :height="56" />
         </NuxtLink>
         <p class="footer__legal">{{ legalName }}</p>
@@ -31,7 +31,7 @@ const legalName = computed(() =>
 
       <div class="footer__cols">
         <div>
-          <h4>{{ t('footer.company') }}</h4>
+          <h2>{{ t('footer.company') }}</h2>
           <ul>
             <li v-for="item in footerNav.company" :key="item.to">
               <NuxtLink :to="item.to">{{ t(`footer.${item.key}`) }}</NuxtLink>
@@ -39,7 +39,7 @@ const legalName = computed(() =>
           </ul>
         </div>
         <div>
-          <h4>{{ t('footer.solar') }}</h4>
+          <h2>{{ t('footer.solar') }}</h2>
           <ul>
             <li v-for="item in footerNav.solar" :key="item.to">
               <NuxtLink :to="item.to">{{ t(`footer.${item.key}`) }}</NuxtLink>
@@ -47,7 +47,7 @@ const legalName = computed(() =>
           </ul>
         </div>
         <div>
-          <h4>{{ t('footer.ev') }}</h4>
+          <h2>{{ t('footer.ev') }}</h2>
           <ul>
             <li v-for="item in footerNav.ev" :key="item.to">
               <NuxtLink :to="item.to">{{ t(`footer.${item.key}`) }}</NuxtLink>
@@ -55,7 +55,7 @@ const legalName = computed(() =>
           </ul>
         </div>
         <div>
-          <h4>{{ t('footer.resources') }}</h4>
+          <h2>{{ t('footer.resources') }}</h2>
           <ul>
             <li v-for="item in footerNav.resources" :key="item.to">
               <NuxtLink :to="item.to">{{ t(`footer.${item.key}`) }}</NuxtLink>
@@ -102,7 +102,7 @@ const legalName = computed(() =>
 
 .footer__legal {
   font-size: 0.8rem;
-  opacity: 0.55;
+  color: #d0d4d8;
   margin-bottom: 0.5rem;
 }
 
@@ -118,7 +118,7 @@ const legalName = computed(() =>
 
 .footer__desc {
   font-size: 0.95rem;
-  opacity: 0.65;
+  color: #c5c9ce;
   max-width: 280px;
   line-height: 1.7;
   margin-bottom: 1.5rem;
@@ -142,7 +142,7 @@ const legalName = computed(() =>
   gap: 1.5rem;
 }
 
-.footer__cols h4 {
+.footer__cols h2 {
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -152,8 +152,8 @@ const legalName = computed(() =>
 
 .footer__cols a {
   font-size: 0.9rem;
-  opacity: 0.65;
-  transition: opacity 0.25s, color 0.25s;
+  color: #d0d4d8;
+  transition: color 0.25s;
   display: inline-block;
   padding: 0.25rem 0;
 }
@@ -174,7 +174,7 @@ const legalName = computed(() =>
   justify-content: space-between;
   gap: 1rem;
   font-size: 0.8rem;
-  opacity: 0.5;
+  color: #c5c9ce;
 }
 
 .footer__bottom-links {

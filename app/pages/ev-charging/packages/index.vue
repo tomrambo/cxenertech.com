@@ -6,11 +6,17 @@
         <div class="hero__orb hero__orb--lime" />
         <div class="hero__orb hero__orb--gold" />
       </div>
-      <div
-        class="hero__media"
-        style="background-image: url('/images/projects/project-dc-station.jpg')"
-        aria-hidden="true"
-      />
+      <div class="hero__media" aria-hidden="true">
+        <OptimizedPhoto
+          src="/images/projects/project-dc-station.jpg"
+          :width="1280"
+          :height="853"
+          :widths="[640, 960, 1280]"
+          sizes="100vw"
+          eager
+          fetchpriority="high"
+        />
+      </div>
       <div class="hero__shade" aria-hidden="true" />
 
       <div class="container hero__layout">
@@ -580,10 +586,19 @@ usePageSeo({
 .hero__media {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center 40%;
+}
+
+.hero__media :deep(img) {
+  object-position: center 40%;
   transform: scale(1.06);
   animation: hero-zoom 20s var(--ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__media :deep(img) {
+    animation: none;
+    transform: none;
+  }
 }
 
 .hero__shade {

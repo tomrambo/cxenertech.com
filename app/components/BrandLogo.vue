@@ -1,5 +1,5 @@
 <script setup lang="ts">
-withDefaults(
+const props = withDefaults(
   defineProps<{
     variant?: 'light' | 'dark' | 'mark'
     height?: number
@@ -9,33 +9,28 @@ withDefaults(
     height: 40,
   },
 )
+
+const asset = computed(() => {
+  if (props.variant === 'light') {
+    return { src: '/logo-on-dark.webp', width: 360, height: 206 }
+  }
+  if (props.variant === 'mark') {
+    return { src: '/logo-mark.webp', width: 128, height: 128 }
+  }
+  return { src: '/logo.webp', width: 360, height: 208 }
+})
 </script>
 
 <template>
   <span class="brand-logo" :style="{ height: `${height}px` }">
-    <!-- Dark backgrounds (header/footer): gold + white wordmark -->
     <img
-      v-if="variant === 'light'"
-      src="/logo-on-dark.png"
+      :src="asset.src"
       alt="CX ENERTECH"
       class="brand-logo__img"
-      :style="{ height: `${height}px` }"
-    />
-    <!-- Mark only -->
-    <img
-      v-else-if="variant === 'mark'"
-      src="/logo-mark.png"
-      alt="CX ENERTECH"
-      class="brand-logo__img brand-logo__img--mark"
-      :style="{ height: `${height}px` }"
-    />
-    <!-- Light backgrounds: official gold + navy logo -->
-    <img
-      v-else
-      src="/logo.png"
-      alt="CX ENERTECH"
-      class="brand-logo__img"
-      :style="{ height: `${height}px` }"
+      :class="{ 'brand-logo__img--mark': variant === 'mark' }"
+      :width="asset.width"
+      :height="asset.height"
+      decoding="async"
     />
   </span>
 </template>
@@ -44,10 +39,12 @@ withDefaults(
 .brand-logo {
   display: inline-flex;
   align-items: center;
+  height: v-bind('`${height}px`');
 }
 
 .brand-logo__img {
   width: auto;
+  height: 100%;
   display: block;
   object-fit: contain;
 }
