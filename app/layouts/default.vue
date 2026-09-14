@@ -6,6 +6,7 @@
     </main>
     <AppFooter />
     <ContactDock />
+    <CookieConsent />
   </div>
 </template>
 

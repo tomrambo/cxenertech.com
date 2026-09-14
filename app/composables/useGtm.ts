@@ -1,22 +1,20 @@
-declare global {
-  interface Window {
-    dataLayer?: unknown[]
-    gtag?: (...args: unknown[]) => void
-  }
-}
+import {
+  gaMeasurementId,
+  gtmContainerId,
+} from '~/utils/analytics-loader'
+import type { CookieConsentPrefs } from '~/composables/useCookieConsent'
 
-export function gtmContainerId() {
-  const id = String(useRuntimeConfig().public.gtmId || '').trim().toUpperCase()
-  return /^GTM-[A-Z0-9]+$/.test(id) ? id : ''
-}
-
-export function gaMeasurementId() {
-  const id = String(useRuntimeConfig().public.gaId || '').trim().toUpperCase()
-  return /^G-[A-Z0-9]+$/.test(id) ? id : ''
-}
+export { gaMeasurementId, gtmContainerId }
 
 export function trackGtm(event: string, params: Record<string, unknown> = {}) {
   if (!import.meta.client) return
+  const decided = useState('cx-cookie-decided', () => false)
+  const prefs = useState<CookieConsentPrefs>('cx-cookie-prefs', () => ({
+    necessary: true,
+    analytics: false,
+    marketing: false,
+  }))
+  if (!decided.value || !prefs.value.analytics) return
   if (gtmContainerId()) {
     window.dataLayer = window.dataLayer || []
     window.dataLayer.push({ event, ...params })
