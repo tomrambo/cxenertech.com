@@ -48,6 +48,7 @@ usePageSeo({
   path: `/knowledge/articles/${article.value.slug}`,
   image: article.value.seo?.image || article.value.coverImage || undefined,
   type: 'article',
+  faq: article.value.faqs,
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
     { name: 'ศูนย์ความรู้', path: '/knowledge' },
@@ -193,6 +194,13 @@ onMounted(() => {
             v-html="article.content"
           />
           <p v-else-if="article.excerpt" class="fallback">{{ article.excerpt }}</p>
+          <div v-if="article.faqs?.length" class="seo-faq">
+            <h2>คำถามที่พบบ่อย</h2>
+            <details v-for="item in article.faqs" :key="item.q">
+              <summary>{{ item.q }}</summary>
+              <p>{{ item.a }}</p>
+            </details>
+          </div>
         </article>
 
         <aside class="detail__aside">
@@ -357,11 +365,59 @@ onMounted(() => {
   height: auto;
 }
 
-.prose :deep(blockquote) {
-  margin: 1.5rem 0;
-  padding: 0.75rem 0 0.75rem 1rem;
-  border-left: 3px solid var(--color-lime);
+.prose :deep(table) {
+  width: 100%;
+  margin: 1.25rem 0 1.75rem;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.prose :deep(th),
+.prose :deep(td) {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose :deep(th) {
   color: var(--color-white);
+  background: rgba(212, 255, 0, 0.08);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.prose :deep(td) {
+  color: var(--color-muted);
+}
+
+.seo-faq {
+  max-width: 42rem;
+  margin-top: 2.5rem;
+}
+
+.seo-faq h2 {
+  color: var(--color-white);
+  font-size: 1.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.seo-faq details {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 0;
+}
+
+.seo-faq summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.seo-faq details p {
+  margin-top: 0.65rem;
+  color: var(--color-muted);
 }
 
 .aside-box {

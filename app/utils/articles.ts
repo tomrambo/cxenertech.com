@@ -23,6 +23,7 @@ export type Article = {
   updatedAt?: string
   viewCount?: number
   relatedService?: { path: string; label: string }
+  faqs?: { q: string; a: string }[]
   seo?: {
     title: string
     description: string

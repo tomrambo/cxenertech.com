@@ -1,4 +1,5 @@
 import type { Article } from '~/utils/articles'
+import { SEO_CALENDAR_ARTICLES } from '~/utils/seo-calendar-articles'
 
 function article(partial: Omit<Article, 'id' | 'authorName' | 'createdAt' | 'seo'> & { id: string }): Article {
   return {
@@ -13,7 +14,10 @@ function article(partial: Omit<Article, 'id' | 'authorName' | 'createdAt' | 'seo
   }
 }
 
-export const LOCAL_ARTICLES: Article[] = [
+const calendarArticles = SEO_CALENDAR_ARTICLES.map((item) => article(item))
+const calendarSlugs = new Set(calendarArticles.map((item) => item.slug))
+
+const seededArticles: Article[] = [
   article({
     id: 'local-solar-payback',
     slug: 'tid-solar-cell-khum-mai-2569',
@@ -24,6 +28,7 @@ export const LOCAL_ARTICLES: Article[] = [
     publishedAt: '2026-08-12',
     coverImage: '/images/projects/project-residential-solar.jpg',
     content: `<p>คำถามที่ลูกค้าใกล้ตัดสินใจถามบ่อยคือติดโซล่าเซลล์คุ้มไหม และคืนทุนกี่ปี คำตอบไม่ใช่ตัวเลขเดียวทั้งประเทศ เพราะขึ้นกับค่าไฟต่อหน่วย การใช้ไฟกลางวัน และราคาติดตั้ง</p>
+<p>คู่มือคำนวณฉบับเต็ม ปี 2569 อยู่ที่ <a href="/knowledge/articles/solar-khuen-thun-kee-pee-2569">โซล่าเซลล์คืนทุนกี่ปี</a></p>
 <h2>บ้านกับโรงงานคนละสมการ</h2>
 <p>บ้านที่ไม่มีคนอยู่กลางวันอาจเห็นผลช้ากว่าโรงงานหรืออาคารที่ใช้แอร์ทั้งวัน เมื่อค่าไฟแพง หน่วยที่แผงผลิตได้จะทดแทนหน่วยจากกริดได้คุ้มกว่า</p>
 <ul>
@@ -71,7 +76,7 @@ export const LOCAL_ARTICLES: Article[] = [
 <li><a href="/solar/ppa">PPA</a> — ติดโดยไม่ต้องลง CAPEX ทั้งก้อน</li>
 <li><a href="/solar/bess">BESS</a> — เมื่อโหลดพีคหรือกลางคืนสูง</li>
 </ul>
-<p>ภาพรวมงานโรงงานอยู่ที่ <a href="/solar/rooftop/factory">ติดตั้งโซล่าเซลล์โรงงาน</a></p>`,
+<p>ภาพรวมงานโรงงานอยู่ที่ <a href="/solar/rooftop/factory">ติดตั้งโซล่าเซลล์โรงงาน</a> เอกสารยื่นการไฟฟ้าสรุปที่ <a href="/knowledge/articles/kho-anuyat-tid-solar-rongngan-mea-pea">ขั้นตอนขออนุญาตติดโซล่าเซลล์โรงงาน</a></p>`,
   }),
   article({
     id: 'local-ev-start',
@@ -197,6 +202,11 @@ export const LOCAL_ARTICLES: Article[] = [
     content: `<p>ติดตั้ง EV Charger ในไทยไม่จบที่วางตู้ ต้องมีแบบไฟฟ้า มาตรฐานความปลอดภัย และขั้นตอนการไฟฟ้าตามเขต PEA หรือ MEA</p>
 <p>สรุปเอกสารอยู่ที่ <a href="/ev-charging/station/approvals">ขออนุญาต EV Station</a> และการตรวจรับที่ <a href="/ev-charging/station/commissioning">Commissioning</a></p>`,
   }),
+]
+
+export const LOCAL_ARTICLES: Article[] = [
+  ...calendarArticles,
+  ...seededArticles.filter((item) => !calendarSlugs.has(item.slug)),
 ]
 
 export function listLocalArticles(category?: string): Article[] {

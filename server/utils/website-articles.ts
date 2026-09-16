@@ -28,7 +28,12 @@ function asArticle(item: Article | CmmsArticle): Article {
       item.viewCount === undefined
         ? undefined
         : normalizeArticleViewCount(item.viewCount),
-    relatedService: service ? { path: service.path, label: service.label } : undefined,
+    relatedService: service
+      ? { path: service.path, label: service.label }
+      : 'relatedService' in item
+        ? item.relatedService
+        : undefined,
+    faqs: 'faqs' in item ? item.faqs : undefined,
     seo: service ? {
       ...item.seo,
       title: service.title,

@@ -356,11 +356,11 @@ export const evLandings: Record<string, EvLanding> = {
 
   commercial: {
     path: '/ev-charging/commercial',
-    heroTitle: 'EV Charger สำหรับธุรกิจ — สถานีชาร์จองค์กร',
-    heroDescription: 'ติดตั้ง EV Station สำหรับโรงแรม ห้าง ปั๊ม โรงงาน ร้านอาหาร และ Developer',
-    seoTitle: 'EV Charger สำหรับธุรกิจ | สถานีชาร์จองค์กร',
+    heroTitle: 'รับเหมาทำสถานีชาร์จ EV — EV Charger สำหรับธุรกิจ',
+    heroDescription: 'รับเหมาทำสถานีชาร์จ EV สำหรับโรงแรม ห้าง ปั๊ม โรงงาน ร้านอาหาร คอนโด และ Developer',
+    seoTitle: 'รับเหมาทำสถานีชาร์จ EV | ติดตั้ง EV Charger ธุรกิจ',
     seoDescription:
-      'ติดตั้ง EV Charger และ EV Station สำหรับธุรกิจ โรงแรม ห้าง ปั๊มน้ำมัน โรงงาน และร้านอาหาร โดย CX ENERTECH',
+      'รับเหมาทำสถานีชาร์จ EV และติดตั้ง EV Charger โรงแรม ร้านอาหาร ห้าง ปั๊ม คอนโด โดย CX ENERTECH',
     crumbs: [home, ev, { name: 'EV สำหรับธุรกิจ', path: '/ev-charging/commercial' }],
     intro: [
       'สถานีชาร์จสำหรับองค์กรช่วยดึงลูกค้า รองรับฟลีต และสร้างรายได้จากที่จอด CX ENERTECH ติดตั้ง EV Charger บริษัท โรงงาน โรงแรม ห้าง และปั๊มน้ำมัน ตามโหลดไฟฟ้าและพฤติกรรมจอดรถจริง',
@@ -381,7 +381,11 @@ export const evLandings: Record<string, EvLanding> = {
     faqs: [
       {
         q: 'คอนโดติด EV Station ได้ไหม?',
-        a: 'ได้หากนิติบุคคลอนุญาตและระบบไฟฟ้าอาคารรองรับ ทีมจะสำรวจตู้ MDB และที่จอดร่วมกับผู้จัดการอาคาร',
+        a: 'ได้หากนิติบุคคลอนุญาตและระบบไฟฟ้าอาคารรองรับ ทีมจะสำรวจตู้ MDB และที่จอดร่วมกับผู้จัดการอาคาร งานบ้านเดี่ยวดูหน้า Home Charger',
+      },
+      {
+        q: 'โรงแรมควรเริ่มที่ AC หรือ DC?',
+        a: 'แขกค้างคืนใช้ AC เป็นหลัก หากมี walk-in หรือรถทางผ่านให้เสริม DC Fast รายละเอียดอยู่ในบทความติดตั้ง EV Charger โรงแรม',
       },
     ],
     related: [
@@ -390,16 +394,18 @@ export const evLandings: Record<string, EvLanding> = {
       { label: 'แพลตฟอร์มคิดเงิน', to: '/ev-charging/management' },
       { label: 'Turnkey EPC', to: '/ev-charging/station/epc' },
       { label: 'ขอใบเสนอราคา', to: '/ev-charging/quotation' },
+      { label: 'บทความโรงแรม / ร้านอาหาร', to: '/knowledge/articles/tidtang-ev-charger-rongraem-2569' },
+      { label: 'AC vs DC Fast Charger', to: '/knowledge/articles/ac-vs-dc-charger-thurakit-2569' },
     ],
   },
 
   'dc-fast': {
     path: '/ev-charging/commercial/dc-fast',
     heroTitle: 'ติดตั้ง DC Fast Charger — ชาร์จเร็วสำหรับธุรกิจ',
-    heroDescription: 'DC Charging Station สำหรับปั๊มน้ำมัน โรงแรม ร้านอาหาร และสถานีสาธารณะ',
-    seoTitle: 'ติดตั้ง DC Fast Charger | DC Charging Station',
+    heroDescription: 'DC Fast Charger ราคาและงานติดตั้งสำหรับปั๊มน้ำมัน โรงแรม ร้านอาหาร และสถานีสาธารณะ',
+    seoTitle: 'DC Fast Charger ราคา | ติดตั้ง DC Charging Station',
     seoDescription:
-      'ติดตั้ง DC Fast Charger และ DC Charging Station สำหรับปั๊มน้ำมัน โรงแรม ร้านอาหาร และธุรกิจ โดย CX ENERTECH',
+      'DC Fast Charger ราคาและติดตั้ง DC Charging Station สำหรับปั๊ม โรงแรม ร้านอาหาร ดูความต่าง AC DC Charger และขอใบเสนอราคา',
     crumbs: [home, ev, { name: 'EV สำหรับธุรกิจ', path: '/ev-charging/commercial' }, { name: 'DC Fast', path: '/ev-charging/commercial/dc-fast' }],
     intro: [
       'DC Fast Charger เหมาะเมื่อลูกค้าต้องการชาร์จแล้วไปต่อ เช่น ปั๊ม ทางหลวง และจุดพัก CX ENERTECH ติดตั้ง DC Charger พร้อมงานไฟฟ้าและแพลตฟอร์มคิดเงิน ไม่ขายเครื่องแล้วทิ้งงานหน้างาน',
@@ -430,6 +436,7 @@ export const evLandings: Record<string, EvLanding> = {
       { label: 'EV Station 240 kW', to: '/ev-charging/240kw' },
       { label: 'สถานีชาร์จสำหรับธุรกิจ', to: '/ev-charging/commercial' },
       { label: 'ราคา DC Charger', to: '/ev-charging/cost' },
+      { label: 'บทความความต่าง AC/DC', to: '/knowledge/articles/ac-vs-dc-charger-thurakit-2569' },
     ],
   },
 
@@ -894,6 +901,31 @@ for (const place of places) {
 }
 
 thailandRelatedFromPlaces()
+
+const chiangMai = evLandings['chiang-mai']
+if (chiangMai) {
+  chiangMai.heroTitle = 'ติดตั้ง EV Charger โรงแรม เชียงใหม่'
+  chiangMai.heroDescription =
+    'รับติดตั้ง EV Charger โรงแรม เชียงใหม่ ทั้งจุด AC สำหรับแขกค้างคืนและ DC Fast สำหรับ walk-in'
+  chiangMai.seoTitle = 'ติดตั้ง EV Charger โรงแรม เชียงใหม่ | สถานีชาร์จรถไฟฟ้า'
+  chiangMai.seoDescription =
+    'ติดตั้ง EV Charger โรงแรม เชียงใหม่ รับทำสถานีชาร์จ EV สำหรับที่พัก ร้านอาหาร และรถเช่า โดย CX ENERTECH'
+  chiangMai.sections = [
+    {
+      heading: 'โรงแรมเชียงใหม่ควรแยก AC กับ DC',
+      paragraphs: [
+        'แขกค้างคืนจอดนาน ใช้ AC ที่ชั้นจอดห้องพัก รถเช่าและ walk-in ใช้ DC Fast คนละโมเดลคิดเงินและคนละโหลดไฟฟ้า',
+      ],
+      bullets: chiangMai.sections[0]?.bullets,
+    },
+    ...chiangMai.sections.slice(1),
+  ]
+  chiangMai.related = [
+    { label: 'บทความโรงแรม / ร้านอาหาร', to: '/knowledge/articles/tidtang-ev-charger-rongraem-2569' },
+    { label: 'EV สำหรับธุรกิจ', to: '/ev-charging/commercial' },
+    ...chiangMai.related,
+  ]
+}
 
 function thailandRelatedFromPlaces() {
   const hub = evLandings.thailand

@@ -40,9 +40,9 @@ function categoryLink(value: string) {
 const { t, locale } = useLocale()
 
 usePageSeo({
-  title: 'บทความโซล่าเซลล์และ EV Station',
+  title: 'บทความโซล่าเซลล์และ EV Station | คู่มือปี 2569',
   description:
-    'บทความความรู้ติดตั้งโซล่าเซลล์ EV Station จุดคืนทุน PPA และ DC Fast Charger โดย CX ENERTECH',
+    'บทความโซล่าเซลล์คืนทุนกี่ปี ขั้นตอนขออนุญาตโรงงาน รับทำสถานีชาร์จ EV และความต่าง AC DC Charger โดย CX ENERTECH',
   path: '/knowledge/articles',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
@@ -55,8 +55,8 @@ usePageSeo({
 <template>
   <div>
     <PageHero
-      title="บทความโซล่าเซลล์และ EV Station"
-      description="วิธีเลือกขนาดระบบ จุดคืนทุน PPA และสถานีชาร์จรถไฟฟ้า จากทีมติดตั้งจริง"
+      title="บทความโซล่าเซลล์และ EV Station ปี 2569"
+      description="โซล่าเซลล์คืนทุนกี่ปี ขออนุญาตโรงงาน รับทำสถานีชาร์จ EV และเปรียบเทียบ AC/DC จากทีมติดตั้งจริง"
       :crumbs="[
         { label: t('common.home'), to: '/' },
         { label: t('nav.knowledge'), to: '/knowledge' },
@@ -68,8 +68,8 @@ usePageSeo({
       <div class="container">
         <div class="content-block">
           <p>
-            บทความของ CX ENERTECH อธิบายวิธีเลือกขนาดระบบ จุดคืนทุน PPA และ EV Station
-            อ่านคู่กับความรู้ Solar/EV และกรณีศึกษาจากหน้างาน
+            บทความปี 2569 ครอบคลุมโซล่าเซลล์คืนทุนกี่ปี ขั้นตอนขออนุญาตโรงงาน รับทำสถานีชาร์จ EV
+            และความต่าง AC DC Charger อ่านคู่กับความรู้ Solar/EV แล้วส่งต่อไปขอใบเสนอราคาหรือดูแพ็กเกจ
           </p>
         </div>
         <div v-if="showFilters" class="filters">

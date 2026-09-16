@@ -19,6 +19,11 @@
           <h2>เอกสารบริษัท</h2>
           <ul>
             <li><NuxtLink to="/about/download">Company Profile / ดาวน์โหลดโปรไฟล์</NuxtLink></li>
+            <li>
+              <NuxtLink to="/knowledge/downloads/factory-solar-guide">
+                คู่มือคำนวณขนาดไฟโซล่าเซลล์สำหรับโรงงาน
+              </NuxtLink>
+            </li>
           </ul>
           <h2>หน้าสรุปที่ใช้ประกอบการลงทุน</h2>
           <ul>

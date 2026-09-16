@@ -52,7 +52,10 @@
           <ul>
             <li><NuxtLink to="/ev-charging/station">รับติดตั้ง EV Station</NuxtLink></li>
             <li><NuxtLink to="/ev-charging/station/epc">Turnkey EPC</NuxtLink></li>
-            <li><NuxtLink to="/ev-charging/commercial">สถานีชาร์จสำหรับธุรกิจ</NuxtLink></li>
+            <li><NuxtLink to="/ev-charging/commercial">สถานีชาร์จสำหรับธุรกิจ / รับเหมาทำสถานีชาร์จ EV</NuxtLink></li>
+            <li><NuxtLink to="/ev-charging/thailand/chiang-mai">ติดตั้ง EV Charger โรงแรม เชียงใหม่</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/articles/tidtang-ev-charger-rongraem-2569">บทความโรงแรม-ร้านอาหาร</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/articles/ac-vs-dc-charger-thurakit-2569">AC vs DC Fast Charger</NuxtLink></li>
             <li><NuxtLink to="/ev-charging/thailand">ติดตั้งทั่วประเทศ</NuxtLink></li>
             <li><NuxtLink to="/knowledge/faq">FAQ</NuxtLink></li>
             <li><NuxtLink to="/knowledge/articles?category=ev">บทความ EV Station</NuxtLink></li>

@@ -68,6 +68,13 @@ export const solarLandings: Record<string, SolarLanding> = {
         ],
       },
       {
+        heading: 'ระบบ Solar Cell On-grid vs Off-grid ต่างกันอย่างไร',
+        paragraphs: [
+          'On-grid เชื่อมการไฟฟ้า ต้นทุนต่ำและจุดคืนทุนสั้นที่สุด เหมาะบ้านและโรงงานที่มีกริด Hybrid มีแบตสำรองเมื่อไฟไม่เสถียร Off-grid ใช้เมื่อไม่มีไฟจากการไฟฟ้า ไม่ใช่สูตรลดบิลบ้านทั่วไป',
+          'ถ้าเป้าหมายคือติดโซล่าเซลล์คุ้มไหมและคืนทุนเร็ว เริ่มที่ On-grid แล้วค่อยคุย hybrid เมื่อต้องการสำรองไฟ',
+        ],
+      },
+      {
         heading: 'ขั้นตอนรับเหมาติดตั้งโซล่าเซลล์',
         paragraphs: ['งานรับเหมาติดตั้งโซล่าเซลล์ของ CX ENERTECH เดินเป็นขั้น ไม่ทิ้งลูกค้าไว้กับผู้รับเหมาย่อยหลายราย'],
         bullets: [
@@ -108,6 +115,7 @@ export const solarLandings: Record<string, SolarLanding> = {
       { label: 'โซล่าเซลล์คุ้มไหม / จุดคืนทุน', to: '/solar/payback' },
       { label: 'PPA ไม่ต้องลงทุนเอง', to: '/solar/ppa' },
       { label: 'สินเชื่อ / ผ่อนโซล่าเซลล์', to: '/solar/finance' },
+      { label: 'โซล่าเซลล์ชลบุรี / ระยอง / นิคม', to: '/solar/rooftop/industrial-estate' },
     ],
     ctaTitle: 'ต้องการช่างติดตั้งโซล่าเซลล์ประเมินหลังคา?',
     ctaDescription: 'ส่งรายละเอียดมิเตอร์และรูปหลังคา มาเพื่อรับใบเสนอราคาติดตั้งโซล่าเซลล์',
@@ -115,12 +123,12 @@ export const solarLandings: Record<string, SolarLanding> = {
 
   factory: {
     path: '/solar/rooftop/factory',
-    heroTitle: 'ติดตั้งโซล่าเซลล์โรงงาน — Solar Rooftop อุตสาหกรรม',
+    heroTitle: 'รับติดตั้งโซล่าเซลล์โรงงาน — Solar Rooftop อุตสาหกรรม',
     heroDescription:
-      'บริษัทติดตั้งโซล่าเซลล์โรงงาน ระบบ 3 เฟส ลดค่าไฟโรงงานด้วย EPC solar rooftop หรือ PPA',
-    seoTitle: 'ติดตั้งโซล่าเซลล์โรงงาน | Solar Rooftop EPC',
+      'รับติดตั้งโซล่าเซลล์โรงงาน ระบบ 3 เฟส ลดค่าไฟโรงงานด้วย EPC solar rooftop หรือ PPA รวมยื่น MEA/PEA',
+    seoTitle: 'รับติดตั้งโซล่าเซลล์โรงงาน | Solar Rooftop EPC',
     seoDescription:
-      'รับติดตั้งโซล่าเซลล์โรงงาน ระบบ rooftop EPC ลดค่าไฟโรงงาน ดูขนาด 100 kW 200 kW 500 kW ถึง 1 MW และขอใบเสนอราคา',
+      'รับติดตั้งโซล่าเซลล์โรงงาน ระบบ rooftop EPC ลดค่าไฟโรงงาน ดูขนาด 100 kW–1 MW ขั้นตอนขออนุญาต MEA/PEA และขอใบเสนอราคา',
     crumbs: [home, solar, rooftop, { name: 'โซล่าเซลล์โรงงาน', path: '/solar/rooftop/factory' }],
     intro: [
       'โรงงานที่ค่าไฟสูงช่วงกลางวันเหมาะกับ solar rooftop โรงงานโดยตรง แผงบนหลังคาคลังหรือโรงผลิตช่วยลดดีมานด์จากกริด โดยไม่ต้องหยุดไลน์ผลิตถ้าวางแผนติดตั้งถูกวิธี',
@@ -204,6 +212,11 @@ export const solarLandings: Record<string, SolarLanding> = {
       { label: 'PPA solar โรงงาน', to: '/solar/ppa' },
       { label: 'BESS โรงงาน', to: '/solar/bess' },
       { label: 'ลดค่าไฟ / จุดคืนทุน', to: '/solar/payback' },
+      { label: 'โซล่าเซลล์ชลบุรี', to: '/solar/rooftop/chonburi' },
+      { label: 'โซล่าเซลล์ระยอง', to: '/solar/rooftop/rayong' },
+      { label: 'โซล่าเซลล์นิคมอุตสาหกรรม', to: '/solar/rooftop/industrial-estate' },
+      { label: 'คู่มือขออนุญาต MEA/PEA', to: '/knowledge/articles/kho-anuyat-tid-solar-rongngan-mea-pea' },
+      { label: 'คู่มือคำนวณขนาดไฟโรงงาน', to: '/knowledge/downloads/factory-solar-guide' },
     ],
     ctaTitle: 'ประเมินหลังคาโรงงานและบิลค่าไฟ',
     ctaDescription: 'ส่งบิลไฟฟ้า 12 เดือนและผังหลังคา เพื่อออกแบบระบบลดค่าไฟโรงงาน',
@@ -211,11 +224,11 @@ export const solarLandings: Record<string, SolarLanding> = {
 
   residential: {
     path: '/solar/rooftop/residential',
-    heroTitle: 'ติดตั้งโซล่าเซลล์บ้าน — Solar Rooftop ที่อยู่อาศัย',
-    heroDescription: 'รับติดตั้งโซล่าเซลล์บ้าน ดูราคา 5 kW 10 kW 15 kW และแพ็กเกจพร้อมติดตั้ง',
-    seoTitle: 'ติดตั้งโซล่าเซลล์บ้าน | ราคา Solar Rooftop ที่อยู่อาศัย',
+    heroTitle: 'ติดโซล่าเซลล์บ้าน ราคาเท่าไหร่ — Solar Rooftop ที่อยู่อาศัย',
+    heroDescription: 'รับติดตั้งโซล่าเซลล์บ้าน ดูราคา 5 kW 10 kW 15 kW จุดคืนทุน และแพ็กเกจพร้อมติดตั้ง',
+    seoTitle: 'ติดโซล่าเซลล์บ้าน ราคาเท่าไหร่ | Solar Rooftop',
     seoDescription:
-      'ติดโซล่าเซลล์บ้านกับ CX ENERTECH ดูโซล่าเซลล์บ้านราคา แพ็กเกจ 5 10 15 kW ลดค่าไฟ และขอใบเสนอราคาติดตั้ง',
+      'ติดโซล่าเซลล์บ้านราคาเท่าไหร่ ดูแพ็กเกจ 5 10 15 kW จุดคืนทุนปี 2569 และขอใบเสนอราคาติดตั้งจาก CX ENERTECH',
     crumbs: [home, solar, rooftop, { name: 'โซล่าเซลล์บ้าน', path: '/solar/rooftop/residential' }],
     intro: [
       'ติดตั้งโซล่าเซลล์บ้านช่วยลดค่าไฟช่วงกลางวัน โดยเฉพาะบ้านที่ใช้แอร์ เครื่องทำน้ำอุ่น และชาร์จรถไฟฟ้าตอนมีแดด ระบบ solar rooftop บ้านที่นิยมคือ 5 kW 10 kW และ 15 kW',
@@ -284,6 +297,7 @@ export const solarLandings: Record<string, SolarLanding> = {
       { label: 'แพ็กเกจราคา', to: '/solar/rooftop/packages' },
       { label: 'โซล่าเซลล์ hybrid', to: '/solar/hybrid' },
       { label: 'ติดโซล่าเซลล์คุ้มไหม', to: '/solar/payback' },
+      { label: 'โซล่าเซลล์คืนทุนกี่ปี ปี 2569', to: '/knowledge/articles/solar-khuen-thun-kee-pee-2569' },
     ],
   },
 
@@ -402,9 +416,9 @@ export const solarLandings: Record<string, SolarLanding> = {
     path: '/solar/payback',
     heroTitle: 'ติดโซล่าเซลล์คุ้มไหม — จุดคืนทุนและ ROI',
     heroDescription: 'คำนวณโซล่าเซลล์เบื้องต้นจากราคาแพ็กเกจและการประหยัดต่อเดือน ดู solar ROI ก่อนตัดสินใจ',
-    seoTitle: 'ติดโซล่าเซลล์คุ้มไหม | จุดคืนทุน Solar ROI',
+    seoTitle: 'โซล่าเซลล์คืนทุนกี่ปี | ติดโซล่าเซลล์คุ้มไหม ปี 2569',
     seoDescription:
-      'ติดโซล่าเซลล์คุ้มไหม คืนทุนกี่ปี คำนวณโซล่าเซลล์และ solar ROI จากแพ็กเกจ CX ENERTECH รวมลดค่าไฟบ้าน โรงงาน และบริษัท',
+      'โซล่าเซลล์คืนทุนกี่ปี ติดโซล่าเซลล์คุ้มไหม ปี 2569 คำนวณจากค่าไฟบ้านและโรงงาน พร้อมตารางอ้างอิงแพ็กเกจ CX ENERTECH',
     crumbs: [home, solar, { name: 'จุดคืนทุนโซล่าเซลล์', path: '/solar/payback' }],
     intro: [
       'คำถามที่ลูกค้าใกล้ตัดสินใจถามบ่อยคือ ติดโซล่าเซลล์คุ้มไหม และโซล่าเซลล์คืนทุนกี่ปี คำตอบขึ้นกับค่าไฟต่อหน่วย ปริมาณใช้ไฟกลางวัน และราคาติดตั้ง',
@@ -441,6 +455,7 @@ export const solarLandings: Record<string, SolarLanding> = {
       { label: 'PPA ไม่ต้องลงทุน', to: '/solar/ppa' },
       { label: 'ลดค่าไฟโรงงาน', to: '/solar/rooftop/factory' },
       { label: 'ขอใบเสนอราคา', to: '/solar/quotation' },
+      { label: 'บทความคืนทุน ปี 2569', to: '/knowledge/articles/solar-khuen-thun-kee-pee-2569' },
     ],
     ctaSecondaryLabel: 'สินเชื่อ / ผ่อน',
     ctaSecondaryTo: '/solar/finance',
@@ -861,6 +876,113 @@ solarLandings['factory-500'] = factoryKw('500 kW', '/solar/factory/500kw', 500, 
 solarLandings['factory-1mw'] = factoryKw('1 MW', '/solar/factory/1mw', undefined, [
   'โซล่าเซลล์โรงงาน 1 MW เป็นงาน Utility / โรงงานขนาดใหญ่ อาจใช้หลายอาคารหรือผสม ground mount ไม่มีแพ็กเกจสำเร็จรูปบนเว็บ ต้องออกแบบเฉพาะไซต์',
 ])
+
+function areaSolar(
+  path: string,
+  heroTitle: string,
+  seoTitle: string,
+  seoDescription: string,
+  crumb: string,
+  intro: string[],
+  sections: SolarLandingSection[],
+): SolarLanding {
+  return {
+    path,
+    heroTitle,
+    heroDescription: seoDescription,
+    seoTitle,
+    seoDescription,
+    crumbs: [home, solar, rooftop, { name: crumb, path }],
+    intro,
+    sections,
+    faqs: [
+      {
+        q: `${crumb}ติดโซล่าเซลล์โรงงานได้ไหม?`,
+        a: 'ได้หากกรรมสิทธิ์หลังคาชัดและโครงสร้างรับน้ำหนัก ทีมสำรวจบิล หม้อแปลง และกติกานิคมหรืออาคารก่อนล็อกขนาดระบบ',
+      },
+      {
+        q: 'ขอใบเสนอราคาต้องเตรียมอะไร?',
+        a: 'บิลไฟฟ้า 6–12 เดือน ผังหลังคา และที่ตั้งไซต์ ใช้หน้าขอใบเสนอราคาโซล่าเซลล์หรือให้ทีมเข้าสำรวจ',
+      },
+    ],
+    related: [
+      { label: 'รับติดตั้งโซล่าเซลล์โรงงาน', to: '/solar/rooftop/factory' },
+      { label: 'Solar EPC', to: '/solar/epc' },
+      { label: 'จุดคืนทุน', to: '/solar/payback' },
+      { label: 'ขั้นตอนขออนุญาต MEA/PEA', to: '/knowledge/articles/kho-anuyat-tid-solar-rongngan-mea-pea' },
+      { label: 'ขอใบเสนอราคา', to: '/solar/quotation' },
+    ],
+    ctaTitle: `ประเมินไซต์${crumb}`,
+    ctaDescription: 'ส่งบิลค่าไฟและผังหลังคา เพื่อออกแบบระบบและยื่นการไฟฟ้าตามพื้นที่',
+    ctaPrimaryTo: '/contact/quotation?type=solar',
+    ctaSecondaryTo: '/solar/rooftop/factory',
+    ctaSecondaryLabel: 'งานโรงงานทั้งหมด',
+  }
+}
+
+solarLandings.chonburi = areaSolar(
+  '/solar/rooftop/chonburi',
+  'รับติดตั้งโซล่าเซลล์ ชลบุรี — โรงงานและนิคม EEC',
+  'รับติดตั้งโซล่าเซลล์ ชลบุรี | โรงงานและนิคมอุตสาหกรรม',
+  'รับติดตั้งโซล่าเซลล์ ชลบุรี สำหรับโรงงาน คลังสินค้า และนิคมใน EEC สำรวจหลังคา ยื่น PEA และขอใบเสนอราคา',
+  'โซล่าเซลล์ชลบุรี',
+  [
+    'ชลบุรีอยู่ในระเบียงเศรษฐกิจตะวันออก มีโรงงาน คลัง และโหลดกลางวันที่เหมาะกับ solar rooftop CX ENERTECH รับติดตั้งโซล่าเซลล์ชลบุรีแบบ EPC ไม่ขายแผงแล้วทิ้งงานหน้างาน',
+    'งานในนิคมต้องเผื่อกติกาหลังคา ช่วงขนของ และจุดเชื่อมไฟฟ้าของนิคม คู่กับการยื่น PEA',
+  ],
+  [
+    {
+      heading: 'โรงงานชลบุรีควรเริ่มจากบิลและหลังคา',
+      paragraphs: [
+        'ขนาดระบบมาจากบิล 12 เดือน พื้นที่หลังคาที่ไม่มีเงา และความจุหม้อแปลง ไม่ดัน 100 kW หรือ 1 MW จากคำค้นอย่างเดียว',
+      ],
+      bullets: ['บิลค่าไฟและค่าดีมานด์', 'ผังหลังคาเมทัลชีท', 'จุดต่อ MDB และช่วงที่ไลน์ผลิตยอมให้เชื่อมระบบ'],
+    },
+  ],
+)
+
+solarLandings.rayong = areaSolar(
+  '/solar/rooftop/rayong',
+  'รับติดตั้งโซล่าเซลล์ ระยอง — โรงงานและโลจิสติกส์',
+  'รับติดตั้งโซล่าเซลล์ ระยอง | โรงงานนิคมอุตสาหกรรม',
+  'รับติดตั้งโซล่าเซลล์ ระยอง สำหรับโรงงานและคลังในนิคม สำรวจโครงสร้าง ยื่นการไฟฟ้า และออกแบบลดค่าไฟกลางวัน',
+  'โซล่าเซลล์ระยอง',
+  [
+    'ระยองมีนิคมและเส้นทางขนส่ง โรงงานที่ใช้ไฟกลางวันหนาแน่นเหมาะกับ rooftop EPC CX ENERTECH รับติดตั้งโซล่าเซลล์ระยองตั้งแต่สำรวจแปหลังคาถึงขนานไฟ',
+  ],
+  [
+    {
+      heading: 'โหลดโรงงานระยองกับช่วงติดตั้ง',
+      paragraphs: [
+        'ไลน์ผลิตต่อเนื่องต้องวางแผนโซนงานและช่วงเชื่อมไฟฟ้า ไม่ปิดทั้งโรงโดยไม่จำเป็น เอกสารยื่นการไฟฟ้าจัดคู่กับแบบโครงสร้าง',
+      ],
+    },
+  ],
+)
+
+solarLandings['industrial-estate'] = areaSolar(
+  '/solar/rooftop/industrial-estate',
+  'โซล่าเซลล์นิคมอุตสาหกรรม — Rooftop โรงงานในนิคม',
+  'โซล่าเซลล์นิคมอุตสาหกรรม | ติดตั้ง Solar Rooftop ในนิคม',
+  'โซล่าเซลล์นิคมอุตสาหกรรม รับติดตั้ง rooftop โรงงานในนิคม สำรวจกติกานิคม โครงสร้างหลังคา ยื่น PEA/MEA และขอใบเสนอราคา',
+  'โซล่าเซลล์นิคมอุตสาหกรรม',
+  [
+    'โรงงานในนิคมอุตสาหกรรมติดโซล่าเซลล์ได้เมื่อกรรมสิทธิ์หลังคาชัดและผ่านกติกานิคม งานไม่ใช่แค่ปูแผง แต่รวมโครงสร้าง ตู้ไฟ และการยื่นการไฟฟ้าตามพื้นที่',
+    'CX ENERTECH รับติดตั้งโซล่าเซลล์โรงงานในนิคมแบบ EPC และคุย PPA ได้ถ้ายังไม่ล็อก CAPEX',
+  ],
+  [
+    {
+      heading: 'กติกานิคมที่ต้องเช็คก่อนออกแบบ',
+      paragraphs: ['แต่ละนิคมกำหนดแนวติดตั้ง สีแผง ช่วงขนของ และจุดเชื่อมไฟฟ้าไม่เหมือนกัน'],
+      bullets: [
+        'หนังสือยินยอมเจ้าของอาคารหรือนิติบุคคลนิคม',
+        'น้ำหนักแผงบนแปเมทัลชีท',
+        'หม้อแปลงและความจุช่วงพีค',
+        'แผนเชื่อมระบบโดยไม่ตัดไลน์ผลิตทั้งโรง',
+      ],
+    },
+  ],
+)
 
 export function getSolarLanding(id: string) {
   const landing = solarLandings[id]

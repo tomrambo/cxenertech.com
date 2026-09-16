@@ -21,6 +21,7 @@
             <li><NuxtLink to="/solar/rooftop">รับติดตั้งโซล่าเซลล์ / Solar Rooftop</NuxtLink></li>
             <li><NuxtLink to="/solar/rooftop/residential">โซล่าเซลล์บ้าน</NuxtLink> — ขนาด <NuxtLink to="/solar/5kw">5 kW</NuxtLink>, <NuxtLink to="/solar/10kw">10 kW</NuxtLink>, <NuxtLink to="/solar/15kw">15 kW</NuxtLink></li>
             <li><NuxtLink to="/solar/rooftop/factory">โซล่าเซลล์โรงงาน</NuxtLink> — <NuxtLink to="/solar/factory/100kw">100 kW</NuxtLink>, <NuxtLink to="/solar/factory/200kw">200 kW</NuxtLink>, <NuxtLink to="/solar/factory/500kw">500 kW</NuxtLink>, <NuxtLink to="/solar/factory/1mw">1 MW</NuxtLink></li>
+            <li><NuxtLink to="/solar/rooftop/chonburi">รับติดตั้งโซล่าเซลล์ ชลบุรี</NuxtLink> · <NuxtLink to="/solar/rooftop/rayong">ระยอง</NuxtLink> · <NuxtLink to="/solar/rooftop/industrial-estate">นิคมอุตสาหกรรม</NuxtLink></li>
             <li><NuxtLink to="/solar/rooftop/warehouse">โซล่าเซลล์คลังสินค้า</NuxtLink></li>
             <li><NuxtLink to="/solar/rooftop/packages">แพ็กเกจและราคาติดตั้ง</NuxtLink></li>
           </ul>
@@ -39,6 +40,9 @@
           </ul>
           <h2>อ่านต่อในศูนย์ความรู้</h2>
           <ul>
+            <li><NuxtLink to="/knowledge/articles/solar-khuen-thun-kee-pee-2569">โซล่าเซลล์คืนทุนกี่ปี ปี 2569</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/articles/kho-anuyat-tid-solar-rongngan-mea-pea">ขั้นตอนขออนุญาตติดโซล่าเซลล์โรงงาน</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/downloads/factory-solar-guide">คู่มือคำนวณขนาดไฟโรงงาน</NuxtLink></li>
             <li><NuxtLink to="/knowledge/articles?category=solar">บทความโซล่าเซลล์</NuxtLink></li>
             <li><NuxtLink to="/knowledge/news">ข่าวสาร</NuxtLink></li>
             <li><NuxtLink to="/knowledge/case-studies">กรณีศึกษา</NuxtLink></li>

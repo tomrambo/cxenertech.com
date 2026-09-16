@@ -33,6 +33,7 @@
             <li><NuxtLink to="/solar/finance">สินเชื่อโซล่าเซลล์</NuxtLink></li>
             <li><NuxtLink to="/ev-charging/investment">ลงทุน EV Station</NuxtLink></li>
             <li><NuxtLink to="/ev-charging/finance">สินเชื่อ EV Station</NuxtLink></li>
+            <li><NuxtLink to="/knowledge/articles/solar-khuen-thun-kee-pee-2569">โซล่าเซลล์คืนทุนกี่ปี</NuxtLink></li>
             <li><NuxtLink to="/knowledge/articles">บทความทั้งหมด</NuxtLink></li>
           </ul>
         </div>
