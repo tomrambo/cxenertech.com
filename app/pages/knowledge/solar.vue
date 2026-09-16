@@ -20,6 +20,7 @@
           <ul>
             <li><NuxtLink to="/solar/rooftop">รับติดตั้งโซล่าเซลล์ / Solar Rooftop</NuxtLink></li>
             <li><NuxtLink to="/solar/rooftop/residential">โซล่าเซลล์บ้าน</NuxtLink> — ขนาด <NuxtLink to="/solar/5kw">5 kW</NuxtLink>, <NuxtLink to="/solar/10kw">10 kW</NuxtLink>, <NuxtLink to="/solar/15kw">15 kW</NuxtLink></li>
+            <li><NuxtLink to="/solar/rooftop/commercial">โซล่าเซลล์อาคารพาณิชย์</NuxtLink> — ลดค่าไฟบริษัท สำนักงาน ร้านค้า</li>
             <li><NuxtLink to="/solar/rooftop/factory">โซล่าเซลล์โรงงาน</NuxtLink> — <NuxtLink to="/solar/factory/100kw">100 kW</NuxtLink>, <NuxtLink to="/solar/factory/200kw">200 kW</NuxtLink>, <NuxtLink to="/solar/factory/500kw">500 kW</NuxtLink>, <NuxtLink to="/solar/factory/1mw">1 MW</NuxtLink></li>
             <li><NuxtLink to="/solar/rooftop/chonburi">รับติดตั้งโซล่าเซลล์ ชลบุรี</NuxtLink> · <NuxtLink to="/solar/rooftop/rayong">ระยอง</NuxtLink> · <NuxtLink to="/solar/rooftop/industrial-estate">นิคมอุตสาหกรรม</NuxtLink></li>
             <li><NuxtLink to="/solar/rooftop/warehouse">โซล่าเซลล์คลังสินค้า</NuxtLink></li>
@@ -66,7 +67,7 @@
 usePageSeo({
   title: 'ความรู้โซล่าเซลล์ | เลือกขนาด ราคา จุดคืนทุน',
   description:
-    'ความรู้ติดตั้งโซล่าเซลล์บ้านและโรงงาน แพ็กเกจราคา Hybrid BESS PPA และจุดคืนทุน โดย CX ENERTECH',
+    'ความรู้ติดตั้งโซล่าเซลล์บ้าน อาคารพาณิชย์ โรงงาน แพ็กเกจราคา Hybrid BESS PPA และจุดคืนทุน โดย CX ENERTECH',
   path: '/knowledge/solar',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },

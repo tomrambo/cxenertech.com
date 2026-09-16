@@ -348,6 +348,7 @@ const searchIntents = [
   { label: 'รับติดตั้งโซล่าเซลล์', hint: 'บ้าน อาคาร โรงงาน', to: '/solar/rooftop' },
   { label: 'ติดโซล่าเซลล์บ้าน ราคา', hint: '5 / 10 / 15 kW', to: '/solar/rooftop/residential' },
   { label: 'รับติดตั้งโซล่าเซลล์โรงงาน', hint: 'EPC นิคม ยื่น PEA/MEA', to: '/solar/rooftop/factory' },
+  { label: 'โซล่าเซลล์อาคารพาณิชย์', hint: 'สำนักงาน ร้านค้า ลดค่าไฟบริษัท', to: '/solar/rooftop/commercial' },
   { label: 'โซล่าเซลล์ คืนทุนกี่ปี', hint: 'บ้านและโรงงาน ปี 2569', to: '/solar/payback' },
   { label: 'รับเหมาทำสถานีชาร์จ EV', hint: 'โรงแรม ร้านอาหาร คอนโด', to: '/ev-charging/commercial' },
   { label: 'ติดตั้ง EV Charger คอนโด', hint: 'นิติบุคคลและระบบไฟฟ้าอาคาร', to: '/ev-charging/commercial' },
