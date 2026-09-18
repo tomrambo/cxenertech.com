@@ -12,7 +12,7 @@ const props = withDefaults(
 
 const asset = computed(() => {
   if (props.variant === 'light') {
-    return { src: '/logo-on-dark.webp', width: 360, height: 206 }
+    return { src: '/logo-on-dark.png', width: 360, height: 206 }
   }
   if (props.variant === 'mark') {
     return { src: '/logo-mark.webp', width: 128, height: 128 }
