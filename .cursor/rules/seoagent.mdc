@@ -1,0 +1,15 @@
+---
+description: Load SEOAgent before any SEO, sitemap, schema, or content work on cxenertech.com
+alwaysApply: true
+---
+
+# SEOAgent
+
+Before any SEO, search-ranking, sitemap, schema/JSON-LD, meta, or marketing-content work, read `.claude/skills/seoagent/SKILL.md` — that file is the working contract.
+
+Each session:
+
+1. Run `seoagent sync`
+2. Triage `.seoagent/inbox/`
+3. Do the work in this repo
+4. Run `seoagent ack <id>` for each completed action
