@@ -105,7 +105,7 @@
     </section>
 
     <CtaBand
-      title="เลือกจ่ายก้อน หรือผ่อนแพ็กเกจนี้"
+      title="เลือกจ่ายก่อน หรือผ่อนแพ็กเกจนี้"
       description="CX ENERTECH ทำใบเสนอราคาตามหลังคาจริง — หากผ่อนเป็นเจ้าของระบบ ทีมจัดชุดเอกสารผู้ขายให้ธนาคารพิจารณา"
       primary-label="ขอใบเสนอราคา"
       :primary-to="`/contact/quotation?type=solar&package=${pkg.code}`"
