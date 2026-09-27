@@ -32,6 +32,14 @@ export function buildArticleJsonLd(article: Article, origin: string) {
           ...(/CX ENERTECH/i.test(article.authorName) ? { url: `${base}/about` } : {}),
         }
       : { '@type': 'Organization', name: 'CX ENERTECH', url: `${base}/about` },
-    publisher: { '@type': 'Organization', name: 'CX ENERTECH', url: base },
+    publisher: {
+      '@type': 'Organization',
+      name: 'CX ENERTECH',
+      url: base,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${base}/logo-on-dark.png`,
+      },
+    },
   }
 }

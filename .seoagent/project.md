@@ -1,6 +1,6 @@
 ---
 domain: cxenertech.com
-live_url: https://www.cxenertech.com
+live_url: "https://www.cxenertech.com"
 site_type: content
 language: th
 initialized_at: "2026-09-20T07:14:53.249Z"
@@ -11,7 +11,7 @@ public_dir: public
 cms: none
 blog_path: /knowledge/articles
 content_dir: app/utils
-skill_hash: 13ed5ace65b04bcb5b1a16fa9966698271412f2b8a4bd09ec8c59187788d6aac
+skill_hash: e5307f95168db84637b9fb67ba15182cd14adb7d7df68c0206077f708c5d4e26
 publishing:
   strategy: other
   blog_path: /knowledge/articles

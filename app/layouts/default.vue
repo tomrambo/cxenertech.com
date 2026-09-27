@@ -65,6 +65,19 @@ useHead(() => ({
         ],
       }),
     },
+    {
+      key: 'ld-website',
+      type: 'application/ld+json',
+      innerHTML: serializeJsonLd({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': `${origin}/#website`,
+        url: origin,
+        name: 'CX ENERTECH',
+        inLanguage: locale.value || 'th',
+        publisher: { '@id': `${origin}/#business` },
+      }),
+    },
   ],
 }))
 </script>

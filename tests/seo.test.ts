@@ -90,6 +90,15 @@ test('article schema identifies the visible article, author, dates and existing 
   assert.equal(schema.datePublished, '2026-09-01T02:00:00.000Z')
   assert.equal(schema.dateModified, undefined)
   assert.equal(schema.author['@type'], 'Organization')
+  assert.deepEqual(schema.publisher, {
+    '@type': 'Organization',
+    name: 'CX ENERTECH',
+    url: 'https://www.cxenertech.com',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://www.cxenertech.com/logo-on-dark.png',
+    },
+  })
   const news = buildArticleJsonLd({ ...article, category: 'news', authorName: 'ผู้เขียน', coverImage: null }, 'https://www.cxenertech.com')
   assert.equal(news['@type'], 'NewsArticle')
   assert.equal(news.author['@type'], 'Person')
