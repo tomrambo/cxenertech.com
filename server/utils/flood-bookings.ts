@@ -168,7 +168,7 @@ export function createFloodBooking(
   if (!province) throw createError({ statusCode: 400, message: 'กรุณาเลือกจังหวัด' })
 
   const asset = clean(input.asset, 20)
-  if (asset !== 'solar' && asset !== 'ev' && asset !== 'both') {
+  if (asset !== 'solar' && asset !== 'ev' && asset !== 'both' && asset !== 'other') {
     throw createError({ statusCode: 400, message: 'กรุณาเลือกประเภทอุปกรณ์' })
   }
 

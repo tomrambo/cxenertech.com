@@ -76,7 +76,7 @@ export const FLOOD_PACKAGES = [
 export type FloodPackageId = (typeof FLOOD_PACKAGES)[number]['id']
 export type FloodLocale = 'th' | 'en'
 export type FloodSlot = '09:00' | '13:00'
-export type FloodAsset = 'solar' | 'ev' | 'both'
+export type FloodAsset = 'solar' | 'ev' | 'both' | 'other'
 
 export const FLOOD_SLOTS = ['09:00', '13:00'] as const satisfies readonly FloodSlot[]
 export const FLOOD_SLOT_CAPACITY = 2
@@ -210,11 +210,14 @@ export function buildPromptPayPayload(amount: number, billRef: string, mobile = 
 export function floodPage(locale: FloodLocale) {
   if (locale === 'en') {
     return {
-      heroTitle: 'Book a post-flood electrical inspection from the Marketplace list',
+      heroTitle: 'Post-flood electrical inspection and repair',
       heroLead:
-        'Packages come from the Marketplace category for electrical checks after flooding. Pin the site on Google Maps, pick a visit date, then pay by QR or upload the transfer slip.',
+        'Leave the power off after the water drops. A CX ENERTECH technician inspects the panel on the date you book in Bangkok and nearby provinces, at the Marketplace package price.',
       bookCta: 'Book a visit date',
       detailCta: 'See what is included',
+      heroImageAlt: 'A technician inspecting a home breaker panel after floodwater has receded',
+      panelImageAlt: 'Close-up of a multimeter test on a residential breaker panel',
+      visitImageAlt: 'Technicians arriving at a townhouse for a booked electrical visit',
       proof: ['Marketplace: post-flood electrical inspection', 'Visit pin saved from Google Maps', 'Pay by QR or an uploaded slip'],
       problemTitle: 'Leave the system off until someone has checked it',
       problemBody:
@@ -227,14 +230,14 @@ export function floodPage(locale: FloodLocale) {
       ],
       howTitle: 'How booking works',
       steps: [
-        { title: 'Pick a package and a day', body: 'Tell us whether the site has solar, an EV charger, or both, and where the crew can enter.' },
+        { title: 'Pick a package and a day', body: 'Tell us whether the site has solar, an EV charger, both, or other equipment, and where the crew can enter.' },
         { title: 'Pay the package price', body: 'Scan the payment-gateway QR for the Marketplace price, or upload a transfer slip on the same screen.' },
         { title: 'The crew arrives on that date', body: 'They inspect, isolate unsafe circuits, and quote any major parts that were not on the van.' },
       ],
       area: 'Package pricing covers Bangkok, Nonthaburi, Pathum Thani, Samut Prakan, Samut Sakhon, and Nakhon Pathom. Other provinces can still book. Travel is quoted before the slot is confirmed.',
       packagesTitle: 'Packages from Marketplace',
       packagesLead: 'These are the live services in the post-flood electrical category. The QR amount is the listed package price.',
-      bookTitle: 'Book the visit, pin the address, and pay',
+      bookTitle: 'Book the visit',
       bookLead: 'Search the site on Google Maps so the crew gets the coordinates. The slot is held for 2 hours while you pay by QR or slip.',
       faqTitle: 'Before you book',
       faqs: [
@@ -251,11 +254,14 @@ export function floodPage(locale: FloodLocale) {
   }
 
   return {
-    heroTitle: 'จองแพ็กเกจตรวจและซ่อมไฟฟ้าหลังน้ำท่วม',
+    heroTitle: 'ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม',
     heroLead:
-      'แพ็กเกจมาจากหมวด Marketplace ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม ปักที่อยู่จาก Google Map เลือกวันที่ช่างเข้า แล้วชำระด้วย QR หรือแนบสลิป',
+      'น้ำลดแล้วยังไม่ควรจ่ายไฟเข้าตู้ ช่าง CX ENERTECH เข้าตรวจตามวันที่คุณจองในกรุงเทพฯ และปริมณฑล ราคาตามแพ็กเกจใน Marketplace',
     bookCta: 'จองวันที่ช่างเข้า',
     detailCta: 'ดูสิ่งที่รวมในแพ็กเกจ',
+    heroImageAlt: 'ช่างไฟฟ้าตรวจตู้เมนในบ้านหลังน้ำลด',
+    panelImageAlt: 'ช่างใช้มัลติมิเตอร์ตรวจเบรกเกอร์ในตู้ไฟบ้าน',
+    visitImageAlt: 'ทีมช่างเดินเข้าตรวจบ้านตามวันที่จอง',
     proof: ['หมวด Marketplace ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม', 'บันทึกพิกัดจาก Google Map', 'ชำระ QR หรือแนบสลิป'],
     problemTitle: 'น้ำลดแล้ว ยังไม่ควรจ่ายไฟเข้าระบบ',
     problemBody:
@@ -268,14 +274,14 @@ export function floodPage(locale: FloodLocale) {
     ],
     howTitle: 'ขั้นตอนจอง',
     steps: [
-      { title: 'เลือกแพ็กเกจและวัน', body: 'บอกว่าไซต์มีโซลาร์ เครื่องชาร์จ EV หรือทั้งคู่ และที่อยู่ที่ช่างเข้าได้' },
+      { title: 'เลือกแพ็กเกจและวัน', body: 'บอกว่าไซต์มีโซลาร์ เครื่องชาร์จ EV ทั้งคู่ หรืออุปกรณ์อื่น และที่อยู่ที่ช่างเข้าได้' },
       { title: 'ชำระตามราคาแพ็กเกจ', body: 'สแกน QR จาก payment gateway ตามราคาใน Marketplace หรือแนบสลิปในหน้าเดียวกัน' },
       { title: 'ช่างเข้าตามวันที่จอง', body: 'ตรวจ ตัดวงจรที่ไม่ปลอดภัย แล้วเสนอราคาอะไหล่ใหญ่ที่ไม่มีบนรถ' },
     ],
     area: 'ราคาแพ็กเกจรวมพื้นที่กรุงเทพฯ นนทบุรี ปทุมธานี สมุทรปราการ สมุทรสาคร และนครปฐม จังหวัดอื่นจองได้ ทีมเสนอค่าเดินทางก่อนยืนยันคิว',
     packagesTitle: 'แพ็กเกจจาก Marketplace',
     packagesLead: 'รายการนี้ดึงจากหมวดตรวจและซ่อมไฟฟ้าหลังน้ำท่วม ยอดบน QR คือราคาแพ็กเกจที่แสดงในรายการบริการ',
-    bookTitle: 'จองวันที่เข้าบริการ ปักพิกัด และชำระค่าจอง',
+    bookTitle: 'จองวันเข้าบริการ',
     bookLead: 'ค้นหาที่อยู่จาก Google Map เพื่อบันทึกพิกัดให้ช่าง หลังส่งแบบฟอร์ม ระบบกันคิวไว้ 2 ชั่วโมงระหว่างสแกน QR หรือแนบสลิป',
     faqTitle: 'ก่อนจอง',
     faqs: [
@@ -299,6 +305,7 @@ export function floodFormCopy(locale: FloodLocale) {
       solar: 'Solar',
       ev: 'EV charger',
       both: 'Solar and EV charger',
+      assetOther: 'Other',
       date: 'Visit date',
       slot: 'Arrival window',
       name: 'Contact name',
@@ -337,6 +344,9 @@ export function floodFormCopy(locale: FloodLocale) {
       retry: 'Load available dates again',
       loading: 'Loading open dates…',
       deposit: 'Booking deposit',
+      addons: 'Add-ons',
+      showAddons: 'Show add-on services',
+      hideAddons: 'Hide add-on services',
     }
   }
   return {
@@ -345,6 +355,7 @@ export function floodFormCopy(locale: FloodLocale) {
     solar: 'โซลาร์',
     ev: 'เครื่องชาร์จ EV',
     both: 'โซลาร์และเครื่องชาร์จ EV',
+    assetOther: 'อื่นๆ',
     date: 'วันที่ให้ช่างเข้า',
     slot: 'ช่วงเวลา',
     name: 'ชื่อผู้ติดต่อ',
@@ -383,5 +394,8 @@ export function floodFormCopy(locale: FloodLocale) {
     retry: 'โหลดวันที่ว่างอีกครั้ง',
     loading: 'กำลังโหลดวันที่ว่าง…',
     deposit: 'ค่าจอง',
+    addons: 'รายการเสริม',
+    showAddons: 'ดูรายการเสริม',
+    hideAddons: 'ซ่อนรายการเสริม',
   }
 }

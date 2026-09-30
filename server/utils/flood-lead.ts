@@ -26,7 +26,8 @@ type LeadBooking = Pick<
 function assetLabel(asset: LeadBooking['asset']) {
   if (asset === 'solar') return 'โซลาร์'
   if (asset === 'ev') return 'เครื่องชาร์จ EV'
-  return 'โซลาร์และเครื่องชาร์จ EV'
+  if (asset === 'both') return 'โซลาร์และเครื่องชาร์จ EV'
+  return 'อื่นๆ'
 }
 
 export function floodLeadMessage(booking: LeadBooking, extra?: string) {

@@ -42,14 +42,15 @@ const formCopy = computed(() => floodFormCopy(locale.value))
 const seoFaqs = floodPage('th').faqs
 
 usePageSeo({
-  title: 'จองตรวจและซ่อมไฟฟ้าหลังน้ำท่วม',
+  title: 'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วม',
   description:
-    'จองแพ็กเกจจากหมวด Marketplace ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม ปักที่อยู่จาก Google Map เลือกวันที่ช่างเข้า แล้วชำระด้วย QR หรือแนบสลิป',
+    'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วมในกทม.และ 5 จังหวัดปริมณฑล เลือกวันเข้าบริการ ปักพิกัดจาก Google Map ชำระด้วย QR หรือแนบสลิป ตามราคาใน Marketplace',
   path: '/flood-recovery',
+  image: '/images/flood/flood-hero.jpg',
   faq: seoFaqs,
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
-    { name: 'ตรวจและซ่อมหลังน้ำท่วม', path: '/flood-recovery' },
+    { name: 'ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม', path: '/flood-recovery' },
   ],
 })
 
@@ -97,7 +98,24 @@ const visibleDates = computed(() => {
 
 const selectedPackage = computed(() => services.value.find((item) => item.slug === packageId.value) || null)
 const bookableServices = computed(() => bookableFloodServices({ categoryName: '', categorySlug: '', services: services.value }))
+const primaryPackages = computed(() => bookableServices.value.filter((item) => item.kind === 'package'))
+const addonServices = computed(() => bookableServices.value.filter((item) => item.kind === 'addon'))
 const quoteServices = computed(() => services.value.filter((item) => !item.bookable))
+const showAddons = ref(false)
+
+function serviceName(pkg: FloodMarketplaceService) {
+  return locale.value === 'en' && pkg.nameEn ? pkg.nameEn : pkg.name
+}
+
+function dateParts(iso: string) {
+  const [year, month, day] = iso.split('-').map(Number)
+  const date = new Date(Date.UTC(year, month - 1, day))
+  const loc = locale.value === 'en' ? 'en-GB' : 'th-TH'
+  return {
+    weekday: new Intl.DateTimeFormat(loc, { weekday: 'short', timeZone: 'UTC' }).format(date),
+    day: new Intl.DateTimeFormat(loc, { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(date),
+  }
+}
 
 useHead(() => ({
   script: [
@@ -109,10 +127,15 @@ useHead(() => ({
         '@type': 'Service',
         name: 'ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม',
         serviceType: 'Post-flood electrical inspection',
+        image: 'https://www.cxenertech.com/images/flood/flood-hero.jpg',
+        url: 'https://www.cxenertech.com/flood-recovery',
         provider: {
-          '@type': 'Organization',
+          '@type': 'Electrician',
           name: 'CX ENERTECH',
           url: 'https://www.cxenertech.com',
+          image: 'https://www.cxenertech.com/logo-on-dark.png',
+          telephone: '+66996246444',
+          areaServed: FLOOD_PROVINCES.map((name) => ({ '@type': 'AdministrativeArea', name })),
         },
         areaServed: FLOOD_PROVINCES.map((name) => ({ '@type': 'AdministrativeArea', name })),
         offers: bookableServices.value.map((pkg) => ({
@@ -338,21 +361,35 @@ onMounted(() => {
 
 <template>
   <div class="flood">
-    <PageHero
-      :title="page.heroTitle"
-      :description="page.heroLead"
-      :crumbs="[
-        { label: locale === 'en' ? 'Home' : 'หน้าแรก', to: '/' },
-        { label: locale === 'en' ? 'Flood recovery' : 'ตรวจและซ่อมหลังน้ำท่วม' },
-      ]"
-    >
-      <div class="hero-actions">
-        <a href="#book" class="btn btn-primary">{{ page.bookCta }} <span aria-hidden="true">→</span></a>
-        <a href="#packages" class="btn btn-secondary">{{ page.detailCta }}</a>
+    <section class="page-hero flood-hero">
+      <div class="container flood-hero__grid">
+        <div>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <NuxtLink to="/">{{ locale === 'en' ? 'Home' : 'หน้าแรก' }}</NuxtLink>
+            <span aria-hidden="true">/</span>
+            <span>{{ locale === 'en' ? 'Flood recovery' : 'ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม' }}</span>
+          </nav>
+          <h1 class="animate-fade-up">{{ page.heroTitle }}</h1>
+          <p class="animate-fade-up animate-delay-1">{{ page.heroLead }}</p>
+          <div class="hero-actions">
+            <a href="#book" class="btn btn-primary">{{ page.bookCta }} <span aria-hidden="true">→</span></a>
+            <a href="#packages" class="btn btn-secondary">{{ page.detailCta }}</a>
+          </div>
+        </div>
+        <figure class="flood-hero__figure">
+          <img
+            src="/images/flood/flood-hero.jpg"
+            :alt="page.heroImageAlt"
+            width="1600"
+            height="900"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
       </div>
-    </PageHero>
+    </section>
 
-    <section class="proof" aria-label="Campaign facts">
+    <section class="proof" :aria-label="locale === 'en' ? 'Campaign facts' : 'จุดเด่นของบริการ'">
       <div class="container proof__row">
         <p v-for="item in page.proof" :key="item">{{ item }}</p>
       </div>
@@ -365,7 +402,17 @@ onMounted(() => {
           <h2 class="section-title">{{ page.problemTitle }}</h2>
           <p class="section-lead">{{ page.problemBody }}</p>
         </div>
-        <p class="area">{{ page.area }}</p>
+        <figure class="scene">
+          <img
+            src="/images/flood/flood-panel.jpg"
+            :alt="page.panelImageAlt"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>{{ page.area }}</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -389,7 +436,7 @@ onMounted(() => {
         <p v-if="servicesError" class="form-error">{{ servicesError }}</p>
         <div class="pkg-grid">
           <button
-            v-for="pkg in bookableServices"
+            v-for="pkg in primaryPackages"
             :key="pkg.slug"
             type="button"
             class="pkg"
@@ -397,9 +444,8 @@ onMounted(() => {
             @click="packageId = pkg.slug"
           >
             <span v-if="pkg.priceThb" class="pkg__price">{{ formatFloodBaht(pkg.priceThb) }} <small>THB</small></span>
-            <strong>{{ locale === 'en' && pkg.nameEn ? pkg.nameEn : pkg.name }}</strong>
+            <strong>{{ serviceName(pkg) }}</strong>
             <p>{{ pkg.description }}</p>
-            <p v-if="pkg.priceHint">{{ pkg.priceHint }}</p>
           </button>
         </div>
         <ul v-if="quoteServices.length" class="quote-list">
@@ -412,31 +458,39 @@ onMounted(() => {
     </section>
 
     <section class="section flood-steps">
-      <div class="container">
-        <h2 class="section-title">{{ page.howTitle }}</h2>
-        <ol class="steps">
-          <li v-for="(step, index) in page.steps" :key="step.title">
-            <span>0{{ index + 1 }}</span>
-            <div>
-              <h3>{{ step.title }}</h3>
-              <p>{{ step.body }}</p>
-            </div>
-          </li>
-        </ol>
+      <div class="container steps-layout">
+        <div>
+          <h2 class="section-title">{{ page.howTitle }}</h2>
+          <ol class="steps">
+            <li v-for="(step, index) in page.steps" :key="step.title">
+              <span>0{{ index + 1 }}</span>
+              <div>
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.body }}</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <figure class="scene scene--visit">
+          <img
+            src="/images/flood/flood-visit.jpg"
+            :alt="page.visitImageAlt"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
       </div>
     </section>
 
     <section id="book" class="section book">
-      <div class="container book__grid">
-        <div>
+      <div class="container book-wrap">
+        <header class="book-head">
           <span class="section-label">Booking</span>
           <h2 class="section-title">{{ page.bookTitle }}</h2>
           <p class="section-lead">{{ page.bookLead }}</p>
-          <p v-if="selectedPackage" class="book__selected">
-            {{ formCopy.deposit }} {{ formatFloodBaht(selectedPackage.priceThb || 0) }} THB
-            · {{ locale === 'en' && selectedPackage.nameEn ? selectedPackage.nameEn : selectedPackage.name }}
-          </p>
-        </div>
+        </header>
 
         <div v-if="done" class="panel success">
           <h3>{{ formCopy.successTitle }}</h3>
@@ -447,14 +501,20 @@ onMounted(() => {
 
         <div v-else-if="pay" class="panel pay">
           <h3>{{ formCopy.payTitle }}</h3>
-          <p class="pay__amount">{{ formatFloodBaht(pay.booking.depositThb) }} THB</p>
-          <p>{{ formCopy.payTo }}</p>
-          <p class="ref">{{ formCopy.ref }} {{ pay.booking.ref }}</p>
-          <p>{{ pay.booking.packageName }}</p>
-          <p>{{ formatFloodDate(pay.booking.date, locale) }} · {{ slotLabel(pay.booking.slot, locale) }}</p>
-          <p>{{ pay.duplicate ? formCopy.duplicate : pay.held ? formCopy.held : formCopy.requested }}</p>
-          <img v-if="pay.payment.qrImage" class="qr" :src="pay.payment.qrImage" alt="QR ชำระค่าจอง" width="280" height="280" />
-          <p v-else>{{ formCopy.qrMissing }}</p>
+          <div class="pay-layout">
+            <div>
+              <p class="pay__amount">{{ formatFloodBaht(pay.booking.depositThb) }} THB</p>
+              <p class="ref">{{ formCopy.ref }} {{ pay.booking.ref }}</p>
+              <p>{{ pay.booking.packageName }}</p>
+              <p>{{ formatFloodDate(pay.booking.date, locale) }} · {{ slotLabel(pay.booking.slot, locale) }}</p>
+              <p class="field-hint">{{ pay.duplicate ? formCopy.duplicate : pay.held ? formCopy.held : formCopy.requested }}</p>
+            </div>
+            <div class="pay-qr">
+              <p>{{ formCopy.payTo }}</p>
+              <img v-if="pay.payment.qrImage" class="qr" :src="pay.payment.qrImage" alt="QR ชำระค่าจอง" width="280" height="280" />
+              <p v-else class="field-hint">{{ formCopy.qrMissing }}</p>
+            </div>
+          </div>
           <div class="form-field">
             <label for="flood-slip">{{ formCopy.slip }} *</label>
             <input id="flood-slip" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" @change="onSlip" />
@@ -470,24 +530,56 @@ onMounted(() => {
           </button>
         </div>
 
-        <form v-else class="panel form-grid" @submit.prevent="onSubmit">
-          <fieldset>
-            <legend>{{ formCopy.package }}</legend>
+        <form v-else class="panel book-form" @submit.prevent="onSubmit">
+          <div class="book-block">
+            <p class="field-label">{{ formCopy.package }}</p>
             <p v-if="servicesError" class="form-error">{{ servicesError }}</p>
-            <label v-for="pkg in bookableServices" :key="pkg.slug" class="choice">
-              <input v-model="packageId" type="radio" name="package" :value="pkg.slug" />
-              <span>{{ locale === 'en' && pkg.nameEn ? pkg.nameEn : pkg.name }} · {{ formatFloodBaht(pkg.priceThb || 0) }}</span>
-            </label>
-          </fieldset>
+            <div class="pick-grid" role="radiogroup" :aria-label="formCopy.package">
+              <button
+                v-for="pkg in primaryPackages"
+                :key="pkg.slug"
+                type="button"
+                class="pick"
+                role="radio"
+                :aria-checked="packageId === pkg.slug"
+                :class="{ 'pick--on': packageId === pkg.slug }"
+                @click="packageId = pkg.slug"
+              >
+                <span class="pick__price">{{ formatFloodBaht(pkg.priceThb || 0) }}</span>
+                <span class="pick__name">{{ serviceName(pkg) }}</span>
+              </button>
+            </div>
+            <button v-if="addonServices.length" type="button" class="text-btn addon-toggle" @click="showAddons = !showAddons">
+              {{ showAddons ? formCopy.hideAddons : formCopy.showAddons }}
+            </button>
+            <div v-if="showAddons" class="addon-grid" role="radiogroup" :aria-label="formCopy.addons">
+              <button
+                v-for="pkg in addonServices"
+                :key="pkg.slug"
+                type="button"
+                class="pick pick--addon"
+                role="radio"
+                :aria-checked="packageId === pkg.slug"
+                :class="{ 'pick--on': packageId === pkg.slug }"
+                @click="packageId = pkg.slug"
+              >
+                <span class="pick__price">{{ formatFloodBaht(pkg.priceThb || 0) }}</span>
+                <span class="pick__name">{{ serviceName(pkg) }}</span>
+              </button>
+            </div>
+          </div>
 
-          <fieldset>
-            <legend>{{ formCopy.asset }}</legend>
-            <label class="choice"><input v-model="form.asset" type="radio" value="solar" /> {{ formCopy.solar }}</label>
-            <label class="choice"><input v-model="form.asset" type="radio" value="ev" /> {{ formCopy.ev }}</label>
-            <label class="choice"><input v-model="form.asset" type="radio" value="both" /> {{ formCopy.both }}</label>
-          </fieldset>
+          <div class="book-block">
+            <p class="field-label">{{ formCopy.asset }}</p>
+            <div class="segment">
+              <label><input v-model="form.asset" type="radio" name="flood-asset" value="solar" /> {{ formCopy.solar }}</label>
+              <label><input v-model="form.asset" type="radio" name="flood-asset" value="ev" /> {{ formCopy.ev }}</label>
+              <label><input v-model="form.asset" type="radio" name="flood-asset" value="both" /> {{ formCopy.both }}</label>
+              <label><input v-model="form.asset" type="radio" name="flood-asset" value="other" /> {{ formCopy.assetOther }}</label>
+            </div>
+          </div>
 
-          <div>
+          <div class="book-block">
             <p class="field-label">{{ formCopy.date }}</p>
             <p v-if="slotsPending">{{ formCopy.loading }}</p>
             <p v-else-if="slotsError" class="form-error">
@@ -504,26 +596,27 @@ onMounted(() => {
                 :disabled="!row.slots.some((slot) => slot.remaining > 0)"
                 @click="form.date = row.date"
               >
-                {{ formatFloodDate(row.date, locale) }}
+                <span>{{ dateParts(row.date).weekday }}</span>
+                <strong>{{ dateParts(row.date).day }}</strong>
               </button>
             </div>
             <p v-if="!slotsPending && !visibleDates.length" class="form-error">{{ formCopy.closed }}</p>
           </div>
 
-          <div v-if="form.date">
+          <div v-if="form.date" class="book-block">
             <p class="field-label">{{ formCopy.slot }}</p>
-            <div class="dates">
+            <div class="slots">
               <button
                 v-for="slot in slotChoices()"
                 :key="slot.time"
                 type="button"
-                class="date-chip"
-                :class="{ 'date-chip--on': form.slot === slot.time }"
+                class="slot"
+                :class="{ 'slot--on': form.slot === slot.time }"
                 :disabled="slot.remaining < 1"
                 @click="form.slot = slot.time"
               >
-                {{ slotLabel(slot.time, locale) }}
-                · {{ slot.remaining < 1 ? formCopy.full : `${slot.remaining} ${formCopy.remaining}` }}
+                <strong>{{ slotLabel(slot.time, locale) }}</strong>
+                <span>{{ slot.remaining < 1 ? formCopy.full : `${slot.remaining} ${formCopy.remaining}` }}</span>
               </button>
             </div>
           </div>
@@ -566,8 +659,7 @@ onMounted(() => {
               :placeholder="formCopy.addressHint"
               @input="onPlaceInput"
             />
-            <p class="field-hint">{{ formCopy.addressHint }}</p>
-            <p v-if="placePending">{{ formCopy.searching }}</p>
+            <p v-if="placePending" class="field-hint">{{ formCopy.searching }}</p>
             <ul v-if="placeHits.length" class="place-hits">
               <li v-for="hit in placeHits" :key="hit.placeId">
                 <button type="button" @click="choosePlace(hit)">{{ hit.description }}</button>
@@ -588,8 +680,15 @@ onMounted(() => {
             <label for="flood-website">Website</label>
             <input id="flood-website" v-model="form.websiteUrl" tabindex="-1" autocomplete="off" />
           </div>
+          <div v-if="selectedPackage" class="book-summary">
+            <div>
+              <strong>{{ serviceName(selectedPackage) }}</strong>
+              <span v-if="form.date && form.slot">{{ formatFloodDate(form.date, locale) }} · {{ slotLabel(form.slot, locale) }}</span>
+            </div>
+            <p>{{ formatFloodBaht(selectedPackage.priceThb || 0) }} THB</p>
+          </div>
           <p v-if="errorMsg" class="form-error">{{ errorMsg }}</p>
-          <button type="submit" class="btn btn-primary" :disabled="submitting">
+          <button type="submit" class="btn btn-primary book-submit" :disabled="submitting">
             {{ submitting ? formCopy.submitting : formCopy.submit }}
           </button>
         </form>
@@ -646,30 +745,72 @@ onMounted(() => {
   color: var(--color-lime);
 }
 
-.flood-split {
+.flood-hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(16rem, 0.8fr);
-  gap: 2rem;
-  align-items: start;
+  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+  gap: 2.25rem;
+  align-items: center;
 }
 
-.area {
+.flood-hero__figure,
+.scene {
   margin: 0;
-  padding: 1.25rem 1.3rem;
-  background: var(--color-panel);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+}
+
+.flood-hero__figure img,
+.scene img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.flood-hero__figure img {
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  outline: 1px solid rgba(212, 255, 0, 0.28);
+}
+
+.scene img {
+  aspect-ratio: 4 / 3;
+}
+
+.scene figcaption {
+  margin-top: 0.85rem;
   color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.steps-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.75fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.flood-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  gap: 2rem;
+  align-items: center;
 }
 
 .flood-benefits {
   background: #101010;
 }
 
-.benefit-grid,
-.pkg-grid {
+.benefit-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 1.5rem;
 }
@@ -770,18 +911,22 @@ onMounted(() => {
     #0b0b0b;
 }
 
-.book__grid {
-  display: grid;
-  grid-template-columns: minmax(16rem, 0.7fr) minmax(0, 1.3fr);
-  gap: 2rem;
-  align-items: start;
+.book-wrap {
+  max-width: 52rem;
 }
 
-.book__selected {
-  margin-top: 1rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--color-lime);
+.book-head .section-lead {
+  max-width: 38rem;
+}
+
+.book-form {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.book-block {
+  display: grid;
+  gap: 0.55rem;
 }
 
 .panel {
@@ -791,42 +936,192 @@ onMounted(() => {
   border-radius: 18px;
 }
 
-fieldset {
-  border: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem 0.9rem;
-}
-
-legend,
 .field-label {
-  width: 100%;
-  margin-bottom: 0.15rem;
+  margin: 0;
   font-size: 0.85rem;
   font-weight: 600;
 }
 
-.choice {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+.pick-grid,
+.addon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.pick {
+  display: grid;
+  gap: 0.15rem;
+  min-height: 4.6rem;
+  padding: 0.85rem 0.95rem;
+  text-align: left;
+  color: inherit;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.pick--on {
+  border-color: var(--color-lime);
+  background: rgba(212, 255, 0, 0.1);
+  box-shadow: inset 0 0 0 1px var(--color-lime);
+}
+
+.pick__price {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-lime);
+}
+
+.pick--on .pick__price {
+  color: var(--color-lime);
+}
+
+.pick__name {
   font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.addon-toggle {
+  justify-self: start;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.segment {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.segment label {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 2.8rem;
+  padding: 0.55rem 0.4rem;
+  text-align: center;
+  font-size: 0.92rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.segment input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segment label:has(input:checked) {
+  background: var(--color-lime);
+  color: #111;
+  border-color: var(--color-lime);
+  font-weight: 700;
 }
 
 .dates {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scroll-snap-type: x mandatory;
 }
 
 .date-chip {
-  padding: 0.55rem 0.75rem;
+  display: grid;
+  flex: 0 0 4.7rem;
+  gap: 0.1rem;
+  justify-items: center;
+  padding: 0.65rem 0.35rem;
+  scroll-snap-align: start;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: var(--radius-pill);
+  border-radius: 14px;
   color: var(--color-white);
   background: transparent;
   font: inherit;
+  font-size: 0.78rem;
+}
+
+.date-chip strong {
+  font-size: 0.95rem;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.slot {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  color: inherit;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.slot span {
+  color: var(--color-muted);
   font-size: 0.85rem;
+}
+
+.slot--on {
+  border-color: var(--color-lime);
+  background: rgba(212, 255, 0, 0.1);
+}
+
+.slot--on span {
+  color: #d7d7d7;
+}
+
+.slot:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.book-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid rgba(212, 255, 0, 0.28);
+}
+
+.book-summary strong,
+.book-summary span {
+  display: block;
+}
+
+.book-summary span {
+  margin-top: 0.15rem;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+.book-summary p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-lime);
+  white-space: nowrap;
+}
+
+.book-submit {
+  width: 100%;
+  justify-content: center;
 }
 
 .date-chip--on {
@@ -854,6 +1149,23 @@ legend,
   left: -9999px;
   height: 0;
   overflow: hidden;
+}
+
+.pay h3 {
+  margin-bottom: 0.8rem;
+}
+
+.pay-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16rem;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.pay-qr {
+  padding: 0.9rem;
+  border-radius: 14px;
+  background: #101010;
 }
 
 .pay__amount,
@@ -953,10 +1265,24 @@ legend,
 }
 
 @media (max-width: 900px) {
+  .flood-hero__grid,
   .flood-split,
-  .benefit-grid,
+  .steps-layout,
+  .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .segment {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
   .pkg-grid,
-  .book__grid {
+  .pick-grid,
+  .addon-grid,
+  .segment,
+  .pay-layout {
     grid-template-columns: 1fr;
   }
 }
