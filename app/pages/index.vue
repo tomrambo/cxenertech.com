@@ -16,6 +16,8 @@
       <div class="hero__shade" aria-hidden="true" />
 
       <div class="container-wide hero__inner">
+        <div class="hero__stack">
+          <FloodCampaignCard />
         <div class="hero__copy">
           <p class="hero__kicker animate-fade-up">{{ t('home.kicker') }}</p>
           <h1 class="hero__title animate-fade-up animate-delay-1">
@@ -45,6 +47,7 @@
             <dd>{{ s.value }}</dd>
           </div>
         </dl>
+        </div>
       </div>
     </section>
 
@@ -317,6 +320,12 @@ const stats = computed(() => [
 
 const services = computed(() => [
   {
+    to: '/flood-recovery',
+    title: t('home.floodServiceTitle'),
+    desc: t('home.floodServiceDesc'),
+    image: '/images/projects/project-residential-solar.jpg',
+  },
+  {
     to: '/solar/rooftop',
     title: 'รับติดตั้งโซล่าเซลล์',
     desc: t('home.svcSolarDesc'),
@@ -345,6 +354,7 @@ const solarSizes = computed(() => [
 ])
 
 const searchIntents = [
+  { label: 'ตรวจซ่อมหลังน้ำท่วม', hint: 'จองวันช่างเข้า และชำระค่าจอง', to: '/flood-recovery' },
   { label: 'รับติดตั้งโซล่าเซลล์', hint: 'บ้าน อาคาร โรงงาน', to: '/solar/rooftop' },
   { label: 'ติดโซล่าเซลล์บ้าน ราคา', hint: '5 / 10 / 15 kW', to: '/solar/rooftop/residential' },
   { label: 'รับติดตั้งโซล่าเซลล์โรงงาน', hint: 'EPC นิคม ยื่น PEA/MEA', to: '/solar/rooftop/factory' },
@@ -403,6 +413,10 @@ usePageSeo({
     {
       q: 'ดูราคาติดตั้งได้ที่ไหน?',
       a: 'ราคาโซล่าเซลล์อยู่ที่แพ็กเกจโซลาร์ ราคา EV Station อยู่ที่แพ็กเกจ CX Charge ตัวเลขบนเว็บเป็นราคาอ้างอิง ใบเสนอราคาจริงต้องสำรวจไซต์',
+    },
+    {
+      q: 'มีบริการตรวจและซ่อมหลังน้ำท่วมไหม?',
+      a: 'มีหมวดตรวจและซ่อมไฟฟ้าหลังน้ำท่วมจาก Marketplace เลือกแพ็กเกจ ปักที่อยู่จาก Google Map เลือกวันที่ช่างเข้า แล้วชำระด้วย QR หรือแนบสลิปที่หน้าตรวจและซ่อมหลังน้ำท่วม',
     },
     {
       q: 'ผ่อนติดตั้งโซล่าเซลล์หรือ EV Station ได้ไหม?',
@@ -482,18 +496,23 @@ usePageSeo({
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
   min-height: 100dvh;
-  padding-top: calc(var(--header-h) + 1rem);
-  padding-bottom: clamp(6.5rem, 14vh, 8.5rem);
+  padding-top: calc(var(--header-h) + 1.25rem);
+  padding-bottom: clamp(2.5rem, 6vh, 4rem);
+}
+
+.hero__stack {
+  min-width: 0;
+  max-width: min(58rem, 100%);
+  margin-left: clamp(0rem, 8vw, 6.5rem);
+  margin-top: clamp(0.5rem, 3vh, 2rem);
 }
 
 .hero__copy {
   min-width: 0;
-  max-width: min(40rem, 100%);
-  margin-left: clamp(0rem, 18vw, 14rem);
-  transform: translateY(clamp(-3.5rem, -8vh, -1.25rem));
+  max-width: 40rem;
 }
 
 .hero__kicker {
@@ -579,16 +598,13 @@ usePageSeo({
 }
 
 .hero__stats {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: clamp(1.5rem, 4.5vh, 2.75rem);
+  position: static;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem 0.5rem;
   max-width: 36rem;
-  margin-left: clamp(0rem, 9vw, 7rem);
-  padding-top: 1.5rem;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
   border-top: 1px solid rgba(212, 175, 55, 0.28);
 }
 
@@ -1184,21 +1200,22 @@ usePageSeo({
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1100px) {
   .hero__inner {
-    justify-content: space-between;
-    padding-top: calc(var(--header-h) + 1.5rem);
+    justify-content: flex-start;
+    padding-top: calc(var(--header-h) + 1.25rem);
     padding-bottom: 2rem;
   }
 
-  .hero__copy {
+  .hero__stack {
     margin-left: 0;
-    transform: none;
+    max-width: 40rem;
+  }
+
+  .hero__copy {
     max-width: 36rem;
   }
 
   .hero__stats {
-    position: static;
-    margin-left: 0;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     max-width: 36rem;
   }
 

@@ -50,6 +50,14 @@ export default defineNuxtConfig({
     cmmsApiBaseUrl:
       process.env.NUXT_CMMS_API_BASE_URL || 'https://bo-cx-cmms.conceptx.co.th',
     partnerIngestSecret: process.env.PARTNER_INGEST_SECRET || '',
+    googleMapsApiKey:
+      process.env.NUXT_GOOGLE_MAPS_API_KEY ||
+      process.env.NUXT_PUBLIC_GOOGLE_MAPS_API_KEY ||
+      process.env.GOOGLE_MAPS_API_KEY ||
+      '',
+    paymentApiBaseUrl:
+      process.env.NUXT_PAYMENT_API_BASE_URL || 'https://uapis-payment.conceptx.co.th/api',
+    paymentApiKey: process.env.NUXT_PAYMENT_API_KEY || '',
     public: {
       /** ว่าง = ใช้ /api/partners/register (Nitro / Cloudflare Worker) */
       partnerRegisterUrl: process.env.NUXT_PUBLIC_PARTNER_REGISTER_URL || '',
@@ -96,6 +104,13 @@ export default defineNuxtConfig({
         cors: true,
         headers: {
           'Access-Control-Allow-Methods': 'POST,OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      },
+      '/api/flood/**': {
+        cors: true,
+        headers: {
+          'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
         },
       },

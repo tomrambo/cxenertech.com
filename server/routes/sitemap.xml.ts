@@ -34,6 +34,7 @@ function urlEntry(path: string, lastmod = SITE_CONTENT_UPDATED) {
 export default defineEventHandler(async (event) => {
   const lastmodByPath = new Map<string, string>()
   const paths = new Set<string>(SITE_STATIC_PATHS.filter((path) => !SEO_REDIRECTS[path]))
+  lastmodByPath.set('/flood-recovery', '2026-09-30')
   try {
     const { packages } = await fetchCmmsSolarPackages(event)
     for (const pkg of packages) {

@@ -8,6 +8,7 @@ export type NavItem = {
 
 export const mainNav: NavItem[] = [
   { key: 'home', to: '/' },
+  { key: 'flood', to: '/flood-recovery' },
   { key: 'about', to: '/about' },
   { key: 'solar', to: '/solar', children: [
     { key: 'solarOverview', to: '/solar' },
@@ -84,6 +85,7 @@ export const footerNav = {
     { key: 'homeCharger', to: '/ev-charging/home-charger' },
   ],
   resources: [
+    { key: 'floodRecovery', to: '/flood-recovery' },
     { key: 'projects', to: '/projects' },
     { key: 'products', to: '/products' },
     { key: 'articles', to: '/knowledge/articles' },

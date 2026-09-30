@@ -89,7 +89,7 @@ const onGroupClick = (event: MouseEvent, key: string) => {
             v-else
             :to="item.to"
             class="nav__link"
-            :class="{ 'nav__link--active': isActive(item.to) }"
+            :class="{ 'nav__link--active': isActive(item.to), 'nav__link--campaign': item.key === 'flood' }"
           >
             {{ t(`nav.${item.key}`) }}
           </NuxtLink>
@@ -190,6 +190,10 @@ const onGroupClick = (event: MouseEvent, key: string) => {
 
 .nav__link--active {
   color: var(--color-white);
+}
+
+.nav__link--campaign {
+  color: var(--color-lime);
 }
 
 .nav__link--active::after {

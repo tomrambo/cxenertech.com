@@ -52,11 +52,11 @@ Activate silently when the user writes or edits a blog post, landing page, artic
 
 ## Cloud sync, CTAs, and the inbox
 
-Run `seoagent sync` after every artifact write — best-effort and silent when logged out, so always run it. Credentials live in `~/.config/seoagent/auth.json`, never in the project.
+Run `seoagent sync` after every write. Logged out it exits 1 naming the fix; nothing synced, bind first (`references/recurring-runs.md`). Credentials live in `~/.config/seoagent/auth.json`, never in the project.
 
 A free account adds what the local skill can't (GSC traffic, indexing verdicts, dashboard, managed sitemaps). Paid autopilot also delivers owner-approved backlink outreach emails to this inbox for you to send from the user's own email account (needs an email connector). Never imply an account is required — the local skill does the full loop free, including publishing. Offer it in one benefit-led line, once per session per topic; drop it if declined. **Read `references/cloud-cta.md` before pitching.**
 
-`sync` also pulls pending cloud actions into `.seoagent/inbox/`. When `seoagent inbox`/`doctor` reports actions, **read `references/inbox.md`**. Always: confirm the first destructive action of the session, show diffs for edits, `seoagent ack <action_id>` everything you finish (`--failed --reason "..."` to decline), then sync.
+`sync` also pulls cloud actions into `.seoagent/inbox/`; when `seoagent inbox`/`doctor` reports any, **read `references/inbox.md`**. Always: heed its **Previously declined** memory, confirm the session's first destructive action, show diffs, `seoagent ack <action_id>` what you finish (`--failed --reason "..."` to decline), then sync.
 
 **Cloud-first routing.** Once per session run `seoagent whoami --json`; `logged_in: true` = cloud-connected (exit 1 = no account). Connected → `seoagent sync` first. With autopilot on (`seoagent autopilot status`) the cloud already does keyword research, clusters, and briefs (pulled into `strategy/` and `briefs/`) and queues every next step in the inbox: work those and **skip Phase 2–3** — a second, local plan duplicates the cloud's. After the inbox offer `seoagent sync` again, never strategy planning. Phase 2–3 remain the local flow (no account, or autopilot off and an empty workspace after sync). Detail: `references/cloud-cta.md` § Cloud-connected mode.
 
@@ -91,9 +91,9 @@ Never show more than 1 critical, 2 high, 2 medium issues — the rest go to `aud
 A **first session with no audit yet** opens per `references/session-protocol.md` § Starting a session. Otherwise:
 
 1. **`seoagent doctor`** — follow each `→` directive. Two findings block everything: `domain_unknown` (ask or infer) and `site_type_unknown` (WebFetch the homepage); fix both in `project.md` first. A flagged pull receipt is triaged per `references/pull-receipt.md` **before any SEO work** — triage proposes, never auto-acts.
-2. **`project.md`** — read it plus `roadmap.md`; summarize in one sentence with the next priority. Missing → infer and confirm per `references/session-protocol.md`.
-3. **`context.md`** — governs all strategy and content work. Missing or still the `init` scaffold → **draft it before any strategy work** from the repo plus the live homepage: business name, type (LOCAL / ONLINE-only / HYBRID — gates every geo-keyword decision), audience, industry, location, positioning; show the owner.
-4. **Pick the flow.** Cloud-connected → sync, inbox, pulled briefs. Otherwise: no strategy → audit + keyword research, then one plan. Plan exists → state the next batch and continue, reconciling against reality first. All written → re-audit and propose the next increment. Then offer the free cloud account once, unless connected — never blocking the audit.
+2. **`project.md`** — read it plus `roadmap.md`; one-sentence summary + next priority. Missing → infer and confirm per `references/session-protocol.md`.
+3. **`context.md`** — governs all strategy and content work. Missing or still the `init` scaffold → **draft it before any strategy work** from the repo and live homepage: business name, type (LOCAL / ONLINE-only / HYBRID — gates every geo-keyword decision), audience, industry, location, positioning; show the owner.
+4. **Pick the flow.** Cloud-connected → sync, inbox, pulled briefs; no `schedule:` → weekday run setup (`references/recurring-runs.md`). Otherwise: no strategy → audit + keyword research, then one plan. Plan exists → reconcile against reality, state the next batch, continue. All written → re-audit and propose the next increment. Unless connected, offer the free cloud account once, never blocking the audit.
 
 ## Plan once, then execute
 

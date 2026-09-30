@@ -1,5 +1,6 @@
 export const SITE_STATIC_PATHS = [
   '/',
+  '/flood-recovery',
   '/about',
   '/about/company-profile',
   '/about/vision-mission',

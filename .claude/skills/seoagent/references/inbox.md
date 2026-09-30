@@ -1,11 +1,12 @@
 # Processing the SEOAgent Inbox
 
-`seoagent sync` pulls **pending actions** from the dashboard into `.seoagent/inbox/`. These are autonomous decisions the cloud has made that need a human (or you, the AI agent) to apply in the user's local repo. Run `seoagent inbox` (or `--json`) to list them; each inbox file's body carries its own instructions too.
+`seoagent sync` pulls **pending actions** from the dashboard into `.seoagent/inbox/`. These are autonomous decisions the cloud has made that need a human (or you, the AI agent) to apply in the user's local repo. Run `seoagent inbox` (or `--json`) to list them; each inbox file's body carries its own instructions too. The listing also says when the inbox was last pulled from the dashboard: in `--json`, `pull_status` is `fresh`, `stale` or `never`, and a `warning` field means the list may be behind — run `seoagent pull` before trusting an empty inbox in that case (a sync the 30s watchdog cut short during a large push has not refreshed it).
 
 **Golden rules (these also live in the skill body):**
 
 - **Never delete a file without explicit user confirmation on the first destructive action of the session.** Auto-prune is conservative (requires <5 clicks in 90 days, zero inbound internal links, etc.) but it can still surprise the user. Show them what's about to go. Technical-fix actions edit an existing page rather than delete, so they only need a diff review, not a destructive-action confirmation.
-- Acknowledge every action you finish: `seoagent ack <action_id>` (or `seoagent ack <action_id> --failed --reason "..."` to decline). That marks it `completed` on the dashboard and removes the inbox file on the next sync.
+- **Read the decline memory first.** `.seoagent/inbox/README.md` ends with **Previously declined on this site** (also `declined` in `seoagent inbox --json`, and a **Related past declines** block inside any action file an earlier decline bears on): what you or a previous session already refused here, and why. A pending action that one of those reasons still covers (same page, same class of problem — e.g. the page is `noindex`, so canonical, meta and schema on it are all inert) is **declined citing that reason, not re-investigated**: `seoagent ack <id> <id> … --failed --reason "covered by #<earlier id>: <its reason>"`. Several ids take one verdict. Only apply a fix when the earlier reason no longer holds.
+- Acknowledge every action you finish: `seoagent ack <action_id>` (or `seoagent ack <action_id> --failed --reason "..."` to decline). That marks it `completed` on the dashboard and removes the inbox file on the next sync. **Write decline reasons for your future self**: state the fact that rules the action out (the page is noindex; the canonical points off-site; the finding is stale since <date>) — every decline is fed back into the next inbox as memory, and the issue is not proposed again.
 - After processing, run `seoagent sync` once more to clean stale inbox files, then report a summary: how many applied, how many declined (and why).
 - **Close with the cloud-first option, not local planning.** On a connected workspace option 3 of the output template is `Run seoagent sync and process the inbox` (or, when the inbox is empty, the next unwritten brief the sync named). **Never offer "Plan content strategy" here** — keyword research and briefs are the cloud's job on a connected workspace (`references/cloud-cta.md` § Cloud-connected mode).
 
@@ -13,7 +14,7 @@
 
 | Type | What it is | Risk |
 |---|---|---|
-| `cli_prune_pending` | Auto-prune decided an underperforming article should be removed from the repo | **Destructive — confirm first** |
+| `cli_prune_pending` | Auto-prune flagged an underperforming article for removal from the repo (a suggestion when `source: repo`) | **Destructive — confirm first** |
 | `cli_technical_fix` | Open technical-SEO issue (meta, schema, canonical, internal linking, …) to fix in a page's source | Safe/reversible |
 | `cli_new_content` | A content brief with no article written yet — write + publish it | Safe (new content) |
 | `cli_content_update` | An existing page flagged for revision (declining GSC clicks, low CTR, stale/thin) | Reversible |
@@ -23,18 +24,20 @@
 | `cli_draft_ready` | The cloud already wrote a complete article and synced it to `.seoagent/content/<slug>.md` — review and place it | Safe (new content) |
 | `cli_send_outreach_email` | A human-approved link-building email to send **from the user's own email account** | **Outward-facing — confirm first send of the session** |
 | `cli_draft_context` | Business context is missing while suggested keywords wait on the relevance judge — draft `.seoagent/context.md` | Safe (repo-local file) |
-| `cli_run_audit` | The full technical audit is stale (>28 days) or has never run — re-run Skill Phase 1 and sync | Safe (read-only crawl + report) |
+| `cli_run_audit` | The full technical audit is stale (≥7 days) or has never run — re-run Skill Phase 1 and sync | Safe (read-only crawl + report) |
 | `cli_outreach_drafts_ready` | Outreach email drafts await the owner's review on the dashboard — tell the user, then ack | Safe (informational) |
 
 ## Per-type procedure
 
 **Trigger:** the user says "process the inbox", "handle pending actions", "what's in my inbox", or similar — OR `.seoagent/inbox/README.md` / `seoagent inbox` / `seoagent doctor` reports pending actions after a sync.
 
-Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the list, then handle each file:
+Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the list **and its "Previously declined" section**. Decline everything an earlier reason still covers in one `seoagent ack <id> <id> … --failed --reason "covered by #…"` before you open the rest, then handle each remaining file:
 
 ### `cli_prune_pending-<id>.md`
 
-- `Read` it. The frontmatter has `action_id`, `article_id`, `slug`, and `cms_type`. The body has the original URL and title.
+- `Read` it. **Check `source:` in the frontmatter first — it changes what already happened.**
+  - **`source: repo`** — a *suggestion* for a page that lives in this repo. Nothing has been changed: the page is live and the cloud has not marked it pruned. The frontmatter has `slug` and `page_url`; the body has the 90-day Search Console numbers behind it. The cloud cannot see inbound internal links, so **search the repo for links to the page's path before anything else — any inbound link means decline** (`--failed --reason "kept; linked from <page>"`). Also decline when the page earns its place off-search (docs, changelog, emails). If a stronger page covers the topic, a 301 to it beats a bare deletion. A decline is remembered; the page is not proposed again.
+  - **No `source`** — a legacy cull from a cloud-published article: the cloud already archived it and serves 410. The frontmatter has `action_id`, `article_id`, `slug`, and `cms_type`; remove the leftover file.
 - **Find the local file** that corresponds to the article. Look under `content/`, `src/content/`, `app/blog/`, `posts/`, `pages/blog/`, or wherever this project's articles live. Match by slug first, then by URL path. If you can't find an exact match, ask the user before doing anything destructive.
 - **Confirm with the user once per session** before deleting the first article. Show the title, slug, and the file path you intend to delete. After they confirm, proceed for the rest without re-prompting unless something looks ambiguous.
 - Delete the file. If the repo uses a content frontmatter pattern (e.g., Astro, Next.js MDX), also remove any references from index/sitemap files you find.
@@ -45,6 +48,7 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
 - `Read` it. The frontmatter has `action_id`, `issue` (`meta`|`schema`|`canonical`|`internal_link`|`other`), `severity`, and `page_url`. The body describes the recommended fix per issue type.
 - **Find the page's source** that renders `page_url` — the route/template/markdown under `app/`, `pages/`, `src/`, or `content/`. Match by URL path.
 - Apply the fix in the source (use `Edit`/`Write`): meta → title/description (or the framework's metadata API/frontmatter); schema → JSON-LD; canonical → `<link rel="canonical">`; internal_link → add relevant internal links. Safe/reversible edits — no hard delete-confirmation needed, but still **show the user the diff** (confirm once per session, then proceed).
+- **Check the action file's "Related past declines" block first.** If it says the page was already ruled out (noindex, off-site canonical, not this site's page), decline with that reason and move on — do not re-fetch and re-derive it.
 - Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "not applicable; ..."` to decline).
 
 ### `cli_new_content-<id>.md`
@@ -62,7 +66,7 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
 - **Find the page's source** for `page_url`. Apply the revision per `reason`:
   - `declining_clicks` → refresh/expand the content.
   - `rank_expansion` → the page already wins, or is in striking distance, for the queries in the body. Deepen **that** page against **those** queries; never spawn a new one.
-  - `low_ctr` → **read the body, not just the reason.** Past roughly position 20 nobody sees the snippet, so the body says "Lift ranking" and a title rewrite is wasted work: fill the gaps a searcher on the page's real queries expects, and add the vocabulary those queries use if the page answers them in different words. Only when the body says "Improve CTR" (shallow position) is rewriting the title + meta description the fix.
+  - `low_ctr` → **read the body, not just the reason.** Past roughly position 20 nobody sees the snippet, so the body says "Lift ranking" and a title rewrite is wasted work: fill the gaps a searcher on the page's real queries expects, and add the vocabulary those queries use if the page answers them in different words. Only when the body says "Improve CTR" (shallow position) is rewriting the title + meta description the fix — and write it against the **"Queries this page already ranks for"** section, which both depths now carry, not a keyword guessed from the slug. When one of those queries is the site's own brand name the page is competing with its own homepage, so check the new snippet does not restate what another of this site's results already says.
   - `stale_thin` → expand and update.
 - Follow the rewrite protocol (`references/rewrite-protocol.md`). Reversible edit — show the user the diff (confirm once per session, then proceed; interactive sessions can review the revised draft via `references/draft-review.md`).
 - Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "kept as-is; ..."`).
@@ -86,7 +90,7 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
 ### `cli_new_landing_page-<id>.md`
 
 - `Read` it. The frontmatter has `action_id`, `keyword`, `opportunity` (`easy_win` | `competitor_gap`), `volume`, `difficulty`, and `intent`. The body explains why this keyword is worth a page.
-- Cross-reference `.seoagent/keywords.md` for related keywords — they tell you which cluster this page belongs to and which secondary keywords to weave in.
+- Cross-reference the site's keyword inventory for related keywords — they tell you which cluster this page belongs to and which secondary keywords to weave in. It is `.seoagent/strategy/keywords/*.md` once the cloud shards it, and `.seoagent/keywords.md` otherwise; a synced workspace usually has only one of the two. **The action file names the files this workspace actually has — use those.** Do not assume a file named after the cluster in the rationale exists: a keyword whose cluster has no article role assigned yet is written to `strategy/keywords/unclustered.md`, so search the directory for the keyword rather than opening `<cluster>.md`.
 - Pick an article type from `intent` (commercial/transactional → product or comparison page; informational → guide or pillar). Pick a clean URL slug from `keyword`.
 - Write the article following the content-production protocol (Phase 4 — match the article type's quality rules, add internal links from related cluster pages, etc.). Show the user the draft before publishing (interactive sessions can use the visual review loop — `references/draft-review.md`).
 - **If the action body has a "Screenshots to capture" section** (SaaS product), follow `references/screenshots.md` — a landing page for a SaaS product should lead with a real product screenshot in the hero + feature sections, captured from this repo's UI.
@@ -126,7 +130,7 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
 - `Read` it. The frontmatter has `action_id`, `reason` (`never_audited`|`stale`), `last_audit_at`, and `age_days`.
 - **Run the Skill's audit protocol (Phase 1)**: fresh evidence first (`seoagent crawl`, plus `seoagent indexing` when GSC is connected — evidence older than 24h doesn't count), then the per-page checks from `references/audit-checks.md`, then write `.seoagent/audit/latest.md`. If `reason` is `stale`, this is a **re-audit**: diff against the previous `latest.md` and mark what's fixed / new / regressed (skill § re-audit protocol).
 - Push with `seoagent sync` — the server marks the previous report's still-open findings `superseded`, so the dashboard shows only the current audit.
-- Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "declined; ..."` — autopilot won't ask again until next month).
+- Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "declined; ..."` — autopilot won't ask again until next week).
 
 ### `cli_outreach_drafts_ready-<id>.md`
 
