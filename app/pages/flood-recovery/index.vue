@@ -44,7 +44,7 @@ const seoFaqs = floodPage('th').faqs
 usePageSeo({
   title: 'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วม',
   description:
-    'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วมในกทม.และ 5 จังหวัดปริมณฑล เลือกวันเข้าบริการ ปักพิกัดจาก Google Map ชำระด้วย QR หรือแนบสลิป ตามราคาใน Marketplace',
+    'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วมในกทม.และ 5 จังหวัดปริมณฑล เลือกวันเข้าบริการและช่วงเวลาที่สะดวก',
   path: '/flood-recovery',
   image: '/images/flood/flood-hero.jpg',
   faq: seoFaqs,
