@@ -64,6 +64,9 @@ export const SEO_REDIRECTS: Record<string, string> = {
   '/about/organization': '/about',
   '/about/certifications': '/about',
   '/about/business-overview': '/about',
+
+  // Campaign booking URL used in ads, LINE, and CMMS — canonical page is /flood-recovery.
+  '/booking/flood': '/flood-recovery',
 }
 
 export function seoRedirectTarget(path: string) {

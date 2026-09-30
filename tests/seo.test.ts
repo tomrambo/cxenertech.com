@@ -28,6 +28,7 @@ test('all configured redirects lead directly to a destination, without chains or
     assert.notEqual(from, to)
     assert.equal(SEO_REDIRECTS[to], undefined, `${from} creates a redirect chain`)
   }
+  assert.equal(SEO_REDIRECTS['/booking/flood'], '/flood-recovery')
 })
 
 test('HTTP middleware returns permanent redirects and respects HTTPS behind Cloudflare', async () => {
