@@ -1,9 +1,18 @@
-import { assertFloodRate } from '../../utils/flood-bookings'
-import { resolveFloodPlace, searchFloodPlaces } from '../../utils/flood-places'
+import { assertPlaceRate, resolveFloodPlace, reverseFloodPlace, searchFloodPlaces } from '../../utils/flood-places'
 
 export default defineEventHandler(async (event) => {
-  assertFloodRate(getRequestIP(event, { xForwardedFor: true }) || 'local')
+  assertPlaceRate(getRequestIP(event, { xForwardedFor: true }) || 'local')
   const query = getQuery(event)
+  if (query.lat != null && query.lng != null && String(query.lat) !== '' && String(query.lng) !== '') {
+    const lat = Number(query.lat)
+    const lng = Number(query.lng)
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+      throw createError({ statusCode: 400, message: 'พิกัดไม่ถูกต้อง' })
+    }
+    const place = await reverseFloodPlace(event, lat, lng)
+    if (!place) throw createError({ statusCode: 404, message: 'ไม่พบสถานที่ตรงจุดนี้' })
+    return { place }
+  }
   const placeId = String(query.placeId || '').trim()
   if (placeId) {
     const place = await resolveFloodPlace(event, placeId)

@@ -64,6 +64,7 @@ const packageId = ref('')
 const placeQuery = ref('')
 const placeHits = ref<Array<{ placeId: string; description: string }>>([])
 const placePending = ref(false)
+const mapFailed = ref(false)
 const slipFile = ref<File | null>(null)
 const form = reactive({
   asset: 'both' as FloodAsset,
@@ -198,25 +199,48 @@ function remember(state: PayState) {
 }
 
 let placeTimer = 0
+let pastedPlace = false
+
+function onPlacePaste(event: ClipboardEvent) {
+  const text = event.clipboardData?.getData('text')?.replace(/\s+/g, ' ').trim()
+  if (!text || text.length < 2) return
+  pastedPlace = true
+  window.setTimeout(() => {
+    if (placeQuery.value.replace(/\s+/g, ' ').trim() !== text) placeQuery.value = text
+    onPlaceInput()
+  }, 0)
+}
+
 function onPlaceInput() {
   form.placeId = ''
   form.lat = null
   form.lng = null
   window.clearTimeout(placeTimer)
-  const q = placeQuery.value.trim()
+  const q = placeQuery.value.replace(/\s+/g, ' ').trim()
+  const fromPaste = pastedPlace
   if (q.length < 2) {
     placeHits.value = []
+    pastedPlace = false
     return
   }
   placeTimer = window.setTimeout(async () => {
+    pastedPlace = false
     placePending.value = true
+    errorMsg.value = ''
     try {
       const res = await $fetch<{ suggestions: Array<{ placeId: string; description: string }> }>('/api/flood/places', {
         query: { q },
       })
+      if (fromPaste && res.suggestions[0]) {
+        placePending.value = false
+        await choosePlace(res.suggestions[0])
+        return
+      }
       placeHits.value = res.suggestions
+      if (!res.suggestions.length && (fromPaste || q.length >= 12)) errorMsg.value = formCopy.value.noPlaces
     } catch {
       placeHits.value = []
+      if (fromPaste) errorMsg.value = formCopy.value.noPlaces
     } finally {
       placePending.value = false
     }
@@ -231,13 +255,48 @@ async function choosePlace(hit: { placeId: string; description: string }) {
       '/api/flood/places',
       { query: { placeId: hit.placeId } },
     )
-    form.placeId = res.place.placeId
-    form.address = res.place.address
-    form.lat = res.place.lat
-    form.lng = res.place.lng
-    placeQuery.value = res.place.address
-    placeHits.value = []
+    applyPlace(res.place)
   } catch (err: unknown) {
+    const e = err as { data?: { message?: string }; message?: string }
+    errorMsg.value = e.data?.message || e.message || formCopy.value.noPlaces
+  } finally {
+    placePending.value = false
+  }
+}
+
+function applyPlace(place: { placeId: string; address: string; lat: number; lng: number }) {
+  form.placeId = place.placeId
+  form.address = place.address
+  form.lat = place.lat
+  form.lng = place.lng
+  placeQuery.value = place.address
+  placeHits.value = []
+}
+
+async function pickOnMap(point: { lat: number; lng: number }) {
+  if (placePending.value) return
+  const previous = {
+    placeId: form.placeId,
+    address: form.address,
+    lat: form.lat,
+    lng: form.lng,
+    query: placeQuery.value,
+  }
+  form.lat = point.lat
+  form.lng = point.lng
+  placePending.value = true
+  errorMsg.value = ''
+  try {
+    const res = await $fetch<{ place: { placeId: string; address: string; lat: number; lng: number } }>('/api/flood/places', {
+      query: { lat: point.lat, lng: point.lng },
+    })
+    applyPlace(res.place)
+  } catch (err: unknown) {
+    form.placeId = previous.placeId
+    form.address = previous.address
+    form.lat = previous.lat
+    form.lng = previous.lng
+    placeQuery.value = previous.query
     const e = err as { data?: { message?: string }; message?: string }
     errorMsg.value = e.data?.message || e.message || formCopy.value.noPlaces
   } finally {
@@ -658,6 +717,7 @@ onMounted(() => {
               required
               :placeholder="formCopy.addressHint"
               @input="onPlaceInput"
+              @paste="onPlacePaste"
             />
             <p v-if="placePending" class="field-hint">{{ formCopy.searching }}</p>
             <ul v-if="placeHits.length" class="place-hits">
@@ -665,6 +725,15 @@ onMounted(() => {
                 <button type="button" @click="choosePlace(hit)">{{ hit.description }}</button>
               </li>
             </ul>
+            <FloodPlaceMap
+              :lat="form.lat"
+              :lng="form.lng"
+              :label="formCopy.mapPick"
+              @pick="pickOnMap"
+              @failed="mapFailed = true"
+            />
+            <p v-if="mapFailed" class="field-hint map-note">{{ formCopy.mapFailed }}</p>
+            <p v-else class="field-hint map-note">{{ formCopy.mapPick }}</p>
             <p v-if="form.placeId && form.lat != null && form.lng != null" class="pin">
               {{ formCopy.pinned }} {{ form.lat.toFixed(5) }}, {{ form.lng.toFixed(5) }}
               <a :href="`https://www.google.com/maps/search/?api=1&query=${form.lat},${form.lng}`" target="_blank" rel="noopener">
@@ -1227,6 +1296,10 @@ onMounted(() => {
 
 .place-hits button:hover {
   background: #222;
+}
+
+.map-note {
+  margin: 0.65rem 0 0;
 }
 
 .pin a {

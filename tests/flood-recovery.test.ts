@@ -12,6 +12,7 @@ import {
 } from '../app/utils/flood-recovery.ts'
 import { parseFloodMarketplace } from '../app/utils/flood-marketplace.ts'
 import { createFloodBooking, floodSlotRemaining } from '../server/utils/flood-bookings.ts'
+import { extractFloodCoordinates } from '../server/utils/flood-places.ts'
 
 const NOW = new Date('2026-09-30T10:00:00+07:00')
 
@@ -113,3 +114,38 @@ function sample(phone: string) {
     note: '',
   }
 }
+
+test('a pasted map link or coordinate pair is read as a Thailand pin', () => {
+  assert.deepEqual(extractFloodCoordinates('13.82415, 100.60880'), { lat: 13.82415, lng: 100.6088 })
+  assert.deepEqual(extractFloodCoordinates('100.60880, 13.82415'), { lat: 13.82415, lng: 100.6088 })
+  assert.deepEqual(
+    extractFloodCoordinates('https://www.google.com/maps/place/Ladprao/@13.82415,100.60880,17z'),
+    { lat: 13.82415, lng: 100.6088 },
+  )
+  assert.equal(extractFloodCoordinates('429/20 ถนนสุคนธสวัสดิ์ แขวงลาดพร้าว เขตลาดพร้าว กรุงเทพมหานคร 10230'), null)
+})
+
+test('map click at the center stays on the map center', async () => {
+  const { floodMapLatLngAt } = await import('../app/utils/flood-map.ts')
+  const center = floodMapLatLngAt({
+    centerLat: 13.7563,
+    centerLng: 100.5018,
+    zoom: 15,
+    x: 320,
+    y: 180,
+    width: 640,
+    height: 360,
+  })
+  assert.ok(Math.abs(center.lat - 13.7563) < 0.00001)
+  assert.ok(Math.abs(center.lng - 100.5018) < 0.00001)
+  const east = floodMapLatLngAt({
+    centerLat: 13.7563,
+    centerLng: 100.5018,
+    zoom: 15,
+    x: 480,
+    y: 180,
+    width: 640,
+    height: 360,
+  })
+  assert.ok(east.lng > 100.5018)
+})
