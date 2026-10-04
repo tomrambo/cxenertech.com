@@ -13,7 +13,7 @@
             ไม่ใช่หน้าให้ลูกค้าค้นหาเพื่อติดตั้ง — ลูกค้าที่ต้องการติดตั้งไปที่แพ็กเกจหรือใบเสนอราคา
           </p>
           <p>
-            <NuxtLink class="btn btn-primary text-white" to="/partners/become-a-partner">
+            <NuxtLink class="btn btn-secondary" to="/partners/become-a-partner">
               สมัครเป็น Partner
             </NuxtLink>
           </p>
