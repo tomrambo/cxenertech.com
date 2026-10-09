@@ -43,10 +43,41 @@ type RawCategory = {
   services?: RawService[]
 }
 
+/** ราคาแพ็กเกจบนเว็บสูงกว่าราคา Marketplace 50% รายการเสริมและงานประเมินไม่เปลี่ยน */
+export const FLOOD_PACKAGE_MARKUP = 1.5
+
 function kindFor(slug: string, priceThb: number | null): FloodServiceKind {
   if (slug.startsWith('flood-pkg-')) return 'package'
   if (priceThb && priceThb > 0) return 'addon'
   return 'quote'
+}
+
+function markedUpBaht(amount: number) {
+  return Math.round(amount * FLOOD_PACKAGE_MARKUP)
+}
+
+function formatMarkedBaht(amount: number) {
+  return markedUpBaht(amount).toLocaleString('en-US')
+}
+
+function scalePriceHint(hint: string) {
+  let scaledListPrice = false
+  return hint.replace(/(ประหยัด\s*)?(\d[\d,]*)/g, (all, prefix: string | undefined, raw: string) => {
+    const amount = Number(raw.replace(/,/g, ''))
+    if (!Number.isFinite(amount) || amount <= 0) return all
+    if (prefix) return `${prefix}${formatMarkedBaht(amount)}`
+    if (scaledListPrice) return all
+    scaledListPrice = true
+    return formatMarkedBaht(amount)
+  })
+}
+
+function scaleSavings(text: string) {
+  return text.replace(/ประหยัด\s*(\d[\d,]*)\s*บาท/g, (_all, raw: string) => {
+    const amount = Number(raw.replace(/,/g, ''))
+    if (!Number.isFinite(amount) || amount <= 0) return _all
+    return `ประหยัด ${formatMarkedBaht(amount)} บาท`
+  })
 }
 
 export function parseFloodMarketplace(payload: unknown): FloodMarketplaceCatalog {
@@ -66,15 +97,18 @@ export function parseFloodMarketplace(payload: unknown): FloodMarketplaceCatalog
     .map((service) => {
       const slug = String(service.slug || '').trim()
       const parsed = Number(service.priceStart)
-      const priceThb = Number.isFinite(parsed) && parsed > 0 ? Math.round(parsed) : null
-      const kind = kindFor(slug, priceThb)
+      const listPrice = Number.isFinite(parsed) && parsed > 0 ? Math.round(parsed) : null
+      const kind = kindFor(slug, listPrice)
+      const priceThb = kind === 'package' && listPrice ? markedUpBaht(listPrice) : listPrice
+      const priceHint = String(service.priceHint || '').trim()
+      const description = String(service.description || '').trim()
       return {
         id: Number(service.id) || 0,
         slug,
         name: String(service.name || '').trim(),
         nameEn: String(service.nameEn || '').trim(),
-        description: String(service.description || '').trim(),
-        priceHint: String(service.priceHint || '').trim(),
+        description: kind === 'package' ? scaleSavings(description) : description,
+        priceHint: kind === 'package' ? scalePriceHint(priceHint) : priceHint,
         priceThb,
         unit: String(service.unit || '').trim(),
         pricingKind: String(service.pricingKind || '').trim(),

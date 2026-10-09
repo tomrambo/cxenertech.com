@@ -68,15 +68,28 @@ test('marketplace flood category keeps priced packages bookable', () => {
         slug: 'flood-electrical',
         name: 'ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม',
         services: [
-          { id: 119, slug: 'flood-pkg-01', name: 'PKG-01', priceStart: '1990', sortOrder: 10, unit: 'หลัง' },
+          {
+            id: 119,
+            slug: 'flood-pkg-01',
+            name: 'PKG-01',
+            priceStart: '1990',
+            priceHint: '4,490 บาท/หลัง ประหยัด 490 เมื่อเทียบ PKG-02+03 (ไม่รวม VAT)',
+            description: 'ประหยัด 490 บาทเมื่อเทียบซื้อแยก',
+            sortOrder: 10,
+            unit: 'หลัง',
+          },
+          { id: 120, slug: 'flood-add-01', name: 'ADD-01', priceStart: '390', sortOrder: 20 },
           { id: 129, slug: 'flood-add-07', name: 'ADD-07', priceStart: null, priceHint: 'ประเมินหน้างาน', sortOrder: 170 },
         ],
       },
     ],
   })
   assert.equal(catalog.services[0].bookable, true)
-  assert.equal(catalog.services[0].priceThb, 1990)
-  assert.equal(catalog.services[1].bookable, false)
+  assert.equal(catalog.services[0].priceThb, 2985)
+  assert.equal(catalog.services[0].priceHint, '6,735 บาท/หลัง ประหยัด 735 เมื่อเทียบ PKG-02+03 (ไม่รวม VAT)')
+  assert.match(catalog.services[0].description, /ประหยัด 735 บาท/)
+  assert.equal(catalog.services[1].priceThb, 390)
+  assert.equal(catalog.services[2].bookable, false)
 })
 
 function catalog() {

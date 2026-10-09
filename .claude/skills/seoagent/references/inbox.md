@@ -5,8 +5,9 @@
 **Golden rules (these also live in the skill body):**
 
 - **Never delete a file without explicit user confirmation on the first destructive action of the session.** Auto-prune is conservative (requires <5 clicks in 90 days, zero inbound internal links, etc.) but it can still surprise the user. Show them what's about to go. Technical-fix actions edit an existing page rather than delete, so they only need a diff review, not a destructive-action confirmation.
+- **Standing approval.** While the site is in auto-approve mode (the SEOAgent default), the cloud stamps each item it queues, and its file's steps then say **Standing approval applies**. Do that work without waiting for a go-ahead: with no one in the session (a scheduled run, a Grok Bot, a headless run) apply it, commit it, and ack it; with a person present, show the diff or draft as you go and carry on. It is a go-ahead, not a quality waiver: decline anything that looks wrong. Prunes (destructive) never carry it, and a file without it keeps its own confirm step.
 - **Read the decline memory first.** `.seoagent/inbox/README.md` ends with **Previously declined on this site** (also `declined` in `seoagent inbox --json`, and a **Related past declines** block inside any action file an earlier decline bears on): what you or a previous session already refused here, and why. A pending action that one of those reasons still covers (same page, same class of problem — e.g. the page is `noindex`, so canonical, meta and schema on it are all inert) is **declined citing that reason, not re-investigated**: `seoagent ack <id> <id> … --failed --reason "covered by #<earlier id>: <its reason>"`. Several ids take one verdict. Only apply a fix when the earlier reason no longer holds.
-- Acknowledge every action you finish: `seoagent ack <action_id>` (or `seoagent ack <action_id> --failed --reason "..."` to decline). That marks it `completed` on the dashboard and removes the inbox file on the next sync. **Write decline reasons for your future self**: state the fact that rules the action out (the page is noindex; the canonical points off-site; the finding is stale since <date>) — every decline is fed back into the next inbox as memory, and the issue is not proposed again.
+- Acknowledge every action you finish: `seoagent ack <action_id>` (or `seoagent ack <action_id> --failed --reason "..."` to decline). That marks it `completed` on the dashboard and removes the inbox file on the next sync. **Applied but not deployed** — your workflow cannot ship (the owner uploads a package by hand, a release train, a no-deploy rule)? Apply it in the repo or package, then `seoagent ack <action_id> --awaiting-deploy --reason "<what the owner must ship>"`. The action closes; the cloud keeps the finding open and the brief at `drafted` until a later crawl sees the change live. Pending means "nobody has looked at this yet" and nothing else — never park applied work there. **Write decline reasons for your future self**: state the fact that rules the action out (the page is noindex; the canonical points off-site; the finding is stale since <date>) — every decline is fed back into the next inbox as memory, and the issue is not proposed again.
 - After processing, run `seoagent sync` once more to clean stale inbox files, then report a summary: how many applied, how many declined (and why).
 - **Close with the cloud-first option, not local planning.** On a connected workspace option 3 of the output template is `Run seoagent sync and process the inbox` (or, when the inbox is empty, the next unwritten brief the sync named). **Never offer "Plan content strategy" here** — keyword research and briefs are the cloud's job on a connected workspace (`references/cloud-cta.md` § Cloud-connected mode).
 
@@ -26,6 +27,7 @@
 | `cli_draft_context` | Business context is missing while suggested keywords wait on the relevance judge — draft `.seoagent/context.md` | Safe (repo-local file) |
 | `cli_run_audit` | The full technical audit is stale (≥7 days) or has never run — re-run Skill Phase 1 and sync | Safe (read-only crawl + report) |
 | `cli_outreach_drafts_ready` | Outreach email drafts await the owner's review on the dashboard — tell the user, then ack | Safe (informational) |
+| `cli_submit_listing` | The owner approved a directory listing submission (or correction) on the dashboard — fill the directory's form **in a browser** with the facts given | **Outward-facing — owner-approved; stop at any account, CAPTCHA or payment** |
 
 ## Per-type procedure
 
@@ -47,7 +49,7 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
 
 - `Read` it. The frontmatter has `action_id`, `issue` (`meta`|`schema`|`canonical`|`internal_link`|`other`), `severity`, and `page_url`. The body describes the recommended fix per issue type.
 - **Find the page's source** that renders `page_url` — the route/template/markdown under `app/`, `pages/`, `src/`, or `content/`. Match by URL path.
-- Apply the fix in the source (use `Edit`/`Write`): meta → title/description (or the framework's metadata API/frontmatter); schema → JSON-LD; canonical → `<link rel="canonical">`; internal_link → add relevant internal links. Safe/reversible edits — no hard delete-confirmation needed, but still **show the user the diff** (confirm once per session, then proceed).
+- Apply the fix in the source (use `Edit`/`Write`): meta → title/description (or the framework's metadata API/frontmatter); schema → JSON-LD; canonical → `<link rel="canonical">`; internal_link → add relevant internal links. Safe/reversible edits — no hard delete-confirmation needed. Follow the file's go-ahead step: **Standing approval** → apply, commit, ack; otherwise **show the user the diff** (confirm once per session, then proceed).
 - **Check the action file's "Related past declines" block first.** If it says the page was already ruled out (noindex, off-site canonical, not this site's page), decline with that reason and move on — do not re-fetch and re-derive it.
 - Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "not applicable; ..."` to decline).
 
@@ -55,7 +57,7 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
 
 - `Read` it. The frontmatter has `action_id`, `brief_slug`, `primary_keyword`, `cluster`, and `priority`. The body points at the synced brief.
 - **Read the full brief** under `.seoagent/` (briefs file or `strategy/` entry matching `brief_slug`) for the outline, word-count target, and internal-link plan.
-- Write the article following the skill's content-production protocol (Phase 4), then publish it where this project's content lives (repo `content/` or the connected CMS — you are the publishing engine). Show the user the draft before publishing (interactive sessions can use the visual review loop — `references/draft-review.md`).
+- Write the article following the skill's content-production protocol (Phase 4), then publish it where this project's content lives (repo `content/` or the connected CMS — you are the publishing engine). Follow the file's go-ahead step: **Standing approval** → publish, commit, ack; otherwise show the user the draft before publishing (interactive sessions can use the visual review loop — `references/draft-review.md`).
 - **If the action body has a "Screenshots to capture" section** (autopilot flagged this as a SaaS product), follow `references/screenshots.md` — capture real product screenshots from this repo's UI for the relevant sections instead of shipping illustration-only.
 - Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "skipped; off-strategy"`).
 
@@ -68,14 +70,14 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
   - `rank_expansion` → the page already wins, or is in striking distance, for the queries in the body. Deepen **that** page against **those** queries; never spawn a new one.
   - `low_ctr` → **read the body, not just the reason.** Past roughly position 20 nobody sees the snippet, so the body says "Lift ranking" and a title rewrite is wasted work: fill the gaps a searcher on the page's real queries expects, and add the vocabulary those queries use if the page answers them in different words. Only when the body says "Improve CTR" (shallow position) is rewriting the title + meta description the fix — and write it against the **"Queries this page already ranks for"** section, which both depths now carry, not a keyword guessed from the slug. When one of those queries is the site's own brand name the page is competing with its own homepage, so check the new snippet does not restate what another of this site's results already says.
   - `stale_thin` → expand and update.
-- Follow the rewrite protocol (`references/rewrite-protocol.md`). Reversible edit — show the user the diff (confirm once per session, then proceed; interactive sessions can review the revised draft via `references/draft-review.md`).
+- Follow the rewrite protocol (`references/rewrite-protocol.md`). Reversible edit — follow the file's go-ahead step: **Standing approval** → apply, commit, ack; otherwise show the user the diff (confirm once per session, then proceed; interactive sessions can review the revised draft via `references/draft-review.md`).
 - Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "kept as-is; ..."`).
 
 ### `cli_sitemap_update-<id>.md`
 
 - `Read` it. The frontmatter has `action_id` + `sitemap_url`; the body lists the URLs SEOAgent knows (crawled + GSC-discovered — this **includes CMS-hosted blog articles your repo doesn't contain**).
 - **Find how the project serves its sitemap** (framework sitemap like Next.js `app/sitemap.ts` / `next-sitemap` / Astro integration, or a static `public/sitemap.xml`, or none yet). Prefer extending the framework sitemap so it stays current.
-- **Union** the repo's own routes (which the framework sitemap usually covers) with the URL list in the file (which adds off-repo CMS articles), dedup, and ensure the result is served at `sitemap_url`. Show the user the diff. Deploy if needed — GSC fetches the live URL. See `references/sitemaps.md` for the generator-detection table.
+- **Union** the repo's own routes (which the framework sitemap usually covers) with the URL list in the file (which adds off-repo CMS articles), dedup, and ensure the result is served at `sitemap_url`. Show the user the diff, or under **Standing approval** commit it. Deploy if needed — GSC fetches the live URL. See `references/sitemaps.md` for the generator-detection table.
 - **Verify with `seoagent sitemap`** once deployed — it should report 200, no private leakage, and the expected URL count.
 - Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "sitemap already served"`). SEOAgent re-submits the sitemap to GSC on its schedule.
 
@@ -85,16 +87,16 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
 - **`okf`** — fill `.seoagent/okf/` per `references/open-knowledge-format.md` (it is already scaffolded; `seoagent okf scaffold` covers an older project). **Replace every scaffold placeholder** and make `seoagent okf validate` pass — a placeholder or invalid bundle is deliberately NOT published. Then `seoagent sync` copies it to `<public_dir>/.well-known/okf/` (or `seoagent okf publish` on demand), and **you tell the user to commit + deploy**. `.seoagent/okf/` is the source; crawlers only read `/.well-known/okf/index.md`.
 - **`llms_txt`** — run `seoagent llms`. **Do not hand-write it.** It is generated from `pages.md`, published `content/`, crawl evidence and `context.md`, so every link resolves and it regenerates on every sync instead of going stale after the next publish. If the page inventory is thin, run `seoagent refresh --crawl` first.
 - **Both files must agree with the live site** on pricing, plan names, and positioning. A bundle that contradicts your own pages is worse than none. Cross-check `/pricing` before you write numbers.
-- Show the user the diff, deploy, then acknowledge: `seoagent ack <action_id>` (or `--failed --reason "..."`).
+- Show the user the diff (under **Standing approval**, commit it yourself), deploy, then acknowledge: `seoagent ack <action_id>` (or `--failed --reason "..."`).
 
 ### `cli_new_landing_page-<id>.md`
 
 - `Read` it. The frontmatter has `action_id`, `keyword`, `opportunity` (`easy_win` | `competitor_gap`), `volume`, `difficulty`, and `intent`. The body explains why this keyword is worth a page.
 - Cross-reference the site's keyword inventory for related keywords — they tell you which cluster this page belongs to and which secondary keywords to weave in. It is `.seoagent/strategy/keywords/*.md` once the cloud shards it, and `.seoagent/keywords.md` otherwise; a synced workspace usually has only one of the two. **The action file names the files this workspace actually has — use those.** Do not assume a file named after the cluster in the rationale exists: a keyword whose cluster has no article role assigned yet is written to `strategy/keywords/unclustered.md`, so search the directory for the keyword rather than opening `<cluster>.md`.
 - Pick an article type from `intent` (commercial/transactional → product or comparison page; informational → guide or pillar). Pick a clean URL slug from `keyword`.
-- Write the article following the content-production protocol (Phase 4 — match the article type's quality rules, add internal links from related cluster pages, etc.). Show the user the draft before publishing (interactive sessions can use the visual review loop — `references/draft-review.md`).
+- Write the article following the content-production protocol (Phase 4 — match the article type's quality rules, add internal links from related cluster pages, etc.). Follow the file's go-ahead step: **Standing approval** → publish, commit, ack; otherwise show the user the draft before publishing (interactive sessions can use the visual review loop — `references/draft-review.md`).
 - **If the action body has a "Screenshots to capture" section** (SaaS product), follow `references/screenshots.md` — a landing page for a SaaS product should lead with a real product screenshot in the hero + feature sections, captured from this repo's UI.
-- Publish where this project's content lives (repo `content/` or the connected CMS). Safe (new content) — but still confirm the user wants this specific page before committing.
+- Publish where this project's content lives (repo `content/` or the connected CMS). Safe (new content). Without **Standing approval**, confirm the user wants this specific page before committing.
 - Acknowledge: `seoagent ack <action_id>` (or `--failed --reason "already covered by /existing-page"`).
 
 ### `cli_draft_ready-<id>.md`
@@ -138,3 +140,12 @@ Start by reading `.seoagent/inbox/README.md` (or `seoagent inbox`) to see the li
 - **Informational — nothing to change in this repo.** The backlinks autopilot drafted link-building emails, but only the owner can approve outreach, and the approval queue lives in the SEOAgent dashboard (the site's **Outreach** tab, drafts filter). Tell the user how many drafts await and where; each shows the prospect page, pitch angle, and the exact email text (edit / approve / dismiss).
 - Approved drafts return to this inbox as `cli_send_outreach_email` actions for delivery.
 - Acknowledge after surfacing it: `seoagent ack <action_id>`. Decline (`--failed --reason "not now; ..."`) if the user isn't interested — the reminder returns only when the awaiting count changes on a later weekly run.
+
+### `cli_submit_listing-<id>.md`
+
+- `Read` it. The frontmatter has `action_id`, `directory`, `mode` (`add` or `correct`) and `listing_id`; the body has the form URL, the business facts, and the verification the directory is expected to ask for.
+- **Needs a browser.** Nothing in this repo changes. If you have no browser tool, tell the user and leave the action pending — do not ack.
+- The owner already approved it (the **Submit for me** click on the Local tab). Enter **only** the facts given; leave optional fields empty when there is no fact; never invent amenities, rates or photos.
+- **Stop and decline** if the form asks for an account, a sign-in, a CAPTCHA, a payment, or any agreement beyond submitting the listing, or if a required field has no fact: `seoagent ack <action_id> --failed --reason "<what blocked you>"`. The reason becomes the owner's to-do on the dashboard.
+- Submitted: `seoagent ack <action_id> --url "<listing URL, if shown>"` → the listing goes to `submitted`; the next NAP audit marks it live once it appears.
+- The directory says the owner must verify (code, postcard, call, email): `seoagent ack <action_id> --verify "<what the owner must do>" --verify-type code|postcard|call|email` → the listing goes to `pending_owner_verification` and the dashboard shows the to-do. SEOAgent never receives the code.

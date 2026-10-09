@@ -11,7 +11,7 @@ public_dir: public
 cms: none
 blog_path: /knowledge/articles
 content_dir: app/utils
-skill_hash: 86ee70e6110139eb22cd244dae529c269a8aa2ed8f9647ee5631b077c8f1396e
+skill_hash: 7fbba21326768ef9679a01fcafd5c6422adaeb9163fd411533015c278a062349
 publishing:
   strategy: other
   blog_path: /knowledge/articles
