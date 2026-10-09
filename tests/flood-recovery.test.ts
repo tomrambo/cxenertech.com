@@ -73,8 +73,8 @@ test('marketplace flood category keeps priced packages bookable', () => {
             slug: 'flood-pkg-01',
             name: 'PKG-01',
             priceStart: '1990',
-            priceHint: '4,490 บาท/หลัง ประหยัด 490 เมื่อเทียบ PKG-02+03 (ไม่รวม VAT)',
-            description: 'ประหยัด 490 บาทเมื่อเทียบซื้อแยก',
+            priceHint: '1,990 บาท/หลัง (ยังไม่รวม VAT และค่าอะไหล่)',
+            description: 'ตรวจตู้ไฟ 1 ตู้ ประหยัด 490 บาทเมื่อเทียบซื้อแยก',
             sortOrder: 10,
             unit: 'หลัง',
           },
@@ -85,9 +85,9 @@ test('marketplace flood category keeps priced packages bookable', () => {
     ],
   })
   assert.equal(catalog.services[0].bookable, true)
-  assert.equal(catalog.services[0].priceThb, 2985)
-  assert.equal(catalog.services[0].priceHint, '6,735 บาท/หลัง ประหยัด 735 เมื่อเทียบ PKG-02+03 (ไม่รวม VAT)')
-  assert.match(catalog.services[0].description, /ประหยัด 735 บาท/)
+  assert.equal(catalog.services[0].priceThb, 1990)
+  assert.equal(catalog.services[0].priceHint, '1,990 บาท/หลัง (ยังไม่รวม VAT และค่าอะไหล่)')
+  assert.match(catalog.services[0].description, /ประหยัด 490 บาท/)
   assert.equal(catalog.services[1].priceThb, 390)
   assert.equal(catalog.services[2].bookable, false)
 })

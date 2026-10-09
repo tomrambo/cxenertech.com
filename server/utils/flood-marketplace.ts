@@ -3,9 +3,9 @@ import { parseFloodMarketplace, type FloodMarketplaceCatalog } from '../../app/u
 
 let cached: { at: number; catalog: FloodMarketplaceCatalog } | null = null
 
-/** แคตตาล็อกนี้ผ่าน parseFloodMarketplace แล้ว ราคาแพ็กเกจถูกบวก 50% ไว้ในตัว parser */
+/** แคตตาล็อกมาจาก Marketplace ใน CMMS ราคาที่บันทึกไว้คือราคาที่เว็บแสดง */
 export async function fetchFloodMarketplace(event: H3Event): Promise<FloodMarketplaceCatalog> {
-  if (cached && Date.now() - cached.at < 5 * 60 * 1000) return cached.catalog
+  if (cached && Date.now() - cached.at < 60 * 1000) return cached.catalog
 
   const config = useRuntimeConfig(event)
   const base = String(config.cmmsApiBaseUrl || '').replace(/\/$/, '')
