@@ -19,6 +19,10 @@
             และงานหลังคาที่
             <NuxtLink to="/solar/rooftop">รับติดตั้งโซล่าเซลล์</NuxtLink>
           </p>
+          <p>
+            ดูวิธีเทียบกำลังผลิตกับโหลดในแต่ละชั่วโมงที่
+            <NuxtLink to="/knowledge/articles/solar-khu-ev-charger-load">โซลาร์คู่เครื่องชาร์จ EV พร้อมตัวอย่างคำนวณ</NuxtLink>
+          </p>
         </div>
       </div>
     </section>

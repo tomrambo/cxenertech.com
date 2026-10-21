@@ -11,8 +11,15 @@ defineProps<{
   compact?: boolean
 }>()
 
+const route = useRoute()
+
 function track(channel: string, location: string) {
   trackGtm('contact_channel', { channel, location })
+  if (channel === 'phone') trackGtm('call_click', { location })
+  if (channel === 'line') trackGtm('line_click', { location })
+  if (route.path === '/contact/site-survey' && ['phone', 'line', 'quote'].includes(channel)) {
+    trackGtm('consultation_request', { channel, location, request_type: 'site_survey_contact' })
+  }
 }
 </script>
 

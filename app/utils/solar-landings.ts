@@ -1,4 +1,5 @@
 import type { SeoCrumb, SeoFaq } from '~/composables/usePageSeo'
+import type { EditorialInfo } from './editorial'
 
 export type SolarLandingSection = {
   heading: string
@@ -6,7 +7,7 @@ export type SolarLandingSection = {
   bullets?: string[]
 }
 
-export type SolarLanding = {
+export type SolarLanding = EditorialInfo & {
   path: string
   heroTitle: string
   heroDescription: string
@@ -17,6 +18,8 @@ export type SolarLanding = {
   sections: SolarLandingSection[]
   features?: { title: string; desc: string }[]
   faqs: SeoFaq[]
+  answer?: string[]
+  assumptions?: string[]
   related: { label: string; to: string }[]
   heroActions?: { label: string; to: string; primary?: boolean }[]
   payChoice?: { asset: 'solar' | 'ev'; context: 'catalog' | 'finance' }

@@ -19,6 +19,8 @@ jobs:
           node-version: "20"
           cache: npm
       - run: npm ci
+      - name: SEO regression checks
+        run: npm run test:seo
       - name: Build for Cloudflare Pages (static + Worker)
         run: npm run build
         env:

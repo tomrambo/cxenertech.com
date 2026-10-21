@@ -53,6 +53,10 @@ function parseMoney(raw: string): number | undefined {
   return Number.isFinite(n) && n > 0 ? n : undefined
 }
 
+onMounted(() => {
+  trackGtm('quote_form_view', { service_type: form.type })
+})
+
 async function onSubmit() {
   errorMsg.value = ''
   if (isFinance.value && form.borrowerType === 'company' && !form.company.trim()) {
@@ -91,12 +95,14 @@ async function onSubmit() {
     })
     duplicate.value = Boolean(res.duplicate)
     submitted.value = true
-    trackGtm('generate_lead', {
+    const leadEvent = {
       lead_type: isFinance.value ? 'finance' : 'quotation',
       service_type: form.type,
       package_code: typeof route.query.package === 'string' ? route.query.package : '',
       duplicate: Boolean(res.duplicate),
-    })
+    }
+    trackGtm('generate_lead', leadEvent)
+    trackGtm('quote_submit', leadEvent)
   } catch (err: unknown) {
     const e = err as { data?: { message?: string }; message?: string }
     errorMsg.value = e.data?.message || e.message || 'ส่งคำขอไม่สำเร็จ กรุณาลองใหม่'
@@ -314,6 +320,11 @@ usePageSeo({
             <input id="websiteUrl" v-model="form.websiteUrl" type="text" tabindex="-1" autocomplete="off" />
           </div>
           <p v-if="errorMsg" class="quote__error">{{ errorMsg }}</p>
+          <p>
+            CX ENERTECH ใช้ข้อมูลที่กรอกเพื่อประเมินโครงการและติดต่อกลับ
+            พร้อมบันทึกหน้าเริ่มต้นและแคมเปญเพื่อวัดผลการขอใบเสนอราคา
+            โดยไม่แนบชื่อ อีเมล หรือเบอร์โทรจากฟอร์มไปกับเหตุการณ์วัดผลนี้
+          </p>
           <button type="submit" class="btn btn-primary" :disabled="submitting">
             {{
               submitting

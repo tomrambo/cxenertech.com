@@ -5,6 +5,8 @@ type ProductJsonLdInput = {
   image: string
   url: string
   price: number | null
+  /** Set only for a confirmed offer, never for starting prices or reference CAPEX. */
+  priceIsExact?: boolean
   priceValidUntil?: string
 }
 
@@ -20,7 +22,7 @@ export function buildProductJsonLd(input: ProductJsonLdInput) {
     image: [input.image],
   }
 
-  if (input.price != null && Number.isFinite(input.price) && input.price > 0) {
+  if (input.priceIsExact && input.price != null && Number.isFinite(input.price) && input.price > 0) {
     product.offers = {
       '@type': 'Offer',
       url: input.url,
@@ -38,4 +40,17 @@ export function buildProductJsonLd(input: ProductJsonLdInput) {
   }
 
   return product
+}
+
+/** Custom installation packages require a site quotation, not a fixed product offer. */
+export function buildServiceJsonLd(input: Pick<ProductJsonLdInput, 'name' | 'description' | 'url' | 'image'>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    image: input.image,
+    provider: { '@id': `${new URL(input.url).origin}/#business` },
+  }
 }

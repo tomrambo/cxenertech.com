@@ -17,6 +17,10 @@ usePageSeo({
   path: landing.value.path,
   faq: landing.value.faqs,
   crumbs: landing.value.crumbs,
+  service: {
+    name: landing.value.heroTitle,
+    description: landing.value.heroDescription,
+  },
 })
 
 const packagesQuery = computed(() => landing.value.packagesQuery)
@@ -51,6 +55,14 @@ function packageImage(pkg: SolarWebsitePackage) {
       </div>
     </PageHero>
 
+    <AnswerBlock
+      v-if="landing.answer?.length"
+      :paragraphs="landing.answer"
+      :assumptions="landing.assumptions"
+      :quote-to="landing.ctaPrimaryTo || '/contact/quotation?type=solar'"
+      :quote-label="landing.ctaPrimaryLabel || 'ขอใบเสนอราคา Solar'"
+    />
+
     <section class="section">
       <div class="container">
         <PayChoiceBar
@@ -77,6 +89,10 @@ function packageImage(pkg: SolarWebsitePackage) {
           </div>
         </div>
       </div>
+    </section>
+
+    <section v-if="landing.sources?.length || landing.reviewStatus" class="section">
+      <div class="container"><EditorialMeta :info="landing" /></div>
     </section>
 
     <slot />

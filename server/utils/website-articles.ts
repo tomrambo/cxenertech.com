@@ -24,6 +24,7 @@ function asArticle(item: Article | CmmsArticle): Article {
     publishedAt: item.publishedAt,
     createdAt: item.createdAt,
     updatedAt,
+    contentSource: 'contentSource' in item ? item.contentSource : undefined,
     viewCount:
       item.viewCount === undefined
         ? undefined
@@ -34,6 +35,12 @@ function asArticle(item: Article | CmmsArticle): Article {
         ? item.relatedService
         : undefined,
     faqs: 'faqs' in item ? item.faqs : undefined,
+    directAnswer: 'directAnswer' in item ? item.directAnswer : undefined,
+    assumptions: 'assumptions' in item ? item.assumptions : undefined,
+    sources: 'sources' in item ? item.sources : undefined,
+    reviewerName: 'reviewerName' in item ? item.reviewerName : undefined,
+    reviewedAt: 'reviewedAt' in item ? item.reviewedAt : undefined,
+    reviewStatus: 'reviewStatus' in item ? item.reviewStatus : undefined,
     seo: service ? {
       ...item.seo,
       title: service.title,
@@ -43,10 +50,46 @@ function asArticle(item: Article | CmmsArticle): Article {
   }
 }
 
+function maintainedArticle(local: Article, remote: Article | CmmsArticle): Article {
+  if (local.contentSource !== 'local') return asArticle(remote)
+  return asArticle({
+    ...remote,
+    contentSource: 'local',
+    slug: local.slug,
+    title: local.title,
+    excerpt: local.excerpt,
+    content: local.content || remote.content,
+    category: local.category ?? remote.category,
+    authorName: local.authorName || remote.authorName,
+    publishedAt: remote.publishedAt || local.publishedAt,
+    createdAt: remote.createdAt || local.createdAt,
+    updatedAt: local.updatedAt,
+    coverImage: remote.coverImage || local.coverImage,
+    viewCount: remote.viewCount,
+    faqs: local.faqs,
+    directAnswer: local.directAnswer,
+    assumptions: local.assumptions,
+    sources: local.sources,
+    reviewerName: local.reviewerName,
+    reviewedAt: local.reviewedAt,
+    reviewStatus: local.reviewStatus,
+    relatedService: local.relatedService,
+    seo: {
+      title: local.seo?.title || local.title,
+      description: local.seo?.description || local.excerpt,
+      image: remote.seo?.image || remote.coverImage || local.seo?.image || local.coverImage || null,
+      robots: [local.seo?.robots, remote.seo?.robots].filter(Boolean).join(', ') || undefined,
+    },
+  })
+}
+
 function mergeArticles(cmms: Array<Article | CmmsArticle>, category?: string): Article[] {
   const bySlug = new Map<string, Article>()
   for (const item of listLocalArticles()) bySlug.set(item.slug, asArticle(item))
-  for (const item of cmms) bySlug.set(item.slug, asArticle(item))
+  for (const item of cmms) {
+    const local = bySlug.get(item.slug)
+    bySlug.set(item.slug, local ? maintainedArticle(local, item) : asArticle(item))
+  }
   const merged = [...bySlug.values()].sort((a, b) => {
     const aTime = Date.parse(a.publishedAt || a.createdAt) || 0
     const bTime = Date.parse(b.publishedAt || b.createdAt) || 0
@@ -74,12 +117,15 @@ export async function resolveWebsiteArticle(
   event: Parameters<typeof fetchCmmsArticleBySlug>[0],
   slug: string,
 ) {
+  const local = getLocalArticleBySlug(slug)
   try {
     const fetched = await fetchCmmsArticleBySlug(event, slug)
-    if (fetched.article) return { article: asArticle(fetched.article), source: 'cmms' as const }
+    if (fetched.article) {
+      const article = local ? maintainedArticle(asArticle(local), fetched.article) : asArticle(fetched.article)
+      return { article, source: local?.contentSource === 'local' ? 'local' as const : 'cmms' as const }
+    }
   } catch {
     // fall through to local
   }
-  const local = getLocalArticleBySlug(slug)
   return { article: local ? asArticle(local) : null, source: 'local' as const }
 }
