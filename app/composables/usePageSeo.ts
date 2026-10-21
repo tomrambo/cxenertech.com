@@ -23,6 +23,7 @@ export function usePageSeo(input: {
   robots?: string
   faq?: SeoFaq[]
   crumbs?: SeoCrumb[]
+  service?: { name: string; description: string }
 }) {
   const route = useRoute()
   const path = input.path ?? route.path
@@ -60,6 +61,15 @@ export function usePageSeo(input: {
         name: crumb.name,
         item: absoluteUrl(crumb.path),
       })),
+    })
+  }
+  if (input.service) {
+    graph.push({
+      '@type': 'Service',
+      name: input.service.name,
+      description: input.service.description,
+      url,
+      provider: { '@id': `${siteOrigin()}/#business` },
     })
   }
   if (input.faq?.length) {

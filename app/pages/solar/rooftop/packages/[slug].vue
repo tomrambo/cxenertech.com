@@ -119,7 +119,7 @@
 import { formatThb, phaseLabel } from '~/utils/solar-format'
 import { systemTypeLabel, type SolarWebsitePackage } from '~/utils/solar-packages'
 import { resolvePackageImage } from '~/utils/package-image'
-import { buildProductJsonLd } from '~/utils/product-jsonld'
+import { buildServiceJsonLd } from '~/utils/product-jsonld'
 import { serializeJsonLd } from '~/utils/structured-data'
 
 function equipmentLabel(row: { brand: string | null; model?: string | null; qty?: number | null }) {
@@ -176,16 +176,14 @@ usePageSeo({
 useHead({
   script: [
     {
-      key: 'ld-product',
+      key: 'ld-package',
       type: 'application/ld+json',
       innerHTML: serializeJsonLd(
-        buildProductJsonLd({
+        buildServiceJsonLd({
           name: pkg.value.name_th,
           description: pkg.value.description || pkg.value.tagline,
-          sku: pkg.value.code,
           image: absoluteUrl(packageImage),
           url: absoluteUrl(packagePath),
-          price: pkg.value.price_from,
         }),
       ),
     },

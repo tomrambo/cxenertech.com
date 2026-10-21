@@ -17,11 +17,12 @@ export function gaMeasurementId() {
 
 export function trackGtm(event: string, params: Record<string, unknown> = {}) {
   if (!import.meta.client) return
+  const eventParams = { ...useNuxtApp().$leadAttribution, ...params }
   if (gtmContainerId()) {
     window.dataLayer = window.dataLayer || []
-    window.dataLayer.push({ event, ...params })
+    window.dataLayer.push({ event, ...eventParams })
   }
   if (event !== 'page_view' && gaMeasurementId() && window.gtag) {
-    window.gtag('event', event, params)
+    window.gtag('event', event, eventParams)
   }
 }

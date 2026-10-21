@@ -1,4 +1,5 @@
-import { translate, type LocaleCode } from '~/utils/i18n'
+import { translate, type LocaleCode } from './i18n'
+import type { EditorialInfo } from './editorial'
 
 export const ARTICLE_CATEGORIES = [
   { key: 'ev', label: 'EV Charging' },
@@ -9,7 +10,7 @@ export const ARTICLE_CATEGORIES = [
   { key: 'news', label: 'ข่าวสาร' },
 ] as const
 
-export type Article = {
+export type Article = EditorialInfo & {
   id: number | string
   slug: string
   title: string
@@ -21,8 +22,12 @@ export type Article = {
   publishedAt?: string
   createdAt: string
   updatedAt?: string
+  /** Explicitly opt a maintained article into repository-owned copy. */
+  contentSource?: 'local'
   viewCount?: number
   relatedService?: { path: string; label: string }
+  directAnswer?: string[]
+  assumptions?: string[]
   faqs?: { q: string; a: string }[]
   seo?: {
     title: string

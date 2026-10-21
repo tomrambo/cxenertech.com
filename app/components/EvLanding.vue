@@ -14,6 +14,10 @@ usePageSeo({
   path: landing.value.path,
   faq: landing.value.faqs,
   crumbs: landing.value.crumbs,
+  service: {
+    name: landing.value.heroTitle,
+    description: landing.value.heroDescription,
+  },
 })
 </script>
 
@@ -36,6 +40,14 @@ usePageSeo({
         </NuxtLink>
       </div>
     </PageHero>
+
+    <AnswerBlock
+      v-if="landing.answer?.length"
+      :paragraphs="landing.answer"
+      :assumptions="landing.assumptions"
+      :quote-to="landing.ctaPrimaryTo || '/contact/quotation?type=ev'"
+      :quote-label="landing.ctaPrimaryLabel || 'ขอใบเสนอราคา EV'"
+    />
 
     <section class="section">
       <div class="container">
@@ -63,6 +75,10 @@ usePageSeo({
           </div>
         </div>
       </div>
+    </section>
+
+    <section v-if="landing.sources?.length || landing.reviewStatus" class="section">
+      <div class="container"><EditorialMeta :info="landing" /></div>
     </section>
 
     <slot />

@@ -7,9 +7,15 @@ import {
 } from '~/utils/nav'
 
 const { t } = useLocale()
+const route = useRoute()
 
 function track(channel: string) {
   trackGtm('contact_channel', { channel, location: 'dock' })
+  if (channel === 'phone') trackGtm('call_click', { location: 'dock' })
+  if (channel === 'line') trackGtm('line_click', { location: 'dock' })
+  if (route.path === '/contact/site-survey' && ['phone', 'line', 'quote'].includes(channel)) {
+    trackGtm('consultation_request', { channel, location: 'dock', request_type: 'site_survey_contact' })
+  }
 }
 </script>
 

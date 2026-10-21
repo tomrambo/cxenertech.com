@@ -192,7 +192,7 @@ import {
   typeLabel,
 } from '~/utils/ev-format'
 import { resolvePackageImage } from '~/utils/package-image'
-import { buildProductJsonLd } from '~/utils/product-jsonld'
+import { buildProductJsonLd, buildServiceJsonLd } from '~/utils/product-jsonld'
 import { serializeJsonLd } from '~/utils/structured-data'
 
 type ApiPackage = {
@@ -327,10 +327,10 @@ usePageSeo({
 useHead({
   script: [
     {
-      key: 'ld-product',
+      key: 'ld-package',
       type: 'application/ld+json',
       innerHTML: serializeJsonLd(
-        buildProductJsonLd({
+        (pkg.value.product_type === 'equipment' ? buildProductJsonLd : buildServiceJsonLd)({
           name: pkg.value.name_th,
           description: pkg.value.description || pkg.value.tagline,
           sku: pkg.value.code,

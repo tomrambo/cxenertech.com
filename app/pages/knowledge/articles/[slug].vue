@@ -33,6 +33,14 @@ function hideBrokenImage(event: Event) {
 
 const article = computed(() => data.value!.article)
 const service = computed(() => article.value.relatedService)
+const quoteTo = computed(() => {
+  const slug = article.value.slug
+  const solar = article.value.category === 'solar' || slug.includes('ppa') || slug.includes('solar')
+  const ev = article.value.category === 'ev' || slug.includes('ev') || slug.includes('charger') || slug.includes('dc-fast')
+  if (solar && !ev) return '/contact/quotation?type=solar'
+  if (ev) return '/contact/quotation?type=ev'
+  return '/contact/quotation'
+})
 const related = computed(() => data.value?.related ?? [])
 const hasPublicViewCount = computed(() => article.value.viewCount !== undefined)
 const displayedViewCount = ref(normalizeArticleViewCount(article.value.viewCount))
@@ -147,6 +155,14 @@ onMounted(() => {
       ]"
     />
 
+    <AnswerBlock
+      v-if="article.directAnswer?.length"
+      :paragraphs="article.directAnswer"
+      :assumptions="article.assumptions"
+      :quote-to="quoteTo"
+      quote-label="ขอใบเสนอราคา"
+    />
+
     <section class="section">
       <div class="container detail">
         <article class="detail__main">
@@ -161,6 +177,9 @@ onMounted(() => {
               {{ formatArticleDate(articleDate(article), locale) }}
             </time>
             <span v-if="article.authorName">{{ article.authorName }}</span>
+            <span v-if="article.updatedAt">
+              ปรับปรุงเนื้อหา <time :datetime="article.updatedAt">{{ formatArticleDate(article.updatedAt, locale) }}</time>
+            </span>
             <span v-if="hasPublicViewCount" class="meta__views" aria-live="polite">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M2.2 12s3.5-6 9.8-6 9.8 6 9.8 6-3.5 6-9.8 6-9.8-6-9.8-6Z" />
@@ -194,6 +213,7 @@ onMounted(() => {
             v-html="article.content"
           />
           <p v-else-if="article.excerpt" class="fallback">{{ article.excerpt }}</p>
+          <EditorialMeta :info="article" />
           <div v-if="article.faqs?.length" class="seo-faq">
             <h2>คำถามที่พบบ่อย</h2>
             <details v-for="item in article.faqs" :key="item.q">

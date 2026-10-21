@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import { resolveSeoHref, rewriteArticleLinks } from '../app/utils/seo-links.ts'
 import { SEO_REDIRECTS } from '../app/utils/seo-redirects.ts'
+import { SITE_STATIC_PATHS } from '../app/utils/sitemap-routes.ts'
 import { buildArticleJsonLd, serializeJsonLd } from '../app/utils/structured-data.ts'
-import { buildProductJsonLd } from '../app/utils/product-jsonld.ts'
+import { buildProductJsonLd, buildServiceJsonLd } from '../app/utils/product-jsonld.ts'
+import { listWebsiteArticles, resolveWebsiteArticle } from '../server/utils/website-articles.ts'
+import { getLocalArticleBySlug } from '../app/utils/local-articles.ts'
+import { readLeadAttribution } from '../app/utils/lead-attribution.ts'
 import { packageSlugForRate } from '../app/utils/price-rate-package.ts'
 import { getArticleService } from '../app/utils/article-service.ts'
 import { EV_SERVICE_AREAS } from '../app/utils/ev-service-areas.ts'
@@ -11,6 +16,89 @@ import { canonicalRedirect } from '../server/utils/canonical-url.ts'
 import { escapeXml, isIndexableArticle } from '../server/utils/sitemap-entry.ts'
 import { createApp, defineEventHandler, toPlainHandler, toWebHandler } from 'h3'
 import canonicalMiddleware from '../server/middleware/canonical-host.ts'
+
+function cmsArticle(slug: string) {
+  return {
+    id: 42, slug, title: 'CMS title', excerpt: 'CMS excerpt', content: '<p>CMS revised content</p>',
+    coverImage: 'https://example.test/cms.jpg', category: 'news', authorName: 'CMS editor',
+    publishedAt: '2026-09-20', createdAt: '2026-09-19', updatedAt: '2026-10-23', viewCount: 17,
+    seo: { title: 'CMS SEO title', description: 'CMS SEO description', image: null, robots: 'noindex, nofollow' },
+  }
+}
+
+test('untouched local fallback never overrides a CMS article or its indexing policy', () => {
+  const remote = cmsArticle('solar-bess-rongngan-2569')
+  const result = listWebsiteArticles(undefined, [remote]).find(item => item.slug === remote.slug)!
+  assert.equal(result.content, remote.content)
+  assert.equal(result.id, remote.id)
+  assert.equal(result.authorName, remote.authorName)
+  assert.equal(result.updatedAt, remote.updatedAt)
+  assert.equal(result.seo?.robots, remote.seo.robots)
+  assert.equal(isIndexableArticle(result), false)
+})
+
+test('maintained AEO copy keeps CMS identity, original publication and robots', () => {
+  for (const slug of ['longthun-ev-station-khum-mai', 'dc-fast-charger-120-180-240kw', 'solar-khu-ev-charger-load', 'ppa-solar-rooftop-khue-arai']) {
+    const remote = cmsArticle(slug)
+    const local = getLocalArticleBySlug(slug)!
+    const result = listWebsiteArticles(undefined, [remote]).find(item => item.slug === slug)!
+    assert.equal(result.content, rewriteArticleLinks(local.content!))
+    assert.deepEqual(result.directAnswer, local.directAnswer)
+    assert.equal(result.id, remote.id)
+    assert.equal(result.publishedAt, remote.publishedAt)
+    assert.equal(result.createdAt, remote.createdAt)
+    assert.equal(result.updatedAt, local.updatedAt)
+    assert.equal(result.viewCount, remote.viewCount)
+    assert.equal(result.coverImage, remote.coverImage)
+    assert.equal(result.seo?.robots, remote.seo.robots)
+    assert.equal(isIndexableArticle(result), false)
+    assert.equal(buildArticleJsonLd(result, 'https://www.cxenertech.com').dateModified, '2026-10-21T17:00:00.000Z')
+  }
+})
+
+test('article detail uses the same ownership and robots rules as the listing', async (t) => {
+  const globals = globalThis as unknown as Record<string, unknown>
+  const originalConfig = globals.useRuntimeConfig
+  const originalFetch = globals.$fetch
+  t.after(() => {
+    if (originalConfig === undefined) delete globals.useRuntimeConfig
+    else globals.useRuntimeConfig = originalConfig
+    if (originalFetch === undefined) delete globals.$fetch
+    else globals.$fetch = originalFetch
+  })
+  globals.useRuntimeConfig = () => ({ cmmsApiBaseUrl: 'https://example.test' })
+  for (const slug of ['solar-bess-rongngan-2569', 'dc-fast-charger-120-180-240kw']) {
+    globals.$fetch = async () => ({ item: cmsArticle(slug) })
+    const result = await resolveWebsiteArticle({} as never, slug)
+    const listed = listWebsiteArticles(undefined, [cmsArticle(slug)]).find(item => item.slug === slug)!
+    assert.equal(result.article?.content, listed.content)
+    assert.equal(result.article?.seo?.robots, 'noindex, nofollow')
+    assert.equal(result.source, slug === 'solar-bess-rongngan-2569' ? 'cmms' : 'local')
+  }
+})
+
+test('first landing and UTM survive quotation navigation and a reload in the same tab', () => {
+  const values = new Map<string, string>()
+  const storage = { getItem: (key: string) => values.get(key) || null, setItem: (key: string, value: string) => { values.set(key, value) } }
+  const landing = readLeadAttribution('https://www.cxenertech.com/solar/ppa?utm_source=campaign&utm_medium=cpc&utm_campaign=solar&email=private@example.test#form', storage)
+  assert.deepEqual(landing, { landing_page: '/solar/ppa', utm_source: 'campaign', utm_medium: 'cpc', utm_campaign: 'solar' })
+  assert.deepEqual(readLeadAttribution('https://www.cxenertech.com/contact/quotation?type=solar', storage), landing)
+  assert.deepEqual(readLeadAttribution('https://www.cxenertech.com/contact/quotation?utm_source=internal', storage), landing)
+  assert.equal(JSON.stringify([...values.values()]).includes('private'), false)
+  assert.equal(readLeadAttribution('https://example.test/contact?utm_source=user%40example.test').utm_source, '')
+})
+
+test('corrupt or blocked browser storage does not break lead collection', () => {
+  for (const storage of [
+    { getItem: () => '{broken', setItem: () => {} },
+    { getItem: () => { throw new Error('blocked') }, setItem: () => { throw new Error('blocked') } },
+    { getItem: () => JSON.stringify({ landing_page: '//untrusted.test/?email=private' }), setItem: () => {} },
+  ]) {
+    assert.deepEqual(readLeadAttribution('https://example.test/ev-charging?utm_source=search', storage), {
+      landing_page: '/ev-charging', utm_source: 'search', utm_medium: '', utm_campaign: '',
+    })
+  }
+})
 
 test('public host normalization preserves path/query and leaves previews accessible', () => {
   for (const host of ['cxenertech.com', 'www.cxenertech.com']) {
@@ -114,10 +202,18 @@ test('JSON-LD cannot terminate its script tag through a CMS title', () => {
 })
 
 test('Product markup does not invent stock, delivery, returns or price expiry', () => {
-  const input = { name: 'Solar', description: 'แพ็กเกจ', sku: 'SOL-1', image: 'https://example.test/solar.jpg', url: 'https://example.test/solar', price: 120000 }
+  const input = { name: 'Solar', description: 'แพ็กเกจ', sku: 'SOL-1', image: 'https://example.test/solar.jpg', url: 'https://example.test/solar', price: 120000, priceIsExact: true }
   const result = buildProductJsonLd(input)
   const offer = result.offers as Record<string, unknown>
   assert.equal(offer.price, '120000.00')
+  assert.equal(offer.priceSpecification, undefined)
+  assert.equal(buildProductJsonLd({ ...input, priceIsExact: false }).offers, undefined)
+  const { priceIsExact, ...referencePrice } = input
+  assert.equal(buildProductJsonLd(referencePrice).offers, undefined)
+  const service = buildServiceJsonLd(input)
+  assert.equal(service['@type'], 'Service')
+  assert.deepEqual(service.provider, { '@id': 'https://example.test/#business' })
+  assert.equal('offers' in service, false)
   for (const field of ['availability', 'shippingDetails', 'hasMerchantReturnPolicy', 'priceValidUntil']) assert.equal(offer[field], undefined)
   assert.equal(buildProductJsonLd({ ...input, price: null }).offers, undefined)
   assert.equal((buildProductJsonLd({ ...input, priceValidUntil: '2027-01-31' }).offers as Record<string, unknown>).priceValidUntil, '2027-01-31')
@@ -131,6 +227,20 @@ test('sitemap excludes non-indexable/retired articles and escapes XML', () => {
   assert.equal(isIndexableArticle({ slug: 'raka-tidtang-sola-cell' }), false)
   assert.equal(isIndexableArticle({ slug: '' }), false)
   assert.equal(escapeXml('https://example.test/a?a=1&b=<tag>'), 'https://example.test/a?a=1&amp;b=&lt;tag&gt;')
+})
+
+test('homepage source stays indexable and the sitemap omits redirect sources', () => {
+  const home = readFileSync(new URL('../app/pages/index.vue', import.meta.url), 'utf8')
+  assert.equal(/noindex/i.test(home), false)
+  for (const path of SITE_STATIC_PATHS) {
+    assert.equal(SEO_REDIRECTS[path], undefined, path)
+  }
+})
+
+test('llms.txt points at the canonical www host', () => {
+  const llms = readFileSync(new URL('../public/llms.txt', import.meta.url), 'utf8')
+  assert.equal(llms.includes('https://cxenertech.com'), false)
+  assert.equal(llms.includes('https://www.cxenertech.com/'), true)
 })
 
 test('each supported area has distinct survey checks and a guide-to-service link', () => {
