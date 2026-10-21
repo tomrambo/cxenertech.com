@@ -21,7 +21,7 @@ Excluded on purpose (findings.md):
 
 Already present on the live homepage and must not be recommended as additions: title, meta description, canonical, Open Graph, Twitter card, JSON-LD `LocalBusiness`, `WebSite`, `BreadcrumbList`, `FAQPage`. Article URLs already serve `BlogPosting` or `NewsArticle`. Package URLs already serve `Product`. `/flood-recovery` already serves `Service`. `/llms.txt` and `/.well-known/okf/index.md` returned 200 on 2026-10-21.
 
-## AEO gaps (detail in repo root `AEO_AUDIT_RESULTS.md`)
+## AEO gaps (detail in `docs/aeo/AEO_AUDIT_RESULTS.md`)
 
 These are outside the crawl rollup. Confidence is labeled in that file.
 

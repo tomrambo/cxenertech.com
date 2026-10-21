@@ -3,7 +3,7 @@
 Audited: 2026-10-21  
 Site: https://www.cxenertech.com  
 Scope of the 2026-10-21 baseline: repository plus live origin; application code was unchanged during that audit. Subsequent local fixes are recorded below.  
-Checklist: `CXENERTECH_AEO_AUDIT_ROADMAP.md`
+Checklist: [CXENERTECH_AEO_AUDIT_ROADMAP.md](CXENERTECH_AEO_AUDIT_ROADMAP.md)
 
 Live evidence: `.seoagent/audit/evidence.md` (crawled https://www.cxenertech.com at 2026-10-21T06:44:36.011Z, `capture_complete: true`, 312/312 pages). Machine findings: `.seoagent/audit/findings.md` — **0 confirmed technical findings**. Indexing coverage in Google Search Console, GA4, CrUX, and Cloudflare WAF logs were not available in this session and stay **UNKNOWN**.
 
