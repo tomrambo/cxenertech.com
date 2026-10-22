@@ -1,5 +1,6 @@
 import { SITE_STATIC_PATHS } from '../../app/utils/sitemap-routes'
 import { SEO_REDIRECTS } from '../../app/utils/seo-redirects'
+import { FLOOD_SERVICE_OPEN } from '../../app/utils/flood-campaign'
 import { fetchCmmsSolarPackages } from '../utils/cmms-solar-packages'
 import { fetchCmmsChargePackages } from '../utils/cmms-charge-packages'
 import { resolveWebsiteArticles } from '../utils/website-articles'
@@ -34,7 +35,8 @@ function urlEntry(path: string, lastmod = SITE_CONTENT_UPDATED) {
 export default defineEventHandler(async (event) => {
   const lastmodByPath = new Map<string, string>()
   const paths = new Set<string>(SITE_STATIC_PATHS.filter((path) => !SEO_REDIRECTS[path]))
-  lastmodByPath.set('/flood-recovery', '2026-10-01')
+  if (!FLOOD_SERVICE_OPEN) paths.delete('/flood-recovery')
+  lastmodByPath.set('/flood-recovery', '2026-10-22')
   try {
     const { packages } = await fetchCmmsSolarPackages(event)
     for (const pkg of packages) {

@@ -24,7 +24,9 @@ llms_owner: route                # optional: only value is `route`. Set it when 
 
 ## `.seoagent/context.md`
 
-Business context, audience, tone, banned topics, reference URLs. Read on every session.
+Business context, facts, audience, tone, banned topics, reference URLs. Read on every session.
+
+`# Facts` holds one product fact per line (price, plan, limit, feature, integration), each ending in `— source: <repo file or URL>`: `- Pro plan is $49/month — source: app/pricing/page.tsx`. `seoagent facts` diffs those sources against the commits since the last `seoagent facts --mark` (see `references/session-protocol.md` § Fact check against commits).
 
 ## `.seoagent/roadmap.md`
 
@@ -104,6 +106,12 @@ word_count: 3120
 status: drafted
 created_at: 2026-04-27T10:00:00Z
 brief: tech-seo-guide
+# Byline: present only when the site owner added a person author (cloud drafts carry it).
+author: "Jane Doe"
+author_title: "Founder, Acme"
+author_url: "https://www.linkedin.com/in/janedoe"            # the byline link (profile, else website)
+author_same_as: ["https://www.linkedin.com/in/janedoe", "https://janedoe.com"]
+author_key: "jane-doe"         # optional: how this repo names the author (learned from `content track --author-key`)
 images:
   hero:
     alt: "Diagram of the technical SEO audit flow from crawl to indexation"
@@ -120,6 +128,8 @@ json_ld:
     mainEntity: []
 ---
 ```
+
+**Byline fields** (`author`, `author_title`, `author_url`, `author_same_as`, `author_key`): the cloud writes them into a draft only when the site owner set a person author (Site settings → Authors, or the `site.authors.set` chat tool). No `author` means the site has no author or uses the company name: write no author fields. When you place the article, put the byline where the repo's own posts keep theirs and fill the Article JSON-LD's author `Person` from these fields (the AUTHOR RULE in `references/inbox.md`).
 
 ## Audit output — `.seoagent/audit/latest.md`
 

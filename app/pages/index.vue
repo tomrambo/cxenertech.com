@@ -17,7 +17,7 @@
 
       <div class="container-wide hero__inner">
         <div class="hero__stack">
-          <FloodCampaignCard />
+          <FloodCampaignCard v-if="FLOOD_SERVICE_OPEN" />
         <div class="hero__copy">
           <p class="hero__kicker animate-fade-up">{{ t('home.kicker') }}</p>
           <h1 class="hero__title animate-fade-up animate-delay-1">
@@ -319,12 +319,14 @@ const stats = computed(() => [
 ])
 
 const services = computed(() => [
-  {
-    to: '/flood-recovery',
-    title: t('home.floodServiceTitle'),
-    desc: t('home.floodServiceDesc'),
-    image: '/images/projects/project-residential-solar.jpg',
-  },
+  ...(FLOOD_SERVICE_OPEN
+    ? [{
+        to: '/flood-recovery',
+        title: t('home.floodServiceTitle'),
+        desc: t('home.floodServiceDesc'),
+        image: '/images/projects/project-residential-solar.jpg',
+      }]
+    : []),
   {
     to: '/solar/rooftop',
     title: 'รับติดตั้งโซล่าเซลล์',
@@ -354,7 +356,9 @@ const solarSizes = computed(() => [
 ])
 
 const searchIntents = [
-  { label: 'ตรวจซ่อมหลังน้ำท่วม', hint: 'จองวันช่างเข้า และชำระค่าจอง', to: '/flood-recovery' },
+  ...(FLOOD_SERVICE_OPEN
+    ? [{ label: 'ตรวจซ่อมหลังน้ำท่วม', hint: 'จองวันช่างเข้า และชำระค่าจอง', to: '/flood-recovery' }]
+    : []),
   { label: 'รับติดตั้งโซล่าเซลล์', hint: 'บ้าน อาคาร โรงงาน', to: '/solar/rooftop' },
   { label: 'ติดโซล่าเซลล์บ้าน ราคา', hint: '5 / 10 / 15 kW', to: '/solar/rooftop/residential' },
   { label: 'รับติดตั้งโซล่าเซลล์โรงงาน', hint: 'EPC นิคม ยื่น PEA/MEA', to: '/solar/rooftop/factory' },
@@ -416,7 +420,7 @@ usePageSeo({
     },
     {
       q: 'มีบริการตรวจและซ่อมหลังน้ำท่วมไหม?',
-      a: 'มีหมวดตรวจและซ่อมไฟฟ้าหลังน้ำท่วมจาก Marketplace เลือกแพ็กเกจ ปักที่อยู่จาก Google Map เลือกวันที่ช่างเข้า แล้วชำระด้วย QR หรือแนบสลิปที่หน้าตรวจและซ่อมหลังน้ำท่วม',
+      a: 'ช่วงบริการด่วนน้ำท่วมปิดรับคิวแล้ว งานไฟฟ้าทั่วไปติดต่อทีม CX ENERTECH เพื่อให้ช่วยดูที่ไซต์',
     },
     {
       q: 'ผ่อนติดตั้งโซล่าเซลล์หรือ EV Station ได้ไหม?',

@@ -1,3 +1,5 @@
+import { FLOOD_SERVICE_OPEN } from './flood-campaign'
+
 export type NavChild = { key: string; to: string }
 
 export type NavItem = {
@@ -8,7 +10,7 @@ export type NavItem = {
 
 export const mainNav: NavItem[] = [
   { key: 'home', to: '/' },
-  { key: 'flood', to: '/flood-recovery' },
+  ...(FLOOD_SERVICE_OPEN ? [{ key: 'flood', to: '/flood-recovery' } satisfies NavItem] : []),
   { key: 'about', to: '/about' },
   { key: 'solar', to: '/solar', children: [
     { key: 'solarOverview', to: '/solar' },
@@ -85,7 +87,7 @@ export const footerNav = {
     { key: 'homeCharger', to: '/ev-charging/home-charger' },
   ],
   resources: [
-    { key: 'floodRecovery', to: '/flood-recovery' },
+    ...(FLOOD_SERVICE_OPEN ? [{ key: 'floodRecovery', to: '/flood-recovery' }] : []),
     { key: 'projects', to: '/projects' },
     { key: 'products', to: '/products' },
     { key: 'articles', to: '/knowledge/articles' },

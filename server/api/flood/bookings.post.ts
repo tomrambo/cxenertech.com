@@ -1,4 +1,5 @@
 import { contactInfo } from '../../../app/utils/nav'
+import { FLOOD_SERVICE_OPEN } from '../../../app/utils/flood-campaign'
 import { assertFloodRate, createFloodBooking } from '../../utils/flood-bookings'
 import { createFloodGatewayQr } from '../../utils/flood-gateway'
 import { forwardFloodLead } from '../../utils/flood-lead'
@@ -6,6 +7,9 @@ import { fetchFloodMarketplace } from '../../utils/flood-marketplace'
 import { resolveFloodPlace } from '../../utils/flood-places'
 
 export default defineEventHandler(async (event) => {
+  if (!FLOOD_SERVICE_OPEN) {
+    throw createError({ statusCode: 410, message: 'ช่วงบริการด่วนน้ำท่วมปิดรับคิวแล้ว' })
+  }
   assertFloodRate(getRequestIP(event, { xForwardedFor: true }) || 'local')
   const body = await readBody(event)
   const catalog = await fetchFloodMarketplace(event)

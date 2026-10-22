@@ -9,7 +9,7 @@ Every session has a budget — headless/one-shot runs have a hard turn cap, inte
 1. **Consolidate writes — keep NEW files under ~20 per session.** One audit doc, one migration plan, one fixes batch — not a file (or a file update) per finding. If you're about to create a new file, first ask whether an existing one should be extended instead (extend `audit/latest.md` rather than a second audit file; add a section to `roadmap.md` rather than a new planning doc). Do NOT write per-item bookkeeping updates (a changelog line here, a roadmap tick there, a status touch after each action) as you go; accumulate them and batch them into a single write at the end of the session — one changelog append, one roadmap update, one `seoagent sync`. Every file write also fires the sync hook, so fewer writes = more budget for real work.
 2. **Batch multi-file code edits.** When a fix touches several source files (meta tags across layouts, a redirects config + a sitemap), make the edits back-to-back as one batch, then verify once — don't interleave each edit with checks, syncs, or commentary turns.
 3. **Scope a single-session ask to what one session can ship.** For a single-session "grow organic traffic" ask, deliver the audit findings + the migration plan + the top shippable fixes. Do NOT draft full article inventories or write every article in the plan — that is multi-session work; list the briefs (slug + target keyword + role) in the roadmap instead and let later sessions write them.
-4. **Reserve the final turns for the wrap-up.** When the work above is done, end the session with exactly two steps: `seoagent verify-recs` (pass any work-log files written outside `.seoagent/` — the sync hook already covers `.seoagent/` itself) and then **`seoagent summary`**, whose output is what you present as the final message. **No new workstreams after the summary** — do not open a new work stream (another audit pass, another content draft) you cannot finish inside the budget. An unfinished extra stream plus a missing summary is worth less than a complete summary.
+4. **Reserve the final turns for the wrap-up.** When the work above is done, end the session with exactly two steps: `seoagent verify-recs` (name any work-log files written outside `.seoagent/` — naming files checks only those files, and the sync hook and `seoagent summary` already cover `.seoagent/` itself) and then **`seoagent summary`**, whose output is what you present as the final message. **No new workstreams after the summary** — do not open a new work stream (another audit pass, another content draft) you cannot finish inside the budget. An unfinished extra stream plus a missing summary is worth less than a complete summary.
 5. **Prefer editing an existing file over creating a new one** when appending related content. Fewer files means fewer writes, fewer sync round-trips, and a workspace the next session can actually read.
 
 **Session economy applies to bookkeeping, never to findings completeness.** The rules above trim churn — file-write sprawl, re-polish loops, per-item status ticks — they never license dropping findings. Reporting **every confirmed finding** from `.seoagent/audit/findings.md` (every title in the final message at minimum; full detail by reference to the file) is **non-negotiable**: a terse report that omits confirmed findings is a failed session, not an economical one. `seoagent summary` makes this mechanical — its "Technical findings (from live crawl)" section lists every finding title, and that list is never truncated.
@@ -42,6 +42,28 @@ Cluster files in `.seoagent/strategy/clusters/` carry a per-article `status`. Wh
 ### Publishing drift check (quick, only when `publishing.cms` is recorded)
 
 Confirm the recorded CMS still has a supporting signal in the repo (its dep in `package.json` or its env var). If that signal is gone — the user moved off it — don't silently trust the stale value: flag it and run **"Re-detecting the publishing target"** in `references/publishing.md`. Skip this check when no `publishing.cms` is set.
+
+## Fact check against commits
+
+A page that states a price, a plan limit or a feature is only as current as the code it was read from. `.seoagent/context.md` keeps those facts under `# Facts`, one per line, each naming where it was read:
+
+```
+# Facts
+
+- Pro plan is $49/month, billed monthly — source: app/pricing/page.tsx
+- Free plan includes 3 projects — source: lib/plans.ts
+- Exports to QuickBooks and Xero — source: https://example.com/integrations
+```
+
+**Writing facts.** Read each one from the code or the live page that defines it, never from memory or marketing copy, and name that file or URL. A fact you cannot point to a source for stays out. Prefer the repo file over a URL: commits to it are what the check can see.
+
+**Checking them** (doctor flags `facts_stale`; run it every scheduled session either way):
+
+1. `seoagent facts` — lists each fact whose source file changed since the last check, with the commits that touched it.
+2. For each listed fact, re-read the source. If the value changed, update the fact line, then search the content and page files for the OLD value (the number, the plan name, the limit) and correct every page that still states it, in this session.
+3. `seoagent facts --mark` — records HEAD as checked. Run it only after step 2 is done; a mark before the pages are fixed hides the stale ones from every later session.
+
+`unchecked` (no baseline yet) means verify every repo-sourced fact once, then mark. URL-sourced facts are invisible to git: re-fetch them at each re-audit. A fact whose source no longer exists (renamed or deleted file) gets a new source or is removed. The product is right and the page is wrong: never change the product's code to match a page.
 
 ## Inferring domain and site type
 

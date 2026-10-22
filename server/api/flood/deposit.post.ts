@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { contactInfo } from '../../../app/utils/nav'
+import { FLOOD_SERVICE_OPEN } from '../../../app/utils/flood-campaign'
 import { assertFloodRate, declareFloodDeposit } from '../../utils/flood-bookings'
 import { forwardFloodSlip } from '../../utils/flood-gateway'
 import { forwardFloodLead, forwardFloodNotice } from '../../utils/flood-lead'
@@ -22,6 +23,9 @@ function saveLocalSlip(ref: string, file: { data: Buffer; filename?: string }) {
 }
 
 export default defineEventHandler(async (event) => {
+  if (!FLOOD_SERVICE_OPEN) {
+    throw createError({ statusCode: 410, message: 'ช่วงบริการด่วนน้ำท่วมปิดรับคิวแล้ว' })
+  }
   assertFloodRate(getRequestIP(event, { xForwardedFor: true }) || 'local')
   const form = await readMultipartFormData(event)
   if (!form) {

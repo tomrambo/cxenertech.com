@@ -42,12 +42,16 @@ const formCopy = computed(() => floodFormCopy(locale.value))
 const seoFaqs = floodPage('th').faqs
 
 usePageSeo({
-  title: 'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วม',
-  description:
-    'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วมในกทม.และ 5 จังหวัดปริมณฑล เลือกวันเข้าบริการและช่วงเวลาที่สะดวก',
+  title: FLOOD_SERVICE_OPEN
+    ? 'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วม'
+    : 'ช่วงบริการด่วนน้ำท่วมปิดรับคิวแล้ว',
+  description: FLOOD_SERVICE_OPEN
+    ? 'จองช่างตรวจและซ่อมไฟฟ้าหลังน้ำท่วมในกทม.และ 5 จังหวัดปริมณฑล เลือกวันเข้าบริการและช่วงเวลาที่สะดวก'
+    : 'ช่วงบริการด่วนตรวจและซ่อมไฟฟ้าหลังน้ำท่วมปิดรับคิวแล้ว ติดต่อทีม CX ENERTECH หากต้องการให้ช่วยดูงานไฟฟ้าที่ไซต์',
   path: '/flood-recovery',
   image: '/images/flood/flood-hero.jpg',
-  faq: seoFaqs,
+  robots: FLOOD_SERVICE_OPEN ? undefined : 'noindex, follow',
+  faq: FLOOD_SERVICE_OPEN ? seoFaqs : undefined,
   crumbs: [
     { name: 'หน้าแรก', path: '/' },
     { name: 'ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม', path: '/flood-recovery' },
@@ -118,7 +122,7 @@ function dateParts(iso: string) {
   }
 }
 
-useHead(() => ({
+useHead(() => FLOOD_SERVICE_OPEN ? ({
   script: [
     {
       key: 'ld-flood-service',
@@ -150,7 +154,7 @@ useHead(() => ({
       }),
     },
   ],
-}))
+}) : {})
 
 watch(packageId, () => {
   const allowed = new Set(visibleDates.value.map((row) => row.date))
@@ -403,6 +407,7 @@ async function onDeclare() {
 }
 
 onMounted(() => {
+  if (!FLOOD_SERVICE_OPEN) return
   loadPackages()
   loadSlots()
   const raw = sessionStorage.getItem(STORAGE_KEY)
@@ -428,11 +433,22 @@ onMounted(() => {
             <span aria-hidden="true">/</span>
             <span>{{ locale === 'en' ? 'Flood recovery' : 'ตรวจและซ่อมไฟฟ้าหลังน้ำท่วม' }}</span>
           </nav>
-          <h1 class="animate-fade-up">{{ page.heroTitle }}</h1>
-          <p class="animate-fade-up animate-delay-1">{{ page.heroLead }}</p>
-          <div class="hero-actions">
+          <h1 class="animate-fade-up">{{ FLOOD_SERVICE_OPEN ? page.heroTitle : (locale === 'en' ? 'Flood campaign is closed' : 'ช่วงบริการด่วนน้ำท่วมปิดรับคิวแล้ว') }}</h1>
+          <p class="animate-fade-up animate-delay-1">
+            {{
+              FLOOD_SERVICE_OPEN
+                ? page.heroLead
+                : (locale === 'en'
+                  ? 'New visit bookings are not open. Contact the team if you still need an electrician on site.'
+                  : 'ตอนนี้ยังไม่เปิดจองคิวตรวจและซ่อมหลังน้ำท่วม หากต้องการให้ทีมช่วยดูงานไฟฟ้าที่ไซต์ ติดต่อ CX ENERTECH')
+            }}
+          </p>
+          <div v-if="FLOOD_SERVICE_OPEN" class="hero-actions">
             <a href="#book" class="btn btn-primary">{{ page.bookCta }} <span aria-hidden="true">→</span></a>
             <a href="#packages" class="btn btn-secondary">{{ page.detailCta }}</a>
+          </div>
+          <div v-else class="hero-actions">
+            <NuxtLink to="/contact" class="btn btn-primary">{{ locale === 'en' ? 'Contact the team' : 'ติดต่อทีม' }} <span aria-hidden="true">→</span></NuxtLink>
           </div>
         </div>
         <figure class="flood-hero__figure">
@@ -448,6 +464,7 @@ onMounted(() => {
       </div>
     </section>
 
+    <template v-if="FLOOD_SERVICE_OPEN">
     <section class="proof" :aria-label="locale === 'en' ? 'Campaign facts' : 'จุดเด่นของบริการ'">
       <div class="container proof__row">
         <p v-for="item in page.proof" :key="item">{{ item }}</p>
@@ -543,7 +560,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <section id="book" class="section book">
+    <section v-if="FLOOD_SERVICE_OPEN" id="book" class="section book">
       <div class="container book-wrap">
         <header class="book-head">
           <span class="section-label">Booking</span>
@@ -781,8 +798,10 @@ onMounted(() => {
         </p>
       </div>
     </section>
+    </template>
 
     <CtaBand
+      v-if="FLOOD_SERVICE_OPEN"
       :title="page.ctaTitle"
       :description="page.ctaBody"
       :primary-label="page.bookCta"
