@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { THAI_PROVINCES } from '~/utils/thai-provinces'
+
 const route = useRoute()
 const config = useRuntimeConfig()
 const submitted = ref(false)
@@ -304,7 +306,10 @@ usePageSeo({
             </div>
             <div class="form-field">
               <label for="province">จังหวัด</label>
-              <input id="province" v-model="form.province" type="text" maxlength="100" placeholder="เช่น กรุงเทพมหานคร" />
+              <select id="province" v-model="form.province" autocomplete="address-level1">
+                <option value="">เลือกจังหวัด</option>
+                <option v-for="name in THAI_PROVINCES" :key="name" :value="name">{{ name }}</option>
+              </select>
             </div>
           </div>
           <div class="form-field">
