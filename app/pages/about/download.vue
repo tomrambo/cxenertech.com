@@ -15,7 +15,7 @@
         <div class="download__card">
           <BrandLogo variant="dark" :height="52" />
           <h2>Company Profile (PDF)</h2>
-          <p>บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด — CX ENERTECH CO., LTD.</p>
+          <p>บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด — CX ENERTECH CO., LTD.</p>
           <p class="download__meta">Smart Energy &amp; EV Infrastructure</p>
           <a class="btn btn-primary" href="mailto:phachirawat.cx@gmail.com?subject=Company%20Profile%20CX%20ENERTECH">
             ขอ Company Profile ทางอีเมล
@@ -35,7 +35,7 @@
 <script setup lang="ts">
 usePageSeo({
   title: 'ขอโปรไฟล์บริษัท | CX ENERTECH',
-  description: 'ขอเอกสารแนะนำบริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด ฉบับล่าสุด หรือตรวจสอบข้อมูลบริษัทผู้รับติดตั้งโซล่าเซลล์และ EV Station บนเว็บไซต์',
+  description: 'ขอเอกสารแนะนำบริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด ฉบับล่าสุด หรือตรวจสอบข้อมูลบริษัทผู้รับติดตั้งโซล่าเซลล์และ EV Station บนเว็บไซต์',
   path: '/about/download',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },

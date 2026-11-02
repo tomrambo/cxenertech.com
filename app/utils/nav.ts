@@ -102,7 +102,7 @@ export const footerNav = {
 export const contactInfo = {
   company: 'CX ENERTECH',
   legalEn: 'CX ENERTECH CO., LTD.',
-  legalTh: 'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
+  legalTh: 'บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด',
   tagline: 'Smart Energy & Technology Solutions',
   email: 'phachirawat.cx@gmail.com',
   phone: '+6699-624-6444',

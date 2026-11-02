@@ -2,7 +2,7 @@
   <div>
     <PageHero
       title="ประวัติบริษัท CX ENERTECH"
-      description="บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์และ EV Station"
+      description="บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์และ EV Station"
       :crumbs="[
         { label: 'หน้าแรก', to: '/' },
         { label: 'เกี่ยวกับเรา', to: '/about' },
@@ -16,7 +16,7 @@
           <BrandLogo variant="dark" :height="64" />
           <div>
             <h2>CX ENERTECH CO., LTD.</h2>
-            <p>บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด</p>
+            <p>บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด</p>
           </div>
         </div>
 
@@ -49,7 +49,7 @@
 <script setup lang="ts">
 usePageSeo({
   title: 'ประวัติบริษัท | CX ENERTECH รับติดตั้งโซล่าเซลล์',
-  description: 'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop และสถานีชาร์จรถไฟฟ้าแบบ EPC',
+  description: 'บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop และสถานีชาร์จรถไฟฟ้าแบบ EPC',
   path: '/about/company-profile',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },

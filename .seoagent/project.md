@@ -21,6 +21,6 @@ publishing:
 ---
 # SEOAgent Project — cxenertech.com
 
-Corporate / lead-gen site for CX ENERTECH (บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด): solar rooftop and EV charging installation in Thailand. Homepage, packages, and knowledge hub are public with no auth/cart — `site_type: content`. Primary language is Thai (`html lang=th`). Live origin is https://www.cxenertech.com (CNAME `www.cxenertech.com`, git remote `tomrambo/cxenertech.com`).
+Corporate / lead-gen site for CX ENERTECH (บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด): solar rooftop and EV charging installation in Thailand. Homepage, packages, and knowledge hub are public with no auth/cart — `site_type: content`. Primary language is Thai (`html lang=th`). Live origin is https://www.cxenertech.com (CNAME `www.cxenertech.com`, git remote `tomrambo/cxenertech.com`).
 
 Initialized 2026-09-20T07:14:53.249Z with seoagent 1.101.1.

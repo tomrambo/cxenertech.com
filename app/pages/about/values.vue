@@ -20,7 +20,7 @@
 <script setup lang="ts">
 usePageSeo({
   title: 'ค่านิยมองค์กร | CX ENERTECH',
-  description: 'ค่านิยมทีมติดตั้งโซล่าเซลล์และ EV Station ของบริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
+  description: 'ค่านิยมทีมติดตั้งโซล่าเซลล์และ EV Station ของบริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด',
   path: '/about/values',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },

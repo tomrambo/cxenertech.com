@@ -11,7 +11,7 @@
         <div>
           <span class="section-label">Company Profile</span>
           <h2 class="section-title">SMART ENERGY &amp; EV INFRASTRUCTURE</h2>
-          <p class="legal-name">CX ENERTECH CO., LTD. · บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด</p>
+          <p class="legal-name">CX ENERTECH CO., LTD. · บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด</p>
           <p>
             CX ENERTECH มุ่งมั่นขับเคลื่อนอนาคตที่ยั่งยืนด้วย Smart Energy Ecosystem
             เชื่อมโยงสองเสาหลัก — Solar Energy และ EV Charging — สู่การบริหารจัดการพลังงานอย่างชาญฉลาด
@@ -69,7 +69,7 @@ const links = [
 usePageSeo({
   title: 'เกี่ยวกับ CX ENERTECH | บริษัทติดตั้งโซล่าเซลล์และ EV Station',
   description:
-    'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์และสถานีชาร์จรถไฟฟ้า แบบ EPC ครบวงจร',
+    'บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์และสถานีชาร์จรถไฟฟ้า แบบ EPC ครบวงจร',
   path: '/about',
   crumbs: [
     { name: 'หน้าแรก', path: '/' },

@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop และ EV Station ดูแพ็กเกจราคา จุดคืนทุน และขอใบเสนอราคา',
+            'บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop และ EV Station ดูแพ็กเกจราคา จุดคืนทุน และขอใบเสนอราคา',
         },
         { name: 'theme-color', content: '#0B0B0B' },
       ],

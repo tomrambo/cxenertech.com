@@ -34,7 +34,7 @@ export function buildProductJsonLd(input: ProductJsonLdInput) {
         : {}),
       seller: {
         '@type': 'Organization',
-        name: 'บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด',
+        name: 'บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด',
       },
     }
   }

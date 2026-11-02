@@ -53,7 +53,7 @@ Sitemap: https://www.cxenertech.com/sitemap.xml
 ## https://www.cxenertech.com/
 - HTTP 200 · 365 body words
 - **title:** CX ENERTECH | รับติดตั้งโซล่าเซลล์ และ EV Charging
-- **meta description:** บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop บ้านถึงโรงงาน พร้อมแพ็กเกจราคา จุดคืนทุน PPA สินเชื่อผ่อนเป็นเจ้าของระบบ และ EV Charging ครบวงจร
+- **meta description:** บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop บ้านถึงโรงงาน พร้อมแพ็กเกจราคา จุดคืนทุน PPA สินเชื่อผ่อนเป็นเจ้าของระบบ และ EV Charging ครบวงจร
 - **h1(s):** `รับติดตั้ง โซล่าเซลล์ และ EV Charging`
 - **canonical:** `https://www.cxenertech.com/` (server-rendered)
 - **JSON-LD @types present:** `LocalBusiness`, `WebSite`, `BreadcrumbList`, `FAQPage` — **already present; do NOT recommend adding these**
@@ -77,7 +77,7 @@ Sitemap: https://www.cxenertech.com/sitemap.xml
 ## https://www.cxenertech.com/about
 - HTTP 200 · 82 body words
 - **title:** เกี่ยวกับ CX ENERTECH | บริษัทติดตั้งโซล่าเซลล์และ EV Station
-- **meta description:** บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์และสถานีชาร์จรถไฟฟ้า แบบ EPC ครบวงจร
+- **meta description:** บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์และสถานีชาร์จรถไฟฟ้า แบบ EPC ครบวงจร
 - **h1(s):** `เกี่ยวกับ CX ENERTECH`
 - **canonical:** `https://www.cxenertech.com/about` (server-rendered)
 - **JSON-LD @types present:** `LocalBusiness`, `WebSite`, `BreadcrumbList` — **already present; do NOT recommend adding these**
@@ -89,7 +89,7 @@ Sitemap: https://www.cxenertech.com/sitemap.xml
 ## https://www.cxenertech.com/about/company-profile
 - HTTP 200 · 105 body words
 - **title:** ประวัติบริษัท | CX ENERTECH รับติดตั้งโซล่าเซลล์
-- **meta description:** บริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop และสถานีชาร์จรถไฟฟ้าแบบ EPC
+- **meta description:** บริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด รับติดตั้งโซล่าเซลล์ solar rooftop และสถานีชาร์จรถไฟฟ้าแบบ EPC
 - **h1(s):** `ประวัติบริษัท CX ENERTECH`
 - **canonical:** `https://www.cxenertech.com/about/company-profile` (server-rendered)
 - **JSON-LD @types present:** `LocalBusiness`, `WebSite`, `BreadcrumbList` — **already present; do NOT recommend adding these**
@@ -113,7 +113,7 @@ Sitemap: https://www.cxenertech.com/sitemap.xml
 ## https://www.cxenertech.com/about/values
 - HTTP 200 · 39 body words
 - **title:** ค่านิยมองค์กร | CX ENERTECH
-- **meta description:** ค่านิยมทีมติดตั้งโซล่าเซลล์และ EV Station ของบริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด
+- **meta description:** ค่านิยมทีมติดตั้งโซล่าเซลล์และ EV Station ของบริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด
 - **h1(s):** `ค่านิยมองค์กร`
 - **canonical:** `https://www.cxenertech.com/about/values` (server-rendered)
 - **JSON-LD @types present:** `LocalBusiness`, `WebSite`, `BreadcrumbList` — **already present; do NOT recommend adding these**
@@ -125,7 +125,7 @@ Sitemap: https://www.cxenertech.com/sitemap.xml
 ## https://www.cxenertech.com/about/download
 - HTTP 200 · 45 body words
 - **title:** ขอโปรไฟล์บริษัท | CX ENERTECH
-- **meta description:** ขอเอกสารแนะนำบริษัท ซีเอ็กซ์ เอเนอร์เทค จำกัด ฉบับล่าสุด หรือตรวจสอบข้อมูลบริษัทผู้รับติดตั้งโซล่าเซลล์และ EV Station บนเว็บไซต์
+- **meta description:** ขอเอกสารแนะนำบริษัท ซีเอ็กซ์ เอ็นเนอร์เทค จำกัด ฉบับล่าสุด หรือตรวจสอบข้อมูลบริษัทผู้รับติดตั้งโซล่าเซลล์และ EV Station บนเว็บไซต์
 - **h1(s):** `ขอ Company Profile`
 - **canonical:** `https://www.cxenertech.com/about/download` (server-rendered)
 - **JSON-LD @types present:** `LocalBusiness`, `WebSite`, `BreadcrumbList` — **already present; do NOT recommend adding these**
