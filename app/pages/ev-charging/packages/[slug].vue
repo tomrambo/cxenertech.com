@@ -20,17 +20,12 @@
             <span class="code">{{ pkg.code }}</span>
           </div>
 
-          <div v-if="heroImage" class="hero-visual">
-            <img
-              :src="heroImage"
-              :alt="pkg.name_th"
-              loading="lazy"
-              width="1200"
-              height="675"
-              decoding="async"
-              referrerpolicy="no-referrer"
-            />
-          </div>
+          <PackageImageGallery
+            v-if="packageImages.length"
+            :key="pkg.slug"
+            :images="packageImages"
+            :name="pkg.name_th"
+          />
 
           <p class="name-en">{{ pkg.name }}</p>
           <p class="lead">{{ pkg.description }}</p>
@@ -66,7 +61,7 @@
 
           <h2 class="block-title">Details / รายละเอียดเพิ่มเติม</h2>
           <ul class="kv">
-            <li v-for="(val, key) in pkg.specs" :key="key">
+            <li v-for="(val, key) in visibleSpecs" :key="key">
               <span>{{ key }}</span>
               <strong>{{ val }}</strong>
             </li>
@@ -191,7 +186,7 @@ import {
   resolvePaybackYears,
   typeLabel,
 } from '~/utils/ev-format'
-import { resolvePackageImage } from '~/utils/package-image'
+import { resolvePackageImages } from '~/utils/package-image'
 import { buildProductJsonLd, buildServiceJsonLd } from '~/utils/product-jsonld'
 import { serializeJsonLd } from '~/utils/structured-data'
 
@@ -206,6 +201,7 @@ type ApiPackage = {
   tagline: string
   description: string
   image: string | null
+  images?: string[] | null
   power_kw_min: number
   power_kw_max: number
   charger_count: number | null
@@ -257,7 +253,15 @@ if (error.value || !data.value?.package) {
 
 const pkg = computed(() => data.value!.package)
 const chargerSpec = computed(() => data.value?.chargerSpec ?? null)
-const heroImage = computed(() => resolvePackageImage(pkg.value.image))
+const packageImages = computed(() => resolvePackageImages(
+  pkg.value.image,
+  pkg.value.images,
+  pkg.value.specs?.imageGallery,
+))
+const heroImage = computed(() => packageImages.value[0] ?? null)
+const visibleSpecs = computed(() => Object.fromEntries(
+  Object.entries(pkg.value.specs ?? {}).filter(([key]) => key !== 'imageGallery'),
+))
 const typeLabelText = computed(() => typeLabel(pkg.value.product_type))
 const price = computed(() => displayPrice(pkg.value))
 
@@ -352,6 +356,10 @@ useHead({
   align-items: start;
 }
 
+.detail__main {
+  min-width: 0;
+}
+
 .badge-row {
   display: flex;
   gap: 0.75rem;
@@ -398,20 +406,6 @@ useHead({
   margin-top: 0.75rem;
   font-size: 0.85rem;
   color: var(--color-muted);
-}
-
-.hero-visual {
-  margin: 1.25rem 0 1.5rem;
-  overflow: hidden;
-  background: #0e1a2b;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.hero-visual img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
 }
 
 .block-title {
